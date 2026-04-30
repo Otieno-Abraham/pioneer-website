@@ -1,865 +1,809 @@
+---
+layout: default
+title: "BPO & Call Center Services | Outsourcing Solutions | Pioneer Outsourcing"
+description: "Comprehensive BPO services including call center, virtual assistants, technical support, and back office operations. Enterprise-grade outsourcing from Nairobi, Kenya. 40-60% cost savings for global clients."
+---
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    {% seo %}
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Our Services - Pioneer Outsourcing BPO</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <style>
-        :root {
-            --primary-dark: #1C2B39;
-            --primary: #2C3E50;
-            --accent: #F9A826;
-            --accent-light: #FFD166;
-            --light-bg: #F8F9FA;
-            --dark-text: #2D3436;
-            --light-text: #ECF0F1;
-            --gray: #DFE6E9;
-            --success: #27AE60;
-            --error: #E74C3C;
-            --shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
-            --transition: all 0.3s ease;
-        }
-        
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-        
+
+        :root {
+            --primary-dark: #0A1A2F;
+            --primary: #0F2B3D;
+            --primary-light: #1A3A4F;
+            --accent: #F59E0B;
+            --accent-dark: #D97706;
+            --accent-light: #FBBF24;
+            --gray-50: #F9FAFB;
+            --gray-100: #F3F4F6;
+            --gray-200: #E5E7EB;
+            --gray-300: #D1D5DB;
+            --gray-400: #9CA3AF;
+            --gray-500: #6B7280;
+            --gray-600: #4B5563;
+            --gray-700: #374151;
+            --gray-800: #1F2937;
+            --gray-900: #111827;
+            --white: #FFFFFF;
+            
+            --shadow-sm: 0 1px 3px 0 rgb(0 0 0 / 0.05);
+            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.05);
+            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.05);
+            --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.05);
+            --shadow-2xl: 0 25px 50px -12px rgb(0 0 0 / 0.15);
+            
+            --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-base: 200ms cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-slow: 300ms cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
         body {
-            font-family: 'Open Sans', sans-serif;
-            line-height: 1.6;
-            color: var(--dark-text);
-            background-color: #FFFFFF;
-            scroll-behavior: smooth;
-            overflow-x: hidden;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            color: var(--gray-800);
+            background: var(--white);
+            line-height: 1.5;
+            -webkit-font-smoothing: antialiased;
         }
-        
-        h1, h2, h3, h4, h5, h6 {
-            font-family: 'Poppins', sans-serif;
-            font-weight: 700;
-            line-height: 1.3;
-        }
-        
+
         .container {
-            max-width: 1200px;
+            max-width: 1280px;
             margin: 0 auto;
-            padding: 0 20px;
+            padding: 0 32px;
         }
-        
-        /* Animated Background */
-        .animated-bg {
+
+        /* Navigation */
+        .navbar {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
-            height: 100%;
-            z-index: -1;
-            overflow: hidden;
+            background: rgba(255, 255, 255, 0.96);
+            backdrop-filter: blur(12px);
+            z-index: 1000;
+            padding: 18px 0;
+            border-bottom: 1px solid var(--gray-100);
         }
-        
-        .bg-element {
-            position: absolute;
-            border-radius: 50%;
-            opacity: 0.1;
-            animation: float 15s infinite ease-in-out;
-        }
-        
-        .bg-element:nth-child(1) {
-            width: 300px;
-            height: 300px;
-            background: var(--accent);
-            top: 10%;
-            left: 5%;
-            animation-duration: 20s;
-        }
-        
-        .bg-element:nth-child(2) {
-            width: 200px;
-            height: 200px;
-            background: var(--primary);
-            top: 70%;
-            left: 80%;
-            animation-duration: 15s;
-            animation-delay: 1s;
-        }
-        
-        .bg-element:nth-child(3) {
-            width: 150px;
-            height: 150px;
-            background: var(--accent-light);
-            top: 30%;
-            left: 90%;
-            animation-duration: 25s;
-            animation-delay: 0.5s;
-        }
-        
-        .bg-element:nth-child(4) {
-            width: 250px;
-            height: 250px;
-            background: var(--primary-dark);
-            top: 60%;
-            left: 10%;
-            animation-duration: 18s;
-            animation-delay: 2s;
-        }
-        
-        .bg-element:nth-child(5) {
-            width: 180px;
-            height: 180px;
-            background: var(--accent);
-            top: 20%;
-            left: 70%;
-            animation-duration: 22s;
-            animation-delay: 1.5s;
-        }
-        
-        @keyframes float {
-            0% {
-                transform: translate(0, 0) rotate(0deg);
-            }
-            25% {
-                transform: translate(20px, 15px) rotate(5deg);
-            }
-            50% {
-                transform: translate(0, 30px) rotate(0deg);
-            }
-            75% {
-                transform: translate(-20px, 15px) rotate(-5deg);
-            }
-            100% {
-                transform: translate(0, 0) rotate(0deg);
-            }
-        }
-        
-        /* Header */
-        header {
-            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);
-            color: var(--light-text);
-            text-align: center;
-            padding: 6rem 2rem 4rem;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        header::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320'%3E%3Cpath fill='%23F9A826' fill-opacity='0.1' d='M0,128L48,117.3C96,107,192,85,288,112C384,139,480,213,576,218.7C672,224,768,160,864,128C960,96,1056,96,1152,117.3C1248,139,1344,181,1392,202.7L1440,224L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z'%3E%3C/path%3E%3C/svg%3E");
-            background-size: cover;
-            background-position: center;
-        }
-        
-        .logo-container {
-            position: absolute;
-            top: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 10;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .logo {
-            height: 60px;
-            width: auto;
-            border-radius: 8px;
-            box-shadow: var(--shadow);
-            transition: var(--transition);
-        }
-        
-        .company-name {
-            font-family: 'Poppins', sans-serif;
-            font-weight: 700;
-            font-size: 1.8rem;
-            color: var(--accent-light);
-            margin-left: 15px;
-            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
-        }
-        
-        .header-content {
-            position: relative;
-            z-index: 1;
-            max-width: 800px;
-            margin: 0 auto;
-            padding-top: 40px;
-        }
-        
-        header h1 {
-            font-size: 3rem;
-            margin-bottom: 1.5rem;
-            color: var(--accent-light);
-        }
-        
-        header p {
-            font-size: 1.3rem;
-            margin-bottom: 2.5rem;
-        }
-        
-        .btn {
-            display: inline-block;
-            padding: 14px 30px;
-            background-color: var(--accent);
-            color: var(--primary-dark);
-            text-decoration: none;
-            border-radius: 4px;
-            font-family: 'Poppins', sans-serif;
-            font-weight: 600;
-            transition: var(--transition);
-            border: none;
-            cursor: pointer;
-            box-shadow: var(--shadow);
-        }
-        
-        .btn:hover {
-            background-color: var(--accent-light);
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(249, 168, 38, 0.3);
-        }
-        
-        .btn i {
-            margin-left: 8px;
-        }
-        
-        /* Navigation */
-        nav {
-            background-color: var(--primary);
-            padding: 1rem 0;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            box-shadow: var(--shadow);
-        }
-        
-        .nav-container {
-            display: flex;
-            justify-content: center;
-        }
-        
-        .nav-link {
-            color: white;
-            text-decoration: none;
-            margin: 0 1.5rem;
-            font-family: 'Poppins', sans-serif;
-            font-weight: 500;
-            transition: var(--transition);
-        }
-        
-        .nav-link:hover {
-            color: var(--accent-light);
-        }
-        
-        /* Sections */
-        .section {
-            padding: 5rem 0;
-            position: relative;
-            z-index: 1;
-        }
-        
-        .section-title {
-            text-align: center;
-            margin-bottom: 3rem;
-            position: relative;
-        }
-        
-        .section-title h2 {
-            font-size: 2.5rem;
-            color: var(--primary);
-            margin-bottom: 1rem;
-        }
-        
-        .section-title::after {
-            content: '';
-            display: block;
-            width: 80px;
-            height: 4px;
-            background: var(--accent);
-            margin: 0 auto;
-            border-radius: 2px;
-        }
-        
-        .section-intro {
-            text-align: center;
-            max-width: 700px;
-            margin: 0 auto 3rem;
-            font-size: 1.1rem;
-        }
-        
-        /* Services */
-        .services {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-        
-        .service {
-            background-color: white;
-            padding: 2.5rem 2rem;
-            border-radius: 10px;
-            text-align: center;
-            box-shadow: var(--shadow);
-            transition: var(--transition);
-            border-top: 4px solid var(--accent);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .service:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
-        }
-        
-        .service-icon {
-            font-size: 2.5rem;
-            color: var(--accent);
-            margin-bottom: 1.5rem;
-            transition: var(--transition);
-        }
-        
-        .service:hover .service-icon {
-            transform: scale(1.2);
-        }
-        
-        .service h3 {
-            font-size: 1.5rem;
-            color: var(--primary);
-            margin-bottom: 1rem;
-        }
-        
-        .service p {
-            margin-bottom: 1.5rem;
-        }
-        
-        /* Process Section */
-        .process {
-            background: var(--light-bg);
-            padding: 5rem 0;
-        }
-        
-        .process-steps {
+
+        .navbar .container {
             display: flex;
             justify-content: space-between;
-            max-width: 900px;
-            margin: 0 auto;
-            position: relative;
+            align-items: center;
         }
-        
-        .process-steps::before {
+
+        .logo-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo {
+            height: 44px;
+            width: auto;
+            border-radius: 10px;
+        }
+
+        .brand-name {
+            font-size: 1.35rem;
+            font-weight: 700;
+            letter-spacing: -0.3px;
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--gray-600);
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: var(--transition-fast);
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        .nav-cta {
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-dark) 100%);
+            color: white !important;
+            padding: 10px 28px;
+            border-radius: 40px;
+            font-weight: 600 !important;
+        }
+
+        .nav-cta:hover {
+            transform: translateY(-2px);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.6rem;
+            cursor: pointer;
+            color: var(--gray-700);
+        }
+
+        /* Hero */
+        .hero {
+            background: linear-gradient(125deg, var(--primary-dark) 0%, var(--primary) 45%, var(--primary-light) 100%);
+            position: relative;
+            overflow: hidden;
+            padding: 160px 0 100px;
+            margin-top: 80px;
+            text-align: center;
+        }
+
+        .hero::before {
             content: '';
             position: absolute;
-            top: 40px;
+            top: 0;
             left: 0;
             right: 0;
-            height: 3px;
-            background: var(--accent);
-            z-index: 1;
+            bottom: 0;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320'%3E%3Cpath fill='%23F59E0B' fill-opacity='0.05' d='M0,128L48,117.3C96,107,192,85,288,112C384,139,480,213,576,218.7C672,224,768,160,864,128C960,96,1056,96,1152,117.3C1248,139,1344,181,1392,202.7L1440,224L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z'%3E%3C/path%3E%3C/svg%3E");
+            background-size: cover;
+            background-position: center;
+            opacity: 0.3;
         }
-        
-        .step {
-            text-align: center;
+
+        .hero .container {
             position: relative;
             z-index: 2;
-            flex: 1;
         }
-        
-        .step-number {
-            width: 80px;
-            height: 80px;
-            background: var(--accent);
-            color: var(--primary-dark);
-            border-radius: 50%;
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            color: white;
+            margin-bottom: 20px;
+        }
+
+        .hero-highlight {
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: rgba(255,255,255,0.8);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Trust Bar - Partner Logos (Big, Colored) */
+        .trust-bar {
+            padding: 60px 0;
+            border-top: 1px solid var(--gray-100);
+            border-bottom: 1px solid var(--gray-100);
+            background: var(--white);
+        }
+
+        .trust-logos {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 48px;
+        }
+
+        .trust-logos img {
+            height: 70px;
+            width: auto;
+            opacity: 1;
+            transition: var(--transition-fast);
+            filter: none;
+            object-fit: contain;
+        }
+
+        .trust-logos img:hover {
+            transform: scale(1.05);
+        }
+
+        /* Section Headers */
+        .section-header {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 56px;
+        }
+
+        .section-tag {
+            display: inline-block;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 600;
+            color: var(--accent);
+            margin-bottom: 16px;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            color: var(--gray-900);
+            margin-bottom: 20px;
+        }
+
+        .section-header p {
+            color: var(--gray-500);
+            font-size: 1.1rem;
+        }
+
+        /* Services Grid Premium */
+        .services-section {
+            padding: 80px 0;
+            background: var(--white);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+        }
+
+        .service-card {
+            background: var(--white);
+            border-radius: 28px;
+            padding: 36px;
+            transition: var(--transition-slow);
+            border: 1px solid var(--gray-100);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .service-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--accent-light);
+            box-shadow: var(--shadow-2xl);
+        }
+
+        .service-icon {
+            width: 56px;
+            height: 56px;
+            background: linear-gradient(135deg, rgba(245,158,11,0.1) 0%, rgba(245,158,11,0.05) 100%);
+            border-radius: 20px;
             display: flex;
             align-items: center;
             justify-content: center;
+            margin-bottom: 24px;
+        }
+
+        .service-icon i {
             font-size: 1.8rem;
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-dark) 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .service-card h3 {
+            font-size: 1.35rem;
             font-weight: 700;
-            margin: 0 auto 1.5rem;
+            margin-bottom: 12px;
+            color: var(--gray-800);
+        }
+
+        .service-card p {
+            color: var(--gray-500);
+            margin-bottom: 24px;
+            line-height: 1.6;
+        }
+
+        .service-features {
+            list-style: none;
+            margin-bottom: 24px;
+        }
+
+        .service-features li {
+            padding: 6px 0;
+            color: var(--gray-600);
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .service-features li i {
+            color: var(--accent);
+            font-size: 0.8rem;
+        }
+
+        .service-link {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: var(--transition-fast);
+        }
+
+        .service-link:hover {
+            gap: 12px;
+        }
+
+        /* Process Section */
+        .process-section {
+            padding: 80px 0;
+            background: var(--gray-50);
+        }
+
+        .process-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 32px;
+            text-align: center;
+        }
+
+        .process-step {
+            background: var(--white);
+            border-radius: 24px;
+            padding: 32px 24px;
+            transition: var(--transition-slow);
+        }
+
+        .process-step:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .step-number {
+            width: 56px;
+            height: 56px;
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-dark) 100%);
+            border-radius: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: white;
+            margin: 0 auto 20px;
+        }
+
+        .process-step h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: var(--gray-800);
+        }
+
+        .process-step p {
+            color: var(--gray-500);
+            font-size: 0.9rem;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(125deg, var(--primary-dark) 0%, var(--primary) 100%);
+            padding: 80px 0;
+            text-align: center;
             position: relative;
+            overflow: hidden;
         }
-        
-        .step h3 {
-            font-size: 1.3rem;
-            color: var(--primary);
-            margin-bottom: 1rem;
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(245,158,11,0.08) 0%, transparent 70%);
         }
-        
-        /* Contact Form */
-        .contact-form {
-            background: var(--light-bg);
-            padding: 3rem;
-            border-radius: 10px;
-            max-width: 800px;
+
+        .cta-section .container {
+            position: relative;
+            z-index: 2;
+        }
+
+        .cta-section h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 20px;
+        }
+
+        .cta-section p {
+            color: rgba(255,255,255,0.7);
+            max-width: 550px;
+            margin: 0 auto 32px;
+        }
+
+        .cta-form {
+            max-width: 500px;
             margin: 0 auto;
         }
-        
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-        
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-family: 'Poppins', sans-serif;
-            font-weight: 500;
-            color: var(--primary);
-        }
-        
-        .form-group input, 
-        .form-group textarea,
-        .form-group select {
+
+        .cta-form input, .cta-form textarea, .cta-form select {
             width: 100%;
-            padding: 12px 15px;
-            border: 1px solid var(--gray);
-            border-radius: 4px;
-            font-family: 'Open Sans', sans-serif;
-            transition: var(--transition);
+            padding: 14px 18px;
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 16px;
+            color: white;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.95rem;
         }
-        
-        .form-group input:focus, 
-        .form-group textarea:focus,
-        .form-group select:focus {
+
+        .cta-form select option {
+            background: var(--primary);
+            color: white;
+        }
+
+        .cta-form input::placeholder, .cta-form textarea::placeholder {
+            color: rgba(255,255,255,0.5);
+        }
+
+        .cta-form input:focus, .cta-form textarea:focus, .cta-form select:focus {
             outline: none;
             border-color: var(--accent);
-            box-shadow: 0 0 0 3px rgba(249, 168, 38, 0.2);
+            background: rgba(255,255,255,0.15);
         }
-        
-        .form-group textarea {
-            min-height: 120px;
-            resize: vertical;
-        }
-        
-        .form-row {
-            display: flex;
-            gap: 1rem;
-        }
-        
-        .form-row .form-group {
-            flex: 1;
-        }
-        
-        .alert {
-            padding: 1rem;
-            border-radius: 4px;
-            margin-bottom: 1.5rem;
-            display: none;
-        }
-        
-        .alert-success {
-            background-color: #d4edda;
-            color: #155724;
-            border: 1px solid #c3e6cb;
-        }
-        
-        .alert-error {
-            background-color: #f8d7da;
-            color: #721c24;
-            border: 1px solid #f5c6cb;
-        }
-        
-        .required {
-            color: var(--error);
-        }
-        
-        /* CTA Section */
-        .cta {
-            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);
+
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            padding: 14px 36px;
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-dark) 100%);
             color: white;
-            padding: 5rem 0;
-            text-align: center;
-        }
-        
-        .cta .section-title h2 {
-            color: white;
-        }
-        
-        .cta .btn {
-            background: white;
-            color: var(--primary);
-        }
-        
-        .cta .btn:hover {
-            background: var(--accent-light);
-        }
-        
-        /* Footer */
-        footer {
-            background-color: var(--primary-dark);
-            color: var(--light-text);
-            padding: 3rem 0 1.5rem;
-            text-align: center;
-            position: relative;
-            z-index: 1;
-        }
-        
-        .footer-links {
-            margin-bottom: 2rem;
-        }
-        
-        .footer-links a {
-            color: var(--accent-light);
             text-decoration: none;
-            margin: 0 1rem;
-            transition: var(--transition);
+            border-radius: 48px;
+            font-weight: 600;
+            transition: var(--transition-base);
+            border: none;
+            cursor: pointer;
+            width: 100%;
         }
-        
-        .footer-links a:hover {
-            color: white;
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 20px 30px -12px rgba(245, 158, 11, 0.35);
         }
-        
-        .copyright {
-            margin-top: 2rem;
+
+        /* Footer - No Social Links */
+        footer {
+            background: var(--white);
+            border-top: 1px solid var(--gray-100);
+            padding: 64px 0 32px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1.5fr;
+            gap: 48px;
+            margin-bottom: 48px;
+        }
+
+        .footer-logo img {
+            height: 40px;
+            margin-bottom: 16px;
+        }
+
+        .footer-logo p {
+            color: var(--gray-500);
+            font-size: 0.85rem;
+            line-height: 1.6;
+        }
+
+        .footer-links h4 {
             font-size: 0.9rem;
-            color: var(--gray);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 20px;
+            color: var(--gray-700);
         }
-        
-        /* Responsive Design */
+
+        .footer-links a {
+            display: block;
+            color: var(--gray-500);
+            text-decoration: none;
+            margin-bottom: 12px;
+            font-size: 0.9rem;
+            transition: var(--transition-fast);
+        }
+
+        .footer-links a:hover {
+            color: var(--accent);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 32px;
+            border-top: 1px solid var(--gray-100);
+            color: var(--gray-400);
+            font-size: 0.8rem;
+        }
+
+        /* Mobile */
+        @media (max-width: 1024px) {
+            .services-grid { grid-template-columns: repeat(2, 1fr); }
+            .process-grid { grid-template-columns: repeat(2, 1fr); }
+            .footer-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+
         @media (max-width: 768px) {
-            header h1 {
-                font-size: 2.2rem;
-            }
-            
-            header p {
-                font-size: 1.1rem;
-            }
-            
-            .section-title h2 {
-                font-size: 2rem;
-            }
-            
-            .services {
-                grid-template-columns: 1fr;
-            }
-            
-            .logo-container {
-                top: 15px;
-            }
-            
-            .logo {
-                height: 45px;
-            }
-            
-            .company-name {
-                font-size: 1.4rem;
-            }
-            
-            .nav-container {
-                flex-wrap: wrap;
-            }
-            
-            .nav-link {
-                margin: 0.5rem;
-            }
-            
-            .process-steps {
-                flex-direction: column;
-                gap: 2rem;
-            }
-            
-            .process-steps::before {
+            .container { padding: 0 24px; }
+            .mobile-menu-btn { display: block; }
+            .nav-links {
                 display: none;
-            }
-            
-            .form-row {
+                position: absolute;
+                top: 80px;
+                left: 0;
+                width: 100%;
+                background: var(--white);
                 flex-direction: column;
-                gap: 0;
+                padding: 24px;
+                gap: 20px;
+                box-shadow: var(--shadow-xl);
             }
-            
-            .contact-form {
-                padding: 1.5rem;
-            }
+            .nav-links.active { display: flex; }
+            .hero h1 { font-size: 2rem; }
+            .hero p { font-size: 1rem; }
+            .section-header h2 { font-size: 1.8rem; }
+            .services-grid { grid-template-columns: 1fr; }
+            .process-grid { grid-template-columns: 1fr; }
+            .footer-grid { grid-template-columns: 1fr; text-align: center; }
+            .trust-logos { justify-content: center; }
+            .trust-logos img { height: 50px; }
         }
-        
-        @media (max-width: 576px) {
-            .logo-container {
-                flex-direction: column;
-                text-align: center;
-            }
-            
-            .company-name {
-                margin-left: 0;
-                margin-top: 8px;
-                font-size: 1.2rem;
-            }
-            
-            .bg-element {
-                display: none;
-            }
+
+        @media (max-width: 480px) {
+            .hero h1 { font-size: 1.6rem; }
+            .trust-logos img { height: 40px; }
         }
     </style>
 </head>
 <body>
-    <!-- Animated Background Elements -->
-    <div class="animated-bg">
-        <div class="bg-element"></div>
-        <div class="bg-element"></div>
-        <div class="bg-element"></div>
-        <div class="bg-element"></div>
-        <div class="bg-element"></div>
-    </div>
-
-    <header>
-        <div class="logo-container">
-            <img src="logo.png" alt="Pioneer Outsourcing BPO Logo" class="logo">
-            <div class="company-name">Pioneer Outsourcing</div>
-        </div>
-        
-        <div class="header-content">
-            <h1>Our Services</h1>
-            <p>Comprehensive BPO solutions tailored to your business needs</p>
-            <a href="#services" class="btn">Explore Services <i class="fas fa-arrow-down"></i></a>
-        </div>
-    </header>
-
-    <nav>
-        <div class="container nav-container">
-            <a href="index.html" class="nav-link">Home</a>
-            <a href="about.html" class="nav-link">About Us</a>
-            <a href="#services" class="nav-link">Services</a>
-            <a href="#process" class="nav-link">Our Process</a>
-            <a href="#contact" class="nav-link">Contact</a>
-            <a href="careers.html" class="nav-link">Careers</a>
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo-wrapper">
+                <img src="logo.png" alt="Pioneer Outsourcing BPO" class="logo">
+                <span class="brand-name">Pioneer</span>
+            </div>
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="nav-links" id="navLinks">
+                <a href="index.html">Home</a>
+                <a href="services.html">Services</a>
+                <a href="about.html">About</a>
+                <a href="careers.html">Careers</a>
+                <a href="#" class="nav-cta" id="ctaNavBtn">Get a Quote →</a>
+            </div>
         </div>
     </nav>
 
-    <div class="container">
-        <section class="section" id="services">
-            <div class="section-title">
-                <h2>Our Services</h2>
-            </div>
-            <p class="section-intro">We offer a comprehensive range of Business Process Outsourcing services designed to help your business grow and succeed.</p>
-            
-            <div class="services">
-                <div class="service">
-                    <div class="service-icon">
-                        <i class="fas fa-headset"></i>
-                    </div>
-                    <h3>Customer Service</h3>
-                    <p>24/7 customer support solutions including call center operations, help desk services, and customer relationship management.</p>
-                    <a href="#" class="btn">Learn More</a>
-                </div>
-                
-                <div class="service">
-                    <div class="service-icon">
-                        <i class="fas fa-tools"></i>
-                    </div>
-                    <h3>Technical Support</h3>
-                    <p>Comprehensive technical support services to resolve issues efficiently and enhance customer satisfaction.</p>
-                    <a href="#" class="btn">Learn More</a>
-                </div>
-                
-                <div class="service">
-                    <div class="service-icon">
-                        <i class="fas fa-desktop"></i>
-                    </div>
-                    <h3>Back Office Operations</h3>
-                    <p>Precise data entry, processing, and administrative tasks to streamline your operations and increase efficiency.</p>
-                    <a href="#" class="btn">Learn More</a>
-                </div>
-                
-                <div class="service">
-                    <div class="service-icon">
-                        <i class="fas fa-chart-pie"></i>
-                    </div>
-                    <h3>Sales & Lead Generation</h3>
-                    <p>Outbound sales, lead qualification, and market research to accelerate business growth and increase revenue.</p>
-                    <a href="#" class="btn">Learn More</a>
-                </div>
-                
-                <div class="service">
-                    <div class="service-icon">
-                        <i class="fas fa-calendar-check"></i>
-                    </div>
-                    <h3>Appointment Setting</h3>
-                    <p>Seamless scheduling and confirmation of appointments to optimize client engagement and conversion rates.</p>
-                    <a href="#" class="btn">Learn More</a>
-                </div>
-                
-                <div class="service">
-                    <div class="service-icon">
-                        <i class="fas fa-phone-alt"></i>
-                    </div>
-                    <h3>Telemarketing</h3>
-                    <p>Strategic product promotions, surveys, and polls to enhance brand visibility and customer acquisition.</p>
-                    <a href="#" class="btn">Learn More</a>
-                </div>
-            </div>
-        </section>
+    <section class="hero">
+        <div class="container">
+            <h1>Enterprise <span class="hero-highlight">BPO Services</span></h1>
+            <p>Comprehensive outsourcing solutions tailored to optimize your operations, reduce costs, and drive growth</p>
+        </div>
+    </section>
 
-        <section class="process" id="process">
-            <div class="container">
-                <div class="section-title">
-                    <h2>Our Process</h2>
-                </div>
-                <p class="section-intro">We follow a structured approach to ensure seamless integration and maximum efficiency for your business.</p>
-                
-                <div class="process-steps">
-                    <div class="step">
-                        <div class="step-number">1</div>
-                        <h3>Consultation</h3>
-                        <p>We begin by understanding your unique business needs and challenges.</p>
-                    </div>
-                    
-                    <div class="step">
-                        <div class="step-number">2</div>
-                        <h3>Planning</h3>
-                        <p>We develop a customized strategy tailored to your specific requirements.</p>
-                    </div>
-                    
-                    <div class="step">
-                        <div class="step-number">3</div>
-                        <h3>Implementation</h3>
-                        <p>Our team executes the plan with precision and attention to detail.</p>
-                    </div>
-                    
-                    <div class="step">
-                        <div class="step-number">4</div>
-                        <h3>Optimization</h3>
-                        <p>We continuously monitor and refine our approach for optimal results.</p>
-                    </div>
-                </div>
+    <div class="trust-bar">
+        <div class="container">
+            <div class="trust-logos">
+                <img src="partner2.webp" alt="Partner">
+                <img src="partner3.png" alt="Partner">
+                <img src="partner4.webp" alt="Partner">
+                <img src="partner5.webp" alt="Partner">
+                <img src="Partner.webp" alt="Partner">
+                <img src="partner6.webp" alt="Partner">
+                <img src="partner7.webp" alt="Partner">
             </div>
-        </section>
-
-        <section class="section" id="contact">
-            <div class="section-title">
-                <h2>Get In Touch</h2>
-            </div>
-            
-            <p class="section-intro">Interested in our services? Contact us today for a free consultation.</p>
-            
-            <div class="contact-form">
-                <div id="alertBox" class="alert"></div>
-                
-                <!-- Formspree Form with your endpoint -->
-                <form id="contactForm" action="https://formspree.io/f/xqadpvbq" method="POST">
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="name">Full Name <span class="required">*</span></label>
-                            <input type="text" id="name" name="name" required>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="email">Email Address <span class="required">*</span></label>
-                            <input type="email" id="email" name="email" required>
-                        </div>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="company">Company Name</label>
-                        <input type="text" id="company" name="company">
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="service">Service Interested In <span class="required">*</span></label>
-                        <select id="service" name="service" required>
-                            <option value="">Select a service</option>
-                            <option value="customer-service">Customer Service</option>
-                            <option value="technical-support">Technical Support</option>
-                            <option value="back-office">Back Office Operations</option>
-                            <option value="sales">Sales & Lead Generation</option>
-                            <option value="appointment">Appointment Setting</option>
-                            <option value="telemarketing">Telemarketing</option>
-                            <option value="multiple">Multiple Services</option>
-                        </select>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="message">Message <span class="required">*</span></label>
-                        <textarea id="message" name="message" rows="5" placeholder="Tell us about your business needs..." required></textarea>
-                    </div>
-                    
-                    <button type="submit" class="btn">Send Message <i class="fas fa-paper-plane"></i></button>
-                </form>
-            </div>
-        </section>
+        </div>
     </div>
+
+    <section class="services-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">WHAT WE OFFER</span>
+                <h2>Our Core Services</h2>
+                <p>End-to-end BPO solutions delivered with enterprise-grade quality</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon"><i class="fas fa-headset"></i></div>
+                    <h3>Call Center Services</h3>
+                    <p>24/7 inbound & outbound call center operations with US/UK English fluency.</p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check-circle"></i> Customer Support</li>
+                        <li><i class="fas fa-check-circle"></i> Help Desk Services</li>
+                        <li><i class="fas fa-check-circle"></i> Order Processing</li>
+                    </ul>
+                    <a href="#contact" class="service-link">Get Pricing <i class="fas fa-arrow-right"></i></a>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon"><i class="fas fa-user-tie"></i></div>
+                    <h3>Virtual Assistants</h3>
+                    <p>Dedicated executive and administrative assistants trained for global standards.</p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check-circle"></i> Executive Support</li>
+                        <li><i class="fas fa-check-circle"></i> Calendar Management</li>
+                        <li><i class="fas fa-check-circle"></i> Email Management</li>
+                    </ul>
+                    <a href="#contact" class="service-link">Get Pricing <i class="fas fa-arrow-right"></i></a>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon"><i class="fas fa-microchip"></i></div>
+                    <h3>Technical Support</h3>
+                    <p>Tier 1-3 IT support and help desk for SaaS, hardware, and tech companies.</p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check-circle"></i> Tier 1-3 Support</li>
+                        <li><i class="fas fa-check-circle"></i> Remote Troubleshooting</li>
+                        <li><i class="fas fa-check-circle"></i> IT Help Desk</li>
+                    </ul>
+                    <a href="#contact" class="service-link">Get Pricing <i class="fas fa-arrow-right"></i></a>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon"><i class="fas fa-file-invoice"></i></div>
+                    <h3>Back Office Operations</h3>
+                    <p>Streamlined administrative and data processing services for peak efficiency.</p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check-circle"></i> Data Entry</li>
+                        <li><i class="fas fa-check-circle"></i> Document Processing</li>
+                        <li><i class="fas fa-check-circle"></i> Accounting Support</li>
+                    </ul>
+                    <a href="#contact" class="service-link">Get Pricing <i class="fas fa-arrow-right"></i></a>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon"><i class="fas fa-chart-line"></i></div>
+                    <h3>Sales & Lead Generation</h3>
+                    <p>Outbound sales and qualification services to accelerate revenue growth.</p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check-circle"></i> Lead Qualification</li>
+                        <li><i class="fas fa-check-circle"></i> Appointment Setting</li>
+                        <li><i class="fas fa-check-circle"></i> Market Research</li>
+                    </ul>
+                    <a href="#contact" class="service-link">Get Pricing <i class="fas fa-arrow-right"></i></a>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon"><i class="fas fa-comment-dots"></i></div>
+                    <h3>Omnichannel Support</h3>
+                    <p>Seamless integration across all customer communication channels.</p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check-circle"></i> Voice Support</li>
+                        <li><i class="fas fa-check-circle"></i> Email Management</li>
+                        <li><i class="fas fa-check-circle"></i> Live Chat</li>
+                    </ul>
+                    <a href="#contact" class="service-link">Get Pricing <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="process-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">OUR METHODOLOGY</span>
+                <h2>How We Work</h2>
+                <p>A transparent, proven process from onboarding to optimization</p>
+            </div>
+            <div class="process-grid">
+                <div class="process-step">
+                    <div class="step-number">1</div>
+                    <h3>Discovery</h3>
+                    <p>Deep dive into your business needs, pain points, and goals</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">2</div>
+                    <h3>Strategy</h3>
+                    <p>Custom solution design with KPIs and timeline alignment</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">3</div>
+                    <h3>Onboarding</h3>
+                    <p>Seamless integration with your systems and processes</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">4</div>
+                    <h3>Optimization</h3>
+                    <p>Continuous improvement and performance monitoring</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section" id="contact">
+        <div class="container">
+            <h2>Ready to Scale Your Operations?</h2>
+            <p>Get a free consultation and custom pricing for your business needs</p>
+            <form class="cta-form" action="https://formspree.io/f/xqadpvbq" method="POST">
+                <div style="display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 20px;">
+                    <input type="text" name="name" placeholder="Full Name" required style="flex: 1;">
+                    <input type="email" name="email" placeholder="Email Address" required style="flex: 1;">
+                </div>
+                <div style="margin-bottom: 20px;">
+                    <select name="service" required style="width: 100%;">
+                        <option value="">Select a Service</option>
+                        <option value="call-center">Call Center Services</option>
+                        <option value="virtual-assistants">Virtual Assistants</option>
+                        <option value="technical-support">Technical Support</option>
+                        <option value="back-office">Back Office Operations</option>
+                        <option value="sales-leads">Sales & Lead Generation</option>
+                        <option value="omnichannel">Omnichannel Support</option>
+                    </select>
+                </div>
+                <textarea name="message" placeholder="Tell us about your business needs..." rows="3" style="width: 100%; margin-bottom: 20px;"></textarea>
+                <button type="submit" class="btn-primary">Request Consultation →</button>
+            </form>
+        </div>
+    </section>
 
     <footer>
         <div class="container">
-            <div class="footer-links">
-                <a href="index.html">Home</a>
-                <a href="about.html">About Us</a>
-                <a href="#services">Services</a>
-                <a href="careers.html">Careers</a>
-                <a href="#contact">Contact</a>
+            <div class="footer-grid">
+                <div class="footer-logo">
+                    <img src="logo.png" alt="Pioneer Outsourcing BPO">
+                    <p>Elite BPO solutions from Nairobi, delivering excellence to global enterprises.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Company</h4>
+                    <a href="about.html">About Us</a>
+                    <a href="careers.html">Careers</a>
+                    <a href="#contact">Contact</a>
+                </div>
+                <div class="footer-links">
+                    <h4>Services</h4>
+                    <a href="services.html">Call Center</a>
+                    <a href="services.html">Virtual Assistants</a>
+                    <a href="services.html">Technical Support</a>
+                    <a href="services.html">Back Office</a>
+                </div>
+                <div class="footer-links">
+                    <h4>Email Us</h4>
+                    <a href="mailto:hello@pioneeroutsourcingbpo.com">hello@pioneeroutsourcingbpo.com</a>
+                </div>
             </div>
-            
-            <div class="copyright">
-                <p>&copy; 2025 Pioneer Outsourcing BPO. All rights reserved. | Nairobi, Kenya</p>
+            <div class="footer-bottom">
+                <p>© 2026 Pioneer Outsourcing BPO. Based in Nairobi, Kenya. Serving global clients.</p>
             </div>
         </div>
     </footer>
 
     <script>
-        // Simple animation for service icons
-        document.addEventListener('DOMContentLoaded', function() {
-            const services = document.querySelectorAll('.service');
-            
-            services.forEach(service => {
-                service.addEventListener('mouseenter', function() {
-                    const icon = this.querySelector('.service-icon');
-                    icon.style.transform = 'scale(1.2)';
-                });
-                
-                service.addEventListener('mouseleave', function() {
-                    const icon = this.querySelector('.service-icon');
-                    icon.style.transform = 'scale(1)';
-                });
+        const mobileBtn = document.getElementById('mobileMenuBtn');
+        const navLinks = document.getElementById('navLinks');
+        if (mobileBtn) {
+            mobileBtn.addEventListener('click', () => {
+                navLinks.classList.toggle('active');
             });
-            
-            // Form submission handling
-            const contactForm = document.getElementById('contactForm');
-            const alertBox = document.getElementById('alertBox');
-            
-            // Function to show alert messages
-            function showAlert(message, type) {
-                alertBox.textContent = message;
-                alertBox.className = `alert alert-${type}`;
-                alertBox.style.display = 'block';
-                
-                // Scroll to alert
-                alertBox.scrollIntoView({ behavior: 'smooth' });
-                
-                // Hide alert after 5 seconds
-                setTimeout(() => {
-                    alertBox.style.display = 'none';
-                }, 5000);
-            }
-            
-            contactForm.addEventListener('submit', function(e) {
-                // Basic validation
-                const name = document.getElementById('name').value;
-                const email = document.getElementById('email').value;
-                const service = document.getElementById('service').value;
-                const message = document.getElementById('message').value;
-                
-                if (!name || !email || !service || !message) {
+        }
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
                     e.preventDefault();
-                    showAlert('Please fill in all required fields.', 'error');
-                    return;
+                    target.scrollIntoView({ behavior: 'smooth' });
                 }
-                
-                if (!isValidEmail(email)) {
-                    e.preventDefault();
-                    showAlert('Please enter a valid email address.', 'error');
-                    return;
-                }
-                
-                // If using Formspree, the form will submit normally
-                // For better UX, you could add a loading state here
             });
-            
-            function isValidEmail(email) {
-                const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-                return re.test(email);
-            }
         });
     </script>
 </body>
