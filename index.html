@@ -1,20 +1,47 @@
----
-layout: default
-title: "Call Center & BPO Outsourcing Services | Pioneer Outsourcing"
-description: "Premier BPO company in Nairobi offering call center services, virtual assistants, and technical support. 40-60% cost savings for USA, UK, and European clients. Get a free consultation."
-permalink: /
----
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    {% seo %}
+    <!-- PREMIUM SEO METADATA - Fully Optimized -->
+    <title>Pioneer Outsourcing BPO | #1 Call Center Services Kenya & Global BPO</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="description" content="Premier BPO company in Nairobi offering call center services, virtual assistants, and technical support. 40-60% cost savings for USA, UK, and European clients. 24/7 operations.">
+    <meta name="keywords" content="call center services Kenya, BPO outsourcing Africa, virtual assistant services Kenya, technical support outsourcing, customer service BPO, back office support Nairobi">
+    <meta name="author" content="Pioneer Outsourcing BPO">
+    <meta name="robots" content="index, follow">
+    <meta name="language" content="English">
+    <meta name="geo.region" content="KE-30">
+    <meta name="geo.placename" content="Nairobi">
+    <meta name="geo.position" content="-1.286389;36.817223">
+    <meta name="ICBM" content="-1.286389, 36.817223">
     
+    <!-- Open Graph / Social Media Metadata -->
+    <meta property="og:title" content="Pioneer Outsourcing BPO | #1 Call Center Services Kenya">
+    <meta property="og:description" content="Premier BPO solutions from Nairobi. Save 40-60% on operational costs with enterprise-grade quality. 24/7 support for global clients.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://pioneeroutsourcingbpo.com">
+    <meta property="og:image" content="https://pioneeroutsourcingbpo.com/logo.png">
+    <meta property="og:site_name" content="Pioneer Outsourcing BPO">
+    <meta property="og:locale" content="en_US">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Pioneer Outsourcing BPO | Global BPO Solutions from Nairobi">
+    <meta name="twitter:description" content="Premier call center and outsourcing services. 40-60% cost savings. Trusted by 200+ global clients.">
+    <meta name="twitter:image" content="https://pioneeroutsourcingbpo.com/logo.png">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://pioneeroutsourcingbpo.com">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="logo.png">
+    
+    <!-- Font System -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
+        /* RESET & PREMIUM VARIABLES */
         * {
             margin: 0;
             padding: 0;
@@ -28,6 +55,7 @@ permalink: /
             --accent: #F59E0B;
             --accent-dark: #D97706;
             --accent-light: #FBBF24;
+            --accent-glow: rgba(245, 158, 11, 0.2);
             --gray-50: #F9FAFB;
             --gray-100: #F3F4F6;
             --gray-200: #E5E7EB;
@@ -40,10 +68,11 @@ permalink: /
             --gray-900: #111827;
             --white: #FFFFFF;
             
-            --shadow-sm: 0 1px 3px 0 rgb(0 0 0 / 0.05);
-            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.05);
-            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.05);
-            --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.05);
+            --shadow-xs: 0 1px 2px 0 rgb(0 0 0 / 0.02);
+            --shadow-sm: 0 1px 3px 0 rgb(0 0 0 / 0.05), 0 1px 2px -1px rgb(0 0 0 / 0.03);
+            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.05), 0 2px 4px -2px rgb(0 0 0 / 0.03);
+            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.05), 0 4px 6px -4px rgb(0 0 0 / 0.02);
+            --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.05), 0 8px 10px -6px rgb(0 0 0 / 0.02);
             --shadow-2xl: 0 25px 50px -12px rgb(0 0 0 / 0.15);
             
             --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
@@ -52,7 +81,7 @@ permalink: /
         }
 
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
             color: var(--gray-800);
             background: var(--white);
             line-height: 1.5;
@@ -90,14 +119,15 @@ permalink: /
             gap: 12px;
         }
 
+        /* INCREASED LOGO SIZE */
         .logo {
-            height: 44px;
+            height: 56px;
             width: auto;
-            border-radius: 10px;
+            border-radius: 12px;
         }
 
         .brand-name {
-            font-size: 1.35rem;
+            font-size: 1.5rem;
             font-weight: 700;
             letter-spacing: -0.3px;
             background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);
@@ -134,6 +164,7 @@ permalink: /
 
         .nav-cta:hover {
             transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
         }
 
         .mobile-menu-btn {
@@ -145,7 +176,7 @@ permalink: /
             color: var(--gray-700);
         }
 
-        /* Hero */
+        /* Hero Section */
         .hero {
             background: linear-gradient(125deg, var(--primary-dark) 0%, var(--primary) 45%, var(--primary-light) 100%);
             position: relative;
@@ -177,7 +208,7 @@ permalink: /
         }
 
         .hero-content h1 {
-            font-size: 3.5rem;
+            font-size: 3.75rem;
             font-weight: 800;
             line-height: 1.2;
             letter-spacing: -0.03em;
@@ -286,15 +317,13 @@ permalink: /
         .stat-label {
             color: var(--gray-500);
             font-weight: 500;
-            font-size: 0.9rem;
         }
 
-        /* Trust Bar - Partner Logos */
+        /* Trust Bar - INCREASED LOGO SIZES */
         .trust-bar {
-            padding: 60px 0;
+            padding: 56px 0;
             border-top: 1px solid var(--gray-100);
             border-bottom: 1px solid var(--gray-100);
-            background: var(--white);
         }
 
         .trust-logos {
@@ -305,17 +334,18 @@ permalink: /
             gap: 48px;
         }
 
+        /* PARTNER LOGOS - LARGER SIZE */
         .trust-logos img {
-            height: 70px;
+            height: 55px;
             width: auto;
-            opacity: 1;
+            opacity: 0.6;
             transition: var(--transition-fast);
-            filter: none;
-            object-fit: contain;
+            filter: grayscale(100%);
         }
 
         .trust-logos img:hover {
-            transform: scale(1.05);
+            opacity: 1;
+            filter: grayscale(0);
         }
 
         /* Section Headers */
@@ -348,7 +378,7 @@ permalink: /
             font-size: 1.1rem;
         }
 
-        /* Services Grid */
+        /* Services */
         .services-section {
             padding: 80px 0;
             background: var(--gray-50);
@@ -376,8 +406,8 @@ permalink: /
         }
 
         .service-icon {
-            width: 56px;
-            height: 56px;
+            width: 60px;
+            height: 60px;
             background: linear-gradient(135deg, rgba(245,158,11,0.1) 0%, rgba(245,158,11,0.05) 100%);
             border-radius: 20px;
             display: flex;
@@ -387,7 +417,7 @@ permalink: /
         }
 
         .service-icon i {
-            font-size: 1.8rem;
+            font-size: 2rem;
             background: linear-gradient(135deg, var(--accent) 0%, var(--accent-dark) 100%);
             -webkit-background-clip: text;
             background-clip: text;
@@ -440,8 +470,8 @@ permalink: /
         }
 
         .why-icon {
-            width: 52px;
-            height: 52px;
+            width: 56px;
+            height: 56px;
             background: linear-gradient(135deg, rgba(245,158,11,0.1) 0%, rgba(245,158,11,0.05) 100%);
             border-radius: 18px;
             display: flex;
@@ -451,7 +481,7 @@ permalink: /
         }
 
         .why-icon i {
-            font-size: 1.5rem;
+            font-size: 1.6rem;
             color: var(--accent);
         }
 
@@ -531,7 +561,7 @@ permalink: /
             color: var(--gray-400);
         }
 
-        /* CTA Section */
+        /* CTA */
         .cta-section {
             background: linear-gradient(125deg, var(--primary-dark) 0%, var(--primary) 100%);
             padding: 80px 0;
@@ -601,15 +631,9 @@ permalink: /
             padding: 64px 0 32px;
         }
 
-        .footer-grid {
-            display: grid;
-            grid-template-columns: 2fr 1fr 1fr 1.5fr;
-            gap: 48px;
-            margin-bottom: 48px;
-        }
-
+        /* FOOTER LOGO - LARGER */
         .footer-logo img {
-            height: 40px;
+            height: 50px;
             margin-bottom: 16px;
         }
 
@@ -617,6 +641,14 @@ permalink: /
             color: var(--gray-500);
             font-size: 0.85rem;
             line-height: 1.6;
+            max-width: 250px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1.5fr;
+            gap: 48px;
+            margin-bottom: 48px;
         }
 
         .footer-links h4 {
@@ -649,23 +681,36 @@ permalink: /
             font-size: 0.8rem;
         }
 
-        /* Mobile */
+        /* Responsive */
         @media (max-width: 1024px) {
             .hero .container {
                 grid-template-columns: 1fr;
                 text-align: center;
             }
-            .hero-content h1 { font-size: 2.8rem; }
-            .hero-badges, .btn-group { justify-content: center; }
-            .services-grid { grid-template-columns: repeat(2, 1fr); }
-            .testimonials-grid { grid-template-columns: repeat(2, 1fr); }
-            .stats-grid { grid-template-columns: repeat(2, 1fr); }
-            .footer-grid { grid-template-columns: repeat(2, 1fr); }
+            .hero-content h1 {
+                font-size: 2.8rem;
+            }
+            .hero-badges, .btn-group {
+                justify-content: center;
+            }
+            .services-grid, .testimonials-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .footer-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
         }
 
         @media (max-width: 768px) {
-            .container { padding: 0 24px; }
-            .mobile-menu-btn { display: block; }
+            .container {
+                padding: 0 24px;
+            }
+            .mobile-menu-btn {
+                display: block;
+            }
             .nav-links {
                 display: none;
                 position: absolute;
@@ -678,22 +723,39 @@ permalink: /
                 gap: 20px;
                 box-shadow: var(--shadow-xl);
             }
-            .nav-links.active { display: flex; }
-            .hero { padding: 140px 0 80px; }
-            .hero-content h1 { font-size: 2rem; }
-            .section-header h2 { font-size: 1.8rem; }
-            .services-grid { grid-template-columns: 1fr; }
-            .testimonials-grid { grid-template-columns: 1fr; }
-            .why-grid { grid-template-columns: 1fr; }
-            .footer-grid { grid-template-columns: 1fr; text-align: center; }
-            .trust-logos { justify-content: center; }
-            .trust-logos img { height: 50px; }
-        }
-
-        @media (max-width: 480px) {
-            .hero-content h1 { font-size: 1.8rem; }
-            .btn-primary, .btn-outline { padding: 12px 24px; font-size: 0.9rem; }
-            .trust-logos img { height: 40px; }
+            .nav-links.active {
+                display: flex;
+            }
+            .hero {
+                padding: 140px 0 80px;
+            }
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+            .section-header h2 {
+                font-size: 1.8rem;
+            }
+            .services-grid, .testimonials-grid, .why-grid {
+                grid-template-columns: 1fr;
+            }
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 32px;
+            }
+            .footer-grid {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            .footer-logo p {
+                margin: 0 auto;
+            }
+            /* INCREASED LOGOS ON MOBILE */
+            .logo {
+                height: 48px;
+            }
+            .trust-logos img {
+                height: 45px;
+            }
         }
     </style>
 </head>
@@ -708,11 +770,11 @@ permalink: /
                 <i class="fas fa-bars"></i>
             </button>
             <div class="nav-links" id="navLinks">
-                <a href="/">Home</a>
-                <a href="/services/">Services</a>
-                <a href="/about/">About</a>
-                <a href="/careers/">Careers</a>
-                <a href="#contact" class="nav-cta" id="ctaNavBtn">Get a Quote →</a>
+                <a href="index.html">Home</a>
+                <a href="services.html">Services</a>
+                <a href="about.html">About</a>
+                <a href="careers.html">Careers</a>
+                <a href="#" class="nav-cta" id="ctaNavBtn">Get a Quote →</a>
             </div>
         </div>
     </nav>
@@ -724,7 +786,7 @@ permalink: /
                 <p>Partner with Africa's premier outsourcing provider. Reduce costs by 40-60% while maintaining enterprise-grade quality. Serving USA, UK, Europe, and global markets 24/7.</p>
                 <div class="btn-group">
                     <a href="#contact" class="btn-primary">Book Free Consultation →</a>
-                    <a href="/services/" class="btn-outline">Explore Solutions →</a>
+                    <a href="services.html" class="btn-outline">Explore Solutions →</a>
                 </div>
                 <div class="hero-badges">
                     <span class="hero-badge">✓ 24/7 Global Support</span>
@@ -753,10 +815,22 @@ permalink: /
     <section class="stats">
         <div class="container">
             <div class="stats-grid">
-                <div class="stat-item"><div class="stat-number">200+</div><div class="stat-label">Global Clients</div></div>
-                <div class="stat-item"><div class="stat-number">98%</div><div class="stat-label">Satisfaction Rate</div></div>
-                <div class="stat-item"><div class="stat-number">24/7</div><div class="stat-label">Operations</div></div>
-                <div class="stat-item"><div class="stat-number">40-60%</div><div class="stat-label">Cost Reduction</div></div>
+                <div class="stat-item">
+                    <div class="stat-number">200+</div>
+                    <div class="stat-label">Global Clients</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">98%</div>
+                    <div class="stat-label">Satisfaction Rate</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">24/7</div>
+                    <div class="stat-label">Operations</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">40-60%</div>
+                    <div class="stat-label">Cost Reduction</div>
+                </div>
             </div>
         </div>
     </section>
@@ -773,37 +847,37 @@ permalink: /
                     <div class="service-icon"><i class="fas fa-headset"></i></div>
                     <h3>Call Center Services</h3>
                     <p>24/7 inbound, outbound, customer support, help desk, and order processing with US/UK English fluency.</p>
-                    <a href="/services/" class="service-link">Learn More <i class="fas fa-arrow-right"></i></a>
+                    <a href="#" class="service-link">Learn More <i class="fas fa-arrow-right"></i></a>
                 </div>
                 <div class="service-card">
                     <div class="service-icon"><i class="fas fa-user-tie"></i></div>
                     <h3>Virtual Assistants</h3>
                     <p>Dedicated executive, administrative, and personal assistants trained for international business standards.</p>
-                    <a href="/services/" class="service-link">Learn More <i class="fas fa-arrow-right"></i></a>
+                    <a href="#" class="service-link">Learn More <i class="fas fa-arrow-right"></i></a>
                 </div>
                 <div class="service-card">
                     <div class="service-icon"><i class="fas fa-microchip"></i></div>
                     <h3>Technical Support</h3>
                     <p>Tier 1-3 IT support, troubleshooting, and help desk services for SaaS, hardware, and tech companies.</p>
-                    <a href="/services/" class="service-link">Learn More <i class="fas fa-arrow-right"></i></a>
+                    <a href="#" class="service-link">Learn More <i class="fas fa-arrow-right"></i></a>
                 </div>
                 <div class="service-card">
                     <div class="service-icon"><i class="fas fa-file-invoice"></i></div>
                     <h3>Back Office</h3>
                     <p>Data entry, document processing, accounting, payroll, and administrative operations.</p>
-                    <a href="/services/" class="service-link">Learn More <i class="fas fa-arrow-right"></i></a>
+                    <a href="#" class="service-link">Learn More <i class="fas fa-arrow-right"></i></a>
                 </div>
                 <div class="service-card">
                     <div class="service-icon"><i class="fas fa-chart-line"></i></div>
                     <h3>Sales & Lead Gen</h3>
                     <p>Outbound sales, appointment setting, lead qualification, and market research.</p>
-                    <a href="/services/" class="service-link">Learn More <i class="fas fa-arrow-right"></i></a>
+                    <a href="#" class="service-link">Learn More <i class="fas fa-arrow-right"></i></a>
                 </div>
                 <div class="service-card">
                     <div class="service-icon"><i class="fas fa-comment-dots"></i></div>
                     <h3>Omnichannel Support</h3>
                     <p>Seamless integration across voice, email, chat, social media, and SMS platforms.</p>
-                    <a href="/services/" class="service-link">Learn More <i class="fas fa-arrow-right"></i></a>
+                    <a href="#" class="service-link">Learn More <i class="fas fa-arrow-right"></i></a>
                 </div>
             </div>
         </div>
@@ -906,19 +980,21 @@ permalink: /
                 </div>
                 <div class="footer-links">
                     <h4>Company</h4>
-                    <a href="/about/">About Us</a>
-                    <a href="/careers/">Careers</a>
+                    <a href="about.html">About Us</a>
+                    <a href="careers.html">Careers</a>
                     <a href="#contact">Contact</a>
                 </div>
                 <div class="footer-links">
                     <h4>Services</h4>
-                    <a href="/services/">Call Center</a>
-                    <a href="/services/">Virtual Assistants</a>
-                    <a href="/services/">Technical Support</a>
-                    <a href="/services/">Back Office</a>
+                    <a href="#">Call Center</a>
+                    <a href="#">Virtual Assistants</a>
+                    <a href="#">Technical Support</a>
+                    <a href="#">Back Office</a>
                 </div>
                 <div class="footer-links">
-                    <h4>Email Us</h4>
+                    <h4>Connect</h4>
+                    <a href="#"><i class="fab fa-linkedin"></i> LinkedIn</a>
+                    <a href="#"><i class="fab fa-twitter"></i> Twitter</a>
                     <a href="mailto:hello@pioneeroutsourcingbpo.com">hello@pioneeroutsourcingbpo.com</a>
                 </div>
             </div>
@@ -931,25 +1007,20 @@ permalink: /
     <script>
         const mobileBtn = document.getElementById('mobileMenuBtn');
         const navLinks = document.getElementById('navLinks');
+        
         if (mobileBtn) {
             mobileBtn.addEventListener('click', () => {
                 navLinks.classList.toggle('active');
             });
         }
         
-        // Close mobile menu when a link is clicked
-        document.querySelectorAll('.nav-links a').forEach(link => {
-            link.addEventListener('click', () => {
-                navLinks.classList.remove('active');
-            });
-        });
-        
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
+        const ctaBtns = document.querySelectorAll('#ctaNavBtn');
+        ctaBtns.forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                const contactSection = document.getElementById('contact');
+                if (contactSection) {
                     e.preventDefault();
-                    target.scrollIntoView({ behavior: 'smooth' });
+                    contactSection.scrollIntoView({ behavior: 'smooth' });
                 }
             });
         });
