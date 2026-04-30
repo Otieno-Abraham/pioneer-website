@@ -1,664 +1,1082 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    {% seo %}
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Pioneer Outsourcing BPO offers expert call center and outsourcing services to enhance efficiency and drive business success.">
-    <title>Pioneer Outsourcing BPO - Leading Outsourcing & Call Center Services</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    
+    <!-- Premium Font System -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <style>
-        :root {
-            --primary-dark: #1C2B39;
-            --primary: #2C3E50;
-            --accent: #F9A826;
-            --accent-light: #FFD166;
-            --light-bg: #F8F9FA;
-            --dark-text: #2D3436;
-            --light-text: #ECF0F1;
-            --gray: #DFE6E9;
-            --success: #27AE60;
-            --shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
-            --transition: all 0.3s ease;
-        }
-        
+        /* RESET & PREMIUM VARIABLES */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-        
+
+        :root {
+            /* Premium Color System */
+            --primary-dark: #0A1A2F;
+            --primary: #0F2B3D;
+            --primary-light: #1A3A4F;
+            --accent: #F59E0B;
+            --accent-dark: #D97706;
+            --accent-light: #FBBF24;
+            --accent-glow: rgba(245, 158, 11, 0.2);
+            --gray-50: #F9FAFB;
+            --gray-100: #F3F4F6;
+            --gray-200: #E5E7EB;
+            --gray-300: #D1D5DB;
+            --gray-400: #9CA3AF;
+            --gray-500: #6B7280;
+            --gray-600: #4B5563;
+            --gray-700: #374151;
+            --gray-800: #1F2937;
+            --gray-900: #111827;
+            --white: #FFFFFF;
+            
+            /* Premium Shadows */
+            --shadow-xs: 0 1px 2px 0 rgb(0 0 0 / 0.02);
+            --shadow-sm: 0 1px 3px 0 rgb(0 0 0 / 0.05), 0 1px 2px -1px rgb(0 0 0 / 0.03);
+            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.05), 0 2px 4px -2px rgb(0 0 0 / 0.03);
+            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.05), 0 4px 6px -4px rgb(0 0 0 / 0.02);
+            --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.05), 0 8px 10px -6px rgb(0 0 0 / 0.02);
+            --shadow-2xl: 0 25px 50px -12px rgb(0 0 0 / 0.15);
+            --shadow-accent: 0 0 0 4px var(--accent-glow);
+            
+            /* Transitions */
+            --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-base: 200ms cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-slow: 300ms cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
         body {
-            font-family: 'Open Sans', sans-serif;
-            line-height: 1.6;
-            color: var(--dark-text);
-            background-color: #FFFFFF;
-            scroll-behavior: smooth;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            color: var(--gray-800);
+            background: var(--white);
+            line-height: 1.5;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
-        
-        h1, h2, h3, h4, h5, h6 {
-            font-family: 'Poppins', sans-serif;
-            font-weight: 700;
-            line-height: 1.3;
-        }
-        
+
         .container {
-            max-width: 1200px;
+            max-width: 1280px;
             margin: 0 auto;
-            padding: 0 20px;
+            padding: 0 32px;
         }
-        
-        .btn {
-            display: inline-block;
-            padding: 14px 30px;
-            background-color: var(--accent);
-            color: var(--primary-dark);
-            text-decoration: none;
-            border-radius: 4px;
-            font-family: 'Poppins', sans-serif;
-            font-weight: 600;
-            transition: var(--transition);
-            border: none;
-            cursor: pointer;
-            box-shadow: var(--shadow);
+
+        /* Premium Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.96);
+            backdrop-filter: blur(12px);
+            z-index: 1000;
+            padding: 18px 0;
+            border-bottom: 1px solid var(--gray-100);
+            transition: var(--transition-slow);
         }
-        
-        .btn:hover {
-            background-color: var(--accent-light);
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(249, 168, 38, 0.3);
+
+        .navbar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
-        
-        .btn i {
-            margin-left: 8px;
+
+        .logo-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 12px;
         }
-        
-        /* Header */
-        header {
+
+        .logo {
+            height: 44px;
+            width: auto;
+            border-radius: 10px;
+        }
+
+        .brand-name {
+            font-size: 1.35rem;
+            font-weight: 700;
+            letter-spacing: -0.3px;
             background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);
-            color: var(--light-text);
-            text-align: center;
-            padding: 6rem 2rem 4rem;
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--gray-600);
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: var(--transition-fast);
+            letter-spacing: -0.2px;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        .nav-cta {
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-dark) 100%);
+            color: white !important;
+            padding: 10px 28px;
+            border-radius: 40px;
+            font-weight: 600 !important;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .nav-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+            color: white !important;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.6rem;
+            cursor: pointer;
+            color: var(--gray-700);
+            padding: 8px;
+        }
+
+        /* Premium Hero */
+        .hero {
+            background: linear-gradient(125deg, var(--primary-dark) 0%, var(--primary) 45%, var(--primary-light) 100%);
             position: relative;
             overflow: hidden;
+            padding: 180px 0 120px;
+            margin-top: 80px;
         }
-        
-        header::before {
+
+        .hero::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320'%3E%3Cpath fill='%23F9A826' fill-opacity='0.1' d='M0,128L48,117.3C96,107,192,85,288,112C384,139,480,213,576,218.7C672,224,768,160,864,128C960,96,1056,96,1152,117.3C1248,139,1344,181,1392,202.7L1440,224L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z'%3E%3C/path%3E%3C/svg%3E");
+            right: 0;
+            bottom: 0;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320'%3E%3Cpath fill='%23F59E0B' fill-opacity='0.05' d='M0,128L48,117.3C96,107,192,85,288,112C384,139,480,213,576,218.7C672,224,768,160,864,128C960,96,1056,96,1152,117.3C1248,139,1344,181,1392,202.7L1440,224L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z'%3E%3C/path%3E%3C/svg%3E");
             background-size: cover;
             background-position: center;
+            opacity: 0.3;
         }
-        
-        .logo-container {
+
+        .hero::after {
+            content: '';
             position: absolute;
-            top: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 10;
+            top: -50%;
+            right: -20%;
+            width: 70%;
+            height: 140%;
+            background: radial-gradient(circle, rgba(245,158,11,0.08) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .hero .container {
+            position: relative;
+            z-index: 2;
+            display: grid;
+            grid-template-columns: 1fr 0.9fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .hero-content h1 {
+            font-size: 3.75rem;
+            font-weight: 800;
+            line-height: 1.2;
+            letter-spacing: -0.03em;
+            color: white;
+            margin-bottom: 24px;
+        }
+
+        .hero-highlight {
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .hero-content p {
+            font-size: 1.1rem;
+            color: rgba(255,255,255,0.8);
+            margin-bottom: 32px;
+            line-height: 1.6;
+        }
+
+        .hero-badges {
+            display: flex;
+            gap: 12px;
+            margin-top: 32px;
+            flex-wrap: wrap;
+        }
+
+        .hero-badge {
+            background: rgba(255,255,255,0.08);
+            backdrop-filter: blur(8px);
+            padding: 8px 20px;
+            border-radius: 40px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: white;
+            letter-spacing: -0.2px;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            padding: 14px 36px;
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-dark) 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 48px;
+            font-weight: 600;
+            transition: var(--transition-base);
+            box-shadow: var(--shadow-md);
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 20px 30px -12px rgba(245, 158, 11, 0.35);
+        }
+
+        .btn-outline {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            padding: 14px 36px;
+            background: transparent;
+            color: white;
+            text-decoration: none;
+            border-radius: 48px;
+            font-weight: 600;
+            transition: var(--transition-base);
+            border: 1.5px solid rgba(255,255,255,0.3);
+        }
+
+        .btn-outline:hover {
+            background: rgba(255,255,255,0.08);
+            border-color: white;
+        }
+
+        /* Premium Stats */
+        .stats {
+            padding: 80px 0;
+            background: var(--white);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 48px;
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--accent) 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 8px;
+        }
+
+        .stat-label {
+            color: var(--gray-500);
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+
+        /* Trust Bar */
+        .trust-bar {
+            padding: 48px 0;
+            border-top: 1px solid var(--gray-100);
+            border-bottom: 1px solid var(--gray-100);
+        }
+
+        .trust-logos {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 32px;
+        }
+
+        .trust-logos img {
+            height: 36px;
+            width: auto;
+            opacity: 0.5;
+            transition: var(--transition-fast);
+            filter: grayscale(100%);
+        }
+
+        .trust-logos img:hover {
+            opacity: 1;
+            filter: grayscale(0);
+        }
+
+        /* Section Headers */
+        .section-header {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 64px;
+        }
+
+        .section-tag {
+            display: inline-block;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 600;
+            color: var(--accent);
+            margin-bottom: 16px;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            color: var(--gray-900);
+            margin-bottom: 20px;
+        }
+
+        .section-header p {
+            color: var(--gray-500);
+            font-size: 1.1rem;
+        }
+
+        /* Premium Service Cards */
+        .services-section {
+            padding: 80px 0;
+            background: var(--gray-50);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+        }
+
+        .service-card {
+            background: var(--white);
+            border-radius: 28px;
+            padding: 36px;
+            transition: var(--transition-slow);
+            border: 1px solid var(--gray-100);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .service-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--accent-light);
+            box-shadow: var(--shadow-2xl);
+        }
+
+        .service-icon {
+            width: 56px;
+            height: 56px;
+            background: linear-gradient(135deg, rgba(245,158,11,0.1) 0%, rgba(245,158,11,0.05) 100%);
+            border-radius: 20px;
             display: flex;
             align-items: center;
             justify-content: center;
+            margin-bottom: 24px;
         }
-        
-        .logo {
-            height: 60px;
-            width: auto;
-            border-radius: 8px;
-            box-shadow: var(--shadow);
-            transition: var(--transition);
-        }
-        
-        .logo:hover {
-            transform: scale(1.05);
-        }
-        
-        .company-name {
-            font-family: 'Poppins', sans-serif;
-            font-weight: 700;
+
+        .service-icon i {
             font-size: 1.8rem;
-            color: var(--accent-light);
-            margin-left: 15px;
-            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-dark) 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
         }
-        
-        .header-content {
-            position: relative;
-            z-index: 1;
-            max-width: 800px;
-            margin: 0 auto;
-            padding-top: 40px;
+
+        .service-card h3 {
+            font-size: 1.35rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: var(--gray-800);
         }
-        
-        header h1 {
-            font-size: 3rem;
-            margin-bottom: 1.5rem;
-            color: var(--accent-light);
-            animation: fadeInDown 1s ease;
+
+        .service-card p {
+            color: var(--gray-500);
+            margin-bottom: 24px;
+            line-height: 1.6;
         }
-        
-        header p {
-            font-size: 1.3rem;
-            margin-bottom: 2.5rem;
-            animation: fadeInUp 1s ease;
-        }
-        
-        /* Sections */
-        .section {
-            padding: 5rem 0;
-        }
-        
-        .section-title {
-            text-align: center;
-            margin-bottom: 3rem;
-            position: relative;
-        }
-        
-        .section-title h2 {
-            font-size: 2.5rem;
-            color: var(--primary);
-            margin-bottom: 1rem;
-        }
-        
-        .section-title::after {
-            content: '';
-            display: block;
-            width: 80px;
-            height: 4px;
-            background: var(--accent);
-            margin: 0 auto;
-            border-radius: 2px;
-        }
-        
-        .section-intro {
-            text-align: center;
-            max-width: 700px;
-            margin: 0 auto 3rem;
-            font-size: 1.1rem;
-        }
-        
-        /* Features */
-        .features, .services, .testimonials {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-        
-        .feature, .service, .testimonial {
-            background-color: white;
-            padding: 2.5rem 2rem;
-            border-radius: 10px;
-            text-align: center;
-            box-shadow: var(--shadow);
-            transition: var(--transition);
-            border-top: 4px solid var(--accent);
-        }
-        
-        .feature:hover, .service:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
-        }
-        
-        .feature-icon, .service-icon {
-            font-size: 2.5rem;
+
+        .service-link {
             color: var(--accent);
-            margin-bottom: 1.5rem;
-        }
-        
-        .feature h3, .service h3, .testimonial h3 {
-            font-size: 1.5rem;
-            color: var(--primary);
-            margin-bottom: 1rem;
-        }
-        
-        /* Services */
-        .service {
-            text-align: left;
-        }
-        
-        .service-content {
-            min-height: 180px;
-        }
-        
-        .service .btn {
-            margin-top: 1.5rem;
-            padding: 10px 20px;
-            font-size: 0.9rem;
-        }
-        
-        /* Testimonials */
-        .testimonial {
-            position: relative;
-            text-align: left;
-            padding: 2rem;
-        }
-        
-        .testimonial::before {
-            content: '\201C';
-            font-family: Georgia, serif;
-            font-size: 4rem;
-            color: var(--accent-light);
-            position: absolute;
-            top: 10px;
-            left: 15px;
-            opacity: 0.3;
-        }
-        
-        .testimonial p {
-            font-style: italic;
-            padding: 1rem 0 1rem 2rem;
-        }
-        
-        .testimonial cite {
-            display: block;
-            margin-top: 1.5rem;
-            font-weight: bold;
-            color: var(--primary);
-            font-style: normal;
-            text-align: right;
-        }
-        
-        /* Contact Form */
-        .contact-form {
-            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);
-            color: var(--light-text);
-            padding: 4rem 2rem;
-            border-radius: 10px;
-            text-align: center;
-        }
-        
-        .contact-form .section-title h2 {
-            color: var(--light-text);
-        }
-        
-        .contact-form .section-title::after {
-            background: var(--accent);
-        }
-        
-        .form-container {
-            max-width: 600px;
-            margin: 0 auto;
-        }
-        
-        .form-group {
-            margin-bottom: 1.5rem;
-            text-align: left;
-        }
-        
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-family: 'Poppins', sans-serif;
-            font-weight: 500;
-        }
-        
-        .form-group input, 
-        .form-group textarea {
-            width: 100%;
-            padding: 12px 15px;
-            border: 1px solid var(--gray);
-            border-radius: 4px;
-            font-family: 'Open Sans', sans-serif;
-            transition: var(--transition);
-        }
-        
-        .form-group input:focus, 
-        .form-group textarea:focus {
-            outline: none;
-            border-color: var(--accent);
-            box-shadow: 0 0 0 3px rgba(249, 168, 38, 0.2);
-        }
-        
-        /* About Section */
-        .about-content {
-            max-width: 800px;
-            margin: 0 auto;
-            text-align: center;
-            font-size: 1.1rem;
-        }
-        
-        /* Footer */
-        footer {
-            background-color: var(--primary-dark);
-            color: var(--light-text);
-            padding: 3rem 0 1.5rem;
-            text-align: center;
-        }
-        
-        .footer-links {
-            margin-bottom: 2rem;
-        }
-        
-        .footer-links a {
-            color: var(--accent-light);
             text-decoration: none;
-            margin: 0 1rem;
-            transition: var(--transition);
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: var(--transition-fast);
         }
-        
-        .footer-links a:hover {
+
+        .service-link:hover {
+            gap: 12px;
+        }
+
+        /* Why Choose Us Premium */
+        .why-section {
+            padding: 80px 0;
+            background: var(--white);
+        }
+
+        .why-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 48px;
+        }
+
+        .why-item {
+            display: flex;
+            gap: 20px;
+            align-items: flex-start;
+        }
+
+        .why-icon {
+            width: 52px;
+            height: 52px;
+            background: linear-gradient(135deg, rgba(245,158,11,0.1) 0%, rgba(245,158,11,0.05) 100%);
+            border-radius: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .why-icon i {
+            font-size: 1.5rem;
+            color: var(--accent);
+        }
+
+        .why-text h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--gray-800);
+        }
+
+        .why-text p {
+            color: var(--gray-500);
+            line-height: 1.6;
+        }
+
+        /* Testimonials Premium */
+        .testimonials-section {
+            padding: 80px 0;
+            background: var(--gray-50);
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+        }
+
+        .testimonial-card {
+            background: var(--white);
+            border-radius: 28px;
+            padding: 36px;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--gray-100);
+            transition: var(--transition-slow);
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .testimonial-text {
+            font-size: 1rem;
+            line-height: 1.7;
+            color: var(--gray-600);
+            margin-bottom: 28px;
+            font-style: normal;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            border-top: 1px solid var(--gray-100);
+            padding-top: 24px;
+        }
+
+        .testimonial-author .initials {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-dark) 100%);
+            border-radius: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
             color: white;
         }
-        
-        .copyright {
-            margin-top: 2rem;
+
+        .testimonial-author strong {
+            display: block;
+            font-size: 0.95rem;
+            color: var(--gray-800);
+        }
+
+        .testimonial-author span {
+            font-size: 0.8rem;
+            color: var(--gray-400);
+        }
+
+        /* CTA Premium */
+        .cta-section {
+            background: linear-gradient(125deg, var(--primary-dark) 0%, var(--primary) 100%);
+            padding: 80px 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(245,158,11,0.08) 0%, transparent 70%);
+        }
+
+        .cta-section .container {
+            position: relative;
+            z-index: 2;
+        }
+
+        .cta-section h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 20px;
+        }
+
+        .cta-section p {
+            color: rgba(255,255,255,0.7);
+            max-width: 550px;
+            margin: 0 auto 32px;
+        }
+
+        .cta-form {
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .cta-form input, .cta-form textarea {
+            width: 100%;
+            padding: 14px 18px;
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 16px;
+            color: white;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.95rem;
+            transition: var(--transition-fast);
+        }
+
+        .cta-form input::placeholder, .cta-form textarea::placeholder {
+            color: rgba(255,255,255,0.5);
+        }
+
+        .cta-form input:focus, .cta-form textarea:focus {
+            outline: none;
+            border-color: var(--accent);
+            background: rgba(255,255,255,0.15);
+        }
+
+        /* Footer Premium */
+        footer {
+            background: var(--white);
+            border-top: 1px solid var(--gray-100);
+            padding: 64px 0 32px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1.5fr;
+            gap: 48px;
+            margin-bottom: 48px;
+        }
+
+        .footer-logo img {
+            height: 40px;
+            margin-bottom: 16px;
+        }
+
+        .footer-logo p {
+            color: var(--gray-500);
+            font-size: 0.85rem;
+            line-height: 1.6;
+        }
+
+        .footer-links h4 {
             font-size: 0.9rem;
-            color: var(--gray);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 20px;
+            color: var(--gray-700);
         }
-        
-        /* Animations */
-        @keyframes fadeInDown {
-            from {
-                opacity: 0;
-                transform: translateY(-30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+
+        .footer-links a {
+            display: block;
+            color: var(--gray-500);
+            text-decoration: none;
+            margin-bottom: 12px;
+            font-size: 0.9rem;
+            transition: var(--transition-fast);
         }
-        
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+
+        .footer-links a:hover {
+            color: var(--accent);
         }
-        
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            header h1 {
-                font-size: 2.2rem;
-            }
-            
-            header p {
-                font-size: 1.1rem;
-            }
-            
-            .section-title h2 {
-                font-size: 2rem;
-            }
-            
-            .features, .services, .testimonials {
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 32px;
+            border-top: 1px solid var(--gray-100);
+            color: var(--gray-400);
+            font-size: 0.8rem;
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 1024px) {
+            .hero .container {
                 grid-template-columns: 1fr;
-            }
-            
-            .logo-container {
-                top: 15px;
-            }
-            
-            .logo {
-                height: 45px;
-            }
-            
-            .company-name {
-                font-size: 1.4rem;
-            }
-            
-            .footer-links a {
-                display: block;
-                margin: 0.5rem 0;
-            }
-        }
-        
-        @media (max-width: 576px) {
-            .logo-container {
-                flex-direction: column;
                 text-align: center;
             }
             
-            .company-name {
-                margin-left: 0;
-                margin-top: 8px;
-                font-size: 1.2rem;
+            .hero-content h1 {
+                font-size: 2.8rem;
+            }
+            
+            .hero-badges, .btn-group {
+                justify-content: center;
+            }
+            
+            .services-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .testimonials-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .footer-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 32px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 24px;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 80px;
+                left: 0;
+                width: 100%;
+                background: var(--white);
+                flex-direction: column;
+                padding: 24px;
+                gap: 20px;
+                box-shadow: var(--shadow-xl);
+                border-bottom: 1px solid var(--gray-100);
+            }
+            
+            .nav-links.active {
+                display: flex;
+            }
+            
+            .hero {
+                padding: 140px 0 80px;
+            }
+            
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+            
+            .hero-content p {
+                font-size: 1rem;
+            }
+            
+            .section-header h2 {
+                font-size: 1.8rem;
+            }
+            
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .why-grid {
+                grid-template-columns: 1fr;
+                gap: 32px;
+            }
+            
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 32px;
+            }
+            
+            .footer-grid {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            
+            .why-item {
+                text-align: left;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-content h1 {
+                font-size: 1.8rem;
+            }
+            
+            .btn-primary, .btn-outline {
+                padding: 12px 24px;
+                font-size: 0.9rem;
+            }
+            
+            .stat-number {
+                font-size: 2rem;
             }
         }
     </style>
 </head>
 <body>
-    <header>
-        <div class="logo-container">
-            <!-- Logo path is correct since logo.png is in the same directory -->
-            <img src="logo.png" alt="Pioneer Outsourcing BPO Logo" class="logo">
-            <div class="company-name">Pioneer Outsourcing</div>
+    <!-- Premium Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo-wrapper">
+                <img src="logo.png" alt="Pioneer Outsourcing BPO" class="logo">
+                <span class="brand-name">Pioneer</span>
+            </div>
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="nav-links" id="navLinks">
+                <a href="index.html">Home</a>
+                <a href="services.html">Services</a>
+                <a href="about.html">About</a>
+                <a href="careers.html">Careers</a>
+                <a href="#" class="nav-cta" id="ctaNavBtn">Get a Quote →</a>
+            </div>
         </div>
-        
-        <div class="header-content">
-            <h1>Discover Your Perfect Outsourcing Solution</h1>
-            <p>Partner with Pioneer Outsourcing BPO for expert call center and outsourcing services tailored to drive your business success.</p>
-            <a href="#contact" class="btn">Get a Quote <i class="fas fa-arrow-right"></i></a>
+    </nav>
+
+    <!-- Premium Hero -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Global BPO Excellence<br>From <span class="hero-highlight">Nairobi, Kenya</span></h1>
+                <p>Partner with Africa's premier outsourcing provider. Reduce costs by 40-60% while maintaining enterprise-grade quality. Serving USA, UK, Europe, and global markets 24/7.</p>
+                <div class="btn-group">
+                    <a href="#contact" class="btn-primary">Book Free Consultation →</a>
+                    <a href="services.html" class="btn-outline">Explore Solutions →</a>
+                </div>
+                <div class="hero-badges">
+                    <span class="hero-badge">✓ 24/7 Global Support</span>
+                    <span class="hero-badge">✓ 40-60% Cost Savings</span>
+                    <span class="hero-badge">✓ ISO-Certified</span>
+                    <span class="hero-badge">✓ Enterprise Security</span>
+                </div>
+            </div>
         </div>
-    </header>
+    </section>
 
-    <div class="container">
-        <section class="section">
-            <div class="section-title">
-                <h2>Why Choose Pioneer Outsourcing BPO?</h2>
+    <!-- Trust Bar -->
+    <div class="trust-bar">
+        <div class="container">
+            <div class="trust-logos">
+                <img src="partner2.webp" alt="Partner">
+                <img src="partner3.png" alt="Partner">
+                <img src="partner4.webp" alt="Partner">
+                <img src="partner5.webp" alt="Partner">
+                <img src="Partner.webp" alt="Partner">
+                <img src="partner6.webp" alt="Partner">
+                <img src="partner7.webp" alt="Partner">
             </div>
-            <p class="section-intro">Kenya's trusted leader in outsourcing, delivering efficiency, scalability, and exceptional customer satisfaction.</p>
-            
-            <div class="features">
-                <div class="feature">
-                    <div class="feature-icon">
-                        <i class="fas fa-microchip"></i>
-                    </div>
-                    <h3>Cutting-Edge Technology</h3>
-                    <p>We leverage the latest advancements to enhance customer interactions and operational efficiency.</p>
-                </div>
-                
-                <div class="feature">
-                    <div class="feature-icon">
-                        <i class="fas fa-users"></i>
-                    </div>
-                    <h3>Dedicated & Experienced Team</h3>
-                    <p>Our skilled professionals are committed to delivering top-tier service and exceptional customer satisfaction.</p>
-                </div>
-                
-                <div class="feature">
-                    <div class="feature-icon">
-                        <i class="fas fa-cogs"></i>
-                    </div>
-                    <h3>Comprehensive Solutions</h3>
-                    <p>A full range of outsourcing services tailored to meet diverse business needs and industries.</p>
-                </div>
-                
-                <div class="feature">
-                    <div class="feature-icon">
-                        <i class="fas fa-expand-arrows-alt"></i>
-                    </div>
-                    <h3>Flexible & Scalable Services</h3>
-                    <p>Easily adaptable outsourcing solutions that scale with your business requirements.</p>
-                </div>
-                
-                <div class="feature">
-                    <div class="feature-icon">
-                        <i class="fas fa-plug"></i>
-                    </div>
-                    <h3>Seamless CRM Integration</h3>
-                    <p>We integrate with your existing systems to ensure smooth and efficient operations.</p>
-                </div>
-                
-                <div class="feature">
-                    <div class="feature-icon">
-                        <i class="fas fa-chart-line"></i>
-                    </div>
-                    <h3>Real-Time Data & Analytics</h3>
-                    <p>Gain valuable insights to drive data-driven decisions and optimize performance.</p>
-                </div>
-            </div>
-        </section>
-
-        <section class="section">
-            <div class="section-title">
-                <h2>Our Services</h2>
-            </div>
-            <p class="section-intro">Explore our extensive range of outsourcing services to meet your every need.</p>
-            
-            <div class="services">
-                <div class="service">
-                    <div class="service-icon">
-                        <i class="fas fa-headset"></i>
-                    </div>
-                    <div class="service-content">
-                        <h3>Customer Service</h3>
-                        <p>Top-notch support, including call center operations and help desk services for timely assistance.</p>
-                    </div>
-                    <a href="#" class="btn">Read More</a>
-                </div>
-                
-                <div class="service">
-                    <div class="service-icon">
-                        <i class="fas fa-tools"></i>
-                    </div>
-                    <div class="service-content">
-                        <h3>Technical Support</h3>
-                    <p>Comprehensive technical support to resolve issues efficiently, enhancing customer satisfaction.</p>
-                    </div>
-                    <a href="#" class="btn">Read More</a>
-                </div>
-                
-                <div class="service">
-                    <div class="service-icon">
-                        <i class="fas fa-desktop"></i>
-                    </div>
-                    <div class="service-content">
-                        <h3>Back Office Operations</h3>
-                        <p>Precise data entry, processing, and administrative tasks to streamline your operations.</p>
-                    </div>
-                    <a href="#" class="btn">Read More</a>
-                </div>
-                
-                <div class="service">
-                    <div class="service-icon">
-                        <i class="fas fa-chart-pie"></i>
-                    </div>
-                    <div class="service-content">
-                        <h3>Sales & Lead Generation</h3>
-                        <p>Outbound sales, lead qualification, and market research to accelerate business growth.</p>
-                    </div>
-                    <a href="#" class="btn">Read More</a>
-                </div>
-                
-                <div class="service">
-                    <div class="service-icon">
-                        <i class="fas fa-calendar-check"></i>
-                    </div>
-                    <div class="service-content">
-                        <h3>Appointment Setting</h3>
-                        <p>Seamless scheduling and confirmation of appointments to optimize client engagement.</p>
-                    </div>
-                    <a href="#" class="btn">Read More</a>
-                </div>
-                
-                <div class="service">
-                    <div class="service-icon">
-                        <i class="fas fa-phone-alt"></i>
-                    </div>
-                    <div class="service-content">
-                        <h3>Telemarketing</h3>
-                        <p>Strategic product promotions, surveys, and polls to enhance brand visibility.</p>
-                    </div>
-                    <a href="#" class="btn">Read More</a>
-                </div>
-            </div>
-        </section>
-
-        <section class="section">
-            <div class="section-title">
-                <h2>What Our Clients Say</h2>
-            </div>
-            
-            <div class="testimonials">
-                <div class="testimonial">
-                    <p>"Pioneer Outsourcing transformed our customer support, allowing us to focus on growth while they handled our call center needs efficiently."</p>
-                    <cite>Mr. Oliver Otieno, Business Owner</cite>
-                </div>
-                
-                <div class="testimonial">
-                    <p>"Their technical support team resolved our issues quickly, saving us time and boosting client satisfaction. Highly recommend!"</p>
-                    <cite>Mr.Ben Oncheri, IT Manager</cite>
-                </div>
-                
-                <div class="testimonial">
-                    <p>"With Pioneer's back office support, our administrative tasks are streamlined, freeing us to innovate and expand our business."</p>
-                    <cite>Dr. Mark Odhiambo, Healthcare Administrator</cite>
-                </div>
-            </div>
-        </section>
-
-        <section class="section contact-form" id="contact">
-            <div class="section-title">
-                <h2>Need Expert Outsourcing Solutions?</h2>
-            </div>
-            <p class="section-intro">Our advisors are here to help tailor services to your business needs.</p>
-            
-            <div class="form-container">
-                <form action="https://formspree.io/f/xqadpvbq" method="POST">
-                    <div class="form-group">
-                        <label for="name">Full Name</label>
-                        <input type="text" id="name" name="name" required>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="email">Email Address</label>
-                        <input type="email" id="email" name="email" required>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="message">Your Message</label>
-                        <textarea id="message" name="message" rows="5" required></textarea>
-                    </div>
-                    
-                    <button type="submit" class="btn">Send Message <i class="fas fa-paper-plane"></i></button>
-                </form>
-            </div>
-        </section>
-
-        <section class="section">
-            <div class="section-title">
-                <h2>About Pioneer Outsourcing BPO</h2>
-            </div>
-            
-            <div class="about-content">
-                <p>Pioneer Outsourcing BPO designs and delivers tailored outsourcing solutions for businesses worldwide. From customer service and technical support to back office operations and telemarketing, our services drive efficiency and growth for businesses of all sizes.</p>
-            </div>
-        </section>
+        </div>
     </div>
 
+    <!-- Stats -->
+    <section class="stats">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-number">200+</div>
+                    <div class="stat-label">Global Clients</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">98%</div>
+                    <div class="stat-label">Satisfaction Rate</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">24/7</div>
+                    <div class="stat-label">Operations</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">40-60%</div>
+                    <div class="stat-label">Cost Reduction</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services -->
+    <section class="services-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">SERVICES</span>
+                <h2>Comprehensive BPO Solutions</h2>
+                <p>End-to-end outsourcing tailored to your business needs</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon"><i class="fas fa-headset"></i></div>
+                    <h3>Call Center Services</h3>
+                    <p>24/7 inbound, outbound, customer support, help desk, and order processing with US/UK English fluency.</p>
+                    <a href="#" class="service-link">Learn More <i class="fas fa-arrow-right"></i></a>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon"><i class="fas fa-user-tie"></i></div>
+                    <h3>Virtual Assistants</h3>
+                    <p>Dedicated executive, administrative, and personal assistants trained for international business standards.</p>
+                    <a href="#" class="service-link">Learn More <i class="fas fa-arrow-right"></i></a>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon"><i class="fas fa-microchip"></i></div>
+                    <h3>Technical Support</h3>
+                    <p>Tier 1-3 IT support, troubleshooting, and help desk services for SaaS, hardware, and tech companies.</p>
+                    <a href="#" class="service-link">Learn More <i class="fas fa-arrow-right"></i></a>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon"><i class="fas fa-file-invoice"></i></div>
+                    <h3>Back Office</h3>
+                    <p>Data entry, document processing, accounting, payroll, and administrative operations.</p>
+                    <a href="#" class="service-link">Learn More <i class="fas fa-arrow-right"></i></a>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon"><i class="fas fa-chart-line"></i></div>
+                    <h3>Sales & Lead Gen</h3>
+                    <p>Outbound sales, appointment setting, lead qualification, and market research.</p>
+                    <a href="#" class="service-link">Learn More <i class="fas fa-arrow-right"></i></a>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon"><i class="fas fa-comment-dots"></i></div>
+                    <h3>Omnichannel Support</h3>
+                    <p>Seamless integration across voice, email, chat, social media, and SMS platforms.</p>
+                    <a href="#" class="service-link">Learn More <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us -->
+    <section class="why-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">WHY PIONEER</span>
+                <h2>The Pioneer Advantage</h2>
+                <p>What makes us the preferred BPO partner for global enterprises</p>
+            </div>
+            <div class="why-grid">
+                <div class="why-item">
+                    <div class="why-icon"><i class="fas fa-map-marker-alt"></i></div>
+                    <div class="why-text">
+                        <h3>Strategic Nairobi Hub</h3>
+                        <p>Access top-tier English-speaking talent with favorable time zones for USA, UK, and European markets.</p>
+                    </div>
+                </div>
+                <div class="why-item">
+                    <div class="why-icon"><i class="fas fa-chart-simple"></i></div>
+                    <div class="why-text">
+                        <h3>40-60% Cost Efficiency</h3>
+                        <p>Dramatically reduce operational costs while maintaining or exceeding Western quality benchmarks.</p>
+                    </div>
+                </div>
+                <div class="why-item">
+                    <div class="why-icon"><i class="fas fa-shield"></i></div>
+                    <div class="why-text">
+                        <h3>Enterprise Security</h3>
+                        <p>ISO-compliant facilities, GDPR-ready, NDAs, and data protection protocols for complete peace of mind.</p>
+                    </div>
+                </div>
+                <div class="why-item">
+                    <div class="why-icon"><i class="fas fa-expand"></i></div>
+                    <div class="why-text">
+                        <h3>Elastic Scalability</h3>
+                        <p>Ramp up or down in days, not months. Flexible contracts aligned with your business cycles.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">TESTIMONIALS</span>
+                <h2>Trusted by Industry Leaders</h2>
+                <p>Real results from businesses who scaled with Pioneer</p>
+            </div>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"Pioneer transformed our customer support. We cut costs by 45% while improving response times by 60%. Their team thinks like our team."</p>
+                    <div class="testimonial-author">
+                        <div class="initials">OO</div>
+                        <div><strong>Oliver Otieno</strong><span>Business Owner</span></div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"The technical support quality matches our US-based team at half the cost. Pioneer is our strategic partner for growth."</p>
+                    <div class="testimonial-author">
+                        <div class="initials">BO</div>
+                        <div><strong>Ben Oncheri</strong><span>IT Manager</span></div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"Pioneer's back office support streamlined our operations. We recovered 30% of our admin time to focus on core business."</p>
+                    <div class="testimonial-author">
+                        <div class="initials">MO</div>
+                        <div><strong>Dr. Mark Odhiambo</strong><span>Healthcare Administrator</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section" id="contact">
+        <div class="container">
+            <h2>Ready to Transform Your Operations?</h2>
+            <p>Join 200+ businesses that scaled with Pioneer Outsourcing</p>
+            <form class="cta-form" action="https://formspree.io/f/xqadpvbq" method="POST">
+                <div style="display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 20px;">
+                    <input type="text" name="name" placeholder="Full Name" required style="flex: 1;">
+                    <input type="email" name="email" placeholder="Email Address" required style="flex: 1;">
+                </div>
+                <textarea name="message" placeholder="Tell us about your outsourcing needs" rows="3" style="width: 100%; margin-bottom: 20px;"></textarea>
+                <button type="submit" class="btn-primary" style="width: 100%; justify-content: center;">Request Free Consultation →</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
     <footer>
         <div class="container">
-            <div class="footer-links">
-                <a href="#contact">Contact Us</a>
-                <a href="about.html">About Us</a>
-                <a href="careers.html">Work With Us</a>
-                <a href="services.html">Services</a>
+            <div class="footer-grid">
+                <div class="footer-logo">
+                    <img src="logo.png" alt="Pioneer Outsourcing BPO">
+                    <p>Elite BPO solutions from Nairobi, delivering excellence to global enterprises since 2016.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Company</h4>
+                    <a href="about.html">About Us</a>
+                    <a href="careers.html">Careers</a>
+                    <a href="#contact">Contact</a>
+                </div>
+                <div class="footer-links">
+                    <h4>Services</h4>
+                    <a href="#">Call Center</a>
+                    <a href="#">Virtual Assistants</a>
+                    <a href="#">Technical Support</a>
+                    <a href="#">Back Office</a>
+                </div>
+                <div class="footer-links">
+                    <h4>Connect</h4>
+                    <a href="#"><i class="fab fa-linkedin"></i> LinkedIn</a>
+                    <a href="#"><i class="fab fa-twitter"></i> Twitter</a>
+                    <a href="mailto:hello@pioneeroutsourcingbpo.com">hello@pioneeroutsourcingbpo.com</a>
+                </div>
             </div>
-            
-            <div class="copyright">
-                <p>&copy; 2025 Pioneer Outsourcing BPO. All rights reserved.</p>
+            <div class="footer-bottom">
+                <p>© 2026 Pioneer Outsourcing BPO. Based in Nairobi, Kenya. Serving global clients.</p>
             </div>
         </div>
     </footer>
 
     <script>
-        // Simple animation for page load
-        document.addEventListener('DOMContentLoaded', function() {
-            const logo = document.querySelector('.logo');
-            if (logo) {
-                setTimeout(function() {
-                    logo.style.opacity = '1';
-                    logo.style.transform = 'translateY(0)';
-                }, 300);
-            }
+        const mobileBtn = document.getElementById('mobileMenuBtn');
+        const navLinks = document.getElementById('navLinks');
+        
+        if (mobileBtn) {
+            mobileBtn.addEventListener('click', () => {
+                navLinks.classList.toggle('active');
+            });
+        }
+        
+        const ctaBtns = document.querySelectorAll('#ctaNavBtn, .btn-primary, .hero .btn-primary');
+        ctaBtns.forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                const contactSection = document.getElementById('contact');
+                if (contactSection && this.getAttribute('href') !== 'services.html' && !this.closest('form')) {
+                    e.preventDefault();
+                    contactSection.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+        
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    e.preventDefault();
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
         });
     </script>
 </body>
