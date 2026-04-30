@@ -2,453 +2,691 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Application Form - Pioneer Outsourcing BPO</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Job Application | Pioneer Outsourcing BPO | Join Our Team</title>
+    <meta name="description" content="Apply for customer support, virtual assistant, technical support, and back office positions at Pioneer Outsourcing BPO. Join Kenya's premier BPO company.">
+    <meta name="keywords" content="job application Kenya, BPO careers, call center jobs Nairobi, customer service jobs">
+    <meta name="robots" content="index, follow">
+    <meta name="author" content="Pioneer Outsourcing BPO">
+    
+    <meta property="og:title" content="Job Application | Pioneer Outsourcing BPO">
+    <meta property="og:description" content="Apply for positions at Kenya's premier BPO company. Customer support, virtual assistant, and technical support roles available.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://pioneeroutsourcingbpo.com/application.html">
+    <meta property="og:image" content="https://pioneeroutsourcingbpo.com/logo.png">
+    
+    <link rel="canonical" href="https://pioneeroutsourcingbpo.com/application.html">
+    <link rel="icon" type="image/png" href="logo.png">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <style>
-        :root {
-            --primary-dark: #1C2B39;
-            --primary: #2C3E50;
-            --accent: #F9A826;
-            --accent-light: #FFD166;
-            --light-bg: #F8F9FA;
-            --dark-text: #2D3436;
-            --light-text: #ECF0F1;
-            --gray: #DFE6E9;
-            --success: #27AE60;
-            --error: #E74C3C;
-            --shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
-            --transition: all 0.3s ease;
-        }
-        
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-        
+
+        :root {
+            --primary-dark: #0A1A2F;
+            --primary: #0F2B3D;
+            --primary-light: #1A3A4F;
+            --accent: #F59E0B;
+            --accent-dark: #D97706;
+            --accent-light: #FBBF24;
+            --gray-50: #F9FAFB;
+            --gray-100: #F3F4F6;
+            --gray-200: #E5E7EB;
+            --gray-300: #D1D5DB;
+            --gray-400: #9CA3AF;
+            --gray-500: #6B7280;
+            --gray-600: #4B5563;
+            --gray-700: #374151;
+            --gray-800: #1F2937;
+            --gray-900: #111827;
+            --white: #FFFFFF;
+            
+            --shadow-sm: 0 1px 3px 0 rgb(0 0 0 / 0.05);
+            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.05);
+            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.05);
+            --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.05);
+            --shadow-2xl: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+            
+            --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-base: 200ms cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-slow: 300ms cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
         body {
-            font-family: 'Open Sans', sans-serif;
-            line-height: 1.6;
-            color: var(--dark-text);
-            background: linear-gradient(rgba(245, 247, 250, 0.9), rgba(228, 232, 240, 0.9)), 
-                        url('logo.png') center/30% no-repeat;
-            background-attachment: fixed;
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            color: var(--gray-800);
+            background: var(--gray-50);
+            line-height: 1.5;
+            -webkit-font-smoothing: antialiased;
         }
-        
-        .container {
-            max-width: 1000px;
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
             width: 100%;
-            background: white;
-            border-radius: 10px;
-            box-shadow: var(--shadow);
-            overflow: hidden;
-            position: relative;
+            background: rgba(255, 255, 255, 0.96);
+            backdrop-filter: blur(12px);
+            z-index: 1000;
+            padding: 18px 0;
+            border-bottom: 1px solid var(--gray-100);
         }
-        
-        header {
-            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);
-            color: var(--light-text);
-            text-align: center;
-            padding: 2rem;
-            position: relative;
+
+        .navbar .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 32px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
-        
-        .logo-container {
+
+        .logo-wrapper {
             display: flex;
             align-items: center;
-            justify-content: center;
-            margin-bottom: 1rem;
+            gap: 12px;
         }
-        
+
         .logo {
-            height: 60px;
+            height: 52px;
             width: auto;
-            border-radius: 8px;
-            box-shadow: var(--shadow);
+            border-radius: 12px;
         }
-        
-        .company-name {
-            font-family: 'Poppins', sans-serif;
+
+        .brand-name {
+            font-size: 1.4rem;
             font-weight: 700;
-            font-size: 1.8rem;
-            color: var(--accent-light);
-            margin-left: 15px;
+            letter-spacing: -0.3px;
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
         }
-        
-        header h1 {
-            font-size: 2.2rem;
-            margin-bottom: 0.5rem;
-            color: var(--accent-light);
+
+        .nav-links {
+            display: flex;
+            gap: 40px;
+            align-items: center;
         }
-        
-        header p {
-            font-size: 1.1rem;
-            opacity: 0.9;
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--gray-600);
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: var(--transition-fast);
         }
-        
-        .content {
-            padding: 2rem;
+
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        .nav-cta {
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-dark) 100%);
+            color: white !important;
+            padding: 10px 28px;
+            border-radius: 40px;
+            font-weight: 600 !important;
+        }
+
+        .nav-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.6rem;
+            cursor: pointer;
+            color: var(--gray-700);
+        }
+
+        /* Hero */
+        .hero {
+            background: linear-gradient(125deg, var(--primary-dark) 0%, var(--primary) 45%, var(--primary-light) 100%);
+            position: relative;
+            overflow: hidden;
+            padding: 140px 0 80px;
+            margin-top: 80px;
+            text-align: center;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320'%3E%3Cpath fill='%23F59E0B' fill-opacity='0.05' d='M0,128L48,117.3C96,107,192,85,288,112C384,139,480,213,576,218.7C672,224,768,160,864,128C960,96,1056,96,1152,117.3C1248,139,1344,181,1392,202.7L1440,224L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z'%3E%3C/path%3E%3C/svg%3E");
+            background-size: cover;
+            background-position: center;
+            opacity: 0.3;
+        }
+
+        .hero .container {
             position: relative;
             z-index: 2;
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 32px;
         }
-        
+
+        .hero h1 {
+            font-size: 2.8rem;
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            color: white;
+            margin-bottom: 16px;
+        }
+
+        .hero-highlight {
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            color: rgba(255,255,255,0.85);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Form Section */
+        .form-section {
+            padding: 60px 0 80px;
+        }
+
         .form-container {
-            background: white;
-            padding: 2rem;
-            border-radius: 8px;
-            box-shadow: var(--shadow);
+            max-width: 800px;
+            margin: 0 auto;
+            background: var(--white);
+            border-radius: 28px;
+            box-shadow: var(--shadow-xl);
+            overflow: hidden;
         }
-        
-        .form-title {
-            text-align: center;
-            margin-bottom: 2rem;
-            color: var(--primary);
-            font-family: 'Poppins', sans-serif;
+
+        .form-header {
+            background: var(--gray-50);
+            padding: 32px 40px;
+            border-bottom: 1px solid var(--gray-100);
         }
-        
+
+        .form-header h2 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--gray-800);
+            margin-bottom: 8px;
+        }
+
+        .form-header p {
+            color: var(--gray-500);
+            font-size: 0.9rem;
+        }
+
+        .form-body {
+            padding: 40px;
+        }
+
         .form-group {
-            margin-bottom: 1.5rem;
+            margin-bottom: 24px;
         }
-        
+
         .form-group label {
             display: block;
-            margin-bottom: 0.5rem;
-            font-family: 'Poppins', sans-serif;
-            font-weight: 500;
-            color: var(--primary);
+            margin-bottom: 8px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            color: var(--gray-700);
         }
-        
+
         .form-group input, 
         .form-group textarea,
         .form-group select {
             width: 100%;
-            padding: 12px 15px;
-            border: 1px solid var(--gray);
-            border-radius: 4px;
-            font-family: 'Open Sans', sans-serif;
-            transition: var(--transition);
+            padding: 14px 16px;
+            background: var(--white);
+            border: 1px solid var(--gray-200);
+            border-radius: 14px;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.95rem;
+            transition: var(--transition-fast);
         }
-        
+
         .form-group input:focus, 
         .form-group textarea:focus,
         .form-group select:focus {
             outline: none;
             border-color: var(--accent);
-            box-shadow: 0 0 0 3px rgba(249, 168, 38, 0.2);
+            box-shadow: 0 0 0 3px rgba(245,158,11,0.1);
         }
-        
+
         .form-group textarea {
-            min-height: 120px;
+            min-height: 100px;
             resize: vertical;
         }
-        
+
         .form-row {
             display: flex;
-            gap: 1rem;
+            gap: 20px;
         }
-        
+
         .form-row .form-group {
             flex: 1;
         }
-        
-        .btn {
-            display: block;
-            width: 100%;
-            padding: 14px 30px;
-            background-color: var(--accent);
-            color: var(--primary-dark);
+
+        .required {
+            color: var(--accent);
+        }
+
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            padding: 14px 36px;
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-dark) 100%);
+            color: white;
             text-decoration: none;
-            border-radius: 4px;
-            font-family: 'Poppins', sans-serif;
+            border-radius: 48px;
             font-weight: 600;
-            transition: var(--transition);
+            transition: var(--transition-base);
             border: none;
             cursor: pointer;
-            box-shadow: var(--shadow);
-            text-align: center;
-            font-size: 1.1rem;
+            width: 100%;
+            font-size: 1rem;
         }
-        
-        .btn:hover {
-            background-color: var(--accent-light);
+
+        .btn-primary:hover {
             transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(249, 168, 38, 0.3);
+            box-shadow: 0 20px 30px -12px rgba(245, 158, 11, 0.35);
         }
-        
-        .btn i {
-            margin-left: 8px;
+
+        .btn-primary:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+            transform: none;
         }
-        
-        .form-footer {
-            text-align: center;
-            margin-top: 2rem;
-            color: var(--primary);
+
+        .alert {
+            padding: 14px 18px;
+            border-radius: 14px;
+            margin-bottom: 24px;
+            display: none;
             font-size: 0.9rem;
         }
-        
-        .form-footer a {
-            color: var(--accent);
-            text-decoration: none;
-        }
-        
-        .form-footer a:hover {
-            text-decoration: underline;
-        }
-        
-        .alert {
-            padding: 1rem;
-            border-radius: 4px;
-            margin-bottom: 1.5rem;
-            display: none;
-        }
-        
+
         .alert-success {
             background-color: #d4edda;
             color: #155724;
             border: 1px solid #c3e6cb;
         }
-        
+
         .alert-error {
             background-color: #f8d7da;
             color: #721c24;
             border: 1px solid #f5c6cb;
         }
-        
-        .required {
-            color: var(--error);
+
+        .form-footer {
+            text-align: center;
+            margin-top: 24px;
+            padding-top: 24px;
+            border-top: 1px solid var(--gray-100);
         }
-        
-        /* Responsive Design */
+
+        .form-footer p {
+            color: var(--gray-400);
+            font-size: 0.8rem;
+        }
+
+        .form-footer a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--white);
+            border-top: 1px solid var(--gray-100);
+            padding: 60px 0 32px;
+        }
+
+        .footer-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 32px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1.5fr;
+            gap: 48px;
+            margin-bottom: 48px;
+        }
+
+        .footer-logo img {
+            height: 48px;
+            margin-bottom: 16px;
+        }
+
+        .footer-logo p {
+            color: var(--gray-500);
+            font-size: 0.85rem;
+            line-height: 1.6;
+            max-width: 250px;
+        }
+
+        .footer-links h4 {
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 20px;
+            color: var(--gray-700);
+        }
+
+        .footer-links a {
+            display: block;
+            color: var(--gray-500);
+            text-decoration: none;
+            margin-bottom: 12px;
+            font-size: 0.9rem;
+            transition: var(--transition-fast);
+        }
+
+        .footer-links a:hover {
+            color: var(--accent);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 32px;
+            border-top: 1px solid var(--gray-100);
+            color: var(--gray-400);
+            font-size: 0.8rem;
+        }
+
+        /* Mobile */
         @media (max-width: 768px) {
+            .navbar .container, .hero .container, .footer-container {
+                padding: 0 24px;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 80px;
+                left: 0;
+                width: 100%;
+                background: var(--white);
+                flex-direction: column;
+                padding: 24px;
+                gap: 20px;
+                box-shadow: var(--shadow-xl);
+                border-bottom: 1px solid var(--gray-100);
+            }
+            
+            .nav-links.active {
+                display: flex;
+            }
+            
+            .hero {
+                padding: 120px 0 60px;
+                margin-top: 70px;
+            }
+            
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .form-section {
+                padding: 40px 0 60px;
+            }
+            
+            .form-header {
+                padding: 24px;
+            }
+            
+            .form-body {
+                padding: 24px;
+            }
+            
             .form-row {
                 flex-direction: column;
                 gap: 0;
             }
             
-            header h1 {
-                font-size: 1.8rem;
-            }
-            
-            .company-name {
-                font-size: 1.4rem;
-            }
-            
-            .logo {
-                height: 45px;
-            }
-            
-            body {
-                background-size: 50%;
-            }
-        }
-        
-        @media (max-width: 576px) {
-            .content {
-                padding: 1.5rem;
-            }
-            
-            .form-container {
-                padding: 1.5rem;
-            }
-            
-            .logo-container {
-                flex-direction: column;
+            .footer-grid {
+                grid-template-columns: 1fr;
                 text-align: center;
+                gap: 32px;
             }
             
-            .company-name {
-                margin-left: 0;
-                margin-top: 8px;
-                font-size: 1.2rem;
-            }
-            
-            body {
-                background-size: 70%;
+            .footer-logo p {
+                margin: 0 auto;
             }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <header>
-            <div class="logo-container">
-                <img src="logo.png" alt="Pioneer Outsourcing BPO Logo" class="logo">
-                <div class="company-name">Pioneer Outsourcing</div>
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo-wrapper">
+                <img src="logo.png" alt="Pioneer Outsourcing BPO" class="logo">
+                <span class="brand-name">Pioneer</span>
             </div>
-            <h1>Job Application Form</h1>
-            <p>Join our team of professionals in Kenya</p>
-        </header>
-        
-        <div class="content">
-            <div id="alertBox" class="alert"></div>
-            
-            <div class="form-container">
-                <h2 class="form-title">Apply for a Position</h2>
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="nav-links" id="navLinks">
+                <a href="index.html">Home</a>
+                <a href="services.html">Services</a>
+                <a href="about.html">About</a>
+                <a href="careers.html">Careers</a>
+                <a href="#" class="nav-cta" id="ctaNavBtn">Get a Quote →</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="container">
+            <h1>Start Your <span class="hero-highlight">Career Journey</span></h1>
+            <p>Join Kenya's premier BPO company. We're always looking for talented individuals to join our team.</p>
+        </div>
+    </section>
+
+    <section class="form-section">
+        <div class="form-container">
+            <div class="form-header">
+                <h2>Job Application Form</h2>
+                <p>Fill out the form below to apply for current or future opportunities</p>
+            </div>
+            <div class="form-body">
+                <div id="alertBox" class="alert"></div>
                 
-                <!-- Formspree Form - Replace with your actual Formspree endpoint -->
                 <form id="applicationForm" action="https://formspree.io/f/xjkeyqqq" method="POST">
                     <div class="form-row">
                         <div class="form-group">
-                            <label for="firstName">First Name <span class="required">*</span></label>
-                            <input type="text" id="firstName" name="firstName" required>
+                            <label>First Name <span class="required">*</span></label>
+                            <input type="text" name="firstName" required>
                         </div>
-                        
                         <div class="form-group">
-                            <label for="lastName">Last Name <span class="required">*</span></label>
-                            <input type="text" id="lastName" name="lastName" required>
+                            <label>Last Name <span class="required">*</span></label>
+                            <input type="text" name="lastName" required>
                         </div>
                     </div>
                     
                     <div class="form-row">
                         <div class="form-group">
-                            <label for="email">Email Address <span class="required">*</span></label>
-                            <input type="email" id="email" name="email" required>
+                            <label>Email Address <span class="required">*</span></label>
+                            <input type="email" name="email" required>
                         </div>
-                        
                         <div class="form-group">
-                            <label for="phone">Phone Number <span class="required">*</span></label>
-                            <input type="tel" id="phone" name="phone" required>
+                            <label>Phone Number <span class="required">*</span></label>
+                            <input type="tel" name="phone" required>
                         </div>
                     </div>
                     
                     <div class="form-group">
-                        <label for="position">Position Applying For <span class="required">*</span></label>
-                        <select id="position" name="position" required>
+                        <label>Position Applying For <span class="required">*</span></label>
+                        <select name="position" required>
                             <option value="">Select a position</option>
-                            <option value="linguistics">Native Japanese and Taiwanese Linguistics Specialist</option>
-                            <option value="customer-service">Customer Service Agent (Danish/Finnish)</option>
-                            <option value="accounts">Invoice Processing & Accounts Payable Agent</option>
-                            <option value="trainee">Customer Support Trainee</option>
+                            <option value="call-center">Call Center Agent</option>
+                            <option value="virtual-assistant">Virtual Assistant</option>
+                            <option value="technical-support">Technical Support Specialist</option>
+                            <option value="back-office">Back Office Associate</option>
+                            <option value="sales">Sales Representative</option>
+                            <option value="management">Team Lead / Management</option>
                         </select>
                     </div>
                     
-                    <div class="form-group">
-                        <label for="experience">Years of Experience <span class="required">*</span></label>
-                        <select id="experience" name="experience" required>
-                            <option value="">Select experience level</option>
-                            <option value="0-1">0-1 years</option>
-                            <option value="1-2">1-2 years</option>
-                            <option value="2-5">2-5 years</option>
-                            <option value="5+">5+ years</option>
-                        </select>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Years of Experience</label>
+                            <select name="experience">
+                                <option value="">Select experience level</option>
+                                <option value="entry">Entry Level (0-1 years)</option>
+                                <option value="junior">Junior (1-3 years)</option>
+                                <option value="mid">Mid Level (3-5 years)</option>
+                                <option value="senior">Senior (5+ years)</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Preferred Location</label>
+                            <select name="location">
+                                <option value="nairobi">Nairobi, Kenya</option>
+                                <option value="remote">Remote</option>
+                                <option value="both">Both (Remote & Onsite)</option>
+                            </select>
+                        </div>
                     </div>
                     
                     <div class="form-group">
-                        <label for="location">Preferred Location <span class="required">*</span></label>
-                        <select id="location" name="location" required>
-                            <option value="">Select location</option>
-                            <option value="nairobi">Nairobi, Kenya</option>
-                            <option value="remote">Remote</option>
-                            <option value="both">Both (Remote & Onsite)</option>
-                        </select>
+                        <label>Cover Letter <span class="required">*</span></label>
+                        <textarea name="message" placeholder="Tell us why you're interested in joining our team and why you'd be a good fit..." required></textarea>
                     </div>
                     
                     <div class="form-group">
-                        <label for="message">Cover Letter <span class="required">*</span></label>
-                        <textarea id="message" name="message" placeholder="Tell us why you're interested in joining our team and why you'd be a good fit..." required></textarea>
+                        <label>Resume/CV Link (Google Drive, Dropbox, etc.)</label>
+                        <input type="url" name="resume" placeholder="https://drive.google.com/your-cv">
+                        <small style="color: var(--gray-400); font-size: 0.7rem;">Share a link to your resume (optional)</small>
                     </div>
                     
-                    <div class="form-group">
-                        <label for="resume">Link to your Resume (Google Drive, Dropbox, etc.) <span class="required">*</span></label>
-                        <input type="url" id="resume" name="resume" placeholder="https://example.com/your-cv" required>
-                    </div>
-                    
-                    <button type="submit" class="btn">Submit Application <i class="fas fa-paper-plane"></i></button>
+                    <button type="submit" class="btn-primary">Submit Application →</button>
                 </form>
                 
                 <div class="form-footer">
-                    <p>By submitting this form, you agree to our <a href="#">Privacy Policy</a></p>
+                    <p>By submitting this form, you agree to our <a href="#">Privacy Policy</a>. We'll review your application and contact you when relevant opportunities arise.</p>
                 </div>
             </div>
         </div>
-    </div>
+    </section>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-grid">
+                <div class="footer-logo">
+                    <img src="logo.png" alt="Pioneer Outsourcing BPO">
+                    <p>Elite BPO solutions from Nairobi, delivering excellence to global enterprises.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Company</h4>
+                    <a href="about.html">About Us</a>
+                    <a href="careers.html">Careers</a>
+                    <a href="#">Contact</a>
+                </div>
+                <div class="footer-links">
+                    <h4>Services</h4>
+                    <a href="services.html">Call Center</a>
+                    <a href="services.html">Virtual Assistants</a>
+                    <a href="services.html">Technical Support</a>
+                    <a href="services.html">Back Office</a>
+                </div>
+                <div class="footer-links">
+                    <h4>Connect</h4>
+                    <a href="mailto:hello@pioneeroutsourcingbpo.com">hello@pioneeroutsourcingbpo.com</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2026 Pioneer Outsourcing BPO. Based in Nairobi, Kenya. Serving global clients.</p>
+            </div>
+        </div>
+    </footer>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const applicationForm = document.getElementById('applicationForm');
-            const alertBox = document.getElementById('alertBox');
-            
-            // Function to show alert messages
-            function showAlert(message, type) {
-                alertBox.textContent = message;
-                alertBox.className = `alert alert-${type}`;
-                alertBox.style.display = 'block';
-                
-                // Scroll to alert
-                alertBox.scrollIntoView({ behavior: 'smooth' });
-                
-                // Hide alert after 5 seconds
-                setTimeout(() => {
-                    alertBox.style.display = 'none';
-                }, 5000);
-            }
-            
-            applicationForm.addEventListener('submit', function(e) {
+        const mobileBtn = document.getElementById('mobileMenuBtn');
+        const navLinks = document.getElementById('navLinks');
+        if (mobileBtn) {
+            mobileBtn.addEventListener('click', () => {
+                navLinks.classList.toggle('active');
+            });
+        }
+        
+        const ctaBtn = document.getElementById('ctaNavBtn');
+        if (ctaBtn) {
+            ctaBtn.addEventListener('click', function(e) {
                 e.preventDefault();
-                
-                // Basic validation
-                const firstName = document.getElementById('firstName').value;
-                const lastName = document.getElementById('lastName').value;
-                const email = document.getElementById('email').value;
-                const phone = document.getElementById('phone').value;
-                const position = document.getElementById('position').value;
-                const experience = document.getElementById('experience').value;
-                const location = document.getElementById('location').value;
-                const message = document.getElementById('message').value;
-                const resume = document.getElementById('resume').value;
-                
-                if (!firstName || !lastName || !email || !phone || !position || 
-                    !experience || !location || !message || !resume) {
-                    showAlert('Please fill in all required fields.', 'error');
-                    return;
-                }
-                
-                if (!isValidEmail(email)) {
-                    showAlert('Please enter a valid email address.', 'error');
-                    return;
-                }
-                
-                // Show loading state
-                const submitBtn = applicationForm.querySelector('button[type="submit"]');
-                const originalText = submitBtn.innerHTML;
-                submitBtn.innerHTML = 'Submitting... <i class="fas fa-spinner fa-spin"></i>';
-                submitBtn.disabled = true;
-                
-                // In a real scenario, this would be handled by Formspree
-                // For demo purposes, we'll simulate a form submission
-                setTimeout(() => {
-                    showAlert('Thank you! Your application has been submitted successfully. We will review your information and get back to you soon.', 'success');
-                    applicationForm.reset();
-                    
-                    // Reset button state
-                    submitBtn.innerHTML = originalText;
-                    submitBtn.disabled = false;
-                }, 1500);
+                window.location.href = 'index.html#contact';
             });
+        }
+        
+        const form = document.getElementById('applicationForm');
+        const alertBox = document.getElementById('alertBox');
+        
+        function showAlert(message, type) {
+            alertBox.textContent = message;
+            alertBox.className = `alert alert-${type}`;
+            alertBox.style.display = 'block';
+            setTimeout(() => {
+                alertBox.style.display = 'none';
+            }, 5000);
+        }
+        
+        function isValidEmail(email) {
+            return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+        }
+        
+        form.addEventListener('submit', function(e) {
+            const firstName = form.querySelector('input[name="firstName"]').value;
+            const lastName = form.querySelector('input[name="lastName"]').value;
+            const email = form.querySelector('input[name="email"]').value;
+            const phone = form.querySelector('input[name="phone"]').value;
+            const position = form.querySelector('select[name="position"]').value;
+            const message = form.querySelector('textarea[name="message"]').value;
             
-            function isValidEmail(email) {
-                const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-                return re.test(email);
+            if (!firstName || !lastName || !email || !phone || !position || !message) {
+                e.preventDefault();
+                showAlert('Please fill in all required fields.', 'error');
+                return;
             }
             
-            // Add form field validation styling
-            const formFields = applicationForm.querySelectorAll('input, select, textarea');
-            formFields.forEach(field => {
-                field.addEventListener('blur', function() {
-                    if (this.hasAttribute('required') && !this.value) {
-                        this.style.borderColor = 'var(--error)';
-                    } else {
-                        this.style.borderColor = '';
-                    }
-                });
-            });
+            if (!isValidEmail(email)) {
+                e.preventDefault();
+                showAlert('Please enter a valid email address.', 'error');
+                return;
+            }
+            
+            // Form will submit normally to Formspree
         });
     </script>
 </body>
