@@ -1,851 +1,825 @@
+---
+layout: default
+title: "Careers at Pioneer Outsourcing | Join Our Talent Pool | BPO Jobs Kenya"
+description: "Express your interest in joining Kenya's premier BPO company. Submit your CV to our talent pool for future opportunities in call center, virtual assistant, and technical support roles."
+---
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    {% seo %}
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Careers - Pioneer Outsourcing BPO</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    
+    <!-- Additional Metadata -->
+    <meta name="keywords" content="BPO careers Kenya, call center jobs Nairobi, outsourcing jobs Kenya, talent pool, future opportunities">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="Careers at Pioneer Outsourcing | Join Our Talent Pool">
+    <meta property="og:description" content="Express interest in future opportunities at Kenya's premier BPO company. Submit your CV to our talent pool.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://pioneeroutsourcingbpo.com/careers.html">
+    <meta property="og:image" content="https://pioneeroutsourcingbpo.com/logo.png">
+    
+    <!-- Canonical -->
+    <link rel="canonical" href="https://pioneeroutsourcingbpo.com/careers.html">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <style>
-        :root {
-            --primary-dark: #1C2B39;
-            --primary: #2C3E50;
-            --accent: #F9A826;
-            --accent-light: #FFD166;
-            --light-bg: #F8F9FA;
-            --dark-text: #2D3436;
-            --light-text: #ECF0F1;
-            --gray: #DFE6E9;
-            --success: #27AE60;
-            --shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
-            --transition: all 0.3s ease;
-        }
-        
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-        
+
+        :root {
+            --primary-dark: #0A1A2F;
+            --primary: #0F2B3D;
+            --primary-light: #1A3A4F;
+            --accent: #F59E0B;
+            --accent-dark: #D97706;
+            --accent-light: #FBBF24;
+            --gray-50: #F9FAFB;
+            --gray-100: #F3F4F6;
+            --gray-200: #E5E7EB;
+            --gray-300: #D1D5DB;
+            --gray-400: #9CA3AF;
+            --gray-500: #6B7280;
+            --gray-600: #4B5563;
+            --gray-700: #374151;
+            --gray-800: #1F2937;
+            --gray-900: #111827;
+            --white: #FFFFFF;
+            
+            --shadow-sm: 0 1px 3px 0 rgb(0 0 0 / 0.05);
+            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.05);
+            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.05);
+            --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.05);
+            --shadow-2xl: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+            
+            --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-base: 200ms cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-slow: 300ms cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
         body {
-            font-family: 'Open Sans', sans-serif;
-            line-height: 1.6;
-            color: var(--dark-text);
-            background-color: #FFFFFF;
-            scroll-behavior: smooth;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            color: var(--gray-800);
+            background: var(--white);
+            line-height: 1.5;
+            -webkit-font-smoothing: antialiased;
         }
-        
-        h1, h2, h3, h4, h5, h6 {
-            font-family: 'Poppins', sans-serif;
-            font-weight: 700;
-            line-height: 1.3;
-        }
-        
+
         .container {
-            max-width: 1200px;
+            max-width: 1280px;
             margin: 0 auto;
-            padding: 0 20px;
+            padding: 0 32px;
         }
-        
-        /* Header */
-        header {
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.96);
+            backdrop-filter: blur(12px);
+            z-index: 1000;
+            padding: 18px 0;
+            border-bottom: 1px solid var(--gray-100);
+        }
+
+        .navbar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo {
+            height: 56px;
+            width: auto;
+            border-radius: 12px;
+        }
+
+        .brand-name {
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: -0.3px;
             background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);
-            color: var(--light-text);
-            text-align: center;
-            padding: 6rem 2rem 4rem;
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--gray-600);
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: var(--transition-fast);
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--accent);
+        }
+
+        .nav-cta {
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-dark) 100%);
+            color: white !important;
+            padding: 10px 28px;
+            border-radius: 40px;
+            font-weight: 600 !important;
+        }
+
+        .nav-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.6rem;
+            cursor: pointer;
+            color: var(--gray-700);
+        }
+
+        /* Hero */
+        .hero {
+            background: linear-gradient(125deg, var(--primary-dark) 0%, var(--primary) 45%, var(--primary-light) 100%);
             position: relative;
             overflow: hidden;
+            padding: 170px 0 100px;
+            margin-top: 80px;
+            text-align: center;
         }
-        
-        header::before {
+
+        .hero::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320'%3E%3Cpath fill='%23F9A826' fill-opacity='0.1' d='M0,128L48,117.3C96,107,192,85,288,112C384,139,480,213,576,218.7C672,224,768,160,864,128C960,96,1056,96,1152,117.3C1248,139,1344,181,1392,202.7L1440,224L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z'%3E%3C/path%3E%3C/svg%3E");
+            right: 0;
+            bottom: 0;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320'%3E%3Cpath fill='%23F59E0B' fill-opacity='0.05' d='M0,128L48,117.3C96,107,192,85,288,112C384,139,480,213,576,218.7C672,224,768,160,864,128C960,96,1056,96,1152,117.3C1248,139,1344,181,1392,202.7L1440,224L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z'%3E%3C/path%3E%3C/svg%3E");
             background-size: cover;
             background-position: center;
+            opacity: 0.3;
         }
-        
-        .logo-container {
-            position: absolute;
-            top: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 10;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .logo {
-            height: 60px;
-            width: auto;
-            border-radius: 8px;
-            box-shadow: var(--shadow);
-            transition: var(--transition);
-        }
-        
-        .company-name {
-            font-family: 'Poppins', sans-serif;
-            font-weight: 700;
-            font-size: 1.8rem;
-            color: var(--accent-light);
-            margin-left: 15px;
-            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
-        }
-        
-        .header-content {
+
+        .hero .container {
             position: relative;
-            z-index: 1;
-            max-width: 800px;
-            margin: 0 auto;
-            padding-top: 40px;
+            z-index: 2;
         }
-        
-        header h1 {
-            font-size: 3rem;
-            margin-bottom: 1.5rem;
-            color: var(--accent-light);
-        }
-        
-        header p {
-            font-size: 1.3rem;
-            margin-bottom: 2.5rem;
-        }
-        
-        .btn {
-            display: inline-block;
-            padding: 14px 30px;
-            background-color: var(--accent);
-            color: var(--primary-dark);
-            text-decoration: none;
-            border-radius: 4px;
-            font-family: 'Poppins', sans-serif;
-            font-weight: 600;
-            transition: var(--transition);
-            border: none;
-            cursor: pointer;
-            box-shadow: var(--shadow);
-        }
-        
-        .btn:hover {
-            background-color: var(--accent-light);
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(249, 168, 38, 0.3);
-        }
-        
-        .btn i {
-            margin-left: 8px;
-        }
-        
-        /* Navigation */
-        nav {
-            background-color: var(--primary);
-            padding: 1rem 0;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            box-shadow: var(--shadow);
-        }
-        
-        .nav-container {
-            display: flex;
-            justify-content: center;
-        }
-        
-        .nav-link {
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            letter-spacing: -0.03em;
             color: white;
-            text-decoration: none;
-            margin: 0 1.5rem;
-            font-family: 'Poppins', sans-serif;
-            font-weight: 500;
-            transition: var(--transition);
+            margin-bottom: 20px;
         }
-        
-        .nav-link:hover {
-            color: var(--accent-light);
+
+        .hero-highlight {
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
         }
-        
-        /* Sections */
-        .section {
-            padding: 5rem 0;
-        }
-        
-        .section-title {
-            text-align: center;
-            margin-bottom: 3rem;
-            position: relative;
-        }
-        
-        .section-title h2 {
-            font-size: 2.5rem;
-            color: var(--primary);
-            margin-bottom: 1rem;
-        }
-        
-        .section-title::after {
-            content: '';
-            display: block;
-            width: 80px;
-            height: 4px;
-            background: var(--accent);
-            margin: 0 auto;
-            border-radius: 2px;
-        }
-        
-        .section-intro {
-            text-align: center;
-            max-width: 700px;
-            margin: 0 auto 3rem;
-            font-size: 1.1rem;
-        }
-        
-        /* Why Work With Us */
-        .benefits {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-        
-        .benefit {
-            background-color: white;
-            padding: 2.5rem 2rem;
-            border-radius: 10px;
-            text-align: center;
-            box-shadow: var(--shadow);
-            transition: var(--transition);
-            border-top: 4px solid var(--accent);
-        }
-        
-        .benefit:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
-        }
-        
-        .benefit-icon {
-            font-size: 2.5rem;
-            color: var(--accent);
-            margin-bottom: 1.5rem;
-        }
-        
-        .benefit h3 {
-            font-size: 1.5rem;
-            color: var(--primary);
-            margin-bottom: 1rem;
-        }
-        
-        /* Job Listings */
-        .jobs-container {
-            max-width: 800px;
+
+        .hero p {
+            font-size: 1.2rem;
+            color: rgba(255,255,255,0.85);
+            max-width: 650px;
             margin: 0 auto;
         }
-        
-        .job {
-            background: white;
-            border-radius: 8px;
-            padding: 2rem;
-            margin-bottom: 1.5rem;
-            box-shadow: var(--shadow);
-            border-left: 4px solid var(--accent);
+
+        /* Trust Bar */
+        .trust-bar {
+            padding: 60px 0;
+            border-top: 1px solid var(--gray-100);
+            border-bottom: 1px solid var(--gray-100);
+            background: var(--white);
         }
-        
-        .job-header {
+
+        .trust-logos {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 1rem;
-        }
-        
-        .job-title {
-            font-size: 1.5rem;
-            color: var(--primary);
-        }
-        
-        .job-type {
-            background: var(--accent-light);
-            color: var(--primary-dark);
-            padding: 0.3rem 0.8rem;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            font-weight: 600;
-        }
-        
-        .job-details {
-            display: flex;
-            gap: 1.5rem;
-            margin-bottom: 1rem;
             flex-wrap: wrap;
+            gap: 48px;
         }
-        
-        .job-detail {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
+
+        .trust-logos img {
+            height: 65px;
+            width: auto;
+            opacity: 0.7;
+            transition: var(--transition-fast);
+            object-fit: contain;
         }
-        
-        .job-detail i {
-            color: var(--accent);
+
+        .trust-logos img:hover {
+            opacity: 1;
+            transform: scale(1.05);
         }
-        
-        .positions-available {
-            background: var(--primary);
-            color: white;
-            padding: 0.5rem 1rem;
-            border-radius: 4px;
+
+        /* Section Headers */
+        .section-header {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 56px;
+        }
+
+        .section-tag {
             display: inline-block;
-            margin-top: 1rem;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
             font-weight: 600;
+            color: var(--accent);
+            margin-bottom: 16px;
         }
-        
-        /* Stats Section */
-        .stats {
-            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);
-            color: white;
-            padding: 4rem 0;
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            color: var(--gray-900);
+            margin-bottom: 20px;
         }
-        
-        .stats-container {
+
+        .section-header p {
+            color: var(--gray-500);
+            font-size: 1.1rem;
+        }
+
+        /* Benefits Grid */
+        .benefits-section {
+            padding: 80px 0;
+            background: var(--white);
+        }
+
+        .benefits-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+        }
+
+        .benefit-card {
+            background: var(--white);
+            border-radius: 28px;
+            padding: 36px;
+            transition: var(--transition-slow);
+            border: 1px solid var(--gray-100);
+            box-shadow: var(--shadow-sm);
             text-align: center;
         }
-        
-        .stat {
-            padding: 1.5rem;
+
+        .benefit-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--accent-light);
+            box-shadow: var(--shadow-2xl);
         }
-        
-        .stat-number {
-            font-size: 3rem;
+
+        .benefit-icon {
+            width: 64px;
+            height: 64px;
+            background: linear-gradient(135deg, rgba(245,158,11,0.1) 0%, rgba(245,158,11,0.05) 100%);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 24px;
+        }
+
+        .benefit-icon i {
+            font-size: 2rem;
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-dark) 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .benefit-card h3 {
+            font-size: 1.35rem;
             font-weight: 700;
-            color: var(--accent-light);
-            margin-bottom: 0.5rem;
+            margin-bottom: 12px;
+            color: var(--gray-800);
         }
-        
-        .stat-title {
-            font-size: 1.2rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+
+        .benefit-card p {
+            color: var(--gray-500);
+            line-height: 1.6;
         }
-        
-        /* Application Form */
-        .application-form {
-            background: var(--light-bg);
-            padding: 3rem;
-            border-radius: 10px;
+
+        /* Talent Pool Section */
+        .talent-section {
+            padding: 80px 0;
+            background: var(--gray-50);
+        }
+
+        .talent-card {
+            background: var(--white);
+            border-radius: 32px;
+            padding: 48px;
+            text-align: center;
             max-width: 800px;
             margin: 0 auto;
+            box-shadow: var(--shadow-lg);
+            border: 1px solid var(--gray-100);
         }
-        
+
+        .talent-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, rgba(245,158,11,0.1) 0%, rgba(245,158,11,0.05) 100%);
+            border-radius: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 24px;
+        }
+
+        .talent-icon i {
+            font-size: 2.5rem;
+            color: var(--accent);
+        }
+
+        .talent-card h2 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+            color: var(--gray-800);
+        }
+
+        .talent-card p {
+            color: var(--gray-500);
+            margin-bottom: 32px;
+            font-size: 1rem;
+        }
+
+        .roles-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 32px;
+        }
+
+        .role-tag {
+            background: var(--gray-100);
+            padding: 8px 20px;
+            border-radius: 40px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--gray-700);
+        }
+
+        /* Form */
+        .application-form {
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: left;
+        }
+
         .form-group {
-            margin-bottom: 1.5rem;
+            margin-bottom: 20px;
         }
-        
+
         .form-group label {
             display: block;
-            margin-bottom: 0.5rem;
-            font-family: 'Poppins', sans-serif;
-            font-weight: 500;
+            margin-bottom: 8px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: var(--gray-700);
         }
-        
+
         .form-group input, 
         .form-group textarea,
         .form-group select {
             width: 100%;
-            padding: 12px 15px;
-            border: 1px solid var(--gray);
-            border-radius: 4px;
-            font-family: 'Open Sans', sans-serif;
-            transition: var(--transition);
+            padding: 14px 16px;
+            background: var(--white);
+            border: 1px solid var(--gray-200);
+            border-radius: 16px;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.95rem;
+            transition: var(--transition-fast);
         }
-        
+
         .form-group input:focus, 
         .form-group textarea:focus,
         .form-group select:focus {
             outline: none;
             border-color: var(--accent);
-            box-shadow: 0 0 0 3px rgba(249, 168, 38, 0.2);
+            box-shadow: 0 0 0 3px rgba(245,158,11,0.1);
         }
-        
-        .form-group textarea {
-            min-height: 120px;
-        }
-        
+
         .form-row {
             display: flex;
-            gap: 1rem;
+            gap: 20px;
         }
-        
+
         .form-row .form-group {
             flex: 1;
         }
-        
+
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            padding: 14px 36px;
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-dark) 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 48px;
+            font-weight: 600;
+            transition: var(--transition-base);
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            font-size: 1rem;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 20px 30px -12px rgba(245, 158, 11, 0.35);
+        }
+
+        .note-text {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 0.8rem;
+            color: var(--gray-400);
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(125deg, var(--primary-dark) 0%, var(--primary) 100%);
+            padding: 80px 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-section .container {
+            position: relative;
+            z-index: 2;
+        }
+
+        .cta-section h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 20px;
+        }
+
+        .cta-section p {
+            color: rgba(255,255,255,0.7);
+            max-width: 550px;
+            margin: 0 auto;
+        }
+
         /* Footer */
         footer {
-            background-color: var(--primary-dark);
-            color: var(--light-text);
-            padding: 3rem 0 1.5rem;
-            text-align: center;
+            background: var(--white);
+            border-top: 1px solid var(--gray-100);
+            padding: 64px 0 32px;
         }
-        
-        .footer-links {
-            margin-bottom: 2rem;
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1.5fr;
+            gap: 48px;
+            margin-bottom: 48px;
         }
-        
-        .footer-links a {
-            color: var(--accent-light);
-            text-decoration: none;
-            margin: 0 1rem;
-            transition: var(--transition);
+
+        .footer-logo img {
+            height: 50px;
+            margin-bottom: 16px;
         }
-        
-        .footer-links a:hover {
-            color: white;
+
+        .footer-logo p {
+            color: var(--gray-500);
+            font-size: 0.85rem;
+            line-height: 1.6;
         }
-        
-        .copyright {
-            margin-top: 2rem;
+
+        .footer-links h4 {
             font-size: 0.9rem;
-            color: var(--gray);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 20px;
+            color: var(--gray-700);
         }
-        
-        /* Responsive Design */
+
+        .footer-links a {
+            display: block;
+            color: var(--gray-500);
+            text-decoration: none;
+            margin-bottom: 12px;
+            font-size: 0.9rem;
+            transition: var(--transition-fast);
+        }
+
+        .footer-links a:hover {
+            color: var(--accent);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 32px;
+            border-top: 1px solid var(--gray-100);
+            color: var(--gray-400);
+            font-size: 0.8rem;
+        }
+
+        /* Mobile */
+        @media (max-width: 1024px) {
+            .benefits-grid { grid-template-columns: repeat(2, 1fr); }
+            .footer-grid { grid-template-columns: repeat(2, 1fr); }
+            .hero h1 { font-size: 2.8rem; }
+        }
+
         @media (max-width: 768px) {
-            header h1 {
-                font-size: 2.2rem;
-            }
-            
-            header p {
-                font-size: 1.1rem;
-            }
-            
-            .section-title h2 {
-                font-size: 2rem;
-            }
-            
-            .benefits {
-                grid-template-columns: 1fr;
-            }
-            
-            .logo-container {
-                top: 15px;
-            }
-            
-            .logo {
-                height: 45px;
-            }
-            
-            .company-name {
-                font-size: 1.4rem;
-            }
-            
-            .form-row {
+            .container { padding: 0 24px; }
+            .mobile-menu-btn { display: block; }
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 80px;
+                left: 0;
+                width: 100%;
+                background: var(--white);
                 flex-direction: column;
-                gap: 0;
+                padding: 24px;
+                gap: 20px;
+                box-shadow: var(--shadow-xl);
             }
-            
-            .job-header {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 1rem;
-            }
-            
-            .job-details {
-                flex-direction: column;
-                gap: 0.5rem;
-            }
-            
-            .application-form {
-                padding: 1.5rem;
-            }
-            
-            .stat-number {
-                font-size: 2.5rem;
-            }
+            .nav-links.active { display: flex; }
+            .hero { padding: 140px 0 60px; }
+            .hero h1 { font-size: 2rem; }
+            .hero p { font-size: 1rem; }
+            .section-header h2 { font-size: 1.8rem; }
+            .benefits-grid { grid-template-columns: 1fr; }
+            .talent-card { padding: 32px 20px; }
+            .talent-card h2 { font-size: 1.4rem; }
+            .form-row { flex-direction: column; gap: 0; }
+            .footer-grid { grid-template-columns: 1fr; text-align: center; }
+            .trust-logos { justify-content: center; gap: 24px; }
+            .trust-logos img { height: 45px; }
+            .logo { height: 48px; }
         }
-        
-        @media (max-width: 576px) {
-            .logo-container {
-                flex-direction: column;
-                text-align: center;
-            }
-            
-            .company-name {
-                margin-left: 0;
-                margin-top: 8px;
-                font-size: 1.2rem;
-            }
-            
-            .nav-container {
-                flex-wrap: wrap;
-            }
-            
-            .nav-link {
-                margin: 0.5rem;
-            }
-            
-            .stats-container {
-                grid-template-columns: 1fr;
-            }
+
+        @media (max-width: 480px) {
+            .hero h1 { font-size: 1.6rem; }
+            .trust-logos img { height: 40px; }
         }
     </style>
 </head>
 <body>
-    <header>
-        <div class="logo-container">
-            <img src="logo.png" alt="Pioneer Outsourcing BPO Logo" class="logo">
-            <div class="company-name">Pioneer Outsourcing</div>
-        </div>
-        
-        <div class="header-content">
-            <h1>Build Your Career With Us in Kenya</h1>
-            <p>Join our team of professionals and grow your career in the dynamic BPO industry</p>
-            <a href="application.html" class="btn">Apply Now <i class="fas fa-arrow-right"></i></a>
-        </div>
-    </header>
-
-    <nav>
-        <div class="container nav-container">
-            <a href="index.html" class="nav-link">Home</a>
-            <a href="#why-join" class="nav-link">Why Join Us</a>
-            <a href="#openings" class="nav-link">Open Positions</a>
-            <a href="#stats" class="nav-link">Our Numbers</a>
-            <a href="#application" class="nav-link">Apply Now</a>
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo-wrapper">
+                <img src="logo.png" alt="Pioneer Outsourcing BPO" class="logo">
+                <span class="brand-name">Pioneer</span>
+            </div>
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="nav-links" id="navLinks">
+                <a href="index.html">Home</a>
+                <a href="services.html">Services</a>
+                <a href="about.html">About</a>
+                <a href="careers.html" class="active">Careers</a>
+                <a href="#" class="nav-cta" id="ctaNavBtn">Get a Quote →</a>
+            </div>
         </div>
     </nav>
 
-    <div class="container">
-        <section class="section" id="why-join">
-            <div class="section-title">
-                <h2>Why Work At Pioneer Outsourcing Kenya?</h2>
-            </div>
-            <p class="section-intro">We believe in creating an environment where our Kenyan team members can thrive both personally and professionally.</p>
-            
-            <div class="benefits">
-                <div class="benefit">
-                    <div class="benefit-icon">
-                        <i class="fas fa-graduation-cap"></i>
-                    </div>
-                    <h3>Training & Development</h3>
-                    <p>Continuous learning opportunities with industry-leading training programs to enhance your skills.</p>
-                </div>
-                
-                <div class="benefit">
-                    <div class="benefit-icon">
-                        <i class="fas fa-chart-line"></i>
-                    </div>
-                    <h3>Career Growth</h3>
-                    <p>Clear career progression paths with regular performance reviews and promotion opportunities.</p>
-                </div>
-                
-                <div class="benefit">
-                    <div class="benefit-icon">
-                        <i class="fas fa-users"></i>
-                    </div>
-                    <h3>Great Work Environment</h3>
-                    <p>Collaborative team culture with modern facilities and a supportive management team.</p>
-                </div>
-                
-                <div class="benefit">
-                    <div class="benefit-icon">
-                        <i class="fas fa-dollar-sign"></i>
-                    </div>
-                    <h3>Competitive Compensation</h3>
-                    <p>Attractive salary packages with performance bonuses and comprehensive benefits.</p>
-                </div>
-                
-                <div class="benefit">
-                    <div class="benefit-icon">
-                        <i class="fas fa-heart"></i>
-                    </div>
-                    <h3>Health & Wellness</h3>
-                    <p>Health insurance, wellness programs, and mental health support for all our employees.</p>
-                </div>
-                
-                <div class="benefit">
-                    <div class="benefit-icon">
-                        <i class="fas fa-balance-scale"></i>
-                    </div>
-                    <h3>Work-Life Balance</h3>
-                    <p>Flexible scheduling options and generous leave policies to maintain a healthy balance.</p>
-                </div>
-            </div>
-        </section>
+    <section class="hero">
+        <div class="container">
+            <h1>Join Our <span class="hero-highlight">Talent Pool</span></h1>
+            <p>Express your interest in future opportunities at Kenya's premier BPO company</p>
+        </div>
+    </section>
 
-        <section class="section" id="openings">
-            <div class="section-title">
-                <h2>Current Openings in Kenya</h2>
+    <div class="trust-bar">
+        <div class="container">
+            <div class="trust-logos">
+                <img src="partner2.webp" alt="Partner">
+                <img src="partner3.png" alt="Partner">
+                <img src="partner4.webp" alt="Partner">
+                <img src="partner5.webp" alt="Partner">
+                <img src="Partner.webp" alt="Partner">
+                <img src="partner6.webp" alt="Partner">
+                <img src="partner7.webp" alt="Partner">
+                <img src="partner8.png" alt="Partner">
             </div>
-            <p class="section-intro">Explore our available positions and find the perfect fit for your skills and career aspirations.</p>
-            
-            <div class="jobs-container">
-                <div class="job">
-                    <div class="job-header">
-                        <h3 class="job-title">Native Japanese and Taiwanese Linguistics Specialist</h3>
-                        <span class="job-type">Remote/Onsite</span>
-                    </div>
-                    <div class="job-details">
-                        <div class="job-detail">
-                            <i class="fas fa-clock"></i>
-                            <span>3 hours daily commitment</span>
-                        </div>
-                        <div class="job-detail">
-                            <i class="fas fa-language"></i>
-                            <span>Native fluency in Japanese and Taiwanese</span>
-                        </div>
-                    </div>
-                    <p>We're looking for native Japanese and Taiwanese speakers for linguistics specialist roles. Experience in image labeling and transcription is an advantage. Flexible to work remotely or onsite at our Kenya offices.</p>
-                    <div class="positions-available">25 Positions Available</div>
-                    <a href="#application" class="btn">Apply Now</a>
-                </div>
-                
-                <div class="job">
-                    <div class="job-header">
-                        <h3 class="job-title">Customer Service Agents</h3>
-                        <span class="job-type">Onsite</span>
-                    </div>
-                    <div class="job-details">
-                        <div class="job-detail">
-                            <i class="fas fa-map-marker-alt"></i>
-                            <span>Nairobi, Kenya</span>
-                        </div>
-                        <div class="job-detail">
-                            <i class="fas fa-language"></i>
-                            <span>Proficiency in Danish and Finnish</span>
-                        </div>
-                    </div>
-                    <p>Provide excellent customer service to our international clients. Must be proficient in Danish and Finnish languages. This is an onsite position at our Nairobi office.</p>
-                    <div class="positions-available">2-3 Positions Available</div>
-                    <a href="#application" class="btn">Apply Now</a>
-                </div>
-                
-                <div class="job">
-                    <div class="job-header">
-                        <h3 class="job-title">Invoice Processing & Accounts Payable Agents</h3>
-                        <span class="job-type">Onsite</span>
-                    </div>
-                    <div class="job-details">
-                        <div class="job-detail">
-                            <i class="fas fa-map-marker-alt"></i>
-                            <span>Nairobi, Kenya</span>
-                        </div>
-                        <div class="job-detail">
-                            <i class="fas fa-briefcase"></i>
-                            <span>Experience in invoice processing</span>
-                        </div>
-                    </div>
-                    <p>Handle invoice processing and accounts payable for various countries. Language skills required for China, Hong Kong, Thailand, Taiwan, Japan, Indonesia, Vietnam, South Korea, and Australia. This is an office-based position in Nairobi.</p>
-                    <div class="positions-available">5-10 Positions Available</div>
-                    <a href="#application" class="btn">Apply Now</a>
-                </div>
-                
-                <div class="job">
-                    <div class="job-header">
-                        <h3 class="job-title">Customer Support Trainees</h3>
-                        <span class="job-type">Training Program</span>
-                    </div>
-                    <div class="job-details">
-                        <div class="job-detail">
-                            <i class="fas fa-map-marker-alt"></i>
-                            <span>Nairobi, Kenya</span>
-                        </div>
-                        <div class="job-detail">
-                            <i class="fas fa-graduation-cap"></i>
-                            <span>Training provided</span>
-                        </div>
-                    </div>
-                    <p>Complete our comprehensive training program and join our hiring pool for future customer support positions. No prior experience required - we provide full training!</p>
-                    <div class="positions-available">Join our talent pool</div>
-                    <a href="#application" class="btn">Apply Now</a>
-                </div>
-            </div>
-        </section>
-
-        <section class="stats" id="stats">
-            <div class="container">
-                <div class="section-title">
-                    <h2 style="color: white;">Our Impact in Numbers</h2>
-                </div>
-                
-                <div class="stats-container">
-                    <div class="stat">
-                        <div class="stat-number" id="partnerCount">0</div>
-                        <div class="stat-title">Trusted Partner Companies</div>
-                    </div>
-                    
-                    <div class="stat">
-                        <div class="stat-number" id="agentCount">0</div>
-                        <div class="stat-title">Experienced Agents Onboarded</div>
-                    </div>
-                    
-                    <div class="stat">
-                        <div class="stat-number" id="completedCount">0</div>
-                        <div class="stat-title">Successful Campaigns Completed</div>
-                    </div>
-                    
-                    <div class="stat">
-                        <div class="stat-number" id="ongoingCount">0</div>
-                        <div class="stat-title">Ongoing Campaigns</div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="section" id="application">
-            <div class="section-title">
-                <h2>Apply Now</h2>
-            </div>
-            <p class="section-intro">Ready to join our team? Fill out the application form below and we'll get back to you soon.</p>
-            
-            <div class="application-form">
-                <form id="careerForm">
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="firstName">First Name</label>
-                            <input type="text" id="firstName" name="firstName" required>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="lastName">Last Name</label>
-                            <input type="text" id="lastName" name="lastName" required>
-                        </div>
-                    </div>
-                    
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="email">Email Address</label>
-                            <input type="email" id="email" name="email" required>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="phone">Phone Number</label>
-                            <input type="tel" id="phone" name="phone" required>
-                        </div>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="position">Position Applying For</label>
-                        <select id="position" name="position" required>
-                            <option value="">Select a position</option>
-                            <option value="linguistics">Native Japanese and Taiwanese Linguistics Specialist</option>
-                            <option value="customer-service">Customer Service Agent (Danish/Finnish)</option>
-                            <option value="accounts">Invoice Processing & Accounts Payable Agent</option>
-                            <option value="trainee">Customer Support Trainee</option>
-                        </select>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="experience">Years of Experience</label>
-                        <select id="experience" name="experience" required>
-                            <option value="">Select experience level</option>
-                            <option value="0-1">0-1 years</option>
-                            <option value="1-2">1-2 years</option>
-                            <option value="2-5">2-5 years</option>
-                            <option value="5+">5+ years</option>
-                        </select>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="resume">Link to your Resume (Google Drive, Dropbox, etc.) <span class="required">*</span></label>
-                        <input type="url" id="resume" name="resume" placeholder="https://example.com/your-cv" required>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="coverletter">Cover Letter</label>
-                        <textarea id="coverletter" name="coverletter" placeholder="Tell us why you're interested in joining our team..."></textarea>
-                    </div>
-                    
-                    <button type="submit" class="btn">Submit Application <i class="fas fa-paper-plane"></i></button>
-                </form>
-            </div>
-        </section>
+        </div>
     </div>
+
+    <section class="benefits-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">WHY JOIN US</span>
+                <h2>Build Your Future With Pioneer</h2>
+                <p>When positions open, our talent pool gets priority consideration</p>
+            </div>
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <div class="benefit-icon"><i class="fas fa-graduation-cap"></i></div>
+                    <h3>Training & Development</h3>
+                    <p>Access to industry-leading training programs and continuous learning opportunities.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon"><i class="fas fa-chart-line"></i></div>
+                    <h3>Career Growth</h3>
+                    <p>Clear progression paths with regular performance reviews and promotions.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon"><i class="fas fa-users"></i></div>
+                    <h3>Great Culture</h3>
+                    <p>Collaborative team environment with supportive management and modern facilities.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon"><i class="fas fa-dollar-sign"></i></div>
+                    <h3>Competitive Pay</h3>
+                    <p>Attractive compensation packages with performance bonuses and benefits.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon"><i class="fas fa-heart"></i></div>
+                    <h3>Health & Wellness</h3>
+                    <p>Health insurance, wellness programs, and mental health support for all employees.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon"><i class="fas fa-balance-scale"></i></div>
+                    <h3>Work-Life Balance</h3>
+                    <p>Flexible scheduling and generous leave policies for a healthy balance.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="talent-section">
+        <div class="container">
+            <div class="talent-card">
+                <div class="talent-icon">
+                    <i class="fas fa-users"></i>
+                </div>
+                <h2>Express Your Interest</h2>
+                <p>We're always looking for talented individuals to join our team. Submit your information below and we'll reach out when opportunities match your profile.</p>
+                
+                <div class="roles-list">
+                    <span class="role-tag">Call Center Agent</span>
+                    <span class="role-tag">Virtual Assistant</span>
+                    <span class="role-tag">Technical Support</span>
+                    <span class="role-tag">Customer Service</span>
+                    <span class="role-tag">Data Entry</span>
+                    <span class="role-tag">Sales Representative</span>
+                </div>
+
+                <div class="application-form">
+                    <form action="https://formspree.io/f/xqadpvbq" method="POST">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="firstName">First Name *</label>
+                                <input type="text" id="firstName" name="firstName" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="lastName">Last Name *</label>
+                                <input type="text" id="lastName" name="lastName" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="email">Email Address *</label>
+                                <input type="email" id="email" name="email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="phone">Phone Number *</label>
+                                <input type="tel" id="phone" name="phone" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="interest">Area of Interest *</label>
+                            <select id="interest" name="interest" required>
+                                <option value="">Select your primary interest</option>
+                                <option value="call-center">Call Center / Customer Service</option>
+                                <option value="virtual-assistant">Virtual Assistant</option>
+                                <option value="technical-support">Technical Support</option>
+                                <option value="back-office">Back Office / Data Entry</option>
+                                <option value="sales">Sales & Lead Generation</option>
+                                <option value="management">Management / Team Lead</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="experience">Years of Experience</label>
+                            <select id="experience" name="experience">
+                                <option value="">Select experience level</option>
+                                <option value="entry">Entry Level (0-1 years)</option>
+                                <option value="junior">Junior (1-3 years)</option>
+                                <option value="mid">Mid Level (3-5 years)</option>
+                                <option value="senior">Senior (5+ years)</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="resume">Resume/CV Link (Google Drive, Dropbox, etc.)</label>
+                            <input type="url" id="resume" name="resume" placeholder="https://drive.google.com/your-cv">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message">Anything else you'd like us to know?</label>
+                            <textarea id="message" name="message" rows="3" placeholder="Tell us about your skills, availability, or questions..."></textarea>
+                        </div>
+                        
+                        <button type="submit" class="btn-primary">Submit Interest →</button>
+                        <p class="note-text">We'll review your information and contact you when relevant opportunities arise.</p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <div class="container">
+            <h2>Ready to Grow Your Career?</h2>
+            <p>Join our talent network and be first to know about new opportunities</p>
+        </div>
+    </section>
 
     <footer>
         <div class="container">
-            <div class="footer-links">
-                <a href="index.html">Home</a>
-                <a href="#why-join">Why Join Us</a>
-                <a href="#openings">Open Positions</a>
-                <a href="#stats">Our Numbers</a>
-                <a href="#application">Apply Now</a>
+            <div class="footer-grid">
+                <div class="footer-logo">
+                    <img src="logo.png" alt="Pioneer Outsourcing BPO">
+                    <p>Elite BPO solutions from Nairobi, delivering excellence to global enterprises.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Company</h4>
+                    <a href="about.html">About Us</a>
+                    <a href="careers.html">Careers</a>
+                    <a href="#contact">Contact</a>
+                </div>
+                <div class="footer-links">
+                    <h4>Services</h4>
+                    <a href="services.html">Call Center</a>
+                    <a href="services.html">Virtual Assistants</a>
+                    <a href="services.html">Technical Support</a>
+                    <a href="services.html">Back Office</a>
+                </div>
+                <div class="footer-links">
+                    <h4>Connect</h4>
+                    <a href="mailto:hello@pioneeroutsourcingbpo.com">hello@pioneeroutsourcingbpo.com</a>
+                </div>
             </div>
-            
-            <div class="copyright">
-                <p>&copy; 2025 Pioneer Outsourcing BPO. All rights reserved. | Nairobi, Kenya</p>
+            <div class="footer-bottom">
+                <p>© 2026 Pioneer Outsourcing BPO. Based in Nairobi, Kenya. Serving global clients.</p>
             </div>
         </div>
     </footer>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const careerForm = document.getElementById('careerForm');
-            
-            careerForm.addEventListener('submit', function(e) {
-                e.preventDefault();
-                
-                // Basic validation
-                const firstName = document.getElementById('firstName').value;
-                const lastName = document.getElementById('lastName').value;
-                const email = document.getElementById('email').value;
-                const phone = document.getElementById('phone').value;
-                const position = document.getElementById('position').value;
-                const experience = document.getElementById('experience').value;
-                const resume = document.getElementById('resume').value;
-                
-                if (!firstName || !lastName || !email || !phone || !position || !experience || !resume) {
-                    alert('Please fill in all required fields.');
-                    return;
-                }
-                
-                if (!isValidEmail(email)) {
-                    alert('Please enter a valid email address.');
-                    return;
-                }
-                
-                // In a real scenario, you would submit the form data to your server here
-                alert('Thank you for your application! We will review your information and get back to you soon.');
-                careerForm.reset();
+        const mobileBtn = document.getElementById('mobileMenuBtn');
+        const navLinks = document.getElementById('navLinks');
+        if (mobileBtn) {
+            mobileBtn.addEventListener('click', () => {
+                navLinks.classList.toggle('active');
             });
-            
-            function isValidEmail(email) {
-                const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-                return re.test(email);
-            }
-            
-            // Animated counting for stats
-            function animateValue(id, start, end, duration) {
-                const obj = document.getElementById(id);
-                let startTimestamp = null;
-                const step = (timestamp) => {
-                    if (!startTimestamp) startTimestamp = timestamp;
-                    const progress = Math.min((timestamp - startTimestamp) / duration, 1);
-                    obj.innerHTML = Math.floor(progress * (end - start) + start);
-                    if (progress < 1) {
-                        window.requestAnimationFrame(step);
-                    }
-                };
-                window.requestAnimationFrame(step);
-            }
-            
-            // Start animations when stats section is in view
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        animateValue('partnerCount', 0, 10, 2000);
-                        animateValue('agentCount', 0, 150, 2000);
-                        animateValue('completedCount', 0, 15, 2000);
-                        animateValue('ongoingCount', 0, 4, 2000);
-                        observer.unobserve(entry.target);
-                    }
-                });
-            }, { threshold: 0.5 });
-            
-            observer.observe(document.getElementById('stats'));
-        });
+        }
+        
+        const ctaBtn = document.getElementById('ctaNavBtn');
+        if (ctaBtn) {
+            ctaBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                const contactSection = document.querySelector('.cta-section');
+                if (contactSection) {
+                    contactSection.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        }
     </script>
 </body>
 </html>
