@@ -24,11 +24,29 @@
     <meta property="og:site_name" content="Pioneer Outsourcing BPO">
     <meta property="og:locale" content="en_US">
     
-    <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Pioneer Outsourcing BPO | Global BPO Solutions from Nairobi">
-    <meta name="twitter:description" content="Premier call center and outsourcing services. 40-60% cost savings. Trusted by 200+ global clients.">
-    <meta name="twitter:image" content="https://pioneeroutsourcingbpo.com/logo.png">
+    <!-- Structured Data / Schema.org for Organization -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Pioneer Outsourcing BPO",
+      "url": "https://pioneeroutsourcingbpo.com",
+      "logo": "https://pioneeroutsourcingbpo.com/logo.png",
+      "sameAs": [
+        "https://www.linkedin.com/company/pioneeroutsourcingbpo-ke/"
+      ],
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Nairobi",
+        "addressCountry": "Kenya"
+      },
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "contactType": "customer service",
+        "email": "hello@pioneeroutsourcingbpo.com"
+      }
+    }
+    </script>
     
     <!-- Canonical URL -->
     <link rel="canonical" href="https://pioneeroutsourcingbpo.com">
@@ -119,7 +137,6 @@
             gap: 12px;
         }
 
-        /* INCREASED LOGO SIZE */
         .logo {
             height: 56px;
             width: auto;
@@ -319,7 +336,7 @@
             font-weight: 500;
         }
 
-        /* Trust Bar - INCREASED LOGO SIZES */
+        /* Trust Bar */
         .trust-bar {
             padding: 56px 0;
             border-top: 1px solid var(--gray-100);
@@ -334,7 +351,6 @@
             gap: 48px;
         }
 
-        /* PARTNER LOGOS - LARGER SIZE */
         .trust-logos img {
             height: 55px;
             width: auto;
@@ -561,7 +577,7 @@
             color: var(--gray-400);
         }
 
-        /* CTA */
+        /* CTA Section (separate contact form for sales) */
         .cta-section {
             background: linear-gradient(125deg, var(--primary-dark) 0%, var(--primary) 100%);
             padding: 80px 0;
@@ -624,6 +640,10 @@
             background: rgba(255,255,255,0.15);
         }
 
+        .cta-form button {
+            width: 100%;
+        }
+
         /* Footer */
         footer {
             background: var(--white);
@@ -631,7 +651,6 @@
             padding: 64px 0 32px;
         }
 
-        /* FOOTER LOGO - LARGER */
         .footer-logo img {
             height: 50px;
             margin-bottom: 16px;
@@ -671,6 +690,14 @@
 
         .footer-links a:hover {
             color: var(--accent);
+        }
+
+        .contact-email {
+            font-size: 0.85rem;
+            font-style: italic;
+            color: var(--gray-500);
+            margin-top: 8px;
+            line-height: 1.4;
         }
 
         .footer-bottom {
@@ -749,7 +776,6 @@
             .footer-logo p {
                 margin: 0 auto;
             }
-            /* INCREASED LOGOS ON MOBILE */
             .logo {
                 height: 48px;
             }
@@ -785,7 +811,7 @@
                 <h1>Global BPO Excellence<br>From <span class="hero-highlight">Nairobi, Kenya</span></h1>
                 <p>Partner with Africa's premier outsourcing provider. Reduce costs by 40-60% while maintaining enterprise-grade quality. Serving USA, UK, Europe, and global markets 24/7.</p>
                 <div class="btn-group">
-                    <a href="#contact" class="btn-primary">Book Free Consultation →</a>
+                    <a href="#contact-form" class="btn-primary">Book Free Consultation →</a>
                     <a href="services.html" class="btn-outline">Explore Solutions →</a>
                 </div>
                 <div class="hero-badges">
@@ -847,7 +873,7 @@
                     <div class="service-icon"><i class="fas fa-headset"></i></div>
                     <h3>Call Center Services</h3>
                     <p>24/7 inbound, outbound, customer support, help desk, and order processing with US/UK English fluency.</p>
-                    <a href="#" class="service-link">Learn More <i class="fas fa-arrow-right"></i></a>
+                    <a href="call-center-services-kenya.html" class="service-link">Learn More <i class="fas fa-arrow-right"></i></a>
                 </div>
                 <div class="service-card">
                     <div class="service-icon"><i class="fas fa-user-tie"></i></div>
@@ -956,18 +982,23 @@
         </div>
     </section>
 
-    <section class="cta-section" id="contact">
+    <!-- SEPARATE CONTACT FORM for sales inquiries -->
+    <section class="cta-section" id="contact-form">
         <div class="container">
             <h2>Ready to Transform Your Operations?</h2>
-            <p>Join 200+ businesses that scaled with Pioneer Outsourcing</p>
+            <p>Get a free consultation and custom pricing. This is for business inquiries only – job seekers please visit our Careers page.</p>
             <form class="cta-form" action="https://formspree.io/f/xqadpvbq" method="POST">
                 <div style="display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 20px;">
-                    <input type="text" name="name" placeholder="Full Name" required style="flex: 1;">
-                    <input type="email" name="email" placeholder="Email Address" required style="flex: 1;">
+                    <input type="text" name="name" placeholder="Full Name *" required style="flex: 1;">
+                    <input type="email" name="email" placeholder="Email Address *" required style="flex: 1;">
                 </div>
-                <textarea name="message" placeholder="Tell us about your outsourcing needs" rows="3" style="width: 100%; margin-bottom: 20px;"></textarea>
+                <div style="margin-bottom: 20px;">
+                    <input type="text" name="company" placeholder="Company Name" style="width: 100%;">
+                </div>
+                <textarea name="message" placeholder="Tell us about your outsourcing needs..." rows="3" style="width: 100%; margin-bottom: 20px;"></textarea>
                 <button type="submit" class="btn-primary" style="width: 100%; justify-content: center;">Request Free Consultation →</button>
             </form>
+            <p style="color: rgba(255,255,255,0.5); font-size: 0.8rem; margin-top: 20px;">For job applications, please visit our <a href="careers.html" style="color: var(--accent);">Careers page</a>.</p>
         </div>
     </section>
 
@@ -982,20 +1013,19 @@
                     <h4>Company</h4>
                     <a href="about.html">About Us</a>
                     <a href="careers.html">Careers</a>
-                    <a href="#contact">Contact</a>
+                    <a href="#contact-form">Contact Sales</a>
                 </div>
                 <div class="footer-links">
                     <h4>Services</h4>
-                    <a href="#">Call Center</a>
+                    <a href="call-center-services-kenya.html">Call Center Kenya</a>
                     <a href="#">Virtual Assistants</a>
                     <a href="#">Technical Support</a>
                     <a href="#">Back Office</a>
                 </div>
                 <div class="footer-links">
                     <h4>Connect</h4>
-                    <a href="#"><i class="fab fa-linkedin"></i> LinkedIn</a>
-                    <a href="#"><i class="fab fa-twitter"></i> Twitter</a>
-                    <a href="mailto:hello@pioneeroutsourcingbpo.com">hello@pioneeroutsourcingbpo.com</a>
+                    <a href="https://www.linkedin.com/company/pioneeroutsourcingbpo-ke/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+                    <div class="contact-email">Contact us at<br>hello@pioneeroutsourcingbpo.com</div>
                 </div>
             </div>
             <div class="footer-bottom">
@@ -1007,20 +1037,18 @@
     <script>
         const mobileBtn = document.getElementById('mobileMenuBtn');
         const navLinks = document.getElementById('navLinks');
-        
         if (mobileBtn) {
             mobileBtn.addEventListener('click', () => {
                 navLinks.classList.toggle('active');
             });
         }
-        
-        const ctaBtns = document.querySelectorAll('#ctaNavBtn');
-        ctaBtns.forEach(btn => {
+        const ctaButtons = document.querySelectorAll('#ctaNavBtn, .hero .btn-primary');
+        ctaButtons.forEach(btn => {
             btn.addEventListener('click', function(e) {
-                const contactSection = document.getElementById('contact');
-                if (contactSection) {
+                const target = document.getElementById('contact-form');
+                if (target && this.getAttribute('href') !== 'services.html') {
                     e.preventDefault();
-                    contactSection.scrollIntoView({ behavior: 'smooth' });
+                    target.scrollIntoView({ behavior: 'smooth' });
                 }
             });
         });
