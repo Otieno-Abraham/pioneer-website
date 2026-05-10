@@ -23,10 +23,14 @@
     <meta name="twitter:description" content="Kenya's premier BPO company. 200+ global clients. 40-60% cost savings.">
     
     <link rel="canonical" href="https://pioneeroutsourcingbpo.com/about.html">
-    <link rel="icon" type="image/png" href="logo.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="Logo%20Favicon.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="Logo%20Favicon.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="Logo%20Favicon.png">
+    <link rel="shortcut icon" href="Logo%20Favicon.png">
     
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="global.css">
     
     <style>
         * {
@@ -105,19 +109,8 @@
         }
 
         .logo {
-            height: 56px;
+            height: 72px;
             width: auto;
-            border-radius: 12px;
-        }
-
-        .brand-name {
-            font-size: 1.5rem;
-            font-weight: 700;
-            letter-spacing: -0.3px;
-            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
         }
 
         .nav-links {
@@ -578,7 +571,7 @@
             .footer-logo p { margin: 0 auto; }
             .trust-logos { gap: 24px; }
             .trust-logos img { height: 40px; }
-            .logo { height: 44px; }
+            .logo { height: 52px !important; }
             .mission-card { padding: 32px 24px; }
         }
 
@@ -595,8 +588,9 @@
     <nav class="navbar">
         <div class="container">
             <div class="logo-wrapper">
-                <img src="logo.png" alt="Pioneer Outsourcing BPO" class="logo">
-                <span class="brand-name">Pioneer</span>
+                <a href="index.html" class="logo-link">
+                    <img src="logo.png" alt="Pioneer Outsourcing BPO" class="logo">
+                </a>
             </div>
             <button class="mobile-menu-btn" id="mobileMenuBtn">
                 <i class="fas fa-bars"></i>
@@ -620,6 +614,7 @@
 
     <div class="trust-bar">
         <div class="container">
+            <p class="trust-label">Trusted by leading organisations worldwide</p>
             <div class="trust-logos">
                 <img src="partner2.webp" alt="Partner">
                 <img src="partner3.png" alt="Partner">
@@ -762,7 +757,12 @@
                 </div>
                 <div class="footer-links">
                     <h4>Connect</h4>
-                    <a href="mailto:hello@pioneeroutsourcingbpo.com">hello@pioneeroutsourcingbpo.com</a>
+                    <div class="social-links">
+                        <a href="https://www.linkedin.com/company/pioneeroutsourcingbpo-ke/" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="https://wa.me/254700000000" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                        <a href="mailto:hello@pioneeroutsourcingbpo.com" class="social-icon" aria-label="Email"><i class="fas fa-envelope"></i></a>
+                    </div>
+                    <div class="contact-email">hello@pioneeroutsourcingbpo.com</div>
                 </div>
             </div>
             <div class="footer-bottom">
@@ -771,66 +771,40 @@
         </div>
     </footer>
 
+    <script src="global.js"></script>
     <script>
-        const mobileBtn = document.getElementById('mobileMenuBtn');
-        const navLinks = document.getElementById('navLinks');
-        if (mobileBtn) {
-            mobileBtn.addEventListener('click', () => {
-                navLinks.classList.toggle('active');
-            });
-        }
-        
-        const ctaBtn = document.getElementById('ctaNavBtn');
-        if (ctaBtn) {
-            ctaBtn.addEventListener('click', function(e) {
-                e.preventDefault();
-                const contactSection = document.querySelector('.cta-section');
-                if (contactSection) {
-                    contactSection.scrollIntoView({ behavior: 'smooth' });
-                }
-            });
-        }
-        
-        const getQuoteBtn = document.getElementById('ctaBtn');
-        if (getQuoteBtn) {
-            getQuoteBtn.addEventListener('click', function(e) {
-                e.preventDefault();
-                window.location.href = 'index.html#contact';
-            });
-        }
-        
-        function animateValue(id, start, end, duration, suffix = '') {
-            const obj = document.getElementById(id);
+        /* Animated stat counters */
+        function animateValue(id, start, end, duration, suffix) {
+            var obj = document.getElementById(id);
             if (!obj) return;
-            let startTimestamp = null;
-            const step = (timestamp) => {
+            var startTimestamp = null;
+            function step(timestamp) {
                 if (!startTimestamp) startTimestamp = timestamp;
-                const progress = Math.min((timestamp - startTimestamp) / duration, 1);
-                let value = Math.floor(progress * (end - start) + start);
-                obj.innerHTML = value + suffix;
-                if (progress < 1) {
-                    window.requestAnimationFrame(step);
-                }
-            };
+                var progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                obj.innerHTML = Math.floor(progress * (end - start) + start) + suffix;
+                if (progress < 1) window.requestAnimationFrame(step);
+            }
             window.requestAnimationFrame(step);
         }
-        
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
+        var statsObserver = new IntersectionObserver(function(entries) {
+            entries.forEach(function(entry) {
                 if (entry.isIntersecting) {
                     animateValue('clientCount', 0, 200, 2000, '+');
                     animateValue('agentCount', 0, 150, 2000, '+');
                     animateValue('savingsCount', 0, 60, 2000, '%');
                     animateValue('satisfactionCount', 0, 98, 2000, '%');
-                    observer.disconnect();
+                    statsObserver.disconnect();
                 }
             });
         }, { threshold: 0.3 });
-        
-        const statsSection = document.querySelector('.stats-section');
-        if (statsSection) {
-            observer.observe(statsSection);
-        }
+        var statsSection = document.querySelector('.stats-section');
+        if (statsSection) statsObserver.observe(statsSection);
+
+        /* CTA button → index contact */
+        var ctaBtn = document.getElementById('ctaBtn');
+        if (ctaBtn) ctaBtn.addEventListener('click', function(e) {
+            e.preventDefault(); window.location.href = 'index.html#contact-form';
+        });
     </script>
 </body>
 </html>

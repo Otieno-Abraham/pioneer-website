@@ -52,11 +52,15 @@
     <link rel="canonical" href="https://pioneeroutsourcingbpo.com">
     
     <!-- Favicon -->
-    <link rel="icon" type="image/png" href="logo.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="Logo%20Favicon.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="Logo%20Favicon.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="Logo%20Favicon.png">
+    <link rel="shortcut icon" href="Logo%20Favicon.png">
     
     <!-- Font System -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="global.css">
     
     <style>
         /* RESET & PREMIUM VARIABLES */
@@ -138,19 +142,8 @@
         }
 
         .logo {
-            height: 56px;
+            height: 72px;
             width: auto;
-            border-radius: 12px;
-        }
-
-        .brand-name {
-            font-size: 1.5rem;
-            font-weight: 700;
-            letter-spacing: -0.3px;
-            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
         }
 
         .nav-links {
@@ -777,7 +770,7 @@
                 margin: 0 auto;
             }
             .logo {
-                height: 48px;
+                height: 52px !important;
             }
             .trust-logos img {
                 height: 45px;
@@ -789,7 +782,9 @@
     <nav class="navbar">
         <div class="container">
             <div class="logo-wrapper">
-                <img src="logo.png" alt="Pioneer Outsourcing BPO" class="logo">
+                <a href="index.html" class="logo-link">
+                    <img src="logo.png" alt="Pioneer Outsourcing BPO" class="logo">
+                </a>
             </div>
             <button class="mobile-menu-btn" id="mobileMenuBtn">
                 <i class="fas fa-bars"></i>
@@ -820,11 +815,41 @@
                     <span class="hero-badge">✓ Enterprise Security</span>
                 </div>
             </div>
+            <div class="hero-visual">
+                <div class="hero-stats-card">
+                    <div class="hero-stat">
+                        <span class="hero-stat-num">200+</span>
+                        <span class="hero-stat-label">Global Clients</span>
+                    </div>
+                    <div class="hero-stat">
+                        <span class="hero-stat-num">98%</span>
+                        <span class="hero-stat-label">Satisfaction Rate</span>
+                    </div>
+                    <div class="hero-stat">
+                        <span class="hero-stat-num">24/7</span>
+                        <span class="hero-stat-label">Operations</span>
+                    </div>
+                    <div class="hero-stat">
+                        <span class="hero-stat-num">40-60%</span>
+                        <span class="hero-stat-label">Cost Reduction</span>
+                    </div>
+                </div>
+                <div class="hero-regions">
+                    <p class="hero-regions-label">Trusted by businesses across</p>
+                    <div style="display:flex;gap:20px;justify-content:center;flex-wrap:wrap;">
+                        <span>🇺🇸 USA</span>
+                        <span>🇬🇧 UK</span>
+                        <span>🇪🇺 Europe</span>
+                        <span>🌍 Global</span>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
     <div class="trust-bar">
         <div class="container">
+            <p class="trust-label">Trusted by leading organisations worldwide</p>
             <div class="trust-logos">
                 <img src="partner2.webp" alt="Partner">
                 <img src="partner3.png" alt="Partner">
@@ -1023,8 +1048,12 @@
                 </div>
                 <div class="footer-links">
                     <h4>Connect</h4>
-                    <a href="https://www.linkedin.com/company/pioneeroutsourcingbpo-ke/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-                    <div class="contact-email">Contact us at<br>hello@pioneeroutsourcingbpo.com</div>
+                    <div class="social-links">
+                        <a href="https://www.linkedin.com/company/pioneeroutsourcingbpo-ke/" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="https://wa.me/254700000000" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                        <a href="mailto:hello@pioneeroutsourcingbpo.com" class="social-icon" aria-label="Email"><i class="fas fa-envelope"></i></a>
+                    </div>
+                    <div class="contact-email">hello@pioneeroutsourcingbpo.com</div>
                 </div>
             </div>
             <div class="footer-bottom">
@@ -1033,23 +1062,12 @@
         </div>
     </footer>
 
+    <script src="global.js"></script>
     <script>
-        const mobileBtn = document.getElementById('mobileMenuBtn');
-        const navLinks = document.getElementById('navLinks');
-        if (mobileBtn) {
-            mobileBtn.addEventListener('click', () => {
-                navLinks.classList.toggle('active');
-            });
-        }
-        const ctaButtons = document.querySelectorAll('#ctaNavBtn, .hero .btn-primary');
-        ctaButtons.forEach(btn => {
-            btn.addEventListener('click', function(e) {
-                const target = document.getElementById('contact-form');
-                if (target && this.getAttribute('href') !== 'services.html') {
-                    e.preventDefault();
-                    target.scrollIntoView({ behavior: 'smooth' });
-                }
-            });
+        /* Hero "Book Free Consultation" smooth scroll */
+        document.querySelector('.hero .btn-primary').addEventListener('click', function(e) {
+            var target = document.getElementById('contact-form');
+            if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth' }); }
         });
     </script>
 </body>
