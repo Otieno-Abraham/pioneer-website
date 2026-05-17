@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pioneer Outsourcing BPO — Company Presentation</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" type="image/png" href="Logo%20Favicon.png">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --dark:#0A1A2F;--mid:#0F2B3D;--light:#1A3A4F;
+  --gold:#F59E0B;--gold-dark:#D97706;--gold-light:#FBBF24;
+  --white:#FFFFFF;--gray:#6B7280;--lgray:#E5E7EB;
+}
+html,body{height:100%;font-family:'Segoe UI','Inter',Arial,sans-serif;background:var(--dark);overflow:hidden;}
+
+/* ── PASSWORD GATE ── */
+#gate{position:fixed;inset:0;background:linear-gradient(135deg,var(--dark),var(--light));z-index:9999;display:flex;align-items:center;justify-content:center;}
+.gate-card{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.13);backdrop-filter:blur(20px);border-radius:20px;padding:48px 40px;max-width:420px;width:90%;text-align:center;}
+.gate-icon{width:76px;height:76px;border-radius:50%;background:rgba(245,158,11,0.12);border:2px solid var(--gold);display:flex;align-items:center;justify-content:center;margin:0 auto 22px;font-size:1.9rem;color:var(--gold);}
+.gate-card h2{font-size:1.4rem;font-weight:700;color:white;margin-bottom:8px;}
+.gate-card p{font-size:0.86rem;color:rgba(255,255,255,0.52);margin-bottom:28px;line-height:1.6;}
+.pw-wrap{position:relative;margin-bottom:13px;}
+.pw-wrap input{width:100%;padding:13px 46px 13px 16px;border-radius:10px;border:1px solid rgba(255,255,255,0.17);background:rgba(255,255,255,0.07);color:white;font-size:1rem;font-family:inherit;outline:none;transition:border 200ms;}
+.pw-wrap input::placeholder{color:rgba(255,255,255,0.28);}
+.pw-wrap input:focus{border-color:var(--gold);}
+.pw-eye{position:absolute;right:13px;top:50%;transform:translateY(-50%);background:none;border:none;cursor:pointer;color:rgba(255,255,255,0.33);font-size:.88rem;padding:4px;}
+.pw-eye:hover{color:white;}
+.gate-btn{width:100%;padding:13px;border:none;border-radius:10px;cursor:pointer;background:linear-gradient(135deg,var(--gold),var(--gold-dark));color:white;font-size:1rem;font-weight:700;font-family:inherit;transition:200ms;}
+.gate-btn:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(245,158,11,0.4);}
+.gate-err{color:#FC8181;font-size:0.81rem;margin-top:10px;display:none;align-items:center;gap:6px;justify-content:center;}
+
+/* ── PRESENTATION SHELL ── */
+#deck{width:100%;height:100vh;position:relative;overflow:hidden;}
+
+/* ── SLIDES ── */
+.slide{position:absolute;inset:0;display:none;flex-direction:column;opacity:0;transition:opacity 0.4s;}
+.slide.active{display:flex;opacity:1;}
+
+/* ── NAV BAR ── */
+.nav-bar{
+  position:fixed;bottom:0;left:0;right:0;
+  background:rgba(10,26,47,0.95);backdrop-filter:blur(10px);
+  border-top:1px solid rgba(255,255,255,0.08);
+  height:52px;display:flex;align-items:center;justify-content:space-between;
+  padding:0 32px;z-index:100;
+}
+.nav-btn{background:none;border:1px solid rgba(255,255,255,0.15);color:rgba(255,255,255,0.65);padding:7px 20px;border-radius:20px;cursor:pointer;font-size:0.82rem;font-weight:600;transition:200ms;display:flex;align-items:center;gap:6px;}
+.nav-btn:hover{border-color:var(--gold);color:var(--gold);}
+.nav-btn:disabled{opacity:0.25;cursor:default;}
+.slide-counter{font-size:0.8rem;color:rgba(255,255,255,0.4);font-weight:600;letter-spacing:0.08em;}
+.slide-dots{display:flex;gap:6px;}
+.dot{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,0.2);cursor:pointer;transition:200ms;}
+.dot.active{background:var(--gold);transform:scale(1.3);}
+.nav-right{display:flex;align-items:center;gap:16px;}
+.fs-btn{background:none;border:none;color:rgba(255,255,255,0.35);cursor:pointer;font-size:1rem;transition:200ms;padding:4px 6px;}
+.fs-btn:hover{color:var(--gold);}
+
+/* ── COMMON SLIDE PIECES ── */
+.slide-header{
+  background:var(--dark);padding:14px 40px;
+  display:flex;align-items:center;justify-content:space-between;
+  border-bottom:3px solid var(--gold);flex-shrink:0;
+}
+.slide-header .logo-img{height:44px;width:auto;object-fit:contain;}
+.slide-header .slide-title{font-size:1.05rem;font-weight:700;color:white;letter-spacing:0.02em;}
+.slide-header .tag{font-size:0.7rem;font-weight:700;letter-spacing:0.12em;color:var(--gold);background:rgba(245,158,11,0.12);border:1px solid rgba(245,158,11,0.25);padding:4px 12px;border-radius:20px;}
+.slide-body{flex:1;overflow:hidden;padding-bottom:52px;}
+
+/* ── TYPOGRAPHY ── */
+.headline{font-size:clamp(1.6rem,3vw,2.8rem);font-weight:800;color:white;line-height:1.18;letter-spacing:-0.02em;}
+.headline em{font-style:normal;background:linear-gradient(135deg,var(--gold),var(--gold-light));-webkit-background-clip:text;background-clip:text;color:transparent;}
+.subtext{font-size:clamp(0.85rem,1.4vw,1.05rem);color:rgba(255,255,255,0.62);line-height:1.65;}
+.gold-text{color:var(--gold);font-weight:700;}
+.section-label{font-size:0.68rem;font-weight:700;letter-spacing:0.15em;color:var(--gold);text-transform:uppercase;margin-bottom:10px;}
+
+/* ── STAT CARD ── */
+.stat-card{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.09);border-radius:12px;padding:20px;text-align:center;position:relative;overflow:hidden;}
+.stat-card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--gold),var(--gold-dark));}
+.stat-val{font-size:clamp(1.6rem,3vw,2.4rem);font-weight:800;color:var(--gold);line-height:1;margin-bottom:6px;}
+.stat-lbl{font-size:0.75rem;font-weight:600;color:rgba(255,255,255,0.42);text-transform:uppercase;letter-spacing:0.07em;}
+
+/* ── SERVICE CARD ── */
+.svc-card{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.09);border-radius:12px;padding:18px;transition:200ms;}
+.svc-card:hover{border-color:rgba(245,158,11,0.35);background:rgba(245,158,11,0.05);}
+.svc-icon{width:40px;height:40px;border-radius:10px;background:rgba(245,158,11,0.12);display:flex;align-items:center;justify-content:center;color:var(--gold);font-size:1.1rem;margin-bottom:10px;}
+.svc-title{font-size:0.88rem;font-weight:700;color:white;margin-bottom:5px;}
+.svc-desc{font-size:0.76rem;color:rgba(255,255,255,0.45);line-height:1.5;}
+
+/* ── BULLET LIST ── */
+.bullet-list{list-style:none;}
+.bullet-list li{display:flex;gap:10px;align-items:flex-start;margin-bottom:10px;font-size:0.88rem;color:rgba(255,255,255,0.75);line-height:1.5;}
+.bullet-list li::before{content:'';width:7px;height:7px;border-radius:2px;background:var(--gold);flex-shrink:0;margin-top:5px;}
+
+/* ── STEP CARD ── */
+.step{display:flex;gap:16px;align-items:flex-start;margin-bottom:14px;}
+.step-num{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,var(--gold),var(--gold-dark));color:white;font-weight:800;font-size:0.9rem;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.step-content{flex:1;}
+.step-title{font-size:0.9rem;font-weight:700;color:white;margin-bottom:2px;}
+.step-desc{font-size:0.78rem;color:rgba(255,255,255,0.5);}
+
+/* ── PRICE CARD ── */
+.price-card{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);border-radius:12px;padding:20px;text-align:center;}
+.price-card.featured{border-color:var(--gold);background:rgba(245,158,11,0.06);}
+.price-name{font-size:0.75rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:rgba(255,255,255,0.5);margin-bottom:8px;}
+.price-val{font-size:1.5rem;font-weight:800;color:var(--gold);margin-bottom:4px;}
+.price-period{font-size:0.72rem;color:rgba(255,255,255,0.35);margin-bottom:12px;}
+.price-feature{font-size:0.76rem;color:rgba(255,255,255,0.55);margin-bottom:5px;display:flex;gap:6px;align-items:center;text-align:left;}
+.price-feature i{color:var(--gold);font-size:0.65rem;flex-shrink:0;}
+
+/* ── CONTACT SLIDE ── */
+.contact-item{display:flex;align-items:center;gap:14px;padding:14px 18px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.09);border-radius:10px;margin-bottom:10px;}
+.contact-icon{width:38px;height:38px;border-radius:10px;background:rgba(245,158,11,0.12);display:flex;align-items:center;justify-content:center;color:var(--gold);font-size:1rem;flex-shrink:0;}
+.contact-label{font-size:0.7rem;color:rgba(255,255,255,0.35);font-weight:600;text-transform:uppercase;letter-spacing:0.07em;}
+.contact-val{font-size:0.88rem;color:white;font-weight:600;}
+
+/* Two-col layout */
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:20px;height:100%;}
+.col-box{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:22px;}
+.col-box h3{font-size:0.85rem;font-weight:700;color:var(--gold);margin-bottom:14px;text-transform:uppercase;letter-spacing:0.06em;padding-bottom:8px;border-bottom:1px solid rgba(245,158,11,0.2);}
+
+/* Accent divider */
+.gold-line{height:3px;background:linear-gradient(90deg,var(--gold),transparent);border-radius:2px;margin:12px 0;}
+
+/* ===================================================
+   SLIDE 1 — TITLE
+=================================================== */
+#s1{background:linear-gradient(135deg,var(--dark) 0%,var(--mid) 60%,#0d2235 100%);}
+#s1::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(245,158,11,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(245,158,11,0.04) 1px,transparent 1px);background-size:50px 50px;}
+#s1 .bar{position:absolute;left:0;top:0;width:7px;height:100%;background:linear-gradient(180deg,var(--gold),var(--gold-dark));}
+#s1 .glow{position:absolute;right:-100px;top:-100px;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(245,158,11,0.08) 0%,transparent 70%);}
+#s1 .inner{position:relative;z-index:2;width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:40px 60px 60px;text-align:center;}
+#s1 .logo-wrap{margin-bottom:28px;}
+#s1 .logo-wrap img{height:72px;width:auto;filter:drop-shadow(0 4px 20px rgba(245,158,11,0.3));}
+#s1 .tagline{font-size:clamp(0.8rem,1.2vw,1rem);font-weight:700;letter-spacing:0.16em;color:var(--gold);text-transform:uppercase;margin-bottom:18px;}
+#s1 .title{font-size:clamp(2rem,4vw,3.4rem);font-weight:800;color:white;letter-spacing:-0.025em;margin-bottom:10px;line-height:1.1;}
+#s1 .title em{font-style:normal;background:linear-gradient(135deg,var(--gold),var(--gold-light));-webkit-background-clip:text;background-clip:text;color:transparent;}
+#s1 .sub{font-size:clamp(0.85rem,1.3vw,1.05rem);color:rgba(255,255,255,0.55);margin-bottom:32px;}
+#s1 .stats-row{display:flex;gap:18px;justify-content:center;flex-wrap:wrap;margin-bottom:28px;}
+#s1 .s-pill{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:10px;padding:12px 20px;text-align:center;min-width:100px;}
+#s1 .s-pill .v{font-size:1.5rem;font-weight:800;color:var(--gold);line-height:1;}
+#s1 .s-pill .l{font-size:0.65rem;color:rgba(255,255,255,0.38);text-transform:uppercase;letter-spacing:0.07em;margin-top:4px;}
+#s1 .regions{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;}
+#s1 .region{font-size:0.78rem;font-weight:700;color:rgba(255,255,255,0.55);background:rgba(255,255,255,0.05);padding:5px 14px;border-radius:20px;border:1px solid rgba(255,255,255,0.09);}
+</style>
+</head>
+<body>
+
+<!-- PASSWORD GATE -->
+<div id="gate">
+  <div class="gate-card">
+    <div class="gate-icon"><i class="fas fa-lock"></i></div>
+    <h2>Restricted Access</h2>
+    <p>This presentation is confidential. Enter the access password to continue.</p>
+    <div class="pw-wrap">
+      <input type="password" id="pwInput" placeholder="Enter password" autocomplete="off">
+      <button class="pw-eye" id="pwToggle" type="button"><i class="fas fa-eye" id="eyeIcon"></i></button>
+    </div>
+    <button class="gate-btn" id="pwBtn">Unlock &rarr;</button>
+    <div class="gate-err" id="gateErr"><i class="fas fa-exclamation-triangle"></i> Incorrect password.</div>
+  </div>
+</div>
+
+<!-- PRESENTATION DECK -->
+<div id="deck">
+
+  <!-- ── SLIDE 1: TITLE ── -->
+  <div class="slide active" id="s1">
+    <div class="bar"></div>
+    <div class="glow"></div>
+    <div class="inner">
+      <div class="logo-wrap"><img src="logo.png" alt="Pioneer Outsourcing BPO"></div>
+      <div class="tagline">Company Presentation &bull; Confidential</div>
+      <div class="title">Elite BPO Solutions<br>From <em>Nairobi, Kenya</em></div>
+      <p class="sub">Serving USA &bull; UK &bull; Europe &bull; Global Markets &bull; 24/7</p>
+      <div class="stats-row">
+        <div class="s-pill"><div class="v">200+</div><div class="l">Global Clients</div></div>
+        <div class="s-pill"><div class="v">98%</div><div class="l">Satisfaction</div></div>
+        <div class="s-pill"><div class="v">24/7</div><div class="l">Operations</div></div>
+        <div class="s-pill"><div class="v">40-60%</div><div class="l">Cost Savings</div></div>
+        <div class="s-pill"><div class="v">5-7</div><div class="l">Days Go-Live</div></div>
+      </div>
+      <div class="regions">
+        <span class="region">USA</span><span class="region">UK</span>
+        <span class="region">Europe</span><span class="region">Africa</span>
+        <span class="region">Global</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── SLIDE 2: WHO WE ARE ── -->
+  <div class="slide" id="s2">
+    <div class="slide-header">
+      <img src="logo.png" alt="Pioneer Outsourcing BPO" class="logo-img">
+      <span class="slide-title">Who We Are</span>
+      <span class="tag">ABOUT US</span>
+    </div>
+    <div class="slide-body" style="display:grid;grid-template-columns:1fr 1fr;gap:24px;padding:28px 40px 60px;background:var(--dark);">
+      <div>
+        <div class="section-label">Our Story</div>
+        <div class="headline" style="font-size:clamp(1.4rem,2.5vw,2rem);margin-bottom:16px;">Africa's Premier <em>BPO Partner</em></div>
+        <p class="subtext" style="margin-bottom:20px;">Founded in 2021 and headquartered in Nairobi, Kenya, Pioneer Outsourcing BPO delivers enterprise-grade outsourcing services to businesses across the globe.</p>
+        <p class="subtext" style="margin-bottom:20px;">We combine East Africa's best talent with world-class processes to give our clients a genuine competitive edge — quality without the cost.</p>
+        <div class="gold-line"></div>
+        <p style="font-size:0.82rem;color:rgba(255,255,255,0.4);font-style:italic;margin-top:14px;">"Your growth is our business."</p>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:13px;">
+        <div class="col-box">
+          <h3>Our Mission</h3>
+          <p style="font-size:0.82rem;color:rgba(255,255,255,0.6);line-height:1.6;">To deliver world-class BPO services from Africa, providing businesses worldwide with exceptional talent at competitive rates while creating quality employment in Kenya.</p>
+        </div>
+        <div class="col-box">
+          <h3>Our Values</h3>
+          <ul class="bullet-list">
+            <li><strong style="color:var(--gold);">Loyalty</strong> &mdash; Enduring relationships built on trust</li>
+            <li><strong style="color:var(--gold);">Dedication</strong> &mdash; High-quality services tailored to you</li>
+            <li><strong style="color:var(--gold);">Reliability</strong> &mdash; Dependable, consistent delivery</li>
+            <li><strong style="color:var(--gold);">Excellence</strong> &mdash; The highest standards, always</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── SLIDE 3: SERVICES OVERVIEW ── -->
+  <div class="slide" id="s3">
+    <div class="slide-header">
+      <img src="logo.png" alt="Pioneer Outsourcing BPO" class="logo-img">
+      <span class="slide-title">Our Services</span>
+      <span class="tag">SERVICES</span>
+    </div>
+    <div class="slide-body" style="padding:24px 40px 60px;background:var(--dark);">
+      <div class="section-label" style="margin-bottom:18px;">End-to-End BPO Solutions</div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px;">
+        <div class="svc-card">
+          <div class="svc-icon"><i class="fas fa-headset"></i></div>
+          <div class="svc-title">Call Center & Support</div>
+          <div class="svc-desc">Inbound & outbound, omnichannel support, complaint handling, 24/7 availability</div>
+        </div>
+        <div class="svc-card">
+          <div class="svc-icon"><i class="fas fa-user-tie"></i></div>
+          <div class="svc-title">Virtual Assistants</div>
+          <div class="svc-desc">Executive support, calendar, email management, research, social media</div>
+        </div>
+        <div class="svc-card">
+          <div class="svc-icon"><i class="fas fa-tools"></i></div>
+          <div class="svc-title">Technical Support</div>
+          <div class="svc-desc">Tier 1 & 2 help desk, software troubleshooting, SaaS support, user onboarding</div>
+        </div>
+        <div class="svc-card">
+          <div class="svc-icon"><i class="fas fa-database"></i></div>
+          <div class="svc-title">Back-Office & Data</div>
+          <div class="svc-desc">Data entry, processing, document management, invoice processing, compliance</div>
+        </div>
+        <div class="svc-card">
+          <div class="svc-icon"><i class="fas fa-chart-line"></i></div>
+          <div class="svc-title">Sales & Lead Generation</div>
+          <div class="svc-desc">Outbound sales, telemarketing, lead qualification, appointment setting, CRM</div>
+        </div>
+        <div class="svc-card">
+          <div class="svc-icon"><i class="fas fa-language"></i></div>
+          <div class="svc-title">Translation Services</div>
+          <div class="svc-desc">20+ languages including Spanish, French, Swahili, Chinese, Arabic, Hindi</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── SLIDE 4: WHY PIONEER ── -->
+  <div class="slide" id="s4">
+    <div class="slide-header">
+      <img src="logo.png" alt="Pioneer Outsourcing BPO" class="logo-img">
+      <span class="slide-title">Why Choose Pioneer</span>
+      <span class="tag">ADVANTAGE</span>
+    </div>
+    <div class="slide-body" style="display:grid;grid-template-columns:1fr 1fr;gap:20px;padding:24px 40px 60px;background:var(--dark);">
+      <div style="display:flex;flex-direction:column;gap:11px;">
+        <div class="section-label">The Pioneer Difference</div>
+        <div style="background:rgba(245,158,11,0.07);border:1px solid rgba(245,158,11,0.2);border-radius:10px;padding:14px 16px;display:flex;gap:12px;align-items:flex-start;">
+          <i class="fas fa-dollar-sign" style="color:var(--gold);margin-top:2px;width:16px;"></i>
+          <div><div style="font-size:0.85rem;font-weight:700;color:white;">40-60% Cost Reduction</div><div style="font-size:0.76rem;color:rgba(255,255,255,0.45);margin-top:2px;">vs. maintaining in-house teams in USA/UK/Europe</div></div>
+        </div>
+        <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:10px;padding:14px 16px;display:flex;gap:12px;align-items:flex-start;">
+          <i class="fas fa-graduation-cap" style="color:var(--gold);margin-top:2px;width:16px;"></i>
+          <div><div style="font-size:0.85rem;font-weight:700;color:white;">Skilled Workforce</div><div style="font-size:0.76rem;color:rgba(255,255,255,0.45);margin-top:2px;">University-educated, English-proficient, professionally trained agents</div></div>
+        </div>
+        <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:10px;padding:14px 16px;display:flex;gap:12px;align-items:flex-start;">
+          <i class="fas fa-bolt" style="color:var(--gold);margin-top:2px;width:16px;"></i>
+          <div><div style="font-size:0.85rem;font-weight:700;color:white;">Fast Onboarding</div><div style="font-size:0.76rem;color:rgba(255,255,255,0.45);margin-top:2px;">Go live in as little as 5-7 business days</div></div>
+        </div>
+        <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:10px;padding:14px 16px;display:flex;gap:12px;align-items:flex-start;">
+          <i class="fas fa-expand-arrows-alt" style="color:var(--gold);margin-top:2px;width:16px;"></i>
+          <div><div style="font-size:0.85rem;font-weight:700;color:white;">Flexible Scaling</div><div style="font-size:0.76rem;color:rgba(255,255,255,0.45);margin-top:2px;">Add or remove agents within days — no long-term lock-in</div></div>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:11px;">
+        <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:10px;padding:14px 16px;display:flex;gap:12px;align-items:flex-start;">
+          <i class="fas fa-clock" style="color:var(--gold);margin-top:2px;width:16px;"></i>
+          <div><div style="font-size:0.85rem;font-weight:700;color:white;">24/7 Coverage</div><div style="font-size:0.76rem;color:rgba(255,255,255,0.45);margin-top:2px;">Multiple shift models — daytime, overnight, weekends & holidays</div></div>
+        </div>
+        <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:10px;padding:14px 16px;display:flex;gap:12px;align-items:flex-start;">
+          <i class="fas fa-laptop" style="color:var(--gold);margin-top:2px;width:16px;"></i>
+          <div><div style="font-size:0.85rem;font-weight:700;color:white;">Tech-Ready</div><div style="font-size:0.76rem;color:rgba(255,255,255,0.45);margin-top:2px;">We integrate with Salesforce, HubSpot, Zendesk &amp; more</div></div>
+        </div>
+        <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:10px;padding:14px 16px;display:flex;gap:12px;align-items:flex-start;">
+          <i class="fas fa-shield-alt" style="color:var(--gold);margin-top:2px;width:16px;"></i>
+          <div><div style="font-size:0.85rem;font-weight:700;color:white;">Data Security</div><div style="font-size:0.76rem;color:rgba(255,255,255,0.45);margin-top:2px;">NDAs, encrypted comms, GDPR-aware, access controls</div></div>
+        </div>
+        <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:10px;padding:14px 16px;display:flex;gap:12px;align-items:flex-start;">
+          <i class="fas fa-star" style="color:var(--gold);margin-top:2px;width:16px;"></i>
+          <div><div style="font-size:0.85rem;font-weight:700;color:white;">Dedicated QA</div><div style="font-size:0.76rem;color:rgba(255,255,255,0.45);margin-top:2px;">Call recording, QA scoring, coaching &amp; weekly performance reviews</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── SLIDE 5: BY THE NUMBERS ── -->
+  <div class="slide" id="s5">
+    <div class="slide-header">
+      <img src="logo.png" alt="Pioneer Outsourcing BPO" class="logo-img">
+      <span class="slide-title">Pioneer by the Numbers</span>
+      <span class="tag">IMPACT</span>
+    </div>
+    <div class="slide-body" style="padding:28px 40px 60px;background:var(--dark);">
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:16px;">
+        <div class="stat-card"><div class="stat-val">200+</div><div class="stat-lbl">Global Clients Served</div></div>
+        <div class="stat-card"><div class="stat-val">98%</div><div class="stat-lbl">Client Satisfaction Rate</div></div>
+        <div class="stat-card"><div class="stat-val">40-60%</div><div class="stat-lbl">Average Cost Reduction</div></div>
+        <div class="stat-card"><div class="stat-val">24/7</div><div class="stat-lbl">Operations Coverage</div></div>
+        <div class="stat-card"><div class="stat-val">5-7</div><div class="stat-lbl">Days to Go Live</div></div>
+        <div class="stat-card"><div class="stat-val">99.5%</div><div class="stat-lbl">System Uptime SLA</div></div>
+      </div>
+      <div style="background:rgba(245,158,11,0.07);border:1px solid rgba(245,158,11,0.2);border-radius:12px;padding:16px 24px;display:flex;align-items:center;gap:16px;">
+        <i class="fas fa-quote-left" style="color:var(--gold);font-size:1.5rem;opacity:0.5;"></i>
+        <p style="font-size:0.88rem;color:rgba(255,255,255,0.7);font-style:italic;line-height:1.6;">Our clients don't just outsource tasks — they gain a dedicated team that shows up every single day, trained, professional, and committed to their brand.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── SLIDE 6: PRICING ── -->
+  <div class="slide" id="s6">
+    <div class="slide-header">
+      <img src="logo.png" alt="Pioneer Outsourcing BPO" class="logo-img">
+      <span class="slide-title">Pricing Models</span>
+      <span class="tag">PRICING</span>
+    </div>
+    <div class="slide-body" style="padding:24px 40px 60px;background:var(--dark);">
+      <div class="section-label" style="margin-bottom:16px;">Flexible &amp; Transparent — No Hidden Fees</div>
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:16px;">
+        <div class="price-card">
+          <div class="price-name">Hourly</div>
+          <div class="price-val">$8-$15</div>
+          <div class="price-period">per hour</div>
+          <div class="price-feature"><i class="fas fa-check"></i> Flexible workload</div>
+          <div class="price-feature"><i class="fas fa-check"></i> Min. 20hrs/week</div>
+          <div class="price-feature"><i class="fas fa-check"></i> Scale up/down</div>
+        </div>
+        <div class="price-card featured">
+          <div class="price-name" style="color:var(--gold);">Dedicated Agent</div>
+          <div class="price-val">$1,200+</div>
+          <div class="price-period">per month</div>
+          <div class="price-feature"><i class="fas fa-check"></i> Full-time resource</div>
+          <div class="price-feature"><i class="fas fa-check"></i> Your brand & tools</div>
+          <div class="price-feature"><i class="fas fa-check"></i> Account manager</div>
+        </div>
+        <div class="price-card">
+          <div class="price-name">Team Package</div>
+          <div class="price-val">$5,000+</div>
+          <div class="price-period">per month</div>
+          <div class="price-feature"><i class="fas fa-check"></i> 5+ agents</div>
+          <div class="price-feature"><i class="fas fa-check"></i> Supervisor included</div>
+          <div class="price-feature"><i class="fas fa-check"></i> Full QA coverage</div>
+        </div>
+        <div class="price-card">
+          <div class="price-name">Enterprise</div>
+          <div class="price-val">Custom</div>
+          <div class="price-period">quote</div>
+          <div class="price-feature"><i class="fas fa-check"></i> 20+ agents</div>
+          <div class="price-feature"><i class="fas fa-check"></i> SLA guarantees</div>
+          <div class="price-feature"><i class="fas fa-check"></i> Dedicated infra</div>
+        </div>
+      </div>
+      <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:10px;padding:14px 20px;display:flex;gap:24px;flex-wrap:wrap;">
+        <span style="font-size:0.8rem;color:rgba(255,255,255,0.5);display:flex;align-items:center;gap:7px;"><i class="fas fa-check" style="color:var(--gold);"></i> No setup fees</span>
+        <span style="font-size:0.8rem;color:rgba(255,255,255,0.5);display:flex;align-items:center;gap:7px;"><i class="fas fa-check" style="color:var(--gold);"></i> Training included</span>
+        <span style="font-size:0.8rem;color:rgba(255,255,255,0.5);display:flex;align-items:center;gap:7px;"><i class="fas fa-check" style="color:var(--gold);"></i> Monthly invoicing NET 15</span>
+        <span style="font-size:0.8rem;color:rgba(255,255,255,0.5);display:flex;align-items:center;gap:7px;"><i class="fas fa-check" style="color:var(--gold);"></i> Free consultation</span>
+        <span style="font-size:0.8rem;color:rgba(255,255,255,0.5);display:flex;align-items:center;gap:7px;"><i class="fas fa-check" style="color:var(--gold);"></i> 2-week pilot available</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── SLIDE 7: ONBOARDING ── -->
+  <div class="slide" id="s7">
+    <div class="slide-header">
+      <img src="logo.png" alt="Pioneer Outsourcing BPO" class="logo-img">
+      <span class="slide-title">Onboarding Process</span>
+      <span class="tag">GO-LIVE IN 5-7 DAYS</span>
+    </div>
+    <div class="slide-body" style="display:grid;grid-template-columns:1fr 1fr;gap:20px;padding:24px 40px 60px;background:var(--dark);">
+      <div>
+        <div class="section-label" style="margin-bottom:16px;">Your Journey to Go-Live</div>
+        <div class="step"><div class="step-num">1</div><div class="step-content"><div class="step-title">Discovery Call</div><div class="step-desc">Understand your needs, tools, processes and expectations</div></div></div>
+        <div class="step"><div class="step-num">2</div><div class="step-content"><div class="step-title">Contract & NDA</div><div class="step-desc">Sign agreements, team selection begins immediately</div></div></div>
+        <div class="step"><div class="step-num">3</div><div class="step-content"><div class="step-title">Agent Training</div><div class="step-desc">Trained on your products, scripts, systems and brand voice</div></div></div>
+        <div class="step"><div class="step-num">4</div><div class="step-content"><div class="step-title">Infrastructure Setup</div><div class="step-desc">CRM access, email accounts, dialers configured</div></div></div>
+      </div>
+      <div style="padding-top:38px;">
+        <div class="step"><div class="step-num">5</div><div class="step-content"><div class="step-title">Parallel Testing</div><div class="step-desc">Practice scenarios, QA scoring and feedback rounds</div></div></div>
+        <div class="step"><div class="step-num" style="background:var(--gold);">6</div><div class="step-content"><div class="step-title" style="color:var(--gold);">GO LIVE</div><div class="step-desc">Full operations with real-time supervisor oversight</div></div></div>
+        <div class="step"><div class="step-num" style="background:rgba(255,255,255,0.1);">+</div><div class="step-content"><div class="step-title">Ongoing Support</div><div class="step-desc">Weekly KPI reviews, coaching, monthly business reviews</div></div></div>
+        <div style="background:rgba(245,158,11,0.08);border:1px solid rgba(245,158,11,0.2);border-radius:10px;padding:14px 16px;margin-top:10px;">
+          <p style="font-size:0.82rem;color:rgba(255,255,255,0.65);"><i class="fas fa-info-circle" style="color:var(--gold);margin-right:6px;"></i>Average go-live time: <strong style="color:var(--gold);">5-7 business days</strong> from signed contract.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── SLIDE 8: SECURITY ── -->
+  <div class="slide" id="s8">
+    <div class="slide-header">
+      <img src="logo.png" alt="Pioneer Outsourcing BPO" class="logo-img">
+      <span class="slide-title">Security &amp; Compliance</span>
+      <span class="tag">SECURITY</span>
+    </div>
+    <div class="slide-body" style="padding:24px 40px 60px;background:var(--dark);">
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px;">
+        <div class="col-box"><h3><i class="fas fa-file-signature" style="margin-right:6px;"></i>NDA Protection</h3><p style="font-size:0.78rem;color:rgba(255,255,255,0.55);line-height:1.55;">All agents sign comprehensive NDAs before any client engagement begins. Confidentiality is non-negotiable.</p></div>
+        <div class="col-box"><h3><i class="fas fa-user-lock" style="margin-right:6px;"></i>Access Controls</h3><p style="font-size:0.78rem;color:rgba(255,255,255,0.55);line-height:1.55;">Role-based access — agents only see data directly relevant to their assigned tasks and campaigns.</p></div>
+        <div class="col-box"><h3><i class="fas fa-lock" style="margin-right:6px;"></i>Encrypted Comms</h3><p style="font-size:0.78rem;color:rgba(255,255,255,0.55);line-height:1.55;">VPN, encrypted email and secure file transfer protocols for all client communications and data exchange.</p></div>
+        <div class="col-box"><h3><i class="fas fa-building" style="margin-right:6px;"></i>Physical Security</h3><p style="font-size:0.78rem;color:rgba(255,255,255,0.55);line-height:1.55;">CCTV monitoring, access control cards, strict no personal devices policy on the operations floor.</p></div>
+        <div class="col-box"><h3><i class="fas fa-globe" style="margin-right:6px;"></i>GDPR Aware</h3><p style="font-size:0.78rem;color:rgba(255,255,255,0.55);line-height:1.55;">All agents trained on EU data protection requirements. HIPAA-aware protocols available for healthcare clients.</p></div>
+        <div class="col-box"><h3><i class="fas fa-trash-alt" style="margin-right:6px;"></i>Data Retention</h3><p style="font-size:0.78rem;color:rgba(255,255,255,0.55);line-height:1.55;">All client data is deleted or returned per agreed policy upon contract end. No data is retained without consent.</p></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── SLIDE 9: SLAs ── -->
+  <div class="slide" id="s9">
+    <div class="slide-header">
+      <img src="logo.png" alt="Pioneer Outsourcing BPO" class="logo-img">
+      <span class="slide-title">SLAs &amp; KPIs</span>
+      <span class="tag">PERFORMANCE</span>
+    </div>
+    <div class="slide-body" style="display:grid;grid-template-columns:1fr 1fr;gap:20px;padding:24px 40px 60px;background:var(--dark);">
+      <div class="col-box">
+        <h3>Response Time SLAs</h3>
+        <div style="display:flex;flex-direction:column;gap:10px;">
+          <div style="display:flex;justify-content:space-between;align-items:center;padding:9px 12px;background:rgba(255,255,255,0.03);border-radius:8px;"><span style="font-size:0.82rem;color:rgba(255,255,255,0.65);">Phone Answer</span><span style="font-size:0.82rem;font-weight:700;color:var(--gold);">20 sec (80%)</span></div>
+          <div style="display:flex;justify-content:space-between;align-items:center;padding:9px 12px;background:rgba(255,255,255,0.03);border-radius:8px;"><span style="font-size:0.82rem;color:rgba(255,255,255,0.65);">Email Response</span><span style="font-size:0.82rem;font-weight:700;color:var(--gold);">&lt;4 hours</span></div>
+          <div style="display:flex;justify-content:space-between;align-items:center;padding:9px 12px;background:rgba(255,255,255,0.03);border-radius:8px;"><span style="font-size:0.82rem;color:rgba(255,255,255,0.65);">Live Chat</span><span style="font-size:0.82rem;font-weight:700;color:var(--gold);">60 seconds</span></div>
+          <div style="display:flex;justify-content:space-between;align-items:center;padding:9px 12px;background:rgba(255,255,255,0.03);border-radius:8px;"><span style="font-size:0.82rem;color:rgba(255,255,255,0.65);">Ticket Resolution</span><span style="font-size:0.82rem;font-weight:700;color:var(--gold);">24-48 hours</span></div>
+          <div style="display:flex;justify-content:space-between;align-items:center;padding:9px 12px;background:rgba(255,255,255,0.03);border-radius:8px;"><span style="font-size:0.82rem;color:rgba(255,255,255,0.65);">Escalation</span><span style="font-size:0.82rem;font-weight:700;color:var(--gold);">&lt;2 hours</span></div>
+        </div>
+      </div>
+      <div class="col-box">
+        <h3>Quality KPIs</h3>
+        <div style="display:flex;flex-direction:column;gap:10px;">
+          <div style="display:flex;justify-content:space-between;align-items:center;padding:9px 12px;background:rgba(255,255,255,0.03);border-radius:8px;"><span style="font-size:0.82rem;color:rgba(255,255,255,0.65);">First Call Resolution</span><span style="font-size:0.82rem;font-weight:700;color:var(--gold);">&gt;85%</span></div>
+          <div style="display:flex;justify-content:space-between;align-items:center;padding:9px 12px;background:rgba(255,255,255,0.03);border-radius:8px;"><span style="font-size:0.82rem;color:rgba(255,255,255,0.65);">CSAT Score</span><span style="font-size:0.82rem;font-weight:700;color:var(--gold);">&gt;4.2 / 5.0</span></div>
+          <div style="display:flex;justify-content:space-between;align-items:center;padding:9px 12px;background:rgba(255,255,255,0.03);border-radius:8px;"><span style="font-size:0.82rem;color:rgba(255,255,255,0.65);">QA Score</span><span style="font-size:0.82rem;font-weight:700;color:var(--gold);">&gt;92%</span></div>
+          <div style="display:flex;justify-content:space-between;align-items:center;padding:9px 12px;background:rgba(255,255,255,0.03);border-radius:8px;"><span style="font-size:0.82rem;color:rgba(255,255,255,0.65);">Agent Attendance</span><span style="font-size:0.82rem;font-weight:700;color:var(--gold);">&gt;95%</span></div>
+          <div style="display:flex;justify-content:space-between;align-items:center;padding:9px 12px;background:rgba(255,255,255,0.03);border-radius:8px;"><span style="font-size:0.82rem;color:rgba(255,255,255,0.65);">System Uptime</span><span style="font-size:0.82rem;font-weight:700;color:var(--gold);">99.5%</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── SLIDE 10: CONTACT ── -->
+  <div class="slide" id="s10" style="background:linear-gradient(135deg,var(--dark),var(--mid));">
+    <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(245,158,11,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(245,158,11,0.04) 1px,transparent 1px);background-size:50px 50px;"></div>
+    <div style="position:absolute;left:0;top:0;width:7px;height:100%;background:linear-gradient(180deg,var(--gold),var(--gold-dark));"></div>
+    <div style="position:relative;z-index:2;width:100%;height:100%;display:flex;align-items:center;justify-content:center;padding:40px 60px 60px;">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:48px;width:100%;max-width:960px;align-items:center;">
+        <div>
+          <img src="logo.png" alt="Pioneer Outsourcing BPO" style="height:60px;width:auto;margin-bottom:24px;filter:drop-shadow(0 4px 14px rgba(245,158,11,0.25));">
+          <div class="headline" style="font-size:clamp(1.5rem,2.8vw,2.2rem);margin-bottom:14px;">Ready to <em>Transform</em><br>Your Operations?</div>
+          <p class="subtext" style="margin-bottom:20px;">Join 200+ businesses that have scaled smarter with Pioneer Outsourcing BPO.</p>
+          <div style="display:inline-block;background:linear-gradient(135deg,var(--gold),var(--gold-dark));padding:12px 28px;border-radius:30px;font-size:0.88rem;font-weight:700;color:white;box-shadow:0 6px 20px rgba(245,158,11,0.35);">Get a Free Consultation &rarr;</div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:12px;">
+          <div class="contact-item"><div class="contact-icon"><i class="fas fa-globe"></i></div><div><div class="contact-label">Website</div><div class="contact-val">pioneeroutsourcingbpo.com</div></div></div>
+          <div class="contact-item"><div class="contact-icon"><i class="fas fa-envelope"></i></div><div><div class="contact-label">Email</div><div class="contact-val">hello@pioneeroutsourcingbpo.com</div></div></div>
+          <div class="contact-item"><div class="contact-icon"><i class="fab fa-whatsapp"></i></div><div><div class="contact-label">WhatsApp</div><div class="contact-val">+254 111 562 567</div></div></div>
+          <div class="contact-item"><div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div><div><div class="contact-label">Location</div><div class="contact-val">Nairobi, Kenya</div></div></div>
+        </div>
+      </div>
+    </div>
+    <div style="position:absolute;bottom:0;left:0;right:0;height:44px;background:rgba(0,0,0,0.3);border-top:1px solid rgba(255,255,255,0.06);display:flex;align-items:center;justify-content:center;font-size:0.75rem;color:rgba(255,255,255,0.25);">
+      &copy; 2026 Pioneer Outsourcing BPO &bull; Nairobi, Kenya &bull; Confidential
+    </div>
+  </div>
+
+</div><!-- /#deck -->
+
+<!-- NAVIGATION BAR -->
+<div class="nav-bar">
+  <button class="nav-btn" id="prevBtn" onclick="navigate(-1)" disabled>
+    <i class="fas fa-chevron-left"></i> Previous
+  </button>
+  <div style="display:flex;align-items:center;gap:20px;">
+    <span class="slide-counter" id="counter">1 / 10</span>
+    <div class="slide-dots" id="dots"></div>
+  </div>
+  <div class="nav-right">
+    <button class="fs-btn" onclick="toggleFS()" title="Fullscreen"><i class="fas fa-expand" id="fsIcon"></i></button>
+    <button class="nav-btn" id="nextBtn" onclick="navigate(1)">
+      Next <i class="fas fa-chevron-right"></i>
+    </button>
+  </div>
+</div>
+
+<script>
+// ── AUTH ──────────────────────────────────────────────
+(function(){
+  var gate = document.getElementById('gate');
+  if(localStorage.getItem('pio_auth_v1')==='1'){ gate.style.display='none'; return; }
+  document.getElementById('pwToggle').addEventListener('click',function(){
+    var i=document.getElementById('pwInput'),e=document.getElementById('eyeIcon');
+    if(i.type==='password'){i.type='text';e.className='fas fa-eye-slash';}
+    else{i.type='password';e.className='fas fa-eye';}
+  });
+  function check(){
+    var v=document.getElementById('pwInput').value;
+    var err=document.getElementById('gateErr');
+    if(btoa(v)===btoa('Genesis@2030!')){
+      localStorage.setItem('pio_auth_v1','1');
+      gate.style.transition='opacity 0.4s';gate.style.opacity='0';
+      setTimeout(function(){gate.style.display='none';},420);
+    } else {
+      err.style.display='flex';
+      document.getElementById('pwInput').style.borderColor='#FC8181';
+      setTimeout(function(){err.style.display='none';document.getElementById('pwInput').style.borderColor='';},3000);
+    }
+  }
+  document.getElementById('pwBtn').addEventListener('click',check);
+  document.getElementById('pwInput').addEventListener('keydown',function(e){if(e.key==='Enter')check();});
+})();
+
+// ── SLIDES ────────────────────────────────────────────
+var slides=document.querySelectorAll('.slide');
+var total=slides.length;
+var cur=0;
+var dotsEl=document.getElementById('dots');
+
+// Build dots
+for(var i=0;i<total;i++){
+  var d=document.createElement('div');
+  d.className='dot'+(i===0?' active':'');
+  d.setAttribute('data-i',i);
+  d.onclick=(function(idx){return function(){goTo(idx);};})(i);
+  dotsEl.appendChild(d);
+}
+
+function goTo(n){
+  slides[cur].classList.remove('active');
+  dotsEl.children[cur].classList.remove('active');
+  cur=Math.max(0,Math.min(total-1,n));
+  slides[cur].classList.add('active');
+  dotsEl.children[cur].classList.add('active');
+  document.getElementById('counter').textContent=(cur+1)+' / '+total;
+  document.getElementById('prevBtn').disabled=(cur===0);
+  document.getElementById('nextBtn').disabled=(cur===total-1);
+}
+function navigate(dir){goTo(cur+dir);}
+
+// Keyboard
+document.addEventListener('keydown',function(e){
+  if(e.key==='ArrowRight'||e.key==='ArrowDown') navigate(1);
+  if(e.key==='ArrowLeft'||e.key==='ArrowUp') navigate(-1);
+});
+
+// Fullscreen
+function toggleFS(){
+  if(!document.fullscreenElement){
+    document.documentElement.requestFullscreen();
+    document.getElementById('fsIcon').className='fas fa-compress';
+  } else {
+    document.exitFullscreen();
+    document.getElementById('fsIcon').className='fas fa-expand';
+  }
+}
+</script>
+</body>
+</html>

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -210,17 +210,19 @@
                 </div>
             </div>
 
-            <!-- PDF TAB -->
+            <!-- PDF TAB — direct browser embed, always works -->
             <div class="tab-pane" id="tab-pdf">
                 <iframe id="frame-pdf" class="viewer-frame" src=""
-                    data-src="https://docs.google.com/viewer?url=https://pioneeroutsourcingbpo.com/PioneerOutsourcing_KnowledgeBase.pdf&embedded=true"
-                    title="Company Guide PDF"></iframe>
+                    data-src="PioneerOutsourcing_KnowledgeBase.pdf"
+                    title="Company Guide PDF"
+                    style="background:#525659;">
+                </iframe>
                 <div class="viewer-fallback" id="fb-pdf">
                     <i class="fas fa-file-pdf"></i>
-                    <h3>Preview could not load</h3>
-                    <p>Open the document directly in Google Docs viewer.</p>
-                    <a href="https://docs.google.com/viewer?url=https://pioneeroutsourcingbpo.com/PioneerOutsourcing_KnowledgeBase.pdf" target="_blank" rel="noopener" class="open-btn">
-                        <i class="fas fa-external-link-alt"></i> Open in Google Docs
+                    <h3>PDF preview could not load</h3>
+                    <p>Your browser may not support inline PDFs. Try opening it directly.</p>
+                    <a href="PioneerOutsourcing_KnowledgeBase.pdf" target="_blank" rel="noopener" class="open-btn">
+                        <i class="fas fa-external-link-alt"></i> Open PDF
                     </a>
                 </div>
                 <div class="doc-bar">
@@ -233,24 +235,19 @@
                 </div>
             </div>
 
-            <!-- POWERPOINT TAB -->
+            <!-- PRESENTATION TAB — HTML slide deck, always visible -->
             <div class="tab-pane" id="tab-pptx">
                 <iframe id="frame-pptx" class="viewer-frame" src=""
-                    data-src="https://docs.google.com/viewer?url=https://pioneeroutsourcingbpo.com/PioneerOutsourcing_Presentation.pptx&embedded=true"
-                    title="Company Presentation"></iframe>
-                <div class="viewer-fallback" id="fb-pptx">
-                    <i class="fas fa-file-powerpoint"></i>
-                    <h3>Preview could not load</h3>
-                    <p>Open the presentation directly in Google Docs viewer.</p>
-                    <a href="https://docs.google.com/viewer?url=https://pioneeroutsourcingbpo.com/PioneerOutsourcing_Presentation.pptx" target="_blank" rel="noopener" class="open-btn">
-                        <i class="fas fa-external-link-alt"></i> Open in Google Docs
-                    </a>
-                </div>
+                    data-src="presentation.html"
+                    title="Company Presentation"
+                    style="height:860px;">
+                </iframe>
                 <div class="doc-bar">
-                    <div class="doc-bar-left"><i class="fas fa-file-powerpoint"></i> PioneerOutsourcing_Presentation.pptx</div>
+                    <div class="doc-bar-left"><i class="fas fa-desktop"></i> Pioneer Outsourcing BPO — Company Presentation</div>
                     <div class="doc-tags">
-                        <span><i class="fas fa-desktop"></i> 16 Slides</span>
-                        <span><i class="fas fa-chart-bar"></i> Stats &amp; KPIs</span>
+                        <span><i class="fas fa-desktop"></i> 10 Slides</span>
+                        <span><i class="fas fa-keyboard"></i> Arrow keys to navigate</span>
+                        <span><i class="fas fa-expand"></i> Fullscreen available</span>
                         <span><i class="fas fa-lock"></i> Confidential</span>
                     </div>
                 </div>
@@ -302,9 +299,9 @@
 <script>
 // PASSWORD GATE
 (function(){
-    var KEY = 'pio_kb_v1';
+    var KEY = 'pio_auth_v1';
     var gate = document.getElementById('gate');
-    if(sessionStorage.getItem(KEY) === '1'){ gate.style.display = 'none'; }
+    if(localStorage.getItem(KEY) === '1'){ gate.style.display = 'none'; }
 
     document.getElementById('pwToggle').addEventListener('click', function(){
         var inp = document.getElementById('pwInput');
@@ -316,8 +313,8 @@
     function check(){
         var v = document.getElementById('pwInput').value;
         var err = document.getElementById('gateErr');
-        if(btoa(v) === btoa('Genesis@2030!bdo')){
-            sessionStorage.setItem(KEY,'1');
+        if(btoa(v) === btoa('Genesis@2030!')){
+            localStorage.setItem(KEY,'1');
             gate.style.transition = 'opacity 0.4s';
             gate.style.opacity = '0';
             setTimeout(function(){ gate.style.display='none'; }, 420);
