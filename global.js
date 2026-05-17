@@ -63,7 +63,7 @@
 
         /* ---- WhatsApp floating button ---- */
         var wa = document.createElement('a');
-        wa.href = 'https://wa.me/254700000000?text=Hello%20Pioneer%20Outsourcing%2C%20I%20would%20like%20to%20enquire%20about%20your%20services.';
+        wa.href = 'https://wa.me/254793008677?text=Hello%20Pioneer%20Outsourcing%2C%20I%20would%20like%20to%20enquire%20about%20your%20services.';
         wa.target  = '_blank';
         wa.rel     = 'noopener noreferrer';
         wa.className = 'wa-float';
