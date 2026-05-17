@@ -301,7 +301,7 @@
 (function(){
     var KEY = 'pio_auth_v1';
     var gate = document.getElementById('gate');
-    if(localStorage.getItem(KEY) === '1'){ gate.style.display = 'none'; }
+    if(sessionStorage.getItem(KEY) === '1'){ gate.style.display = 'none'; }
 
     document.getElementById('pwToggle').addEventListener('click', function(){
         var inp = document.getElementById('pwInput');
@@ -314,7 +314,7 @@
         var v = document.getElementById('pwInput').value;
         var err = document.getElementById('gateErr');
         if(btoa(v) === btoa('Genesis@2030!')){
-            localStorage.setItem(KEY,'1');
+            sessionStorage.setItem(KEY,'1');
             gate.style.transition = 'opacity 0.4s';
             gate.style.opacity = '0';
             setTimeout(function(){ gate.style.display='none'; }, 420);
@@ -335,7 +335,7 @@ function switchTab(name, btn){
     btn.classList.add('active');
     document.getElementById('tab-'+name).classList.add('active');
     var f = document.getElementById('frame-'+name);
-    if(f && !f.src && f.dataset.src){ f.src = f.dataset.src; }
+    if(f && !f.src && f.dataset.src){ f.src = (name==='pptx') ? f.dataset.src + '#' + btoa('Genesis@2030!') : f.dataset.src; }
     watchFallback(name);
 }
 

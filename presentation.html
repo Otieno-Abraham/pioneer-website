@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -516,7 +516,12 @@ html,body{height:100%;font-family:'Segoe UI','Inter',Arial,sans-serif;background
 // ── AUTH ──────────────────────────────────────────────
 (function(){
   var gate = document.getElementById('gate');
-  if(localStorage.getItem('pio_auth_v1')==='1'){ gate.style.display='none'; return; }
+  var TOKEN = btoa('Genesis@2030!');
+  // Allow if: correct URL hash (loaded from parent iframe) OR session already unlocked
+  var hashOk = (window.location.hash === '#' + TOKEN);
+  var sessOk = (sessionStorage.getItem('pio_auth_v1') === '1');
+  if(hashOk || sessOk){ gate.style.display='none'; return; }
+
   document.getElementById('pwToggle').addEventListener('click',function(){
     var i=document.getElementById('pwInput'),e=document.getElementById('eyeIcon');
     if(i.type==='password'){i.type='text';e.className='fas fa-eye-slash';}
@@ -525,8 +530,8 @@ html,body{height:100%;font-family:'Segoe UI','Inter',Arial,sans-serif;background
   function check(){
     var v=document.getElementById('pwInput').value;
     var err=document.getElementById('gateErr');
-    if(btoa(v)===btoa('Genesis@2030!')){
-      localStorage.setItem('pio_auth_v1','1');
+    if(btoa(v)===TOKEN){
+      sessionStorage.setItem('pio_auth_v1','1');
       gate.style.transition='opacity 0.4s';gate.style.opacity='0';
       setTimeout(function(){gate.style.display='none';},420);
     } else {
