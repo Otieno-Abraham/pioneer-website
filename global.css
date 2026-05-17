@@ -80,11 +80,11 @@
     transform: translateY(-3px);
 }
 
-/* ----- WhatsApp floating CTA ----- */
+/* ----- WhatsApp floating CTA (LEFT side — keeps right side free for Tawk.to) ----- */
 .wa-float {
     position: fixed;
     bottom: 28px;
-    right: 28px;
+    left: 28px;
     width: 56px;
     height: 56px;
     background: #25D366;
@@ -261,7 +261,7 @@
     .hero-stats-card { grid-template-columns: 1fr 1fr; gap: 20px; padding: 28px 20px; }
     .hero-stat-num { font-size: 1.7rem; }
     .back-to-top { bottom: 96px; right: 20px; width: 44px; height: 44px; }
-    .wa-float { bottom: 24px; right: 20px; width: 52px; height: 52px; font-size: 1.5rem; }
+    .wa-float { bottom: 24px; left: 20px; width: 52px; height: 52px; font-size: 1.5rem; }
 }
 
 @media (max-width: 480px) {
