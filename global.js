@@ -1,5 +1,5 @@
-/* =====================================================
-   global.js — Shared behaviour, Pioneer Outsourcing BPO
+﻿/* =====================================================
+   global.js â€” Shared behaviour, Pioneer Outsourcing BPO
    ===================================================== */
 (function () {
     'use strict';
@@ -63,7 +63,7 @@
 
         /* ---- WhatsApp floating button ---- */
         var wa = document.createElement('a');
-        wa.href = 'https://wa.me/254793008677?text=Hello%20Pioneer%20Outsourcing%2C%20I%20would%20like%20to%20enquire%20about%20your%20services.';
+        wa.href = 'https://wa.me/254111562567?text=Hello%20Pioneer%20Outsourcing%2C%20I%20would%20like%20to%20enquire%20about%20your%20services.';
         wa.target  = '_blank';
         wa.rel     = 'noopener noreferrer';
         wa.className = 'wa-float';
@@ -96,7 +96,7 @@
             });
         }
 
-        /* ---- "Get a Quote" CTA nav button — smart scroll / redirect ---- */
+        /* ---- "Get a Quote" CTA nav button â€” smart scroll / redirect ---- */
         var ctaNav = document.getElementById('ctaNavBtn');
         if (ctaNav) {
             ctaNav.addEventListener('click', function (e) {
@@ -114,3 +114,4 @@
 
     }); // DOMContentLoaded
 }());
+
