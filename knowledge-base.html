@@ -6,1015 +6,892 @@
     <title>Company Guide | Pioneer Outsourcing BPO</title>
     <meta name="robots" content="noindex, nofollow">
     <link rel="icon" type="image/png" href="Logo%20Favicon.png">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800;14..32,900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="global.css">
     <style>
     *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
-
     :root {
-        --navy:#0A1A2F; --navy2:#0F2B3D; --navy3:#1A3A4F;
+        --navy:#071320; --navy2:#0F2B3D; --navy3:#1A3A4F;
         --gold:#F59E0B; --gold2:#D97706; --gold3:#FBBF24;
-        --nav-h:76px;
-        --tab-h:58px;
+        --nav-h:76px; --tab-h:56px;
     }
+    html, body { height:100%; overflow:hidden; font-family:'Inter',sans-serif; background:#000; }
 
-    html, body { height:100%; overflow:hidden; font-family:'Inter',-apple-system,sans-serif; background:var(--navy); }
-
-    /* ── GATE ── */
+    /* ══════════════════════════════════════
+       PASSWORD GATE
+    ══════════════════════════════════════ */
     #gate {
         position:fixed; inset:0; z-index:9999;
-        background:linear-gradient(135deg,var(--navy) 0%,var(--navy3) 100%);
+        background:linear-gradient(135deg,#071320 0%,#0F2B3D 100%);
         display:flex; align-items:center; justify-content:center;
     }
-    .gate-card {
+    .g-card {
         background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.12);
-        backdrop-filter:blur(20px); border-radius:20px; padding:52px 44px;
-        max-width:420px; width:92%; text-align:center;
+        backdrop-filter:blur(24px); border-radius:20px;
+        padding:52px 44px; max-width:420px; width:92%; text-align:center;
     }
-    .gate-logo { margin-bottom:28px; }
-    .gate-logo img { height:56px; width:auto; }
-    .gate-icon {
+    .g-logo { margin-bottom:24px; }
+    .g-logo img { height:54px; }
+    .g-icon {
         width:72px; height:72px; border-radius:50%;
         background:rgba(245,158,11,0.12); border:2px solid var(--gold);
         display:flex; align-items:center; justify-content:center;
-        margin:0 auto 22px; font-size:1.8rem; color:var(--gold);
+        margin:0 auto 20px; font-size:1.8rem; color:var(--gold);
     }
-    .gate-card h2 { font-size:1.4rem; font-weight:700; color:#fff; margin-bottom:8px; }
-    .gate-card p { font-size:0.85rem; color:rgba(255,255,255,0.5); margin-bottom:28px; line-height:1.65; }
-    .pw-wrap { position:relative; margin-bottom:12px; }
-    .pw-wrap input {
+    .g-card h2 { font-size:1.4rem; font-weight:700; color:#fff; margin-bottom:8px; }
+    .g-card p { font-size:0.84rem; color:rgba(255,255,255,0.48); margin-bottom:26px; line-height:1.65; }
+    .g-wrap { position:relative; margin-bottom:12px; }
+    .g-wrap input {
         width:100%; padding:14px 46px 14px 18px;
         border-radius:10px; border:1px solid rgba(255,255,255,0.16);
         background:rgba(255,255,255,0.07); color:#fff;
         font-size:1rem; font-family:inherit; outline:none; transition:border 200ms;
     }
-    .pw-wrap input::placeholder { color:rgba(255,255,255,0.28); }
-    .pw-wrap input:focus { border-color:var(--gold); }
-    .pw-eye {
+    .g-wrap input::placeholder { color:rgba(255,255,255,0.28); }
+    .g-wrap input:focus { border-color:var(--gold); }
+    .g-eye {
         position:absolute; right:14px; top:50%; transform:translateY(-50%);
-        background:none; border:none; cursor:pointer; color:rgba(255,255,255,0.3);
-        font-size:0.88rem; padding:4px;
+        background:none; border:none; cursor:pointer; color:rgba(255,255,255,0.3); font-size:0.88rem; padding:4px;
     }
-    .pw-eye:hover { color:#fff; }
-    .gate-btn {
+    .g-eye:hover { color:#fff; }
+    .g-btn {
         width:100%; padding:14px; border:none; border-radius:10px; cursor:pointer;
         background:linear-gradient(135deg,var(--gold),var(--gold2));
         color:#fff; font-size:1rem; font-weight:700; font-family:inherit; transition:200ms;
     }
-    .gate-btn:hover { transform:translateY(-2px); box-shadow:0 8px 24px rgba(245,158,11,0.4); }
-    .gate-err {
-        color:#FC8181; font-size:0.82rem; margin-top:10px;
+    .g-btn:hover { transform:translateY(-2px); box-shadow:0 8px 24px rgba(245,158,11,0.4); }
+    .g-err {
+        color:#FC8181; font-size:0.8rem; margin-top:10px;
         display:none; align-items:center; gap:6px; justify-content:center;
     }
 
-    /* ── NAVBAR ── */
+    /* ══════════════════════════════════════
+       NAVBAR
+    ══════════════════════════════════════ */
     .navbar {
         position:fixed; top:0; left:0; width:100%; height:var(--nav-h);
         background:rgba(255,255,255,0.97); backdrop-filter:blur(12px);
-        z-index:900; border-bottom:1px solid rgba(0,0,0,0.06);
+        z-index:900; border-bottom:1px solid rgba(0,0,0,0.07);
         display:flex; align-items:center;
     }
-    .nav-inner {
-        max-width:1400px; margin:0 auto; padding:0 32px;
-        width:100%; display:flex; align-items:center; justify-content:space-between;
-    }
-    .nav-logo img { height:58px; width:auto; display:block; }
+    .nav-in { max-width:1400px; margin:0 auto; padding:0 32px; width:100%; display:flex; align-items:center; justify-content:space-between; }
+    .nav-logo img { height:54px; }
     .nav-links { display:flex; gap:36px; align-items:center; }
-    .nav-links a {
-        text-decoration:none; color:#374151; font-weight:500;
-        font-size:0.92rem; transition:color 150ms;
-    }
+    .nav-links a { text-decoration:none; color:#374151; font-weight:500; font-size:0.92rem; transition:color 150ms; }
     .nav-links a:hover { color:var(--gold); }
-    .nav-cta {
-        background:linear-gradient(135deg,var(--gold),var(--gold2));
-        color:#fff !important; padding:9px 26px; border-radius:40px; font-weight:600 !important;
-    }
+    .nav-cta { background:linear-gradient(135deg,var(--gold),var(--gold2)); color:#fff!important; padding:9px 26px; border-radius:40px; font-weight:600!important; }
+    .nav-badge { display:inline-flex; align-items:center; gap:6px; background:rgba(245,158,11,0.1); border:1px solid rgba(245,158,11,0.3); border-radius:20px; padding:4px 12px; font-size:0.7rem; font-weight:700; color:var(--gold); letter-spacing:0.08em; text-transform:uppercase; }
     .mob-btn { display:none; background:none; border:none; font-size:1.5rem; cursor:pointer; color:#374151; }
-    .nav-badge {
-        display:inline-flex; align-items:center; gap:6px;
-        background:rgba(245,158,11,0.1); border:1px solid rgba(245,158,11,0.3);
-        border-radius:20px; padding:4px 12px; font-size:0.72rem;
-        font-weight:700; color:var(--gold); letter-spacing:0.08em; text-transform:uppercase;
-    }
 
-    /* ── VIEWER SHELL ── */
-    #viewerShell {
+    /* ══════════════════════════════════════
+       VIEWER SHELL — fills remaining viewport
+    ══════════════════════════════════════ */
+    #shell {
         position:fixed;
-        top:var(--nav-h); left:0; right:0;
-        bottom:0;
+        top:var(--nav-h); left:0; right:0; bottom:0;
         display:flex; flex-direction:column;
-        background:var(--navy);
     }
 
-    /* ── TAB BAR ── */
+    /* Tab bar */
     .tab-bar {
         flex-shrink:0; height:var(--tab-h);
-        background:var(--navy2);
-        border-bottom:2px solid var(--gold);
-        display:flex; align-items:stretch;
+        background:#0C1E30; border-bottom:2px solid var(--gold);
+        display:flex;
     }
     .tab-btn {
         flex:1; background:none; border:none; cursor:pointer;
-        color:rgba(255,255,255,0.45); font-family:inherit;
-        font-size:0.82rem; font-weight:600;
+        color:rgba(255,255,255,0.42); font-family:inherit;
+        font-size:0.85rem; font-weight:600;
         display:flex; align-items:center; justify-content:center; gap:9px;
         transition:200ms; border-bottom:3px solid transparent; margin-bottom:-2px;
-        letter-spacing:0.02em;
     }
-    .tab-btn i { font-size:1rem; }
+    .tab-btn i { font-size:1.05rem; }
     .tab-btn:hover { color:#fff; background:rgba(255,255,255,0.04); }
     .tab-btn.active { color:#fff; border-bottom:3px solid var(--gold); background:rgba(255,255,255,0.06); }
-    .tab-btn .tab-sub { font-size:0.65rem; font-weight:400; color:rgba(255,255,255,0.25); display:block; margin-top:2px; }
+    .tab-sub { font-size:0.62rem; font-weight:400; color:rgba(255,255,255,0.25); margin-top:2px; display:block; }
     .tab-btn.active .tab-sub { color:var(--gold3); }
-    .tab-label-wrap { display:flex; flex-direction:column; align-items:flex-start; text-align:left; }
+    .tab-lbl { display:flex; flex-direction:column; align-items:flex-start; }
 
-    /* ── PANE CONTENT ── */
+    /* Panes */
     .pane { display:none; flex:1; flex-direction:column; overflow:hidden; }
     .pane.active { display:flex; }
 
-    /* iframes fill pane completely */
-    .doc-frame {
-        flex:1; border:none; display:block;
-        background:#525659; width:100%;
-    }
+    /* Document frame */
+    .doc-frame { flex:1; border:none; width:100%; min-height:0; background:#525659; }
 
-    /* Fallback message */
-    .frame-fallback {
+    /* Fallback */
+    .fallback {
         flex:1; display:none; flex-direction:column;
         align-items:center; justify-content:center;
-        background:#0D2236; text-align:center; padding:40px;
+        background:#0A1A2F; text-align:center; padding:40px; gap:16px;
     }
-    .frame-fallback i { font-size:3rem; color:rgba(255,255,255,0.15); margin-bottom:16px; }
-    .frame-fallback h3 { color:rgba(255,255,255,0.6); font-size:1rem; margin-bottom:8px; }
-    .frame-fallback p { color:rgba(255,255,255,0.35); font-size:0.82rem; max-width:360px; margin-bottom:20px; line-height:1.6; }
+    .fallback i { font-size:3.5rem; color:rgba(255,255,255,0.1); }
+    .fallback h3 { font-size:1.1rem; color:rgba(255,255,255,0.5); }
+    .fallback p { font-size:0.84rem; color:rgba(255,255,255,0.3); max-width:360px; line-height:1.6; }
     .retry-btn {
         display:inline-flex; align-items:center; gap:8px;
-        padding:10px 24px; border-radius:30px;
-        background:rgba(245,158,11,0.12); border:1px solid rgba(245,158,11,0.3);
-        color:var(--gold3); font-family:inherit; font-size:0.82rem;
-        font-weight:600; cursor:pointer; transition:200ms;
+        padding:11px 26px; border-radius:30px;
+        background:rgba(245,158,11,0.1); border:1px solid rgba(245,158,11,0.3);
+        color:var(--gold3); font-family:inherit; font-size:0.84rem; font-weight:600; cursor:pointer; transition:200ms;
     }
     .retry-btn:hover { background:rgba(245,158,11,0.2); }
 
     /* Status bar */
-    .doc-status {
-        flex-shrink:0; height:36px;
-        background:rgba(0,0,0,0.35); border-top:1px solid rgba(255,255,255,0.06);
-        display:flex; align-items:center; justify-content:space-between;
-        padding:0 20px;
+    .status-bar {
+        flex-shrink:0; height:34px;
+        background:rgba(0,0,0,0.4); border-top:1px solid rgba(255,255,255,0.05);
+        display:flex; align-items:center; justify-content:space-between; padding:0 20px;
     }
-    .doc-status-left { display:flex; align-items:center; gap:8px; font-size:0.72rem; color:rgba(255,255,255,0.4); }
-    .doc-status-left i { color:var(--gold); }
-    .doc-status-right { display:flex; gap:18px; }
-    .doc-status-right span { font-size:0.68rem; color:rgba(255,255,255,0.25); display:flex; align-items:center; gap:4px; }
-    .doc-status-right i { color:var(--gold); font-size:0.62rem; }
+    .sb-l { display:flex; align-items:center; gap:8px; font-size:0.7rem; color:rgba(255,255,255,0.35); }
+    .sb-l i { color:var(--gold); }
+    .sb-r { display:flex; gap:18px; }
+    .sb-r span { font-size:0.65rem; color:rgba(255,255,255,0.22); display:flex; align-items:center; gap:4px; }
+    .sb-r i { color:var(--gold); font-size:0.6rem; }
 
-    /* ════════════════════════════════════════
-       INLINE SLIDE DECK
-    ════════════════════════════════════════ */
+    /* ══════════════════════════════════════
+       PRESENTATION PANE
+    ══════════════════════════════════════ */
+    #pane-pptx { background:#000; }
+
     #deckOuter {
         flex:1; display:flex; flex-direction:column;
-        overflow:hidden; position:relative;
+        overflow:hidden; min-height:0;
     }
 
-    /* Slide stage fills everything above the controls bar */
+    /* Slide stage — centres the scaled viewport */
     #slideStage {
-        flex:1; position:relative; overflow:hidden;
-        background:var(--navy);
+        flex:1; min-height:0;
+        display:flex; align-items:center; justify-content:center;
+        background:#000; overflow:hidden; position:relative;
     }
 
-    /* Individual slide */
+    /* The 1280×720 canvas — JS scales this to fit */
+    #slideVP {
+        width:1280px; height:720px;
+        position:relative; flex-shrink:0;
+        transform-origin:center center;
+        overflow:hidden;
+    }
+
+    /* Individual slides */
     .slide {
         position:absolute; inset:0;
-        opacity:0; transform:translateX(50px);
-        transition:opacity 0.4s ease, transform 0.4s ease;
+        width:1280px; height:720px;
+        opacity:0; transform:translateX(60px);
+        transition:opacity 0.38s ease, transform 0.38s ease;
         pointer-events:none;
+        font-family:'Inter',sans-serif;
     }
-    .slide.active {
-        opacity:1; transform:translateX(0);
-        pointer-events:auto;
-    }
-    .slide.slide-out {
-        opacity:0; transform:translateX(-50px);
-    }
+    .slide.active { opacity:1; transform:translateX(0); pointer-events:auto; }
+    .slide.out { opacity:0; transform:translateX(-60px); }
 
-    /* Slide layout skeleton */
-    .s { position:absolute; inset:0; display:flex; flex-direction:column; }
+    /* Slide skeleton */
+    .s { position:absolute; inset:0; display:flex; flex-direction:column; overflow:hidden; }
 
-    /* Gold left bar */
-    .s-bar { position:absolute; left:0; top:0; bottom:0; width:5px; background:linear-gradient(180deg,var(--gold),var(--gold2)); z-index:2; }
+    /* Left accent bar */
+    .s-bar { position:absolute; left:0; top:0; bottom:0; width:6px; background:linear-gradient(180deg,#F59E0B,#D97706); z-index:2; }
 
-    /* Header */
+    /* Slide header */
     .s-hd {
-        flex-shrink:0; display:flex; align-items:center;
-        justify-content:space-between; padding:0 2.5% 0 0;
-        border-bottom:1px solid rgba(255,255,255,0.06);
-        height:min(72px, 9vh);
+        flex-shrink:0; height:64px;
+        display:flex; align-items:center; justify-content:space-between;
+        padding:0 28px 0 0;
+        border-bottom:1px solid rgba(255,255,255,0.07);
     }
-    .s-hd-logo {
-        height:100%; display:flex; align-items:center;
-        padding:0 2%; border-right:1px solid rgba(255,255,255,0.06);
-    }
-    .s-hd-logo img { height:60%; max-height:44px; width:auto; max-width:180px; object-fit:contain; }
-    .s-hd-title { font-size:clamp(0.5rem,1.1vw,0.72rem); font-weight:600; color:rgba(255,255,255,0.35); letter-spacing:0.1em; text-transform:uppercase; }
-    .s-hd-num { font-size:clamp(0.45rem,0.9vw,0.62rem); color:rgba(255,255,255,0.2); }
+    .s-hd-logo { height:64px; display:flex; align-items:center; padding:0 20px; border-right:1px solid rgba(255,255,255,0.07); }
+    .s-hd-logo img { height:38px; width:auto; }
+    .s-hd-title { font-size:13px; font-weight:600; color:rgba(255,255,255,0.35); letter-spacing:0.1em; text-transform:uppercase; }
+    .s-hd-num { font-size:12px; color:rgba(255,255,255,0.2); }
 
-    /* Body */
-    .s-bd { flex:1; overflow:hidden; padding:2.5% 4% 2% 4.5%; display:flex; flex-direction:column; position:relative; }
+    /* Slide body */
+    .s-bd { flex:1; padding:36px 52px 28px 58px; overflow:hidden; position:relative; display:flex; flex-direction:column; }
 
-    /* Footer */
+    /* Slide footer */
     .s-ft {
-        flex-shrink:0; height:min(38px, 5vh);
-        background:rgba(0,0,0,0.3); border-top:1px solid rgba(255,255,255,0.04);
-        display:flex; align-items:center; justify-content:space-between;
-        padding:0 2.5%;
+        flex-shrink:0; height:38px;
+        background:rgba(0,0,0,0.3); border-top:1px solid rgba(255,255,255,0.05);
+        display:flex; align-items:center; justify-content:space-between; padding:0 28px;
     }
-    .s-ft-l { font-size:clamp(0.38rem,0.72vw,0.55rem); font-weight:700; color:rgba(255,255,255,0.22); letter-spacing:0.1em; }
+    .s-ft-l { font-size:11px; font-weight:700; color:rgba(255,255,255,0.22); letter-spacing:0.1em; }
     .s-ft-l b { color:var(--gold); }
-    .s-ft-c { font-size:clamp(0.35rem,0.65vw,0.5rem); color:rgba(255,255,255,0.18); }
-    .s-ft-r { font-size:clamp(0.35rem,0.62vw,0.48rem); color:rgba(245,158,11,0.35); letter-spacing:0.1em; text-transform:uppercase; }
+    .s-ft-c { font-size:10px; color:rgba(255,255,255,0.18); }
+    .s-ft-r { font-size:10px; color:rgba(245,158,11,0.4); letter-spacing:0.1em; text-transform:uppercase; }
 
-    /* Slide typography */
+    /* ── Slide Typography ── */
     .s-tag {
-        display:inline-flex; align-items:center; gap:6px;
-        background:rgba(245,158,11,0.1); border:1px solid rgba(245,158,11,0.28);
-        border-radius:30px; padding:3px 12px; width:fit-content;
-        font-size:clamp(0.42rem,0.82vw,0.58rem); font-weight:700;
-        letter-spacing:0.1em; color:var(--gold3); text-transform:uppercase; margin-bottom:2.5%;
+        display:inline-flex; align-items:center; gap:7px;
+        background:rgba(245,158,11,0.1); border:1px solid rgba(245,158,11,0.3);
+        border-radius:30px; padding:4px 14px; width:fit-content;
+        font-size:12px; font-weight:700; letter-spacing:0.12em; color:#FBBF24; text-transform:uppercase; margin-bottom:16px;
     }
-    .s-tag::before { content:''; width:5px; height:5px; border-radius:50%; background:var(--gold); flex-shrink:0; }
-    .s-h1 { font-size:clamp(1.2rem,4.2vw,2.8rem); font-weight:800; color:#fff; line-height:1.12; letter-spacing:-0.025em; margin-bottom:1.8%; }
-    .s-h1 em { font-style:normal; background:linear-gradient(135deg,var(--gold),var(--gold3)); -webkit-background-clip:text; background-clip:text; color:transparent; }
-    .s-h2 { font-size:clamp(0.85rem,2.2vw,1.45rem); font-weight:700; color:#fff; letter-spacing:-0.01em; margin-bottom:1.5%; line-height:1.25; }
-    .s-p { font-size:clamp(0.52rem,1.05vw,0.74rem); color:rgba(255,255,255,0.55); line-height:1.65; margin-bottom:1%; }
-    .s-rule { width:36px; height:3px; background:linear-gradient(90deg,var(--gold),var(--gold2)); border-radius:2px; margin-bottom:2.5%; }
+    .s-tag::before { content:''; width:6px; height:6px; border-radius:50%; background:var(--gold); flex-shrink:0; }
 
-    /* Cover stats */
-    .cover-row { display:flex; gap:1.8%; margin-top:3%; }
-    .c-stat {
-        flex:1; background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08);
-        border-radius:10px; padding:3% 4%; text-align:center; position:relative; overflow:hidden;
-    }
-    .c-stat::after { content:''; position:absolute; bottom:0; left:0; right:0; height:3px; background:linear-gradient(90deg,var(--gold),var(--gold2)); }
-    .c-stat-v { font-size:clamp(1rem,2.6vw,1.9rem); font-weight:800; color:var(--gold); line-height:1; }
-    .c-stat-l { font-size:clamp(0.38rem,0.72vw,0.52rem); font-weight:600; color:rgba(255,255,255,0.35); text-transform:uppercase; letter-spacing:0.08em; margin-top:5px; }
+    .s-h1 { font-size:58px; font-weight:900; color:#fff; line-height:1.08; letter-spacing:-0.03em; margin-bottom:14px; }
+    .s-h1 em { font-style:normal; background:linear-gradient(135deg,#F59E0B,#FBBF24); -webkit-background-clip:text; background-clip:text; color:transparent; }
+    .s-h2 { font-size:34px; font-weight:800; color:#fff; letter-spacing:-0.02em; line-height:1.2; margin-bottom:10px; }
+    .s-p { font-size:15px; color:rgba(255,255,255,0.55); line-height:1.65; }
+    .s-rule { width:40px; height:4px; background:linear-gradient(90deg,#F59E0B,#D97706); border-radius:2px; margin-bottom:18px; }
 
-    /* Two-column */
-    .two-col { display:flex; gap:3.5%; height:100%; }
-    .col { flex:1; display:flex; flex-direction:column; justify-content:center; }
-    .col-div { width:1px; flex-shrink:0; background:linear-gradient(180deg,transparent,rgba(245,158,11,0.25) 20%,rgba(245,158,11,0.25) 80%,transparent); }
+    /* ── Cover slide stats ── */
+    .c-row { display:flex; gap:14px; margin-top:28px; }
+    .c-stat { flex:1; background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.09); border-radius:12px; padding:18px 20px; text-align:center; position:relative; overflow:hidden; }
+    .c-stat::after { content:''; position:absolute; bottom:0; left:0; right:0; height:3px; background:linear-gradient(90deg,#F59E0B,#D97706); }
+    .c-stat-v { font-size:32px; font-weight:800; color:#F59E0B; line-height:1; }
+    .c-stat-l { font-size:11px; font-weight:600; color:rgba(255,255,255,0.35); text-transform:uppercase; letter-spacing:0.08em; margin-top:6px; }
 
-    /* Check list */
-    .check-list { display:flex; flex-direction:column; gap:1.8%; }
-    .check-item { display:flex; align-items:flex-start; gap:9px; font-size:clamp(0.5rem,1vw,0.7rem); color:rgba(255,255,255,0.7); line-height:1.5; }
-    .check-item .ci { flex-shrink:0; width:clamp(15px,1.6vw,18px); height:clamp(15px,1.6vw,18px); border-radius:50%; background:rgba(245,158,11,0.15); border:1.5px solid var(--gold); display:flex; align-items:center; justify-content:center; margin-top:1px; }
-    .check-item .ci::after { content:'✓'; font-size:clamp(0.38rem,0.65vw,0.48rem); color:var(--gold); font-weight:800; }
+    /* ── Two-column ── */
+    .two-col { display:flex; gap:0; height:100%; }
+    .col { flex:1; display:flex; flex-direction:column; justify-content:center; padding-right:32px; }
+    .col:last-child { padding-right:0; padding-left:32px; }
+    .col-div { width:1px; flex-shrink:0; background:linear-gradient(180deg,transparent,rgba(245,158,11,0.25) 15%,rgba(245,158,11,0.25) 85%,transparent); margin:0 4px; }
 
-    /* 3-col card grid */
-    .card-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1.8%; margin-top:2%; }
-    .s-card { background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08); border-radius:10px; padding:3.5% 4%; transition:border-color 200ms; }
-    .s-card:hover { border-color:rgba(245,158,11,0.35); }
-    .s-card-icon { width:clamp(26px,3vw,36px); height:clamp(26px,3vw,36px); border-radius:8px; background:rgba(245,158,11,0.1); display:flex; align-items:center; justify-content:center; font-size:clamp(0.6rem,1.2vw,0.82rem); color:var(--gold); margin-bottom:8%; }
-    .s-card-t { font-size:clamp(0.5rem,1vw,0.68rem); font-weight:700; color:#fff; margin-bottom:4%; line-height:1.3; }
-    .s-card-p { font-size:clamp(0.42rem,0.82vw,0.58rem); color:rgba(255,255,255,0.42); line-height:1.55; }
+    /* ── Check list ── */
+    .c-list { display:flex; flex-direction:column; gap:10px; }
+    .c-item { display:flex; align-items:flex-start; gap:10px; font-size:14.5px; color:rgba(255,255,255,0.72); line-height:1.45; }
+    .c-dot { flex-shrink:0; width:20px; height:20px; border-radius:50%; background:rgba(245,158,11,0.15); border:1.5px solid var(--gold); display:flex; align-items:center; justify-content:center; margin-top:1px; }
+    .c-dot::after { content:'✓'; font-size:9px; color:var(--gold); font-weight:900; }
 
-    /* Stats grid */
-    .stat-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:2%; }
-    .stat-card { background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:4.5% 5%; text-align:center; position:relative; overflow:hidden; }
-    .stat-card::after { content:''; position:absolute; bottom:0; left:0; right:0; height:3px; background:linear-gradient(90deg,var(--gold),var(--gold2)); }
-    .stat-v { font-size:clamp(1.5rem,4.5vw,3.2rem); font-weight:800; color:var(--gold); line-height:1; letter-spacing:-0.02em; }
-    .stat-l { font-size:clamp(0.42rem,0.82vw,0.58rem); font-weight:600; color:rgba(255,255,255,0.35); text-transform:uppercase; letter-spacing:0.08em; margin-top:6px; }
+    /* ── 3-col service grid ── */
+    .card-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin-top:16px; }
+    .s-card { background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.09); border-radius:10px; padding:20px 22px; }
+    .s-card-icon { width:36px; height:36px; border-radius:8px; background:rgba(245,158,11,0.1); display:flex; align-items:center; justify-content:center; font-size:16px; color:var(--gold); margin-bottom:10px; }
+    .s-card-t { font-size:13px; font-weight:700; color:#fff; margin-bottom:6px; line-height:1.3; }
+    .s-card-p { font-size:12px; color:rgba(255,255,255,0.42); line-height:1.55; }
 
-    /* Mini stat row */
-    .mini-row { display:flex; gap:1.5%; margin-top:2.5%; }
-    .mini-stat { flex:1; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.06); border-radius:8px; padding:2.5% 3%; text-align:center; }
-    .mini-v { font-size:clamp(0.8rem,2vw,1.4rem); font-weight:800; color:var(--gold); }
-    .mini-l { font-size:clamp(0.38rem,0.72vw,0.52rem); color:rgba(255,255,255,0.35); text-transform:uppercase; letter-spacing:0.07em; margin-top:3px; }
+    /* ── Stats grid (big numbers) ── */
+    .stat-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:16px; }
+    .stat-card { background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.09); border-radius:14px; padding:28px 32px; text-align:center; position:relative; overflow:hidden; }
+    .stat-card::after { content:''; position:absolute; bottom:0; left:0; right:0; height:4px; background:linear-gradient(90deg,#F59E0B,#D97706); }
+    .stat-v { font-size:58px; font-weight:900; color:#F59E0B; line-height:1; letter-spacing:-0.03em; }
+    .stat-l { font-size:12px; font-weight:600; color:rgba(255,255,255,0.35); text-transform:uppercase; letter-spacing:0.1em; margin-top:8px; }
 
-    /* Pricing */
-    .pricing-row { display:flex; gap:2%; margin-top:2%; }
-    .tier { flex:1; background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:4% 4.5%; display:flex; flex-direction:column; position:relative; overflow:hidden; }
-    .tier.hot { background:rgba(245,158,11,0.05); border-color:rgba(245,158,11,0.3); }
-    .tier-badge { position:absolute; top:0; right:0; background:linear-gradient(135deg,var(--gold),var(--gold2)); color:#fff; font-size:clamp(0.32rem,0.62vw,0.46rem); font-weight:700; padding:4px 10px; border-radius:0 12px 0 8px; text-transform:uppercase; letter-spacing:0.08em; }
-    .tier-n { font-size:clamp(0.5rem,0.9vw,0.62rem); font-weight:700; color:rgba(255,255,255,0.4); text-transform:uppercase; letter-spacing:0.1em; margin-bottom:4%; }
-    .tier-p { font-size:clamp(1rem,2.4vw,1.65rem); font-weight:800; color:var(--gold); line-height:1; margin-bottom:5%; }
-    .tier-p sub { font-size:0.45em; font-weight:500; color:rgba(255,255,255,0.3); }
-    .tier-f { display:flex; flex-direction:column; gap:5%; }
-    .tier-f li { list-style:none; font-size:clamp(0.4rem,0.78vw,0.55rem); color:rgba(255,255,255,0.5); display:flex; align-items:center; gap:5px; }
-    .tier-f li::before { content:'✓'; color:var(--gold); font-weight:700; font-size:0.85em; flex-shrink:0; }
+    /* ── Mini stat row ── */
+    .mini-row { display:flex; gap:12px; margin-top:16px; }
+    .mini-stat { flex:1; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.07); border-radius:10px; padding:14px 16px; text-align:center; }
+    .mini-v { font-size:24px; font-weight:800; color:#F59E0B; }
+    .mini-l { font-size:10px; color:rgba(255,255,255,0.32); text-transform:uppercase; letter-spacing:0.08em; margin-top:4px; }
 
-    /* Timeline */
-    .timeline { display:flex; gap:0; margin-top:2.5%; position:relative; }
+    /* ── Pricing tiers ── */
+    .tier-row { display:flex; gap:14px; margin-top:16px; }
+    .tier { flex:1; background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.09); border-radius:12px; padding:22px 24px; position:relative; overflow:hidden; }
+    .tier.hot { background:rgba(245,158,11,0.05); border-color:rgba(245,158,11,0.32); }
+    .tier-badge { position:absolute; top:0; right:0; background:linear-gradient(135deg,#F59E0B,#D97706); color:#fff; font-size:10px; font-weight:700; padding:4px 12px; border-radius:0 12px 0 8px; text-transform:uppercase; letter-spacing:0.08em; }
+    .tier-n { font-size:11px; font-weight:700; color:rgba(255,255,255,0.38); text-transform:uppercase; letter-spacing:0.12em; margin-bottom:8px; }
+    .tier-p { font-size:30px; font-weight:800; color:#F59E0B; line-height:1; margin-bottom:14px; }
+    .tier-p sub { font-size:12px; font-weight:500; color:rgba(255,255,255,0.3); }
+    .tier-f { display:flex; flex-direction:column; gap:6px; }
+    .tier-f li { list-style:none; font-size:12.5px; color:rgba(255,255,255,0.52); display:flex; align-items:center; gap:7px; }
+    .tier-f li::before { content:'✓'; color:#F59E0B; font-weight:800; font-size:11px; flex-shrink:0; }
+
+    /* ── Timeline ── */
+    .timeline { display:flex; gap:0; margin-top:20px; }
     .t-step { flex:1; display:flex; flex-direction:column; align-items:center; text-align:center; position:relative; }
-    .t-step:not(:last-child)::after { content:''; position:absolute; top:calc(clamp(18px,2.2vw,26px) / 2); left:60%; right:-10%; height:2px; background:linear-gradient(90deg,rgba(245,158,11,0.5),rgba(245,158,11,0.1)); }
-    .t-num { width:clamp(18px,2.2vw,26px); height:clamp(18px,2.2vw,26px); border-radius:50%; background:linear-gradient(135deg,var(--gold),var(--gold2)); color:#fff; font-size:clamp(0.42rem,0.85vw,0.6rem); font-weight:800; display:flex; align-items:center; justify-content:center; margin-bottom:8%; z-index:1; box-shadow:0 3px 10px rgba(245,158,11,0.4); flex-shrink:0; }
-    .t-title { font-size:clamp(0.45rem,0.9vw,0.62rem); font-weight:700; color:#fff; margin-bottom:4%; }
-    .t-text { font-size:clamp(0.38rem,0.72vw,0.52rem); color:rgba(255,255,255,0.4); line-height:1.55; }
+    .t-step:not(:last-child)::after { content:''; position:absolute; top:18px; left:60%; right:-10%; height:2px; background:linear-gradient(90deg,rgba(245,158,11,0.5),rgba(245,158,11,0.1)); }
+    .t-num { width:36px; height:36px; border-radius:50%; background:linear-gradient(135deg,#F59E0B,#D97706); color:#fff; font-size:15px; font-weight:800; display:flex; align-items:center; justify-content:center; margin-bottom:12px; box-shadow:0 4px 12px rgba(245,158,11,0.45); flex-shrink:0; }
+    .t-title { font-size:13px; font-weight:700; color:#fff; margin-bottom:6px; }
+    .t-text { font-size:11.5px; color:rgba(255,255,255,0.4); line-height:1.55; }
 
-    /* SLA bars */
-    .sla-list { display:flex; flex-direction:column; gap:2.8%; }
-    .sla-row { display:flex; align-items:center; gap:2.5%; }
-    .sla-lbl { font-size:clamp(0.42rem,0.82vw,0.58rem); color:rgba(255,255,255,0.6); flex:0 0 32%; text-align:right; }
-    .sla-bar-bg { flex:1; height:clamp(6px,0.7vw,9px); background:rgba(255,255,255,0.07); border-radius:20px; overflow:hidden; }
-    .sla-bar { height:100%; background:linear-gradient(90deg,var(--gold),var(--gold2)); border-radius:20px; }
-    .sla-val { font-size:clamp(0.42rem,0.82vw,0.58rem); font-weight:700; color:var(--gold); flex:0 0 12%; text-align:right; }
+    /* ── SLA bars ── */
+    .sla-list { display:flex; flex-direction:column; gap:14px; }
+    .sla-row { display:flex; align-items:center; gap:14px; }
+    .sla-lbl { font-size:13px; color:rgba(255,255,255,0.6); flex:0 0 200px; text-align:right; }
+    .sla-bg { flex:1; height:10px; background:rgba(255,255,255,0.07); border-radius:20px; overflow:hidden; }
+    .sla-bar { height:100%; background:linear-gradient(90deg,#F59E0B,#D97706); border-radius:20px; }
+    .sla-val { font-size:13px; font-weight:700; color:#F59E0B; flex:0 0 50px; text-align:right; }
 
-    /* Contact cards */
-    .contact-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:2.5%; margin-top:3%; }
-    .contact-card { background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08); border-radius:10px; padding:4% 5%; display:flex; align-items:center; gap:4%; }
-    .contact-icon { width:clamp(28px,3.5vw,42px); height:clamp(28px,3.5vw,42px); border-radius:8px; background:rgba(245,158,11,0.12); border:1px solid rgba(245,158,11,0.25); display:flex; align-items:center; justify-content:center; font-size:clamp(0.6rem,1.2vw,0.85rem); color:var(--gold); flex-shrink:0; }
-    .contact-lbl { font-size:clamp(0.38rem,0.72vw,0.52rem); font-weight:600; color:rgba(255,255,255,0.3); text-transform:uppercase; letter-spacing:0.1em; margin-bottom:3px; }
-    .contact-val { font-size:clamp(0.48rem,0.95vw,0.66rem); font-weight:600; color:rgba(255,255,255,0.85); }
+    /* ── Contact cards ── */
+    .cont-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:14px; margin-top:20px; }
+    .cont-card { background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.09); border-radius:12px; padding:20px 24px; display:flex; align-items:center; gap:16px; }
+    .cont-icon { width:44px; height:44px; border-radius:10px; background:rgba(245,158,11,0.12); border:1px solid rgba(245,158,11,0.25); display:flex; align-items:center; justify-content:center; font-size:18px; color:#F59E0B; flex-shrink:0; }
+    .cont-lbl { font-size:11px; font-weight:600; color:rgba(255,255,255,0.3); text-transform:uppercase; letter-spacing:0.1em; margin-bottom:4px; }
+    .cont-val { font-size:15px; font-weight:600; color:rgba(255,255,255,0.9); }
 
-    /* Highlight box */
-    .hi-box { background:rgba(245,158,11,0.06); border:1px solid rgba(245,158,11,0.2); border-radius:10px; padding:3.5% 4%; font-size:clamp(0.45rem,0.88vw,0.62rem); color:rgba(255,255,255,0.65); line-height:1.65; }
-    .hi-box b { color:var(--gold); }
+    /* ── Highlight box ── */
+    .hi { background:rgba(245,158,11,0.07); border:1px solid rgba(245,158,11,0.22); border-radius:10px; padding:16px 20px; font-size:14px; color:rgba(255,255,255,0.65); line-height:1.65; }
+    .hi b { color:#F59E0B; }
 
-    /* Cost bar chart */
-    .cost-bar { display:flex; flex-direction:column; gap:3%; }
-    .cb-row { display:flex; align-items:center; gap:3%; }
-    .cb-lbl { font-size:clamp(0.4rem,0.78vw,0.55rem); color:rgba(255,255,255,0.5); flex:0 0 30%; text-align:right; }
+    /* ── Cost bars ── */
+    .cost-list { display:flex; flex-direction:column; gap:12px; }
+    .cb-row { display:flex; align-items:center; gap:12px; }
+    .cb-lbl { font-size:12.5px; color:rgba(255,255,255,0.5); flex:0 0 170px; text-align:right; }
     .cb-lbl.hl { color:#fff; font-weight:700; }
-    .cb-bg { flex:1; height:clamp(7px,0.8vw,10px); background:rgba(255,255,255,0.07); border-radius:20px; overflow:hidden; }
+    .cb-bg { flex:1; height:10px; background:rgba(255,255,255,0.07); border-radius:20px; overflow:hidden; }
     .cb-fill { height:100%; border-radius:20px; }
-    .cb-v { font-size:clamp(0.42rem,0.8vw,0.58rem); font-weight:700; flex:0 0 14%; text-align:right; }
+    .cb-v { font-size:12.5px; font-weight:700; flex:0 0 80px; text-align:right; }
 
-    /* ── DECK NAVIGATION BAR ── */
+    /* ── Compliance items ── */
+    .comp-list { display:flex; flex-direction:column; gap:10px; }
+    .comp-item { background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08); border-radius:8px; padding:12px 16px; display:flex; align-items:center; gap:14px; }
+    .comp-ic { width:36px; height:36px; border-radius:8px; background:rgba(245,158,11,0.1); display:flex; align-items:center; justify-content:center; font-size:16px; color:#F59E0B; flex-shrink:0; }
+    .comp-t { font-size:13.5px; font-weight:700; color:#fff; }
+    .comp-s { font-size:11.5px; color:rgba(255,255,255,0.38); margin-top:2px; }
+
+    /* ══════════════════════════════════════
+       DECK NAVIGATION
+    ══════════════════════════════════════ */
     #deckNav {
-        flex-shrink:0; height:min(60px, 7vh);
-        background:rgba(0,0,0,0.5); border-top:1px solid rgba(255,255,255,0.06);
-        display:flex; align-items:center; justify-content:space-between;
-        padding:0 24px;
+        flex-shrink:0; height:58px;
+        background:rgba(0,0,0,0.6); border-top:1px solid rgba(255,255,255,0.07);
+        display:flex; align-items:center; justify-content:space-between; padding:0 28px;
     }
-    .d-nav { display:flex; align-items:center; gap:10px; }
+    .d-nav { display:flex; align-items:center; gap:12px; }
     .d-btn {
-        width:clamp(32px,3.5vw,40px); height:clamp(32px,3.5vw,40px);
-        border-radius:50%; border:1.5px solid rgba(255,255,255,0.15);
-        background:rgba(255,255,255,0.05); color:rgba(255,255,255,0.65);
-        font-size:clamp(0.58rem,1.1vw,0.78rem); cursor:pointer;
-        display:flex; align-items:center; justify-content:center;
-        transition:200ms; font-family:inherit;
+        width:40px; height:40px; border-radius:50%;
+        border:1.5px solid rgba(255,255,255,0.18); background:rgba(255,255,255,0.06);
+        color:rgba(255,255,255,0.7); font-size:14px; cursor:pointer;
+        display:flex; align-items:center; justify-content:center; transition:200ms; font-family:inherit;
     }
-    .d-btn:hover:not(:disabled) { border-color:var(--gold); background:rgba(245,158,11,0.1); color:#fff; }
+    .d-btn:hover:not(:disabled) { border-color:var(--gold); background:rgba(245,158,11,0.12); color:#fff; }
     .d-btn:disabled { opacity:0.2; cursor:default; }
-    .d-dots { display:flex; gap:5px; align-items:center; }
-    .d-dot { width:clamp(6px,0.7vw,8px); height:clamp(6px,0.7vw,8px); border-radius:50%; background:rgba(255,255,255,0.18); border:none; cursor:pointer; padding:0; transition:200ms; }
-    .d-dot.on { background:var(--gold); width:clamp(16px,2vw,22px); border-radius:3px; }
-    .d-counter { font-size:clamp(0.48rem,0.9vw,0.65rem); color:rgba(255,255,255,0.28); }
+    .d-dots { display:flex; gap:6px; align-items:center; }
+    .d-dot { width:8px; height:8px; border-radius:50%; background:rgba(255,255,255,0.2); border:none; cursor:pointer; padding:0; transition:200ms; }
+    .d-dot.on { background:var(--gold); width:22px; border-radius:4px; }
+    .d-ctr { font-size:13px; color:rgba(255,255,255,0.3); }
     .d-fs {
-        background:rgba(255,255,255,0.05); border:1.5px solid rgba(255,255,255,0.12);
-        color:rgba(255,255,255,0.5); padding:clamp(5px,0.7vw,8px) clamp(10px,1.4vw,18px);
-        border-radius:30px; font-size:clamp(0.48rem,0.88vw,0.62rem); font-weight:600;
-        cursor:pointer; transition:200ms; font-family:inherit;
-        display:flex; align-items:center; gap:6px;
+        display:flex; align-items:center; gap:8px;
+        background:rgba(255,255,255,0.06); border:1.5px solid rgba(255,255,255,0.14);
+        color:rgba(255,255,255,0.55); padding:8px 20px; border-radius:30px;
+        font-size:13px; font-weight:600; cursor:pointer; transition:200ms; font-family:inherit;
     }
-    .d-fs:hover { border-color:var(--gold); color:#fff; background:rgba(245,158,11,0.08); }
+    .d-fs:hover { border-color:var(--gold); color:#fff; background:rgba(245,158,11,0.1); }
 
-    /* Fullscreen deck */
-    #deckOuter:-webkit-full-screen { width:100vw; height:100vh; background:var(--navy); }
-    #deckOuter:fullscreen { width:100vw; height:100vh; background:var(--navy); }
+    #deckOuter:-webkit-full-screen { width:100vw; height:100vh; }
+    #deckOuter:fullscreen { width:100vw; height:100vh; }
 
-    @media (max-width:768px) {
-        .nav-links { display:none; flex-direction:column; position:fixed; top:var(--nav-h); left:0; width:100%; background:#fff; padding:20px; box-shadow:0 8px 20px rgba(0,0,0,.1); gap:16px; z-index:899; }
+    /* Mobile */
+    @media(max-width:768px){
+        .nav-links { display:none; flex-direction:column; position:fixed; top:var(--nav-h); left:0; width:100%; background:#fff; padding:20px; box-shadow:0 8px 20px rgba(0,0,0,.12); gap:16px; z-index:899; }
         .nav-links.open { display:flex; }
         .mob-btn { display:block; }
         .nav-logo img { height:44px; }
-        .card-grid { grid-template-columns:repeat(2,1fr); }
-        .tab-btn .tab-sub { display:none; }
-        .timeline { flex-wrap:wrap; gap:4%; }
-        .t-step { flex:0 0 28%; margin-bottom:4%; }
-        .t-step::after { display:none !important; }
-        .pricing-row { flex-wrap:wrap; }
-        .tier { flex:0 0 100%; }
-    }
-    @media (max-width:480px) {
-        .card-grid { grid-template-columns:1fr; }
-        .stat-grid { grid-template-columns:1fr; }
-        .contact-grid { grid-template-columns:1fr; }
-        .two-col { flex-direction:column; }
-        .col-div { display:none; }
+        .tab-sub { display:none; }
     }
     </style>
 </head>
 <body>
 
-<!-- PASSWORD GATE -->
+<!-- ═══════════════════ PASSWORD GATE ═══════════════════ -->
 <div id="gate">
-    <div class="gate-card">
-        <div class="gate-logo"><img src="logo.png" alt="Pioneer Outsourcing BPO"></div>
-        <div class="gate-icon"><i class="fas fa-lock"></i></div>
+    <div class="g-card">
+        <div class="g-logo"><img src="logo.png" alt="Pioneer Outsourcing BPO"></div>
+        <div class="g-icon"><i class="fas fa-lock"></i></div>
         <h2>Restricted Access</h2>
         <p>This document is confidential and for authorised recipients only. Enter your access password to continue.</p>
-        <div class="pw-wrap">
+        <div class="g-wrap">
             <input type="password" id="pwInput" placeholder="Enter password" autocomplete="off">
-            <button class="pw-eye" id="pwToggle" type="button"><i class="fas fa-eye" id="eyeIcon"></i></button>
+            <button class="g-eye" id="pwToggle"><i class="fas fa-eye" id="eyeIco"></i></button>
         </div>
-        <button class="gate-btn" id="pwBtn">Unlock &rarr;</button>
-        <div class="gate-err" id="gateErr"><i class="fas fa-exclamation-triangle"></i> Incorrect password. Please try again.</div>
+        <button class="g-btn" id="pwBtn">Unlock &rarr;</button>
+        <div class="g-err" id="gErr"><i class="fas fa-exclamation-triangle"></i> Incorrect password. Try again.</div>
     </div>
 </div>
 
-<!-- NAVBAR -->
+<!-- ═══════════════════ NAVBAR ═══════════════════ -->
 <nav class="navbar">
-    <div class="nav-inner">
+    <div class="nav-in">
         <div class="nav-logo"><a href="index.html"><img src="logo.png" alt="Pioneer Outsourcing BPO"></a></div>
         <div class="nav-links" id="navLinks">
             <a href="index.html">Home</a>
             <a href="about.html">About</a>
             <a href="services.html">Services</a>
             <a href="careers.html">Careers</a>
-            <span class="nav-badge"><i class="fas fa-lock" style="font-size:0.65rem"></i> Company Guide</span>
+            <span class="nav-badge"><i class="fas fa-lock" style="font-size:0.6rem"></i> Company Guide</span>
             <a href="index.html#contact-form" class="nav-cta">Get a Quote</a>
         </div>
         <button class="mob-btn" id="mobBtn"><i class="fas fa-bars" id="menuIco"></i></button>
     </div>
 </nav>
 
-<!-- FULL-SCREEN VIEWER -->
-<div id="viewerShell">
+<!-- ═══════════════════ VIEWER SHELL ═══════════════════ -->
+<div id="shell">
 
-    <!-- Tab Bar -->
     <div class="tab-bar">
         <button class="tab-btn active" id="tb-word" onclick="switchTab('word',this)">
             <i class="fas fa-file-word"></i>
-            <div class="tab-label-wrap">Word Document<span class="tab-sub">Knowledge Base</span></div>
+            <div class="tab-lbl">Word Document<span class="tab-sub">Full Knowledge Base</span></div>
         </button>
         <button class="tab-btn" id="tb-pdf" onclick="switchTab('pdf',this)">
             <i class="fas fa-file-pdf"></i>
-            <div class="tab-label-wrap">PDF Guide<span class="tab-sub">Company Guide</span></div>
+            <div class="tab-lbl">PDF Guide<span class="tab-sub">Company Guide</span></div>
         </button>
         <button class="tab-btn" id="tb-pptx" onclick="switchTab('pptx',this)">
             <i class="fas fa-desktop"></i>
-            <div class="tab-label-wrap">Presentation<span class="tab-sub">10 Slides · Interactive</span></div>
+            <div class="tab-lbl">Presentation<span class="tab-sub">10 Slides · Interactive</span></div>
         </button>
     </div>
 
-    <!-- WORD PANE -->
+    <!-- ── WORD PANE ── -->
     <div class="pane active" id="pane-word">
-        <iframe class="doc-frame" id="frame-word"
+        <iframe class="doc-frame" id="frm-word"
             src="https://view.officeapps.live.com/op/embed.aspx?src=https://pioneeroutsourcingbpo.com/PioneerOutsourcing_KnowledgeBase.docx"
-            title="Company Knowledge Base Word Document" allowfullscreen></iframe>
-        <div class="frame-fallback" id="fb-word">
+            allowfullscreen title="Pioneer Knowledge Base"></iframe>
+        <div class="fallback" id="fb-word">
             <i class="fas fa-file-word"></i>
-            <h3>Document Preview Unavailable</h3>
-            <p>Microsoft Office Online could not load the document at this time. Please try again in a moment.</p>
-            <button class="retry-btn" onclick="retryFrame('word')"><i class="fas fa-sync"></i> Retry</button>
+            <h3>Document preview unavailable</h3>
+            <p>Microsoft Office Online could not load the document. Please try again.</p>
+            <button class="retry-btn" onclick="retry('word')"><i class="fas fa-sync"></i> Retry</button>
         </div>
-        <div class="doc-status">
-            <div class="doc-status-left"><i class="fas fa-file-word"></i> PioneerOutsourcing_KnowledgeBase.docx</div>
-            <div class="doc-status-right">
-                <span><i class="fas fa-layer-group"></i> 11 Sections</span>
-                <span><i class="fas fa-question-circle"></i> 25+ FAQs</span>
-                <span><i class="fas fa-lock"></i> Confidential</span>
-            </div>
+        <div class="status-bar">
+            <div class="sb-l"><i class="fas fa-file-word"></i> PioneerOutsourcing_KnowledgeBase.docx</div>
+            <div class="sb-r"><span><i class="fas fa-layer-group"></i> 11 Sections</span><span><i class="fas fa-question-circle"></i> 25+ FAQs</span><span><i class="fas fa-lock"></i> Confidential</span></div>
         </div>
     </div>
 
-    <!-- PDF PANE -->
+    <!-- ── PDF PANE ── -->
     <div class="pane" id="pane-pdf">
-        <iframe class="doc-frame" id="frame-pdf" src=""
-            data-src="https://view.officeapps.live.com/op/embed.aspx?src=https://pioneeroutsourcingbpo.com/PioneerOutsourcing_KnowledgeBase.pdf"
-            title="Company Guide PDF" allowfullscreen></iframe>
-        <div class="frame-fallback" id="fb-pdf">
+        <iframe class="doc-frame" id="frm-pdf" src="" data-src=""
+            allowfullscreen title="Pioneer Company Guide PDF"></iframe>
+        <div class="fallback" id="fb-pdf">
             <i class="fas fa-file-pdf"></i>
-            <h3>PDF Preview Unavailable</h3>
-            <p>The document viewer could not load at this time. Please try again.</p>
-            <button class="retry-btn" onclick="retryFrame('pdf')"><i class="fas fa-sync"></i> Retry</button>
+            <h3>PDF preview unavailable</h3>
+            <p>The viewer could not load. Please try again.</p>
+            <button class="retry-btn" onclick="retry('pdf')"><i class="fas fa-sync"></i> Retry</button>
         </div>
-        <div class="doc-status">
-            <div class="doc-status-left"><i class="fas fa-file-pdf"></i> PioneerOutsourcing_KnowledgeBase.pdf</div>
-            <div class="doc-status-right">
-                <span><i class="fas fa-tag"></i> Pricing &amp; SLAs</span>
-                <span><i class="fas fa-shield-alt"></i> Security</span>
-                <span><i class="fas fa-lock"></i> Confidential</span>
-            </div>
+        <div class="status-bar">
+            <div class="sb-l"><i class="fas fa-file-pdf"></i> PioneerOutsourcing_KnowledgeBase.pdf</div>
+            <div class="sb-r"><span><i class="fas fa-tag"></i> Pricing &amp; SLAs</span><span><i class="fas fa-shield-alt"></i> Security</span><span><i class="fas fa-lock"></i> Confidential</span></div>
         </div>
     </div>
 
-    <!-- PRESENTATION PANE -->
+    <!-- ── PRESENTATION PANE ── -->
     <div class="pane" id="pane-pptx">
         <div id="deckOuter">
 
             <div id="slideStage">
+                <div id="slideVP">
 
-                <!-- ═══ SLIDE 1 — COVER ═══ -->
-                <div class="slide active" id="sl0">
-                <div class="s" style="background:linear-gradient(135deg,#07111F 0%,#0F2B3D 55%,#1A3A4F 100%);">
-                    <div class="s-bar"></div>
-                    <!-- BG decoration -->
-                    <div style="position:absolute;right:-8%;top:-15%;width:55%;padding-top:55%;border-radius:50%;background:radial-gradient(circle,rgba(245,158,11,0.07) 0%,transparent 65%);pointer-events:none;"></div>
-                    <div style="position:absolute;left:35%;bottom:-20%;width:40%;padding-top:40%;border-radius:50%;background:radial-gradient(circle,rgba(15,43,61,0.9) 0%,transparent 70%);pointer-events:none;"></div>
-                    <div class="s-hd">
-                        <div class="s-hd-logo"><img src="logo.png" alt="Pioneer Outsourcing BPO"></div>
-                        <div class="s-hd-title">Company Overview &mdash; Confidential</div>
-                        <div class="s-hd-num">1 / 10</div>
-                    </div>
-                    <div class="s-bd" style="justify-content:center;padding-left:5%;">
-                        <div class="s-tag">BPO &bull; Nairobi, Kenya &bull; Est. 2020</div>
-                        <div class="s-h1" style="font-size:clamp(1.5rem,5.5vw,3.8rem);">
-                            <em>Pioneer</em> Outsourcing BPO
-                        </div>
-                        <div style="font-size:clamp(0.7rem,1.8vw,1.2rem);color:rgba(255,255,255,0.65);font-weight:500;margin-bottom:1.5%;letter-spacing:0.01em;">East Africa&rsquo;s Premier Business Process Outsourcing Partner</div>
-                        <div class="s-p" style="max-width:55%;">Delivering world-class outsourcing to USA, UK, Europe &amp; global markets — 24/7 operations at 40–60% below Western labour costs.</div>
-                        <div class="cover-row">
-                            <div class="c-stat"><div class="c-stat-v">200+</div><div class="c-stat-l">Global Clients</div></div>
-                            <div class="c-stat"><div class="c-stat-v">98%</div><div class="c-stat-l">Satisfaction Rate</div></div>
-                            <div class="c-stat"><div class="c-stat-v">24/7</div><div class="c-stat-l">Operations</div></div>
-                            <div class="c-stat"><div class="c-stat-v">5–7</div><div class="c-stat-l">Days to Go Live</div></div>
-                        </div>
-                    </div>
-                    <div class="s-ft">
-                        <div class="s-ft-l">PIONEER <b>OUTSOURCING BPO</b></div>
-                        <div class="s-ft-c">hello@pioneeroutsourcingbpo.com &nbsp;&bull;&nbsp; +254 111 562 567</div>
-                        <div class="s-ft-r">Confidential</div>
-                    </div>
-                </div>
-                </div>
+<!-- ═══ SLIDE 1 — COVER ═══ -->
+<div class="slide active" id="sl0">
+<div class="s" style="background:linear-gradient(135deg,#071320 0%,#0F2B3D 55%,#1A3A4F 100%);">
+    <div class="s-bar"></div>
+    <div style="position:absolute;right:-80px;top:-80px;width:560px;height:560px;border-radius:50%;background:radial-gradient(circle,rgba(245,158,11,0.08) 0%,transparent 65%);pointer-events:none;"></div>
+    <div class="s-hd">
+        <div class="s-hd-logo"><img src="logo.png" alt="Pioneer Outsourcing BPO"></div>
+        <div class="s-hd-title">Company Overview &mdash; Confidential</div>
+        <div class="s-hd-num">1 / 10</div>
+    </div>
+    <div class="s-bd" style="justify-content:center;padding-left:72px;">
+        <div class="s-tag">BPO &bull; Nairobi, Kenya &bull; Est. 2020</div>
+        <div class="s-h1" style="font-size:72px;"><em>Pioneer</em> Outsourcing BPO</div>
+        <div style="font-size:22px;color:rgba(255,255,255,0.6);font-weight:500;margin-bottom:12px;">East Africa&rsquo;s Premier Business Process Outsourcing Partner</div>
+        <div class="s-p" style="font-size:16px;max-width:580px;">Delivering world-class outsourcing to USA, UK, Europe &amp; global markets &mdash; 24/7, at 40&ndash;60% below Western labour costs.</div>
+        <div class="c-row" style="max-width:700px;">
+            <div class="c-stat"><div class="c-stat-v">200+</div><div class="c-stat-l">Global Clients</div></div>
+            <div class="c-stat"><div class="c-stat-v">98%</div><div class="c-stat-l">Satisfaction Rate</div></div>
+            <div class="c-stat"><div class="c-stat-v">24/7</div><div class="c-stat-l">Operations</div></div>
+            <div class="c-stat"><div class="c-stat-v">5–7</div><div class="c-stat-l">Days to Go Live</div></div>
+        </div>
+    </div>
+    <div class="s-ft"><div class="s-ft-l">PIONEER <b>OUTSOURCING BPO</b></div><div class="s-ft-c">hello@pioneeroutsourcingbpo.com &nbsp;|&nbsp; +254 111 562 567</div><div class="s-ft-r">Confidential</div></div>
+</div>
+</div>
 
-                <!-- ═══ SLIDE 2 — WHO WE ARE ═══ -->
-                <div class="slide" id="sl1">
-                <div class="s" style="background:#07111F;">
-                    <div class="s-bar"></div>
-                    <div class="s-hd">
-                        <div class="s-hd-logo"><img src="logo.png" alt="Pioneer Outsourcing BPO"></div>
-                        <div class="s-hd-title">Who We Are</div>
-                        <div class="s-hd-num">2 / 10</div>
-                    </div>
-                    <div class="s-bd">
-                    <div class="two-col">
-                        <div class="col">
-                            <div class="s-tag">About Pioneer</div>
-                            <div class="s-h2">Built for Global Business.<br>Rooted in Nairobi.</div>
-                            <div class="s-rule"></div>
-                            <div class="s-p">Pioneer Outsourcing BPO is headquartered in Nairobi, Kenya. We combine East Africa&rsquo;s top bilingual talent with enterprise-grade systems to deliver seamless, scalable business support to clients worldwide.</div>
-                            <div class="check-list" style="margin-top:3%;">
-                                <div class="check-item"><div class="ci"></div>ISO-aligned quality management processes</div>
-                                <div class="check-item"><div class="ci"></div>GDPR-compliant data handling &amp; security</div>
-                                <div class="check-item"><div class="ci"></div>Fully redundant 24/7 operations centre</div>
-                                <div class="check-item"><div class="ci"></div>Dedicated Account Manager per client</div>
-                                <div class="check-item"><div class="ci"></div>Fortune 500 tools &amp; enterprise systems</div>
-                            </div>
-                        </div>
-                        <div class="col-div"></div>
-                        <div class="col">
-                            <div style="display:flex;flex-direction:column;gap:4%;height:100%;justify-content:center;">
-                                <div class="hi-box" style="border-color:rgba(245,158,11,0.25);">
-                                    <div style="font-size:clamp(0.42rem,0.82vw,0.58rem);font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:5%;">Our Mission</div>
-                                    &ldquo;To empower global businesses with elite African talent, delivering measurable results at transformational cost savings.&rdquo;
-                                </div>
-                                <div class="hi-box">
-                                    <div style="font-size:clamp(0.42rem,0.82vw,0.58rem);font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:5%;">Our Vision</div>
-                                    &ldquo;To be the go-to BPO partner for businesses seeking quality, reliability, and innovation from East Africa.&rdquo;
-                                </div>
-                                <div style="display:flex;gap:5%;text-align:center;">
-                                    <div style="flex:1;"><div class="mini-v">50+</div><div class="mini-l">Expert Staff</div></div>
-                                    <div style="flex:1;"><div class="mini-v">4+</div><div class="mini-l">Years Active</div></div>
-                                    <div style="flex:1;"><div class="mini-v">15+</div><div class="mini-l">Industries</div></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    </div>
-                    <div class="s-ft">
-                        <div class="s-ft-l">PIONEER <b>OUTSOURCING BPO</b></div>
-                        <div class="s-ft-c">hello@pioneeroutsourcingbpo.com &nbsp;&bull;&nbsp; +254 111 562 567</div>
-                        <div class="s-ft-r">Confidential</div>
-                    </div>
-                </div>
-                </div>
+<!-- ═══ SLIDE 2 — WHO WE ARE ═══ -->
+<div class="slide" id="sl1">
+<div class="s" style="background:#071320;">
+    <div class="s-bar"></div>
+    <div class="s-hd">
+        <div class="s-hd-logo"><img src="logo.png" alt="Pioneer Outsourcing BPO"></div>
+        <div class="s-hd-title">Who We Are</div>
+        <div class="s-hd-num">2 / 10</div>
+    </div>
+    <div class="s-bd">
+    <div class="two-col">
+        <div class="col">
+            <div class="s-tag">About Pioneer</div>
+            <div class="s-h2">Built for Global Business.<br>Rooted in Nairobi.</div>
+            <div class="s-rule"></div>
+            <div class="s-p" style="font-size:14px;margin-bottom:16px;">Pioneer Outsourcing BPO is headquartered in Nairobi, Kenya. We combine East Africa&rsquo;s top bilingual talent with enterprise-grade systems to deliver seamless, scalable business support to clients worldwide.</div>
+            <div class="c-list">
+                <div class="c-item"><div class="c-dot"></div>ISO-aligned quality management processes</div>
+                <div class="c-item"><div class="c-dot"></div>GDPR-compliant data handling &amp; security</div>
+                <div class="c-item"><div class="c-dot"></div>Fully redundant 24/7 operations centre</div>
+                <div class="c-item"><div class="c-dot"></div>Dedicated Account Manager per client</div>
+                <div class="c-item"><div class="c-dot"></div>Fortune 500 tools &amp; enterprise-grade systems</div>
+            </div>
+        </div>
+        <div class="col-div"></div>
+        <div class="col">
+            <div class="hi" style="margin-bottom:12px;">
+                <div style="font-size:11px;font-weight:700;color:#F59E0B;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:8px;">Our Mission</div>
+                &ldquo;To empower global businesses with elite African talent, delivering measurable results at transformational cost savings.&rdquo;
+            </div>
+            <div class="hi" style="margin-bottom:18px;">
+                <div style="font-size:11px;font-weight:700;color:#F59E0B;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:8px;">Our Vision</div>
+                &ldquo;To be the go-to BPO partner for businesses seeking quality, reliability, and innovation from East Africa.&rdquo;
+            </div>
+            <div style="display:flex;gap:16px;text-align:center;">
+                <div style="flex:1;"><div class="mini-v">50+</div><div class="mini-l">Expert Staff</div></div>
+                <div style="flex:1;"><div class="mini-v">4+</div><div class="mini-l">Years Active</div></div>
+                <div style="flex:1;"><div class="mini-v">15+</div><div class="mini-l">Industries</div></div>
+            </div>
+        </div>
+    </div>
+    </div>
+    <div class="s-ft"><div class="s-ft-l">PIONEER <b>OUTSOURCING BPO</b></div><div class="s-ft-c">hello@pioneeroutsourcingbpo.com &nbsp;|&nbsp; +254 111 562 567</div><div class="s-ft-r">Confidential</div></div>
+</div>
+</div>
 
-                <!-- ═══ SLIDE 3 — SERVICES ═══ -->
-                <div class="slide" id="sl2">
-                <div class="s" style="background:#07111F;">
-                    <div class="s-bar"></div>
-                    <div class="s-hd">
-                        <div class="s-hd-logo"><img src="logo.png" alt="Pioneer Outsourcing BPO"></div>
-                        <div class="s-hd-title">Our Services</div>
-                        <div class="s-hd-num">3 / 10</div>
-                    </div>
-                    <div class="s-bd">
-                        <div class="s-tag">Full-Service BPO Solutions</div>
-                        <div class="s-h2">Everything Your Business Needs &mdash; Under One Roof</div>
-                        <div class="card-grid">
-                            <div class="s-card"><div class="s-card-icon"><i class="fas fa-headset"></i></div><div class="s-card-t">Call Center &amp; Customer Support</div><div class="s-card-p">Inbound &amp; outbound calls, omni-channel support, 24/7 coverage, escalation management.</div></div>
-                            <div class="s-card"><div class="s-card-icon"><i class="fas fa-user-tie"></i></div><div class="s-card-t">Virtual Assistants</div><div class="s-card-p">Executive VAs, scheduling, inbox management, research, social media &amp; admin tasks.</div></div>
-                            <div class="s-card"><div class="s-card-icon"><i class="fas fa-laptop-code"></i></div><div class="s-card-t">Technical Support</div><div class="s-card-p">Tier 1–3 IT help desk, remote troubleshooting, SaaS support, software onboarding.</div></div>
-                            <div class="s-card"><div class="s-card-icon"><i class="fas fa-chart-line"></i></div><div class="s-card-t">Lead Generation &amp; Sales</div><div class="s-card-p">Qualified leads, cold outreach, appointment setting, CRM management.</div></div>
-                            <div class="s-card"><div class="s-card-icon"><i class="fas fa-file-alt"></i></div><div class="s-card-t">Back-Office Processing</div><div class="s-card-p">Data entry, document processing, order management, payroll support, invoicing.</div></div>
-                            <div class="s-card"><div class="s-card-icon"><i class="fas fa-language"></i></div><div class="s-card-t">Translation &amp; Transcription</div><div class="s-card-p">40+ languages, legal &amp; medical docs, audio/video transcription, subtitling.</div></div>
-                        </div>
-                    </div>
-                    <div class="s-ft">
-                        <div class="s-ft-l">PIONEER <b>OUTSOURCING BPO</b></div>
-                        <div class="s-ft-c">hello@pioneeroutsourcingbpo.com &nbsp;&bull;&nbsp; +254 111 562 567</div>
-                        <div class="s-ft-r">Confidential</div>
-                    </div>
-                </div>
-                </div>
+<!-- ═══ SLIDE 3 — SERVICES ═══ -->
+<div class="slide" id="sl2">
+<div class="s" style="background:#071320;">
+    <div class="s-bar"></div>
+    <div class="s-hd">
+        <div class="s-hd-logo"><img src="logo.png" alt="Pioneer Outsourcing BPO"></div>
+        <div class="s-hd-title">Our Services</div>
+        <div class="s-hd-num">3 / 10</div>
+    </div>
+    <div class="s-bd">
+        <div class="s-tag">Full-Service BPO</div>
+        <div class="s-h2">Everything Your Business Needs &mdash; Under One Roof</div>
+        <div class="card-grid">
+            <div class="s-card"><div class="s-card-icon"><i class="fas fa-headset"></i></div><div class="s-card-t">Call Center &amp; Customer Support</div><div class="s-card-p">Inbound &amp; outbound calls, omni-channel support, 24/7 coverage, escalation management.</div></div>
+            <div class="s-card"><div class="s-card-icon"><i class="fas fa-user-tie"></i></div><div class="s-card-t">Virtual Assistants</div><div class="s-card-p">Executive VAs, scheduling, inbox management, research, social media &amp; admin tasks.</div></div>
+            <div class="s-card"><div class="s-card-icon"><i class="fas fa-laptop-code"></i></div><div class="s-card-t">Technical Support</div><div class="s-card-p">Tier 1–3 IT help desk, remote troubleshooting, SaaS support, software onboarding.</div></div>
+            <div class="s-card"><div class="s-card-icon"><i class="fas fa-chart-line"></i></div><div class="s-card-t">Lead Generation &amp; Sales</div><div class="s-card-p">Qualified leads, cold outreach, appointment setting, CRM management.</div></div>
+            <div class="s-card"><div class="s-card-icon"><i class="fas fa-file-alt"></i></div><div class="s-card-t">Back-Office Processing</div><div class="s-card-p">Data entry, document processing, order management, payroll support, invoicing.</div></div>
+            <div class="s-card"><div class="s-card-icon"><i class="fas fa-language"></i></div><div class="s-card-t">Translation &amp; Transcription</div><div class="s-card-p">40+ languages, legal &amp; medical docs, audio/video transcription, subtitling.</div></div>
+        </div>
+    </div>
+    <div class="s-ft"><div class="s-ft-l">PIONEER <b>OUTSOURCING BPO</b></div><div class="s-ft-c">hello@pioneeroutsourcingbpo.com &nbsp;|&nbsp; +254 111 562 567</div><div class="s-ft-r">Confidential</div></div>
+</div>
+</div>
 
-                <!-- ═══ SLIDE 4 — WHY PIONEER ═══ -->
-                <div class="slide" id="sl3">
-                <div class="s" style="background:#07111F;">
-                    <div class="s-bar"></div>
-                    <div class="s-hd">
-                        <div class="s-hd-logo"><img src="logo.png" alt="Pioneer Outsourcing BPO"></div>
-                        <div class="s-hd-title">Why Choose Pioneer</div>
-                        <div class="s-hd-num">4 / 10</div>
-                    </div>
-                    <div class="s-bd">
-                    <div class="two-col">
-                        <div class="col">
-                            <div class="s-tag">Our Edge</div>
-                            <div class="s-h2">Why Businesses Choose Pioneer Over the Rest</div>
-                            <div class="s-rule"></div>
-                            <div class="check-list">
-                                <div class="check-item"><div class="ci"></div><span><b style="color:#fff;">40–60% cost savings</b> vs. USA/UK equivalent</span></div>
-                                <div class="check-item"><div class="ci"></div>Native English agents — zero accent barrier</div>
-                                <div class="check-item"><div class="ci"></div>Go-live in <b style="color:#fff;">5–7 business days</b></div>
-                                <div class="check-item"><div class="ci"></div>Dedicated Account Manager &amp; QA team per client</div>
-                                <div class="check-item"><div class="ci"></div>Salesforce, HubSpot, Zendesk, Freshdesk &amp; more</div>
-                                <div class="check-item"><div class="ci"></div>GDPR-compliant &amp; ISO-aligned processes</div>
-                                <div class="check-item"><div class="ci"></div>Flexible — scale up or down anytime, no penalties</div>
-                            </div>
-                        </div>
-                        <div class="col-div"></div>
-                        <div class="col">
-                            <div class="s-tag">Cost Comparison</div>
-                            <div class="s-h2" style="font-size:clamp(0.75rem,1.7vw,1.1rem);margin-bottom:5%;">Pioneer vs. Western Alternatives</div>
-                            <div class="cost-bar">
-                                <div class="cb-row"><div class="cb-lbl">USA / Canada</div><div class="cb-bg"><div class="cb-fill" style="width:100%;background:rgba(255,100,100,0.45);"></div></div><div class="cb-v" style="color:rgba(255,120,120,0.9);">$25–45/hr</div></div>
-                                <div class="cb-row"><div class="cb-lbl">UK / Europe</div><div class="cb-bg"><div class="cb-fill" style="width:82%;background:rgba(255,160,60,0.45);"></div></div><div class="cb-v" style="color:rgba(255,170,80,0.9);">$20–35/hr</div></div>
-                                <div class="cb-row"><div class="cb-lbl">India / Philippines</div><div class="cb-bg"><div class="cb-fill" style="width:42%;background:rgba(210,210,80,0.45);"></div></div><div class="cb-v" style="color:rgba(210,210,80,0.9);">$8–14/hr</div></div>
-                                <div class="cb-row"><div class="cb-lbl hl">Pioneer BPO</div><div class="cb-bg"><div class="cb-fill" style="width:28%;background:linear-gradient(90deg,var(--gold),var(--gold2));"></div></div><div class="cb-v" style="color:var(--gold);">$6–12/hr</div></div>
-                            </div>
-                            <div class="hi-box" style="margin-top:5%;">
-                                <b>Bottom line:</b> Enterprise-grade quality. World-class talent. Fraction of the cost.
-                            </div>
-                        </div>
-                    </div>
-                    </div>
-                    <div class="s-ft">
-                        <div class="s-ft-l">PIONEER <b>OUTSOURCING BPO</b></div>
-                        <div class="s-ft-c">hello@pioneeroutsourcingbpo.com &nbsp;&bull;&nbsp; +254 111 562 567</div>
-                        <div class="s-ft-r">Confidential</div>
-                    </div>
-                </div>
-                </div>
+<!-- ═══ SLIDE 4 — WHY PIONEER ═══ -->
+<div class="slide" id="sl3">
+<div class="s" style="background:#071320;">
+    <div class="s-bar"></div>
+    <div class="s-hd">
+        <div class="s-hd-logo"><img src="logo.png" alt="Pioneer Outsourcing BPO"></div>
+        <div class="s-hd-title">Why Choose Pioneer</div>
+        <div class="s-hd-num">4 / 10</div>
+    </div>
+    <div class="s-bd">
+    <div class="two-col">
+        <div class="col">
+            <div class="s-tag">Our Edge</div>
+            <div class="s-h2">Why Businesses Choose Pioneer</div>
+            <div class="s-rule"></div>
+            <div class="c-list">
+                <div class="c-item"><div class="c-dot"></div><span><b style="color:#fff;">40–60% cost savings</b> vs. USA/UK equivalent</span></div>
+                <div class="c-item"><div class="c-dot"></div>Native English agents — zero accent barrier</div>
+                <div class="c-item"><div class="c-dot"></div>Go-live in <b style="color:#fff;">5–7 business days</b></div>
+                <div class="c-item"><div class="c-dot"></div>Dedicated Account Manager &amp; QA team per client</div>
+                <div class="c-item"><div class="c-dot"></div>Salesforce, HubSpot, Zendesk, Freshdesk &amp; more</div>
+                <div class="c-item"><div class="c-dot"></div>GDPR-compliant &amp; ISO-aligned processes</div>
+                <div class="c-item"><div class="c-dot"></div>Flexible — scale up or down anytime, no penalties</div>
+            </div>
+        </div>
+        <div class="col-div"></div>
+        <div class="col">
+            <div class="s-tag">Cost Comparison</div>
+            <div style="font-size:16px;font-weight:700;color:#fff;margin-bottom:16px;">Pioneer vs. Western Alternatives</div>
+            <div class="cost-list">
+                <div class="cb-row"><div class="cb-lbl">USA / Canada</div><div class="cb-bg"><div class="cb-fill" style="width:100%;background:rgba(255,100,100,0.5);"></div></div><div class="cb-v" style="color:rgba(255,120,120,0.9);">$25–45/hr</div></div>
+                <div class="cb-row"><div class="cb-lbl">UK / Europe</div><div class="cb-bg"><div class="cb-fill" style="width:80%;background:rgba(255,160,60,0.5);"></div></div><div class="cb-v" style="color:rgba(255,170,80,0.9);">$20–35/hr</div></div>
+                <div class="cb-row"><div class="cb-lbl">India / Philippines</div><div class="cb-bg"><div class="cb-fill" style="width:40%;background:rgba(210,210,80,0.5);"></div></div><div class="cb-v" style="color:rgba(210,210,80,0.9);">$8–14/hr</div></div>
+                <div class="cb-row"><div class="cb-lbl hl">Pioneer BPO</div><div class="cb-bg"><div class="cb-fill" style="width:26%;background:linear-gradient(90deg,#F59E0B,#D97706);"></div></div><div class="cb-v" style="color:#F59E0B;">$6–12/hr</div></div>
+            </div>
+            <div class="hi" style="margin-top:18px;"><b>Bottom line:</b> Enterprise-grade quality. World-class talent. A fraction of the cost.</div>
+        </div>
+    </div>
+    </div>
+    <div class="s-ft"><div class="s-ft-l">PIONEER <b>OUTSOURCING BPO</b></div><div class="s-ft-c">hello@pioneeroutsourcingbpo.com &nbsp;|&nbsp; +254 111 562 567</div><div class="s-ft-r">Confidential</div></div>
+</div>
+</div>
 
-                <!-- ═══ SLIDE 5 — STATS ═══ -->
-                <div class="slide" id="sl4">
-                <div class="s" style="background:linear-gradient(135deg,#07111F 0%,#0B2030 100%);">
-                    <div class="s-bar"></div>
-                    <div class="s-hd">
-                        <div class="s-hd-logo"><img src="logo.png" alt="Pioneer Outsourcing BPO"></div>
-                        <div class="s-hd-title">Performance &amp; Scale</div>
-                        <div class="s-hd-num">5 / 10</div>
-                    </div>
-                    <div class="s-bd" style="justify-content:center;">
-                        <div style="text-align:center;margin-bottom:3%;">
-                            <div class="s-tag" style="margin:0 auto 2.5%;">By the Numbers</div>
-                            <div class="s-h2">Results That Speak for Themselves</div>
-                        </div>
-                        <div class="stat-grid">
-                            <div class="stat-card"><div class="stat-v">200+</div><div class="stat-l">Global Clients Served</div></div>
-                            <div class="stat-card"><div class="stat-v">98%</div><div class="stat-l">Client Satisfaction Rate</div></div>
-                            <div class="stat-card"><div class="stat-v">24/7</div><div class="stat-l">Round-the-Clock Operations</div></div>
-                            <div class="stat-card"><div class="stat-v">&lt;20s</div><div class="stat-l">Average Speed of Answer</div></div>
-                        </div>
-                        <div class="mini-row">
-                            <div class="mini-stat"><div class="mini-v">40–60%</div><div class="mini-l">Cost Savings</div></div>
-                            <div class="mini-stat"><div class="mini-v">5–7 Days</div><div class="mini-l">To Go Live</div></div>
-                            <div class="mini-stat"><div class="mini-v">99.9%</div><div class="mini-l">System Uptime</div></div>
-                            <div class="mini-stat"><div class="mini-v">92%</div><div class="mini-l">First-Contact Resolution</div></div>
-                        </div>
-                    </div>
-                    <div class="s-ft">
-                        <div class="s-ft-l">PIONEER <b>OUTSOURCING BPO</b></div>
-                        <div class="s-ft-c">hello@pioneeroutsourcingbpo.com &nbsp;&bull;&nbsp; +254 111 562 567</div>
-                        <div class="s-ft-r">Confidential</div>
-                    </div>
-                </div>
-                </div>
+<!-- ═══ SLIDE 5 — STATS ═══ -->
+<div class="slide" id="sl4">
+<div class="s" style="background:linear-gradient(135deg,#071320 0%,#0B1E30 100%);">
+    <div class="s-bar"></div>
+    <div class="s-hd">
+        <div class="s-hd-logo"><img src="logo.png" alt="Pioneer Outsourcing BPO"></div>
+        <div class="s-hd-title">Performance &amp; Scale</div>
+        <div class="s-hd-num">5 / 10</div>
+    </div>
+    <div class="s-bd" style="justify-content:center;">
+        <div style="text-align:center;margin-bottom:20px;">
+            <div class="s-tag" style="margin:0 auto 12px;">By the Numbers</div>
+            <div class="s-h2">Results That Speak for Themselves</div>
+        </div>
+        <div class="stat-grid">
+            <div class="stat-card"><div class="stat-v">200+</div><div class="stat-l">Global Clients Served</div></div>
+            <div class="stat-card"><div class="stat-v">98%</div><div class="stat-l">Client Satisfaction Rate</div></div>
+            <div class="stat-card"><div class="stat-v">24/7</div><div class="stat-l">Round-the-Clock Operations</div></div>
+            <div class="stat-card"><div class="stat-v">&lt;20s</div><div class="stat-l">Average Speed of Answer</div></div>
+        </div>
+        <div class="mini-row">
+            <div class="mini-stat"><div class="mini-v">40–60%</div><div class="mini-l">Cost Savings</div></div>
+            <div class="mini-stat"><div class="mini-v">5–7 Days</div><div class="mini-l">To Go Live</div></div>
+            <div class="mini-stat"><div class="mini-v">99.9%</div><div class="mini-l">System Uptime</div></div>
+            <div class="mini-stat"><div class="mini-v">92%</div><div class="mini-l">First-Contact Resolution</div></div>
+        </div>
+    </div>
+    <div class="s-ft"><div class="s-ft-l">PIONEER <b>OUTSOURCING BPO</b></div><div class="s-ft-c">hello@pioneeroutsourcingbpo.com &nbsp;|&nbsp; +254 111 562 567</div><div class="s-ft-r">Confidential</div></div>
+</div>
+</div>
 
-                <!-- ═══ SLIDE 6 — PRICING ═══ -->
-                <div class="slide" id="sl5">
-                <div class="s" style="background:#07111F;">
-                    <div class="s-bar"></div>
-                    <div class="s-hd">
-                        <div class="s-hd-logo"><img src="logo.png" alt="Pioneer Outsourcing BPO"></div>
-                        <div class="s-hd-title">Pricing</div>
-                        <div class="s-hd-num">6 / 10</div>
-                    </div>
-                    <div class="s-bd">
-                        <div class="s-tag">Transparent Pricing</div>
-                        <div class="s-h2">Flexible Plans Built Around Your Needs</div>
-                        <div class="pricing-row">
-                            <div class="tier">
-                                <div class="tier-n">Starter</div>
-                                <div class="tier-p">$6–8<sub>/agent/hr</sub></div>
-                                <ul class="tier-f">
-                                    <li>1–4 agents</li>
-                                    <li>Business hours (8h/day)</li>
-                                    <li>Email + chat support</li>
-                                    <li>Weekly reporting</li>
-                                    <li>Basic QA monitoring</li>
-                                </ul>
-                            </div>
-                            <div class="tier hot">
-                                <div class="tier-badge">Most Popular</div>
-                                <div class="tier-n">Growth</div>
-                                <div class="tier-p">$8–10<sub>/agent/hr</sub></div>
-                                <ul class="tier-f">
-                                    <li>5–14 agents</li>
-                                    <li>Extended hours (16h/day)</li>
-                                    <li>Omni-channel support</li>
-                                    <li>Daily reporting &amp; analytics</li>
-                                    <li>Dedicated Account Manager</li>
-                                    <li>SLA guarantees included</li>
-                                </ul>
-                            </div>
-                            <div class="tier">
-                                <div class="tier-n">Enterprise</div>
-                                <div class="tier-p">$10–12<sub>/agent/hr</sub></div>
-                                <ul class="tier-f">
-                                    <li>15+ agents</li>
-                                    <li>Full 24/7 coverage</li>
-                                    <li>All channels + custom flows</li>
-                                    <li>Real-time dashboards</li>
-                                    <li>Dedicated QA team</li>
-                                    <li>Custom SLAs &amp; integrations</li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="hi-box" style="margin-top:2.5%;">
-                            All plans include setup, training &amp; compliance documentation. Custom quotes available for specialist services. No hidden fees — ever.
-                        </div>
-                    </div>
-                    <div class="s-ft">
-                        <div class="s-ft-l">PIONEER <b>OUTSOURCING BPO</b></div>
-                        <div class="s-ft-c">hello@pioneeroutsourcingbpo.com &nbsp;&bull;&nbsp; +254 111 562 567</div>
-                        <div class="s-ft-r">Confidential</div>
-                    </div>
-                </div>
-                </div>
+<!-- ═══ SLIDE 6 — PRICING ═══ -->
+<div class="slide" id="sl5">
+<div class="s" style="background:#071320;">
+    <div class="s-bar"></div>
+    <div class="s-hd">
+        <div class="s-hd-logo"><img src="logo.png" alt="Pioneer Outsourcing BPO"></div>
+        <div class="s-hd-title">Pricing</div>
+        <div class="s-hd-num">6 / 10</div>
+    </div>
+    <div class="s-bd">
+        <div class="s-tag">Transparent Pricing</div>
+        <div class="s-h2">Flexible Plans Built Around Your Needs</div>
+        <div class="tier-row">
+            <div class="tier">
+                <div class="tier-n">Starter</div>
+                <div class="tier-p">$6–8<sub>/agent/hr</sub></div>
+                <ul class="tier-f"><li>1–4 agents</li><li>Business hours (8h/day)</li><li>Email + chat support</li><li>Weekly reporting</li><li>Basic QA monitoring</li></ul>
+            </div>
+            <div class="tier hot">
+                <div class="tier-badge">Most Popular</div>
+                <div class="tier-n">Growth</div>
+                <div class="tier-p">$8–10<sub>/agent/hr</sub></div>
+                <ul class="tier-f"><li>5–14 agents</li><li>Extended hours (16h/day)</li><li>Omni-channel support</li><li>Daily reporting &amp; analytics</li><li>Dedicated Account Manager</li><li>SLA guarantees included</li></ul>
+            </div>
+            <div class="tier">
+                <div class="tier-n">Enterprise</div>
+                <div class="tier-p">$10–12<sub>/agent/hr</sub></div>
+                <ul class="tier-f"><li>15+ agents</li><li>Full 24/7 coverage</li><li>All channels + custom flows</li><li>Real-time dashboards</li><li>Dedicated QA team</li><li>Custom SLAs &amp; integrations</li></ul>
+            </div>
+        </div>
+        <div class="hi" style="margin-top:14px;">All plans include setup, training &amp; compliance documentation. Custom quotes for specialist services. No hidden fees — ever.</div>
+    </div>
+    <div class="s-ft"><div class="s-ft-l">PIONEER <b>OUTSOURCING BPO</b></div><div class="s-ft-c">hello@pioneeroutsourcingbpo.com &nbsp;|&nbsp; +254 111 562 567</div><div class="s-ft-r">Confidential</div></div>
+</div>
+</div>
 
-                <!-- ═══ SLIDE 7 — ONBOARDING ═══ -->
-                <div class="slide" id="sl6">
-                <div class="s" style="background:#07111F;">
-                    <div class="s-bar"></div>
-                    <div class="s-hd">
-                        <div class="s-hd-logo"><img src="logo.png" alt="Pioneer Outsourcing BPO"></div>
-                        <div class="s-hd-title">Onboarding Process</div>
-                        <div class="s-hd-num">7 / 10</div>
-                    </div>
-                    <div class="s-bd">
-                        <div class="s-tag">Fast &amp; Seamless</div>
-                        <div class="s-h2">Go Live in 5–7 Business Days</div>
-                        <div class="s-rule"></div>
-                        <div class="timeline">
-                            <div class="t-step"><div class="t-num">1</div><div class="t-title">Discovery Call</div><div class="t-text">Discuss needs, volume, channels &amp; goals. Free consultation, no commitment.</div></div>
-                            <div class="t-step"><div class="t-num">2</div><div class="t-title">Custom Proposal</div><div class="t-text">Tailored plan, pricing &amp; SLA terms delivered within 24 hours.</div></div>
-                            <div class="t-step"><div class="t-num">3</div><div class="t-title">Agreement &amp; Setup</div><div class="t-text">Contract, NDA, access credentials &amp; systems configuration.</div></div>
-                            <div class="t-step"><div class="t-num">4</div><div class="t-title">Agent Training</div><div class="t-text">Brand voice, product knowledge, scripts &amp; quality assurance setup.</div></div>
-                            <div class="t-step"><div class="t-num">5</div><div class="t-title">Go Live</div><div class="t-text">Full operations begin. Daily reports &amp; dedicated support from day one.</div></div>
-                        </div>
-                        <div class="mini-row" style="margin-top:4%;">
-                            <div class="mini-stat"><div class="mini-v">24 hrs</div><div class="mini-l">Proposal Turnaround</div></div>
-                            <div class="mini-stat"><div class="mini-v">5–7 Days</div><div class="mini-l">Full Go-Live</div></div>
-                            <div class="mini-stat"><div class="mini-v">$0</div><div class="mini-l">Hidden Fees</div></div>
-                            <div class="mini-stat"><div class="mini-v">1:1</div><div class="mini-l">Account Manager</div></div>
-                        </div>
-                    </div>
-                    <div class="s-ft">
-                        <div class="s-ft-l">PIONEER <b>OUTSOURCING BPO</b></div>
-                        <div class="s-ft-c">hello@pioneeroutsourcingbpo.com &nbsp;&bull;&nbsp; +254 111 562 567</div>
-                        <div class="s-ft-r">Confidential</div>
-                    </div>
-                </div>
-                </div>
+<!-- ═══ SLIDE 7 — ONBOARDING ═══ -->
+<div class="slide" id="sl6">
+<div class="s" style="background:#071320;">
+    <div class="s-bar"></div>
+    <div class="s-hd">
+        <div class="s-hd-logo"><img src="logo.png" alt="Pioneer Outsourcing BPO"></div>
+        <div class="s-hd-title">Onboarding Process</div>
+        <div class="s-hd-num">7 / 10</div>
+    </div>
+    <div class="s-bd">
+        <div class="s-tag">Fast &amp; Seamless</div>
+        <div class="s-h2">Go Live in 5–7 Business Days</div>
+        <div class="s-rule"></div>
+        <div class="timeline">
+            <div class="t-step"><div class="t-num">1</div><div class="t-title">Discovery Call</div><div class="t-text">Discuss needs, volume, channels &amp; goals. Free consultation, no commitment.</div></div>
+            <div class="t-step"><div class="t-num">2</div><div class="t-title">Custom Proposal</div><div class="t-text">Tailored plan, pricing &amp; SLA terms delivered within 24 hours.</div></div>
+            <div class="t-step"><div class="t-num">3</div><div class="t-title">Agreement &amp; Setup</div><div class="t-text">Contract, NDA, access credentials &amp; systems configuration.</div></div>
+            <div class="t-step"><div class="t-num">4</div><div class="t-title">Agent Training</div><div class="t-text">Brand voice, product knowledge, scripts &amp; QA setup.</div></div>
+            <div class="t-step"><div class="t-num">5</div><div class="t-title">Go Live</div><div class="t-text">Full operations begin. Daily reports &amp; dedicated support from day one.</div></div>
+        </div>
+        <div class="mini-row">
+            <div class="mini-stat"><div class="mini-v">24 hrs</div><div class="mini-l">Proposal Turnaround</div></div>
+            <div class="mini-stat"><div class="mini-v">5–7 Days</div><div class="mini-l">Full Go-Live</div></div>
+            <div class="mini-stat"><div class="mini-v">$0</div><div class="mini-l">Hidden Fees</div></div>
+            <div class="mini-stat"><div class="mini-v">1:1</div><div class="mini-l">Account Manager</div></div>
+        </div>
+    </div>
+    <div class="s-ft"><div class="s-ft-l">PIONEER <b>OUTSOURCING BPO</b></div><div class="s-ft-c">hello@pioneeroutsourcingbpo.com &nbsp;|&nbsp; +254 111 562 567</div><div class="s-ft-r">Confidential</div></div>
+</div>
+</div>
 
-                <!-- ═══ SLIDE 8 — SECURITY ═══ -->
-                <div class="slide" id="sl7">
-                <div class="s" style="background:#07111F;">
-                    <div class="s-bar"></div>
-                    <div class="s-hd">
-                        <div class="s-hd-logo"><img src="logo.png" alt="Pioneer Outsourcing BPO"></div>
-                        <div class="s-hd-title">Security &amp; Compliance</div>
-                        <div class="s-hd-num">8 / 10</div>
-                    </div>
-                    <div class="s-bd">
-                    <div class="two-col">
-                        <div class="col">
-                            <div class="s-tag">Data Security</div>
-                            <div class="s-h2">Enterprise-Grade Protection for Your Data</div>
-                            <div class="s-rule"></div>
-                            <div class="check-list">
-                                <div class="check-item"><div class="ci"></div>GDPR &amp; CCPA compliant data handling</div>
-                                <div class="check-item"><div class="ci"></div>AES-256 encryption at rest &amp; in transit</div>
-                                <div class="check-item"><div class="ci"></div>Role-based access control (RBAC)</div>
-                                <div class="check-item"><div class="ci"></div>Multi-factor authentication on all systems</div>
-                                <div class="check-item"><div class="ci"></div>Signed NDA &amp; DPA with every client</div>
-                                <div class="check-item"><div class="ci"></div>Regular audits &amp; penetration testing</div>
-                                <div class="check-item"><div class="ci"></div>Zero-tolerance data breach policy</div>
-                            </div>
-                        </div>
-                        <div class="col-div"></div>
-                        <div class="col">
-                            <div class="s-tag">Compliance Standards</div>
-                            <div style="display:flex;flex-direction:column;gap:2.8%;margin-top:1%;">
-                                <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:8px;padding:3.5% 4%;display:flex;align-items:center;gap:4%;">
-                                    <div style="width:clamp(26px,2.8vw,36px);height:clamp(26px,2.8vw,36px);background:rgba(245,158,11,0.1);border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:clamp(0.55rem,1.1vw,0.75rem);color:var(--gold);flex-shrink:0;"><i class="fas fa-shield-alt"></i></div>
-                                    <div><div style="font-size:clamp(0.48rem,0.95vw,0.65rem);font-weight:700;color:#fff;margin-bottom:2px;">GDPR</div><div style="font-size:clamp(0.4rem,0.75vw,0.52rem);color:rgba(255,255,255,0.4);">EU General Data Protection Regulation</div></div>
-                                </div>
-                                <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:8px;padding:3.5% 4%;display:flex;align-items:center;gap:4%;">
-                                    <div style="width:clamp(26px,2.8vw,36px);height:clamp(26px,2.8vw,36px);background:rgba(245,158,11,0.1);border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:clamp(0.55rem,1.1vw,0.75rem);color:var(--gold);flex-shrink:0;"><i class="fas fa-certificate"></i></div>
-                                    <div><div style="font-size:clamp(0.48rem,0.95vw,0.65rem);font-weight:700;color:#fff;margin-bottom:2px;">ISO 9001 Aligned</div><div style="font-size:clamp(0.4rem,0.75vw,0.52rem);color:rgba(255,255,255,0.4);">Quality Management Systems</div></div>
-                                </div>
-                                <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:8px;padding:3.5% 4%;display:flex;align-items:center;gap:4%;">
-                                    <div style="width:clamp(26px,2.8vw,36px);height:clamp(26px,2.8vw,36px);background:rgba(245,158,11,0.1);border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:clamp(0.55rem,1.1vw,0.75rem);color:var(--gold);flex-shrink:0;"><i class="fas fa-lock"></i></div>
-                                    <div><div style="font-size:clamp(0.48rem,0.95vw,0.65rem);font-weight:700;color:#fff;margin-bottom:2px;">PCI-DSS Aware</div><div style="font-size:clamp(0.4rem,0.75vw,0.52rem);color:rgba(255,255,255,0.4);">Payment Card Industry Standards</div></div>
-                                </div>
-                                <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:8px;padding:3.5% 4%;display:flex;align-items:center;gap:4%;">
-                                    <div style="width:clamp(26px,2.8vw,36px);height:clamp(26px,2.8vw,36px);background:rgba(245,158,11,0.1);border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:clamp(0.55rem,1.1vw,0.75rem);color:var(--gold);flex-shrink:0;"><i class="fas fa-user-shield"></i></div>
-                                    <div><div style="font-size:clamp(0.48rem,0.95vw,0.65rem);font-weight:700;color:#fff;margin-bottom:2px;">CCPA Compliant</div><div style="font-size:clamp(0.4rem,0.75vw,0.52rem);color:rgba(255,255,255,0.4);">California Consumer Privacy Act</div></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    </div>
-                    <div class="s-ft">
-                        <div class="s-ft-l">PIONEER <b>OUTSOURCING BPO</b></div>
-                        <div class="s-ft-c">hello@pioneeroutsourcingbpo.com &nbsp;&bull;&nbsp; +254 111 562 567</div>
-                        <div class="s-ft-r">Confidential</div>
-                    </div>
-                </div>
-                </div>
+<!-- ═══ SLIDE 8 — SECURITY ═══ -->
+<div class="slide" id="sl7">
+<div class="s" style="background:#071320;">
+    <div class="s-bar"></div>
+    <div class="s-hd">
+        <div class="s-hd-logo"><img src="logo.png" alt="Pioneer Outsourcing BPO"></div>
+        <div class="s-hd-title">Security &amp; Compliance</div>
+        <div class="s-hd-num">8 / 10</div>
+    </div>
+    <div class="s-bd">
+    <div class="two-col">
+        <div class="col">
+            <div class="s-tag">Data Security</div>
+            <div class="s-h2">Enterprise-Grade Protection</div>
+            <div class="s-rule"></div>
+            <div class="c-list">
+                <div class="c-item"><div class="c-dot"></div>GDPR &amp; CCPA compliant data handling</div>
+                <div class="c-item"><div class="c-dot"></div>AES-256 encryption at rest &amp; in transit</div>
+                <div class="c-item"><div class="c-dot"></div>Role-based access control (RBAC)</div>
+                <div class="c-item"><div class="c-dot"></div>Multi-factor authentication on all systems</div>
+                <div class="c-item"><div class="c-dot"></div>Signed NDA &amp; DPA with every client</div>
+                <div class="c-item"><div class="c-dot"></div>Regular audits &amp; penetration testing</div>
+                <div class="c-item"><div class="c-dot"></div>Zero-tolerance data breach policy</div>
+            </div>
+        </div>
+        <div class="col-div"></div>
+        <div class="col">
+            <div class="s-tag">Compliance Standards</div>
+            <div class="comp-list" style="margin-top:8px;">
+                <div class="comp-item"><div class="comp-ic"><i class="fas fa-shield-alt"></i></div><div><div class="comp-t">GDPR</div><div class="comp-s">EU General Data Protection Regulation</div></div></div>
+                <div class="comp-item"><div class="comp-ic"><i class="fas fa-certificate"></i></div><div><div class="comp-t">ISO 9001 Aligned</div><div class="comp-s">Quality Management Systems</div></div></div>
+                <div class="comp-item"><div class="comp-ic"><i class="fas fa-lock"></i></div><div><div class="comp-t">PCI-DSS Aware</div><div class="comp-s">Payment Card Industry Standards</div></div></div>
+                <div class="comp-item"><div class="comp-ic"><i class="fas fa-user-shield"></i></div><div><div class="comp-t">CCPA Compliant</div><div class="comp-s">California Consumer Privacy Act</div></div></div>
+            </div>
+        </div>
+    </div>
+    </div>
+    <div class="s-ft"><div class="s-ft-l">PIONEER <b>OUTSOURCING BPO</b></div><div class="s-ft-c">hello@pioneeroutsourcingbpo.com &nbsp;|&nbsp; +254 111 562 567</div><div class="s-ft-r">Confidential</div></div>
+</div>
+</div>
 
-                <!-- ═══ SLIDE 9 — SLAs ═══ -->
-                <div class="slide" id="sl8">
-                <div class="s" style="background:#07111F;">
-                    <div class="s-bar"></div>
-                    <div class="s-hd">
-                        <div class="s-hd-logo"><img src="logo.png" alt="Pioneer Outsourcing BPO"></div>
-                        <div class="s-hd-title">SLAs &amp; Performance</div>
-                        <div class="s-hd-num">9 / 10</div>
-                    </div>
-                    <div class="s-bd">
-                    <div class="two-col">
-                        <div class="col">
-                            <div class="s-tag">Service Level Agreements</div>
-                            <div class="s-h2">Guaranteed Performance Standards</div>
-                            <div class="s-rule"></div>
-                            <div class="sla-list" style="margin-top:3%;">
-                                <div class="sla-row"><div class="sla-lbl">System Uptime</div><div class="sla-bar-bg"><div class="sla-bar" style="width:99.9%"></div></div><div class="sla-val">99.9%</div></div>
-                                <div class="sla-row"><div class="sla-lbl">Answer Speed</div><div class="sla-bar-bg"><div class="sla-bar" style="width:96%"></div></div><div class="sla-val">&lt;20s</div></div>
-                                <div class="sla-row"><div class="sla-lbl">First Contact Res.</div><div class="sla-bar-bg"><div class="sla-bar" style="width:92%"></div></div><div class="sla-val">92%</div></div>
-                                <div class="sla-row"><div class="sla-lbl">CSAT Score</div><div class="sla-bar-bg"><div class="sla-bar" style="width:98%"></div></div><div class="sla-val">4.9/5</div></div>
-                                <div class="sla-row"><div class="sla-lbl">Abandonment Rate</div><div class="sla-bar-bg"><div class="sla-bar" style="width:97%"></div></div><div class="sla-val">&lt;3%</div></div>
-                                <div class="sla-row"><div class="sla-lbl">QA Score</div><div class="sla-bar-bg"><div class="sla-bar" style="width:95%"></div></div><div class="sla-val">95%+</div></div>
-                            </div>
-                        </div>
-                        <div class="col-div"></div>
-                        <div class="col">
-                            <div class="s-tag">Reporting &amp; QA</div>
-                            <div class="s-h2" style="font-size:clamp(0.75rem,1.7vw,1.1rem);margin-bottom:4%;">Transparency You Can Measure</div>
-                            <div class="check-list">
-                                <div class="check-item"><div class="ci"></div>Real-time dashboards via client portal</div>
-                                <div class="check-item"><div class="ci"></div>Daily, weekly &amp; monthly performance reports</div>
-                                <div class="check-item"><div class="ci"></div>100% call recording &amp; QA scoring</div>
-                                <div class="check-item"><div class="ci"></div>CSAT surveys after every interaction</div>
-                                <div class="check-item"><div class="ci"></div>SLA breach escalation within 30 minutes</div>
-                                <div class="check-item"><div class="ci"></div>Monthly business reviews with your AM</div>
-                                <div class="check-item"><div class="ci"></div>Customisable KPI tracking per client</div>
-                            </div>
-                        </div>
-                    </div>
-                    </div>
-                    <div class="s-ft">
-                        <div class="s-ft-l">PIONEER <b>OUTSOURCING BPO</b></div>
-                        <div class="s-ft-c">hello@pioneeroutsourcingbpo.com &nbsp;&bull;&nbsp; +254 111 562 567</div>
-                        <div class="s-ft-r">Confidential</div>
-                    </div>
-                </div>
-                </div>
+<!-- ═══ SLIDE 9 — SLAs ═══ -->
+<div class="slide" id="sl8">
+<div class="s" style="background:#071320;">
+    <div class="s-bar"></div>
+    <div class="s-hd">
+        <div class="s-hd-logo"><img src="logo.png" alt="Pioneer Outsourcing BPO"></div>
+        <div class="s-hd-title">SLAs &amp; Performance</div>
+        <div class="s-hd-num">9 / 10</div>
+    </div>
+    <div class="s-bd">
+    <div class="two-col">
+        <div class="col">
+            <div class="s-tag">Service Level Agreements</div>
+            <div class="s-h2">Guaranteed Performance</div>
+            <div class="s-rule"></div>
+            <div class="sla-list">
+                <div class="sla-row"><div class="sla-lbl">System Uptime</div><div class="sla-bg"><div class="sla-bar" style="width:99.9%"></div></div><div class="sla-val">99.9%</div></div>
+                <div class="sla-row"><div class="sla-lbl">Answer Speed</div><div class="sla-bg"><div class="sla-bar" style="width:96%"></div></div><div class="sla-val">&lt;20s</div></div>
+                <div class="sla-row"><div class="sla-lbl">First Contact Res.</div><div class="sla-bg"><div class="sla-bar" style="width:92%"></div></div><div class="sla-val">92%</div></div>
+                <div class="sla-row"><div class="sla-lbl">CSAT Score</div><div class="sla-bg"><div class="sla-bar" style="width:98%"></div></div><div class="sla-val">4.9/5</div></div>
+                <div class="sla-row"><div class="sla-lbl">Abandonment Rate</div><div class="sla-bg"><div class="sla-bar" style="width:97%"></div></div><div class="sla-val">&lt;3%</div></div>
+                <div class="sla-row"><div class="sla-lbl">QA Score</div><div class="sla-bg"><div class="sla-bar" style="width:95%"></div></div><div class="sla-val">95%+</div></div>
+            </div>
+        </div>
+        <div class="col-div"></div>
+        <div class="col">
+            <div class="s-tag">Reporting &amp; QA</div>
+            <div style="font-size:20px;font-weight:700;color:#fff;margin-bottom:16px;">Transparency You Can Measure</div>
+            <div class="c-list">
+                <div class="c-item"><div class="c-dot"></div>Real-time dashboards via client portal</div>
+                <div class="c-item"><div class="c-dot"></div>Daily, weekly &amp; monthly performance reports</div>
+                <div class="c-item"><div class="c-dot"></div>100% call recording &amp; QA scoring</div>
+                <div class="c-item"><div class="c-dot"></div>CSAT surveys after every interaction</div>
+                <div class="c-item"><div class="c-dot"></div>SLA breach escalation within 30 minutes</div>
+                <div class="c-item"><div class="c-dot"></div>Monthly business reviews with your AM</div>
+                <div class="c-item"><div class="c-dot"></div>Customisable KPI tracking per client</div>
+            </div>
+        </div>
+    </div>
+    </div>
+    <div class="s-ft"><div class="s-ft-l">PIONEER <b>OUTSOURCING BPO</b></div><div class="s-ft-c">hello@pioneeroutsourcingbpo.com &nbsp;|&nbsp; +254 111 562 567</div><div class="s-ft-r">Confidential</div></div>
+</div>
+</div>
 
-                <!-- ═══ SLIDE 10 — CONTACT ═══ -->
-                <div class="slide" id="sl9">
-                <div class="s" style="background:linear-gradient(135deg,#07111F 0%,#0F2B3D 60%,#1A3A4F 100%);">
-                    <div class="s-bar"></div>
-                    <div style="position:absolute;right:-5%;top:-10%;width:50%;padding-top:50%;border-radius:50%;background:radial-gradient(circle,rgba(245,158,11,0.06) 0%,transparent 65%);pointer-events:none;"></div>
-                    <div class="s-hd">
-                        <div class="s-hd-logo"><img src="logo.png" alt="Pioneer Outsourcing BPO"></div>
-                        <div class="s-hd-title">Get in Touch</div>
-                        <div class="s-hd-num">10 / 10</div>
-                    </div>
-                    <div class="s-bd" style="justify-content:center;">
-                        <div style="text-align:center;margin-bottom:3%;">
-                            <div class="s-tag" style="margin:0 auto 2%;">Start Today</div>
-                            <div class="s-h1" style="font-size:clamp(1.2rem,4vw,2.6rem);">Ready to Cut Costs &amp; <em>Scale Faster?</em></div>
-                            <div class="s-p" style="max-width:50%;margin:1.5% auto 0;">Free consultation and custom quote within 24 hours. No commitment required.</div>
-                        </div>
-                        <div class="contact-grid">
-                            <div class="contact-card"><div class="contact-icon"><i class="fas fa-envelope"></i></div><div><div class="contact-lbl">Email</div><div class="contact-val">hello@pioneeroutsourcingbpo.com</div></div></div>
-                            <div class="contact-card"><div class="contact-icon"><i class="fab fa-whatsapp"></i></div><div><div class="contact-lbl">WhatsApp</div><div class="contact-val">+254 111 562 567</div></div></div>
-                            <div class="contact-card"><div class="contact-icon"><i class="fas fa-phone"></i></div><div><div class="contact-lbl">Phone</div><div class="contact-val">+254 111 562 567</div></div></div>
-                            <div class="contact-card"><div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div><div><div class="contact-lbl">Location</div><div class="contact-val">Nairobi, Kenya &mdash; Serving Global Markets</div></div></div>
-                        </div>
-                        <div style="text-align:center;margin-top:3%;">
-                            <div style="display:inline-block;background:linear-gradient(135deg,var(--gold),var(--gold2));color:#fff;padding:clamp(8px,1vw,13px) clamp(22px,3.5vw,44px);border-radius:40px;font-size:clamp(0.52rem,1.1vw,0.75rem);font-weight:700;letter-spacing:0.04em;box-shadow:0 6px 20px rgba(245,158,11,0.3);">
-                                pioneeroutsourcingbpo.com
-                            </div>
-                        </div>
-                    </div>
-                    <div class="s-ft">
-                        <div class="s-ft-l">PIONEER <b>OUTSOURCING BPO</b></div>
-                        <div class="s-ft-c">hello@pioneeroutsourcingbpo.com &nbsp;&bull;&nbsp; +254 111 562 567</div>
-                        <div class="s-ft-r">Confidential</div>
-                    </div>
-                </div>
-                </div>
+<!-- ═══ SLIDE 10 — CONTACT ═══ -->
+<div class="slide" id="sl9">
+<div class="s" style="background:linear-gradient(135deg,#071320 0%,#0F2B3D 60%,#1A3A4F 100%);">
+    <div class="s-bar"></div>
+    <div style="position:absolute;right:-60px;top:-60px;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(245,158,11,0.07) 0%,transparent 65%);pointer-events:none;"></div>
+    <div class="s-hd">
+        <div class="s-hd-logo"><img src="logo.png" alt="Pioneer Outsourcing BPO"></div>
+        <div class="s-hd-title">Get in Touch</div>
+        <div class="s-hd-num">10 / 10</div>
+    </div>
+    <div class="s-bd" style="justify-content:center;">
+        <div style="text-align:center;margin-bottom:22px;">
+            <div class="s-tag" style="margin:0 auto 12px;">Start Today</div>
+            <div class="s-h1" style="font-size:52px;">Ready to Cut Costs &amp; <em>Scale Faster?</em></div>
+            <div class="s-p" style="font-size:16px;max-width:520px;margin:10px auto 0;">Free consultation and custom quote within 24 hours. No commitment required.</div>
+        </div>
+        <div class="cont-grid">
+            <div class="cont-card"><div class="cont-icon"><i class="fas fa-envelope"></i></div><div><div class="cont-lbl">Email</div><div class="cont-val">hello@pioneeroutsourcingbpo.com</div></div></div>
+            <div class="cont-card"><div class="cont-icon"><i class="fab fa-whatsapp"></i></div><div><div class="cont-lbl">WhatsApp</div><div class="cont-val">+254 111 562 567</div></div></div>
+            <div class="cont-card"><div class="cont-icon"><i class="fas fa-phone"></i></div><div><div class="cont-lbl">Phone</div><div class="cont-val">+254 111 562 567</div></div></div>
+            <div class="cont-card"><div class="cont-icon"><i class="fas fa-map-marker-alt"></i></div><div><div class="cont-lbl">Location</div><div class="cont-val">Nairobi, Kenya &mdash; Serving Global Markets</div></div></div>
+        </div>
+        <div style="text-align:center;margin-top:20px;">
+            <span style="display:inline-block;background:linear-gradient(135deg,#F59E0B,#D97706);color:#fff;padding:12px 36px;border-radius:40px;font-size:15px;font-weight:700;letter-spacing:0.04em;box-shadow:0 6px 20px rgba(245,158,11,0.35);">pioneeroutsourcingbpo.com</span>
+        </div>
+    </div>
+    <div class="s-ft"><div class="s-ft-l">PIONEER <b>OUTSOURCING BPO</b></div><div class="s-ft-c">hello@pioneeroutsourcingbpo.com &nbsp;|&nbsp; +254 111 562 567</div><div class="s-ft-r">Confidential</div></div>
+</div>
+</div>
 
+                </div><!-- /slideVP -->
             </div><!-- /slideStage -->
 
-            <!-- DECK NAV -->
             <div id="deckNav">
                 <div class="d-nav">
                     <button class="d-btn" id="dPrev" onclick="go(-1)" disabled><i class="fas fa-chevron-left"></i></button>
                     <div class="d-dots" id="dDots"></div>
                     <button class="d-btn" id="dNext" onclick="go(1)"><i class="fas fa-chevron-right"></i></button>
                 </div>
-                <div class="d-counter" id="dCtr">Slide 1 of 10</div>
-                <button class="d-fs" onclick="fs()"><i class="fas fa-expand"></i> Fullscreen</button>
+                <div class="d-ctr" id="dCtr">Slide 1 of 10</div>
+                <button class="d-fs" onclick="goFS()"><i class="fas fa-expand"></i> Fullscreen</button>
             </div>
 
         </div><!-- /deckOuter -->
     </div><!-- /pane-pptx -->
 
-</div><!-- /viewerShell -->
+</div><!-- /shell -->
 
 <script src="global.js"></script>
 <script>
-// ── PASSWORD GATE ──────────────────────────────────
+/* ── PASSWORD GATE ── */
 (function(){
     var KEY='pio_auth_v1', gate=document.getElementById('gate');
     if(sessionStorage.getItem(KEY)==='1'){ gate.style.display='none'; return; }
-    document.getElementById('pwToggle').addEventListener('click',function(){
-        var i=document.getElementById('pwInput'),ico=document.getElementById('eyeIcon');
+    document.getElementById('pwToggle').onclick=function(){
+        var i=document.getElementById('pwInput'), ic=document.getElementById('eyeIco');
         i.type=i.type==='password'?'text':'password';
-        ico.className=i.type==='password'?'fas fa-eye':'fas fa-eye-slash';
-    });
+        ic.className=i.type==='password'?'fas fa-eye':'fas fa-eye-slash';
+    };
     function check(){
-        var v=document.getElementById('pwInput').value,err=document.getElementById('gateErr');
+        var v=document.getElementById('pwInput').value, e=document.getElementById('gErr');
         if(v==='Genesis@2030!'){
             sessionStorage.setItem(KEY,'1');
             gate.style.transition='opacity 0.4s'; gate.style.opacity='0';
             setTimeout(function(){ gate.style.display='none'; },420);
         } else {
-            err.style.display='flex';
+            e.style.display='flex';
             document.getElementById('pwInput').style.borderColor='#FC8181';
-            setTimeout(function(){ err.style.display='none'; document.getElementById('pwInput').style.borderColor=''; },3000);
+            setTimeout(function(){ e.style.display='none'; document.getElementById('pwInput').style.borderColor=''; },3000);
         }
     }
-    document.getElementById('pwBtn').addEventListener('click',check);
-    document.getElementById('pwInput').addEventListener('keydown',function(e){ if(e.key==='Enter')check(); });
+    document.getElementById('pwBtn').onclick=check;
+    document.getElementById('pwInput').onkeydown=function(e){ if(e.key==='Enter') check(); };
 })();
 
-// ── MOBILE NAV ─────────────────────────────────────
-document.getElementById('mobBtn').addEventListener('click',function(){
-    var nl=document.getElementById('navLinks'),ico=document.getElementById('menuIco');
+/* ── MOBILE NAV ── */
+document.getElementById('mobBtn').onclick=function(){
+    var nl=document.getElementById('navLinks'), ic=document.getElementById('menuIco');
     nl.classList.toggle('open');
-    ico.className=nl.classList.contains('open')?'fas fa-times':'fas fa-bars';
-});
+    ic.className=nl.classList.contains('open')?'fas fa-times':'fas fa-bars';
+};
 
-// ── TAB SWITCHING ──────────────────────────────────
-var WORD_SRC='https://view.officeapps.live.com/op/embed.aspx?src=https://pioneeroutsourcingbpo.com/PioneerOutsourcing_KnowledgeBase.docx';
-var PDF_SRC='https://view.officeapps.live.com/op/embed.aspx?src=https://pioneeroutsourcingbpo.com/PioneerOutsourcing_KnowledgeBase.pdf';
+/* ── TAB SWITCHING ── */
+var WORD='https://view.officeapps.live.com/op/embed.aspx?src=https://pioneeroutsourcingbpo.com/PioneerOutsourcing_KnowledgeBase.docx';
+var PDF='https://view.officeapps.live.com/op/embed.aspx?src=https://pioneeroutsourcingbpo.com/PioneerOutsourcing_KnowledgeBase.pdf';
 
 function switchTab(name,btn){
     document.querySelectorAll('.tab-btn').forEach(function(b){ b.classList.remove('active'); });
     document.querySelectorAll('.pane').forEach(function(p){ p.classList.remove('active'); });
     btn.classList.add('active');
     document.getElementById('pane-'+name).classList.add('active');
-    // Lazy-load document frames
     if(name==='pdf'){
-        var f=document.getElementById('frame-pdf');
-        if(f&&!f.src){ f.src=PDF_SRC; watchFrame('pdf'); }
+        var f=document.getElementById('frm-pdf');
+        if(f && f.src===''){ f.src=PDF; watch('pdf'); }
     }
+    if(name==='pptx'){ scaleSlides(); }
 }
 
-function retryFrame(name){
-    var src=name==='word'?WORD_SRC:PDF_SRC;
-    var f=document.getElementById('frame-'+name);
-    var fb=document.getElementById('fb-'+name);
+function retry(name){
+    var src=name==='word'?WORD:PDF;
+    var f=document.getElementById('frm-'+name), fb=document.getElementById('fb-'+name);
     if(fb){ fb.style.display='none'; }
     if(f){ f.style.display='block'; f.src=''; setTimeout(function(){ f.src=src; },100); }
-    watchFrame(name);
+    watch(name);
 }
 
-function watchFrame(name){
-    var f=document.getElementById('frame-'+name);
-    var fb=document.getElementById('fb-'+name);
+function watch(name){
+    var f=document.getElementById('frm-'+name), fb=document.getElementById('fb-'+name);
     if(!f||!fb) return;
     setTimeout(function(){
         try{
@@ -1023,26 +900,40 @@ function watchFrame(name){
                 f.style.display='none'; fb.style.display='flex';
             }
         }catch(e){}
-    },16000);
+    },18000);
 }
-watchFrame('word');
+watch('word');
 
-// ── SLIDE DECK ─────────────────────────────────────
+/* ── SLIDE DECK ── */
 var cur=0;
-var slides=Array.prototype.slice.call(document.querySelectorAll('#slideStage .slide'));
+var slides=Array.prototype.slice.call(document.querySelectorAll('#slideVP .slide'));
 var total=slides.length;
 
-// Build dots
+/* Build dots */
 (function(){
     var c=document.getElementById('dDots');
     slides.forEach(function(_,i){
         var d=document.createElement('button');
         d.className='d-dot'+(i===0?' on':'');
         d.title='Slide '+(i+1);
-        d.addEventListener('click',(function(n){return function(){ goTo(n); };})(i));
+        d.onclick=(function(n){ return function(){ goTo(n); }; })(i);
         c.appendChild(d);
     });
 })();
+
+/* Scale slides to fit stage */
+function scaleSlides(){
+    var stage=document.getElementById('slideStage');
+    var vp=document.getElementById('slideVP');
+    if(!stage||!vp) return;
+    var sw=stage.clientWidth, sh=stage.clientHeight;
+    var scale=Math.min(sw/1280, sh/720);
+    vp.style.transform='scale('+scale+')';
+}
+window.addEventListener('resize', scaleSlides);
+/* Scale on load and after fonts */
+window.addEventListener('load', scaleSlides);
+scaleSlides();
 
 function syncUI(){
     document.getElementById('dPrev').disabled=(cur===0);
@@ -1055,48 +946,28 @@ function goTo(idx){
     if(idx<0||idx>=total||idx===cur) return;
     var dir=idx>cur?1:-1;
     var prev=slides[cur], next=slides[idx];
-
-    // Animate out
-    prev.classList.remove('active');
-    prev.classList.add('slide-out');
-
-    // Position next off-screen, then animate in
-    next.style.transition='none';
-    next.style.opacity='0';
-    next.style.transform='translateX('+(dir*60)+'px)';
+    prev.classList.remove('active'); prev.classList.add('out');
+    next.style.transition='none'; next.style.opacity='0'; next.style.transform='translateX('+(dir*60)+'px)';
     next.classList.add('active');
-
-    requestAnimationFrame(function(){
-        requestAnimationFrame(function(){
-            next.style.transition='opacity 0.4s ease, transform 0.4s ease';
-            next.style.opacity='1';
-            next.style.transform='translateX(0)';
-        });
-    });
-
-    setTimeout(function(){
-        prev.classList.remove('slide-out');
-        prev.style.transform='';
-        prev.style.opacity='';
-        prev.style.transition='';
-    },450);
-
-    cur=idx;
-    syncUI();
+    requestAnimationFrame(function(){ requestAnimationFrame(function(){
+        next.style.transition='opacity 0.38s ease, transform 0.38s ease';
+        next.style.opacity='1'; next.style.transform='translateX(0)';
+    }); });
+    setTimeout(function(){ prev.classList.remove('out'); prev.style.cssText=''; },420);
+    cur=idx; syncUI();
 }
 
 function go(d){ goTo(cur+d); }
 
-// Keyboard
 document.addEventListener('keydown',function(e){
     if(!document.getElementById('pane-pptx').classList.contains('active')) return;
-    if(e.key==='ArrowRight'||e.key==='ArrowDown'||e.key===' '){ e.preventDefault(); go(1); }
-    if(e.key==='ArrowLeft'||e.key==='ArrowUp'){ e.preventDefault(); go(-1); }
+    if(e.key==='ArrowRight'||e.key===' '){ e.preventDefault(); go(1); }
+    if(e.key==='ArrowLeft'){ e.preventDefault(); go(-1); }
     if(e.key==='Home'){ e.preventDefault(); goTo(0); }
     if(e.key==='End'){ e.preventDefault(); goTo(total-1); }
 });
 
-// Touch
+/* Touch swipe */
 (function(){
     var stage=document.getElementById('slideStage'), sx=0;
     stage.addEventListener('touchstart',function(e){ sx=e.touches[0].clientX; },{passive:true});
@@ -1106,30 +977,24 @@ document.addEventListener('keydown',function(e){
     },{passive:true});
 })();
 
-// Fullscreen
-function fs(){
+function goFS(){
     var el=document.getElementById('deckOuter');
     if(!document.fullscreenElement&&!document.webkitFullscreenElement){
-        if(el.requestFullscreen) el.requestFullscreen();
-        else if(el.webkitRequestFullscreen) el.webkitRequestFullscreen();
+        (el.requestFullscreen||el.webkitRequestFullscreen).call(el);
     } else {
-        if(document.exitFullscreen) document.exitFullscreen();
-        else if(document.webkitExitFullscreen) document.webkitExitFullscreen();
+        (document.exitFullscreen||document.webkitExitFullscreen).call(document);
     }
 }
+document.addEventListener('fullscreenchange', scaleSlides);
+document.addEventListener('webkitfullscreenchange', scaleSlides);
 </script>
 
-<!-- Tawk.to Live Chat -->
+<!-- Tawk.to -->
 <script type="text/javascript">
-var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
-(function(){
-var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
-s1.async=true;
-s1.src='https://embed.tawk.to/6822ebce5b1e0b190f989da4/1ir5epkl5';
-s1.charset='UTF-8';
-s1.setAttribute('crossorigin','*');
-s0.parentNode.insertBefore(s1,s0);
-})();
+var Tawk_API=Tawk_API||{},Tawk_LoadStart=new Date();
+(function(){var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+s1.async=true;s1.src='https://embed.tawk.to/6822ebce5b1e0b190f989da4/1ir5epkl5';
+s1.charset='UTF-8';s1.setAttribute('crossorigin','*');s0.parentNode.insertBefore(s1,s0);})();
 </script>
 </body>
 </html>
