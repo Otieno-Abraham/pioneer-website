@@ -157,7 +157,7 @@
             color: var(--gray-600);
             font-weight: 500;
             font-size: 0.95rem;
-            transition: var(--transition-fast);
+            transition: color var(--transition-fast);
         }
 
         .nav-links a:hover {
@@ -272,7 +272,7 @@
             text-decoration: none;
             border-radius: 48px;
             font-weight: 600;
-            transition: var(--transition-base);
+            transition: transform var(--transition-base), box-shadow var(--transition-base);
             border: none;
             cursor: pointer;
         }
@@ -348,7 +348,7 @@
             height: 55px;
             width: auto;
             opacity: 0.6;
-            transition: var(--transition-fast);
+            transition: opacity var(--transition-fast), filter var(--transition-fast);
             filter: grayscale(100%);
         }
 
@@ -403,7 +403,7 @@
             background: var(--white);
             border-radius: 28px;
             padding: 36px;
-            transition: var(--transition-slow);
+            transition: transform var(--transition-slow), border-color var(--transition-slow), box-shadow var(--transition-slow);
             border: 1px solid var(--gray-100);
             box-shadow: var(--shadow-sm);
         }
@@ -453,7 +453,7 @@
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            transition: var(--transition-fast);
+            transition: gap var(--transition-fast);
         }
 
         .service-link:hover {
@@ -524,7 +524,7 @@
             padding: 36px;
             box-shadow: var(--shadow-sm);
             border: 1px solid var(--gray-100);
-            transition: var(--transition-slow);
+            transition: transform var(--transition-slow), box-shadow var(--transition-slow);
         }
 
         .testimonial-card:hover {
@@ -627,10 +627,55 @@
             color: rgba(255,255,255,0.5);
         }
 
-        .cta-form input:focus, .cta-form textarea:focus {
+        .cta-form input:focus-visible, .cta-form textarea:focus-visible {
             outline: none;
             border-color: var(--accent);
             background: rgba(255,255,255,0.15);
+            box-shadow: 0 0 0 3px var(--accent-glow), 0 0 0 1px var(--accent);
+        }
+
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+
+        .sr-only-focusable:not(:focus) {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+
+        .sr-only-focusable:focus {
+            position: fixed;
+            top: 8px;
+            left: 8px;
+            width: auto;
+            height: auto;
+            padding: 12px 20px;
+            margin: 0;
+            overflow: visible;
+            clip: auto;
+            white-space: normal;
+            background: var(--primary-dark);
+            color: white;
+            border-radius: 8px;
+            z-index: 10000;
+            font-weight: 600;
+            text-decoration: none;
+            box-shadow: var(--shadow-xl);
         }
 
         .cta-form button {
@@ -678,7 +723,7 @@
             text-decoration: none;
             margin-bottom: 12px;
             font-size: 0.9rem;
-            transition: var(--transition-fast);
+            transition: color var(--transition-fast);
         }
 
         .footer-links a:hover {
@@ -779,27 +824,28 @@
     </style>
 </head>
 <body>
+    <a href="#main" class="sr-only-focusable">Skip to main content</a>
     <nav class="navbar">
         <div class="container">
             <div class="logo-wrapper">
                 <a href="index.html" class="logo-link">
-                    <img src="logo.png" alt="Pioneer Outsourcing BPO" class="logo">
+                    <img src="logo.png" alt="Pioneer Outsourcing BPO" class="logo" width="1774" height="887">
                 </a>
             </div>
             <button class="mobile-menu-btn" id="mobileMenuBtn">
-                <i class="fas fa-bars"></i>
+                <i class="fas fa-bars" aria-hidden="true"></i>
             </button>
             <div class="nav-links" id="navLinks">
                 <a href="index.html">Home</a>
                 <a href="services.html">Services</a>
                 <a href="about.html">About</a>
                 <a href="careers.html">Careers</a>
-                <a href="#" class="nav-cta" id="ctaNavBtn">Get a Quote &rarr;</a>
+                <a href="index.html#contact-form" class="nav-cta" id="ctaNavBtn">Get a Quote &rarr;</a>
             </div>
         </div>
     </nav>
 
-    <section class="hero">
+    <section class="hero" id="main">
         <div class="container">
             <div class="hero-content">
                 <h1>Global BPO Excellence<br>From <span class="hero-highlight">Nairobi, Kenya</span></h1>
@@ -809,10 +855,10 @@
                     <a href="services.html" class="btn-outline">Explore Solutions &rarr;</a>
                 </div>
                 <div class="hero-badges">
-                    <span class="hero-badge"><i class="fas fa-check"></i> 24/7 Global Support</span>
-                    <span class="hero-badge"><i class="fas fa-check"></i> 40-60% Cost Savings</span>
-                    <span class="hero-badge"><i class="fas fa-check"></i> ISO-Certified</span>
-                    <span class="hero-badge"><i class="fas fa-check"></i> Enterprise Security</span>
+                    <span class="hero-badge"><i class="fas fa-check" aria-hidden="true"></i> 24/7 Global Support</span>
+                    <span class="hero-badge"><i class="fas fa-check" aria-hidden="true"></i> 40-60% Cost Savings</span>
+                    <span class="hero-badge"><i class="fas fa-check" aria-hidden="true"></i> ISO-Certified</span>
+                    <span class="hero-badge"><i class="fas fa-check" aria-hidden="true"></i> Enterprise Security</span>
                 </div>
             </div>
             <div class="hero-visual">
@@ -851,13 +897,13 @@
         <div class="container">
             <p class="trust-label">Trusted by leading organisations worldwide</p>
             <div class="trust-logos">
-                <img src="partner2.webp" alt="Partner">
-                <img src="partner3.png" alt="Partner">
-                <img src="partner4.webp" alt="Partner">
-                <img src="partner5.webp" alt="Partner">
-                <img src="Partner.webp" alt="Partner">
-                <img src="partner6.webp" alt="Partner">
-                <img src="partner7.webp" alt="Partner">
+                <img src="partner2.webp" alt="Partner" width="347" height="145" loading="lazy">
+                <img src="partner3.png" alt="Partner" width="310" height="162" loading="lazy">
+                <img src="partner4.webp" alt="Partner" width="225" height="225" loading="lazy">
+                <img src="partner5.webp" alt="Partner" width="225" height="225" loading="lazy">
+                <img src="Partner.webp" alt="Partner" width="658" height="257" loading="lazy">
+                <img src="partner6.webp" alt="Partner" width="225" height="225" loading="lazy">
+                <img src="partner7.webp" alt="Partner" width="382" height="132" loading="lazy">
             </div>
         </div>
     </div>
@@ -894,40 +940,40 @@
             </div>
             <div class="services-grid">
                 <div class="service-card">
-                    <div class="service-icon"><i class="fas fa-headset"></i></div>
+                    <div class="service-icon"><i class="fas fa-headset" aria-hidden="true"></i></div>
                     <h3>Call Center Services</h3>
                     <p>24/7 inbound, outbound, customer support, help desk, and order processing with US/UK English fluency.</p>
-                    <a href="call-center-services-kenya.html" class="service-link">Learn More <i class="fas fa-arrow-right"></i></a>
+                    <a href="call-center-services-kenya.html" class="service-link">Learn More <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
                 </div>
                 <div class="service-card">
-                    <div class="service-icon"><i class="fas fa-user-tie"></i></div>
+                    <div class="service-icon"><i class="fas fa-user-tie" aria-hidden="true"></i></div>
                     <h3>Virtual Assistants</h3>
                     <p>Dedicated executive, administrative, and personal assistants trained for international business standards.</p>
-                    <a href="#" class="service-link">Learn More <i class="fas fa-arrow-right"></i></a>
+                    <a href="services.html" class="service-link">Learn More <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
                 </div>
                 <div class="service-card">
-                    <div class="service-icon"><i class="fas fa-microchip"></i></div>
+                    <div class="service-icon"><i class="fas fa-microchip" aria-hidden="true"></i></div>
                     <h3>Technical Support</h3>
                     <p>Tier 1-3 IT support, troubleshooting, and help desk services for SaaS, hardware, and tech companies.</p>
-                    <a href="#" class="service-link">Learn More <i class="fas fa-arrow-right"></i></a>
+                    <a href="services.html" class="service-link">Learn More <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
                 </div>
                 <div class="service-card">
-                    <div class="service-icon"><i class="fas fa-file-invoice"></i></div>
+                    <div class="service-icon"><i class="fas fa-file-invoice" aria-hidden="true"></i></div>
                     <h3>Back Office</h3>
                     <p>Data entry, document processing, accounting, payroll, and administrative operations.</p>
-                    <a href="#" class="service-link">Learn More <i class="fas fa-arrow-right"></i></a>
+                    <a href="services.html" class="service-link">Learn More <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
                 </div>
                 <div class="service-card">
-                    <div class="service-icon"><i class="fas fa-chart-line"></i></div>
+                    <div class="service-icon"><i class="fas fa-chart-line" aria-hidden="true"></i></div>
                     <h3>Sales & Lead Gen</h3>
                     <p>Outbound sales, appointment setting, lead qualification, and market research.</p>
-                    <a href="#" class="service-link">Learn More <i class="fas fa-arrow-right"></i></a>
+                    <a href="services.html" class="service-link">Learn More <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
                 </div>
                 <div class="service-card">
-                    <div class="service-icon"><i class="fas fa-comment-dots"></i></div>
+                    <div class="service-icon"><i class="fas fa-comment-dots" aria-hidden="true"></i></div>
                     <h3>Omnichannel Support</h3>
                     <p>Seamless integration across voice, email, chat, social media, and SMS platforms.</p>
-                    <a href="#" class="service-link">Learn More <i class="fas fa-arrow-right"></i></a>
+                    <a href="services.html" class="service-link">Learn More <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
                 </div>
             </div>
         </div>
@@ -942,28 +988,28 @@
             </div>
             <div class="why-grid">
                 <div class="why-item">
-                    <div class="why-icon"><i class="fas fa-map-marker-alt"></i></div>
+                    <div class="why-icon"><i class="fas fa-map-marker-alt" aria-hidden="true"></i></div>
                     <div class="why-text">
                         <h3>Strategic Nairobi Hub</h3>
                         <p>Access top-tier English-speaking talent with favorable time zones for USA, UK, and European markets.</p>
                     </div>
                 </div>
                 <div class="why-item">
-                    <div class="why-icon"><i class="fas fa-chart-simple"></i></div>
+                    <div class="why-icon"><i class="fas fa-chart-simple" aria-hidden="true"></i></div>
                     <div class="why-text">
                         <h3>40-60% Cost Efficiency</h3>
                         <p>Dramatically reduce operational costs while maintaining or exceeding Western quality benchmarks.</p>
                     </div>
                 </div>
                 <div class="why-item">
-                    <div class="why-icon"><i class="fas fa-shield"></i></div>
+                    <div class="why-icon"><i class="fas fa-shield" aria-hidden="true"></i></div>
                     <div class="why-text">
                         <h3>Enterprise Security</h3>
                         <p>ISO-compliant facilities, GDPR-ready, NDAs, and data protection protocols for complete peace of mind.</p>
                     </div>
                 </div>
                 <div class="why-item">
-                    <div class="why-icon"><i class="fas fa-expand"></i></div>
+                    <div class="why-icon"><i class="fas fa-expand" aria-hidden="true"></i></div>
                     <div class="why-text">
                         <h3>Elastic Scalability</h3>
                         <p>Ramp up or down in days, not months. Flexible contracts aligned with your business cycles.</p>
@@ -982,21 +1028,21 @@
             </div>
             <div class="testimonials-grid">
                 <div class="testimonial-card">
-                    <p class="testimonial-text">"Pioneer transformed our customer support. We cut costs by 45% while improving response times by 60%. Their team thinks like our team."</p>
+                    <p class="testimonial-text">&ldquo;Pioneer transformed our customer support. We cut costs by 45% while improving response times by 60%. Their team thinks like our team.&rdquo;</p>
                     <div class="testimonial-author">
                         <div class="initials">OO</div>
                         <div><strong>Oliver Otieno</strong><span>Business Owner</span></div>
                     </div>
                 </div>
                 <div class="testimonial-card">
-                    <p class="testimonial-text">"The technical support quality matches our US-based team at half the cost. Pioneer is our strategic partner for growth."</p>
+                    <p class="testimonial-text">&ldquo;The technical support quality matches our US-based team at half the cost. Pioneer is our strategic partner for growth.&rdquo;</p>
                     <div class="testimonial-author">
                         <div class="initials">BO</div>
                         <div><strong>Ben Oncheri</strong><span>IT Manager</span></div>
                     </div>
                 </div>
                 <div class="testimonial-card">
-                    <p class="testimonial-text">"Pioneer's back office support streamlined our operations. We recovered 30% of our admin time to focus on core business."</p>
+                    <p class="testimonial-text">&ldquo;Pioneer&rsquo;s back office support streamlined our operations. We recovered 30% of our admin time to focus on core business.&rdquo;</p>
                     <div class="testimonial-author">
                         <div class="initials">MO</div>
                         <div><strong>Dr. Mark Odhiambo</strong><span>Healthcare Administrator</span></div>
@@ -1010,16 +1056,24 @@
     <section class="cta-section" id="contact-form">
         <div class="container">
             <h2>Ready to Transform Your Operations?</h2>
-            <p>Get a free consultation and custom pricing. This is for business inquiries only â€&ldquo; job seekers please visit our Careers page.</p>
+            <p>Get a free consultation and custom pricing. This is for business inquiries only — job seekers please visit our Careers page.</p>
             <form class="cta-form" action="https://formspree.io/f/xqadpvbq" method="POST">
                 <div style="display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 20px;">
-                    <input type="text" name="name" placeholder="Full Name *" required style="flex: 1;">
-                    <input type="email" name="email" placeholder="Email Address *" required style="flex: 1;">
+                    <div style="flex: 1;">
+                        <label for="cf-name" class="sr-only">Full Name</label>
+                        <input type="text" id="cf-name" name="name" placeholder="Full Name *" required autocomplete="name" style="width: 100%;">
+                    </div>
+                    <div style="flex: 1;">
+                        <label for="cf-email" class="sr-only">Email Address</label>
+                        <input type="email" id="cf-email" name="email" placeholder="Email Address *" required autocomplete="email" spellcheck="false" style="width: 100%;">
+                    </div>
                 </div>
                 <div style="margin-bottom: 20px;">
-                    <input type="text" name="company" placeholder="Company Name" style="width: 100%;">
+                    <label for="cf-company" class="sr-only">Company Name</label>
+                    <input type="text" id="cf-company" name="company" placeholder="Company Name" autocomplete="organization" style="width: 100%;">
                 </div>
-                <textarea name="message" placeholder="Tell us about your outsourcing needs..." rows="3" style="width: 100%; margin-bottom: 20px;"></textarea>
+                <label for="cf-message" class="sr-only">Message</label>
+                <textarea id="cf-message" name="message" placeholder="Tell us about your outsourcing needs&hellip;" rows="3" autocomplete="off" style="width: 100%; margin-bottom: 20px;"></textarea>
                 <button type="submit" class="btn-primary" style="width: 100%; justify-content: center;">Request Free Consultation &rarr;</button>
             </form>
             <p style="color: rgba(255,255,255,0.5); font-size: 0.8rem; margin-top: 20px;">For job applications, please visit our <a href="careers.html" style="color: var(--accent);">Careers page</a>.</p>
@@ -1030,7 +1084,7 @@
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-logo">
-                    <img src="logo.png" alt="Pioneer Outsourcing BPO">
+                    <img src="logo.png" alt="Pioneer Outsourcing BPO" width="1774" height="887" loading="lazy">
                     <p>Elite BPO solutions from Nairobi, delivering excellence to global enterprises.</p>
                 </div>
                 <div class="footer-links">
@@ -1043,9 +1097,9 @@
                 <div class="footer-links">
                     <h4>Services</h4>
                     <a href="call-center-services-kenya.html">Call Center Kenya</a>
-                    <a href="#">Virtual Assistants</a>
-                    <a href="#">Technical Support</a>
-                    <a href="#">Back Office</a>
+                    <a href="services.html">Virtual Assistants</a>
+                    <a href="services.html">Technical Support</a>
+                    <a href="services.html">Back Office</a>
                 </div>
                 <div class="footer-links">
                     <h4>Connect</h4>

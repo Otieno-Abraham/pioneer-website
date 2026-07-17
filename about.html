@@ -124,7 +124,7 @@
             color: var(--gray-600);
             font-weight: 500;
             font-size: 0.95rem;
-            transition: var(--transition-fast);
+            transition: color var(--transition-fast);
         }
 
         .nav-links a:hover, .nav-links a.active {
@@ -222,7 +222,7 @@
             height: 55px;
             width: auto;
             opacity: 0.6;
-            transition: var(--transition-fast);
+            transition: opacity var(--transition-fast), transform var(--transition-fast);
             object-fit: contain;
         }
 
@@ -296,7 +296,7 @@
             border-radius: 24px;
             padding: 40px;
             text-align: center;
-            transition: var(--transition-slow);
+            transition: transform var(--transition-slow), box-shadow var(--transition-slow), border-color var(--transition-slow);
             border: 1px solid var(--gray-100);
             box-shadow: var(--shadow-sm);
         }
@@ -352,7 +352,7 @@
             border-radius: 20px;
             padding: 32px 24px;
             text-align: center;
-            transition: var(--transition-slow);
+            transition: transform var(--transition-slow), box-shadow var(--transition-slow), border-color var(--transition-slow);
             border: 1px solid var(--gray-100);
             box-shadow: var(--shadow-sm);
         }
@@ -464,7 +464,7 @@
             text-decoration: none;
             border-radius: 48px;
             font-weight: 600;
-            transition: var(--transition-base);
+            transition: transform var(--transition-base), box-shadow var(--transition-base);
             border: none;
             cursor: pointer;
         }
@@ -515,7 +515,7 @@
             text-decoration: none;
             margin-bottom: 12px;
             font-size: 0.9rem;
-            transition: var(--transition-fast);
+            transition: color var(--transition-fast);
         }
 
         .footer-links a:hover {
@@ -582,33 +582,66 @@
             .stats-grid { grid-template-columns: 1fr; }
             .stat-number { font-size: 2.2rem; }
         }
+
+        .sr-only-focusable:not(:focus) {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+
+        .sr-only-focusable:focus {
+            position: fixed;
+            top: 8px;
+            left: 8px;
+            width: auto;
+            height: auto;
+            padding: 12px 20px;
+            margin: 0;
+            overflow: visible;
+            clip: auto;
+            white-space: normal;
+            background: var(--primary-dark);
+            color: white;
+            border-radius: 8px;
+            z-index: 10000;
+            font-weight: 600;
+            text-decoration: none;
+            box-shadow: var(--shadow-xl);
+        }
     </style>
 </head>
 <body>
+    <a href="#main" class="sr-only-focusable">Skip to main content</a>
     <nav class="navbar">
         <div class="container">
             <div class="logo-wrapper">
                 <a href="index.html" class="logo-link">
-                    <img src="logo.png" alt="Pioneer Outsourcing BPO" class="logo">
+                    <img src="logo.png" alt="Pioneer Outsourcing BPO" class="logo" width="1774" height="887">
                 </a>
             </div>
             <button class="mobile-menu-btn" id="mobileMenuBtn">
-                <i class="fas fa-bars"></i>
+                <i class="fas fa-bars" aria-hidden="true"></i>
             </button>
             <div class="nav-links" id="navLinks">
                 <a href="index.html">Home</a>
                 <a href="services.html">Services</a>
                 <a href="about.html" class="active">About</a>
                 <a href="careers.html">Careers</a>
-                <a href="#" class="nav-cta" id="ctaNavBtn">Get a Quote &rarr;</a>
+                <a href="index.html#contact-form" class="nav-cta" id="ctaNavBtn">Get a Quote &rarr;</a>
             </div>
         </div>
     </nav>
 
-    <section class="hero">
+    <section class="hero" id="main">
         <div class="container">
             <h1>About <span class="hero-highlight">Pioneer Outsourcing</span></h1>
-            <p>Kenya's premier BPO company delivering enterprise-grade solutions to global clients</p>
+            <p>Kenya&rsquo;s premier BPO company delivering enterprise-grade solutions to global clients</p>
         </div>
     </section>
 
@@ -616,14 +649,14 @@
         <div class="container">
             <p class="trust-label">Trusted by leading organisations worldwide</p>
             <div class="trust-logos">
-                <img src="partner2.webp" alt="Partner">
-                <img src="partner3.png" alt="Partner">
-                <img src="partner4.webp" alt="Partner">
-                <img src="partner5.webp" alt="Partner">
-                <img src="Partner.webp" alt="Partner">
-                <img src="partner6.webp" alt="Partner">
-                <img src="partner7.webp" alt="Partner">
-                <img src="partner8.png" alt="Partner">
+                <img src="partner2.webp" alt="Partner" width="347" height="145" loading="lazy">
+                <img src="partner3.png" alt="Partner" width="310" height="162" loading="lazy">
+                <img src="partner4.webp" alt="Partner" width="225" height="225" loading="lazy">
+                <img src="partner5.webp" alt="Partner" width="225" height="225" loading="lazy">
+                <img src="Partner.webp" alt="Partner" width="658" height="257" loading="lazy">
+                <img src="partner6.webp" alt="Partner" width="225" height="225" loading="lazy">
+                <img src="partner7.webp" alt="Partner" width="382" height="132" loading="lazy">
+                <img src="partner8.png" alt="Partner" width="255" height="197" loading="lazy">
             </div>
         </div>
     </div>
@@ -633,14 +666,14 @@
             <div class="section-header">
                 <span class="section-tag">OUR STORY</span>
                 <h2>From Nairobi to the World</h2>
-                <p>Building Kenya's most trusted BPO company</p>
+                <p>Building Kenya&rsquo;s most trusted BPO company</p>
             </div>
             <div class="about-content">
                 <p>Founded in Nairobi, Kenya, Pioneer Outsourcing BPO began with a vision: to deliver world-class outsourcing solutions while creating meaningful employment opportunities across East Africa. What started as a small team of passionate professionals has grown into a leading Business Process Outsourcing company serving clients across the USA, UK, Europe, and global markets.</p>
-                
-                <p>We recognized Kenya's unique advantageâ€&rdquo;a highly educated, English-fluent workforce operating in time zones that perfectly align with Western business hours. This strategic position allows us to provide 24/7 support, overnight processing, and real-time customer service that feels local to your customers worldwide.</p>
-                
-                <p>Today, we've partnered with 200+ global businesses, helping them reduce operational costs by 40-60% while maintaining or exceeding enterprise-grade quality standards. Our commitment to excellence, security, and innovation has made us the preferred BPO partner for companies seeking reliable, scalable outsourcing solutions.</p>
+
+                <p>We recognized Kenya&rsquo;s unique advantage—a highly educated, English-fluent workforce operating in time zones that perfectly align with Western business hours. This strategic position allows us to provide 24/7 support, overnight processing, and real-time customer service that feels local to your customers worldwide.</p>
+
+                <p>Today, we&rsquo;ve partnered with 200+ global businesses, helping them reduce operational costs by 40-60% while maintaining or exceeding enterprise-grade quality standards. Our commitment to excellence, security, and innovation has made us the preferred BPO partner for companies seeking reliable, scalable outsourcing solutions.</p>
             </div>
         </div>
     </section>
@@ -654,14 +687,14 @@
             </div>
             <div class="mission-grid">
                 <div class="mission-card">
-                    <div class="mission-icon"><i class="fas fa-bullseye"></i></div>
+                    <div class="mission-icon"><i class="fas fa-bullseye" aria-hidden="true"></i></div>
                     <h3>Our Mission</h3>
                     <p>To deliver exceptional outsourcing solutions that drive business growth for our clients while creating sustainable employment opportunities and fostering professional development for our team members across Kenya.</p>
                 </div>
                 <div class="mission-card">
-                    <div class="mission-icon"><i class="fas fa-eye"></i></div>
+                    <div class="mission-icon"><i class="fas fa-eye" aria-hidden="true"></i></div>
                     <h3>Our Vision</h3>
-                    <p>To be Africa's most trusted BPO partner, recognized globally for excellence, innovation, and our unwavering commitment to transforming businesses and lives through strategic outsourcing.</p>
+                    <p>To be Africa&rsquo;s most trusted BPO partner, recognized globally for excellence, innovation, and our unwavering commitment to transforming businesses and lives through strategic outsourcing.</p>
                 </div>
             </div>
         </div>
@@ -676,22 +709,22 @@
             </div>
             <div class="values-grid">
                 <div class="value-card">
-                    <div class="value-icon"><i class="fas fa-star"></i></div>
+                    <div class="value-icon"><i class="fas fa-star" aria-hidden="true"></i></div>
                     <h3>Excellence</h3>
                     <p>We deliver superior quality and exceed expectations in every interaction.</p>
                 </div>
                 <div class="value-card">
-                    <div class="value-icon"><i class="fas fa-users"></i></div>
+                    <div class="value-icon"><i class="fas fa-users" aria-hidden="true"></i></div>
                     <h3>Collaboration</h3>
-                    <p>We succeed through teamworkâ€&rdquo;with each other and with our clients.</p>
+                    <p>We succeed through teamwork—with each other and with our clients.</p>
                 </div>
                 <div class="value-card">
-                    <div class="value-icon"><i class="fas fa-lightbulb"></i></div>
+                    <div class="value-icon"><i class="fas fa-lightbulb" aria-hidden="true"></i></div>
                     <h3>Innovation</h3>
                     <p>We continuously improve our services, processes, and technology.</p>
                 </div>
                 <div class="value-card">
-                    <div class="value-icon"><i class="fas fa-shield-alt"></i></div>
+                    <div class="value-icon"><i class="fas fa-shield-alt" aria-hidden="true"></i></div>
                     <h3>Integrity</h3>
                     <p>We operate with honesty, transparency, and ethical practices.</p>
                 </div>
@@ -731,7 +764,7 @@
         <div class="container">
             <h2>Ready to Transform Your Operations?</h2>
             <p>Join 200+ businesses that scaled with Pioneer Outsourcing</p>
-            <a href="#" class="btn-primary" id="ctaBtn">Get a Free Consultation &rarr;</a>
+            <a href="index.html#contact-form" class="btn-primary" id="ctaBtn">Get a Free Consultation &rarr;</a>
         </div>
     </section>
 
@@ -739,7 +772,7 @@
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-logo">
-                    <img src="logo.png" alt="Pioneer Outsourcing BPO">
+                    <img src="logo.png" alt="Pioneer Outsourcing BPO" width="1774" height="887" loading="lazy">
                     <p>Elite BPO solutions from Nairobi, delivering excellence to global enterprises.</p>
                 </div>
                 <div class="footer-links">
