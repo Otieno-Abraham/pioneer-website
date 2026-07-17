@@ -124,7 +124,7 @@
             color: var(--gray-600);
             font-weight: 500;
             font-size: 0.95rem;
-            transition: var(--transition-fast);
+            transition: color var(--transition-fast);
         }
 
         .nav-links a:hover, .nav-links a.active {
@@ -222,7 +222,7 @@
             height: 55px;
             width: auto;
             opacity: 0.6;
-            transition: var(--transition-fast);
+            transition: opacity var(--transition-fast), transform var(--transition-fast);
             object-fit: contain;
         }
 
@@ -277,7 +277,7 @@
             background: var(--white);
             border-radius: 24px;
             padding: 32px;
-            transition: var(--transition-slow);
+            transition: transform var(--transition-slow), border-color var(--transition-slow), box-shadow var(--transition-slow);
             border: 1px solid var(--gray-100);
             box-shadow: var(--shadow-sm);
         }
@@ -349,7 +349,7 @@
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            transition: var(--transition-fast);
+            transition: gap var(--transition-fast);
         }
 
         .service-link:hover {
@@ -373,7 +373,7 @@
             border-radius: 20px;
             padding: 32px 24px;
             text-align: center;
-            transition: var(--transition-slow);
+            transition: transform var(--transition-slow), box-shadow var(--transition-slow);
             border: 1px solid var(--gray-100);
         }
 
@@ -473,10 +473,11 @@
             color: rgba(255,255,255,0.5);
         }
 
-        .cta-form input:focus, .cta-form textarea:focus, .cta-form select:focus {
+        .cta-form input:focus-visible, .cta-form textarea:focus-visible, .cta-form select:focus-visible {
             outline: none;
             border-color: var(--accent);
             background: rgba(255,255,255,0.15);
+            box-shadow: 0 0 0 3px rgba(245,158,11,0.4);
         }
 
         .btn-primary {
@@ -490,7 +491,7 @@
             text-decoration: none;
             border-radius: 48px;
             font-weight: 600;
-            transition: var(--transition-base);
+            transition: transform var(--transition-base), box-shadow var(--transition-base);
             border: none;
             cursor: pointer;
             width: 100%;
@@ -527,7 +528,7 @@
             max-width: 250px;
         }
 
-        .footer-links h4 {
+        .footer-links h3 {
             font-size: 0.9rem;
             font-weight: 600;
             text-transform: uppercase;
@@ -542,7 +543,7 @@
             text-decoration: none;
             margin-bottom: 12px;
             font-size: 0.9rem;
-            transition: var(--transition-fast);
+            transition: color var(--transition-fast);
         }
 
         .footer-links a:hover {
@@ -605,14 +606,57 @@
             .trust-logos img { height: 35px; }
             .service-card h3 { font-size: 1.2rem; }
         }
+
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+
+        .sr-only-focusable {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+            z-index: 2000;
+        }
+
+        .sr-only-focusable:focus {
+            position: fixed;
+            top: 12px;
+            left: 12px;
+            width: auto;
+            height: auto;
+            padding: 12px 20px;
+            margin: 0;
+            overflow: visible;
+            clip: auto;
+            white-space: normal;
+            background: var(--primary-dark);
+            color: white;
+            border-radius: 8px;
+            font-weight: 600;
+        }
     </style>
 </head>
 <body>
+    <a href="#main" class="sr-only-focusable">Skip to main content</a>
     <nav class="navbar">
         <div class="container">
             <div class="logo-wrapper">
                 <a href="index.html" class="logo-link">
-                    <img src="logo.png" alt="Pioneer Outsourcing BPO" class="logo">
+                    <img src="logo.png" alt="Pioneer Outsourcing BPO" class="logo" width="1774" height="887">
                 </a>
             </div>
             <button class="mobile-menu-btn" id="mobileMenuBtn">
@@ -623,12 +667,12 @@
                 <a href="services.html" class="active">Services</a>
                 <a href="about.html">About</a>
                 <a href="careers.html">Careers</a>
-                <a href="#" class="nav-cta" id="ctaNavBtn">Get a Quote &rarr;</a>
+                <a href="index.html#contact-form" class="nav-cta" id="ctaNavBtn">Get a Quote &rarr;</a>
             </div>
         </div>
     </nav>
 
-    <section class="hero">
+    <section class="hero" id="main">
         <div class="container">
             <h1>Enterprise <span class="hero-highlight">BPO Services</span></h1>
             <p>Comprehensive outsourcing solutions tailored to optimize your operations, reduce costs by 40-60%, and drive global growth</p>
@@ -639,16 +683,16 @@
         <div class="container">
             <p class="trust-label">Trusted by leading organisations worldwide</p>
             <div class="trust-logos">
-                <img src="partner2.webp" alt="Partner">
-                <img src="partner3.png" alt="Partner">
-                <img src="partner4.webp" alt="Partner">
-                <img src="partner5.webp" alt="Partner">
-                <img src="Partner.webp" alt="Partner">
-                <img src="partner6.webp" alt="Partner">
-                <img src="partner7.webp" alt="Partner">
-                <img src="partner8.png" alt="Partner">
-                <img src="partner9.png" alt="Partner">
-                <img src="partner10.png" alt="Partner">
+                <img src="partner2.webp" alt="Partner" width="347" height="145" loading="lazy">
+                <img src="partner3.png" alt="Partner" width="310" height="162" loading="lazy">
+                <img src="partner4.webp" alt="Partner" width="225" height="225" loading="lazy">
+                <img src="partner5.webp" alt="Partner" width="225" height="225" loading="lazy">
+                <img src="Partner.webp" alt="Partner" width="658" height="257" loading="lazy">
+                <img src="partner6.webp" alt="Partner" width="225" height="225" loading="lazy">
+                <img src="partner7.webp" alt="Partner" width="382" height="132" loading="lazy">
+                <img src="partner8.png" alt="Partner" width="255" height="197" loading="lazy">
+                <img src="partner9.png" alt="Partner" width="227" height="222" loading="lazy">
+                <img src="partner10.png" alt="Partner" width="28" height="21" loading="lazy">
             </div>
         </div>
     </div>
@@ -662,70 +706,70 @@
             </div>
             <div class="services-grid">
                 <div class="service-card">
-                    <div class="service-icon"><i class="fas fa-headset"></i></div>
+                    <div class="service-icon"><i class="fas fa-headset" aria-hidden="true"></i></div>
                     <h3>Call Center Services</h3>
                     <p>24/7 inbound & outbound call center operations with native-level US/UK English fluency.</p>
                     <ul class="service-features">
-                        <li><i class="fas fa-check-circle"></i> Customer Support</li>
-                        <li><i class="fas fa-check-circle"></i> Help Desk Services</li>
-                        <li><i class="fas fa-check-circle"></i> Order Processing</li>
+                        <li><i class="fas fa-check-circle" aria-hidden="true"></i> Customer Support</li>
+                        <li><i class="fas fa-check-circle" aria-hidden="true"></i> Help Desk Services</li>
+                        <li><i class="fas fa-check-circle" aria-hidden="true"></i> Order Processing</li>
                     </ul>
-                    <a href="#contact" class="service-link">Get Pricing <i class="fas fa-arrow-right"></i></a>
+                    <a href="#contact" class="service-link">Get Pricing <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
                 </div>
                 <div class="service-card">
-                    <div class="service-icon"><i class="fas fa-user-tie"></i></div>
+                    <div class="service-icon"><i class="fas fa-user-tie" aria-hidden="true"></i></div>
                     <h3>Virtual Assistants</h3>
                     <p>Dedicated executive and administrative assistants trained for international business standards.</p>
                     <ul class="service-features">
-                        <li><i class="fas fa-check-circle"></i> Executive Support</li>
-                        <li><i class="fas fa-check-circle"></i> Calendar Management</li>
-                        <li><i class="fas fa-check-circle"></i> Email Management</li>
+                        <li><i class="fas fa-check-circle" aria-hidden="true"></i> Executive Support</li>
+                        <li><i class="fas fa-check-circle" aria-hidden="true"></i> Calendar Management</li>
+                        <li><i class="fas fa-check-circle" aria-hidden="true"></i> Email Management</li>
                     </ul>
-                    <a href="#contact" class="service-link">Get Pricing <i class="fas fa-arrow-right"></i></a>
+                    <a href="#contact" class="service-link">Get Pricing <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
                 </div>
                 <div class="service-card">
-                    <div class="service-icon"><i class="fas fa-microchip"></i></div>
+                    <div class="service-icon"><i class="fas fa-microchip" aria-hidden="true"></i></div>
                     <h3>Technical Support</h3>
                     <p>Tier 1-3 IT support and help desk for SaaS, hardware, and technology companies.</p>
                     <ul class="service-features">
-                        <li><i class="fas fa-check-circle"></i> Tier 1-3 Support</li>
-                        <li><i class="fas fa-check-circle"></i> Remote Troubleshooting</li>
-                        <li><i class="fas fa-check-circle"></i> IT Help Desk</li>
+                        <li><i class="fas fa-check-circle" aria-hidden="true"></i> Tier 1-3 Support</li>
+                        <li><i class="fas fa-check-circle" aria-hidden="true"></i> Remote Troubleshooting</li>
+                        <li><i class="fas fa-check-circle" aria-hidden="true"></i> IT Help Desk</li>
                     </ul>
-                    <a href="#contact" class="service-link">Get Pricing <i class="fas fa-arrow-right"></i></a>
+                    <a href="#contact" class="service-link">Get Pricing <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
                 </div>
                 <div class="service-card">
-                    <div class="service-icon"><i class="fas fa-file-invoice"></i></div>
+                    <div class="service-icon"><i class="fas fa-file-invoice" aria-hidden="true"></i></div>
                     <h3>Back Office Operations</h3>
                     <p>Streamlined administrative and data processing services for peak operational efficiency.</p>
                     <ul class="service-features">
-                        <li><i class="fas fa-check-circle"></i> Data Entry</li>
-                        <li><i class="fas fa-check-circle"></i> Document Processing</li>
-                        <li><i class="fas fa-check-circle"></i> Accounting Support</li>
+                        <li><i class="fas fa-check-circle" aria-hidden="true"></i> Data Entry</li>
+                        <li><i class="fas fa-check-circle" aria-hidden="true"></i> Document Processing</li>
+                        <li><i class="fas fa-check-circle" aria-hidden="true"></i> Accounting Support</li>
                     </ul>
-                    <a href="#contact" class="service-link">Get Pricing <i class="fas fa-arrow-right"></i></a>
+                    <a href="#contact" class="service-link">Get Pricing <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
                 </div>
                 <div class="service-card">
-                    <div class="service-icon"><i class="fas fa-chart-line"></i></div>
+                    <div class="service-icon"><i class="fas fa-chart-line" aria-hidden="true"></i></div>
                     <h3>Sales & Lead Generation</h3>
                     <p>Outbound sales and qualification services to accelerate revenue growth and market reach.</p>
                     <ul class="service-features">
-                        <li><i class="fas fa-check-circle"></i> Lead Qualification</li>
-                        <li><i class="fas fa-check-circle"></i> Appointment Setting</li>
-                        <li><i class="fas fa-check-circle"></i> Market Research</li>
+                        <li><i class="fas fa-check-circle" aria-hidden="true"></i> Lead Qualification</li>
+                        <li><i class="fas fa-check-circle" aria-hidden="true"></i> Appointment Setting</li>
+                        <li><i class="fas fa-check-circle" aria-hidden="true"></i> Market Research</li>
                     </ul>
-                    <a href="#contact" class="service-link">Get Pricing <i class="fas fa-arrow-right"></i></a>
+                    <a href="#contact" class="service-link">Get Pricing <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
                 </div>
                 <div class="service-card">
-                    <div class="service-icon"><i class="fas fa-comment-dots"></i></div>
+                    <div class="service-icon"><i class="fas fa-comment-dots" aria-hidden="true"></i></div>
                     <h3>Omnichannel Support</h3>
                     <p>Seamless integration across all customer communication channels for unified experience.</p>
                     <ul class="service-features">
-                        <li><i class="fas fa-check-circle"></i> Voice Support</li>
-                        <li><i class="fas fa-check-circle"></i> Email Management</li>
-                        <li><i class="fas fa-check-circle"></i> Live Chat</li>
+                        <li><i class="fas fa-check-circle" aria-hidden="true"></i> Voice Support</li>
+                        <li><i class="fas fa-check-circle" aria-hidden="true"></i> Email Management</li>
+                        <li><i class="fas fa-check-circle" aria-hidden="true"></i> Live Chat</li>
                     </ul>
-                    <a href="#contact" class="service-link">Get Pricing <i class="fas fa-arrow-right"></i></a>
+                    <a href="#contact" class="service-link">Get Pricing <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
                 </div>
             </div>
         </div>
@@ -740,22 +784,22 @@
             </div>
             <div class="why-grid">
                 <div class="why-card">
-                    <div class="why-icon"><i class="fas fa-map-marker-alt"></i></div>
+                    <div class="why-icon"><i class="fas fa-map-marker-alt" aria-hidden="true"></i></div>
                     <h3>Strategic Location</h3>
                     <p>Nairobi hub with favorable time zones for USA, UK, and European markets</p>
                 </div>
                 <div class="why-card">
-                    <div class="why-icon"><i class="fas fa-dollar-sign"></i></div>
+                    <div class="why-icon"><i class="fas fa-dollar-sign" aria-hidden="true"></i></div>
                     <h3>40-60% Cost Savings</h3>
                     <p>Significant operational cost reduction without quality compromise</p>
                 </div>
                 <div class="why-card">
-                    <div class="why-icon"><i class="fas fa-shield-alt"></i></div>
+                    <div class="why-icon"><i class="fas fa-shield-alt" aria-hidden="true"></i></div>
                     <h3>Enterprise Security</h3>
                     <p>ISO-compliant facilities with GDPR-ready data protection</p>
                 </div>
                 <div class="why-card">
-                    <div class="why-icon"><i class="fas fa-expand-arrows-alt"></i></div>
+                    <div class="why-icon"><i class="fas fa-expand-arrows-alt" aria-hidden="true"></i></div>
                     <h3>Elastic Scalability</h3>
                     <p>Rapid team scaling based on your business needs</p>
                 </div>
@@ -769,11 +813,18 @@
             <p>Get a free consultation and custom pricing for your business needs</p>
             <form class="cta-form" action="https://formspree.io/f/xqadpvbq" method="POST">
                 <div style="display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 20px;">
-                    <input type="text" name="name" placeholder="Full Name" required style="flex: 1;">
-                    <input type="email" name="email" placeholder="Email Address" required style="flex: 1;">
+                    <div style="flex: 1;">
+                        <label for="ctaName" class="sr-only">Full Name</label>
+                        <input type="text" id="ctaName" name="name" placeholder="Full Name" required autocomplete="name" style="width: 100%;">
+                    </div>
+                    <div style="flex: 1;">
+                        <label for="ctaEmail" class="sr-only">Email Address</label>
+                        <input type="email" id="ctaEmail" name="email" placeholder="Email Address" required autocomplete="email" spellcheck="false" style="width: 100%;">
+                    </div>
                 </div>
                 <div style="margin-bottom: 20px;">
-                    <select name="service" required style="width: 100%;">
+                    <label for="ctaService" class="sr-only">Select a Service</label>
+                    <select id="ctaService" name="service" required autocomplete="off" style="width: 100%;">
                         <option value="">Select a Service</option>
                         <option value="call-center">Call Center Services</option>
                         <option value="virtual-assistants">Virtual Assistants</option>
@@ -783,7 +834,8 @@
                         <option value="omnichannel">Omnichannel Support</option>
                     </select>
                 </div>
-                <textarea name="message" placeholder="Tell us about your business needs..." rows="3" style="width: 100%; margin-bottom: 20px;"></textarea>
+                <label for="ctaMessage" class="sr-only">Tell us about your business needs</label>
+                <textarea id="ctaMessage" name="message" placeholder="Tell us about your business needs&hellip;" rows="3" autocomplete="off" style="width: 100%; margin-bottom: 20px;"></textarea>
                 <button type="submit" class="btn-primary">Request Consultation &rarr;</button>
             </form>
         </div>
@@ -793,29 +845,29 @@
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-logo">
-                    <img src="logo.png" alt="Pioneer Outsourcing BPO">
+                    <img src="logo.png" alt="Pioneer Outsourcing BPO" width="1774" height="887" loading="lazy">
                     <p>Elite BPO solutions from Nairobi, delivering excellence to global enterprises.</p>
                 </div>
                 <div class="footer-links">
-                    <h4>Company</h4>
+                    <h3>Company</h3>
                     <a href="about.html">About Us</a>
                     <a href="knowledge-base.html">&#128196; Company Guide</a>
                     <a href="careers.html">Careers</a>
                     <a href="#contact">Contact</a>
                 </div>
                 <div class="footer-links">
-                    <h4>Services</h4>
+                    <h3>Services</h3>
                     <a href="services.html">Call Center</a>
                     <a href="services.html">Virtual Assistants</a>
                     <a href="services.html">Technical Support</a>
                     <a href="services.html">Back Office</a>
                 </div>
                 <div class="footer-links">
-                    <h4>Connect</h4>
+                    <h3>Connect</h3>
                     <div class="social-links">
-                        <a href="https://www.linkedin.com/company/pioneeroutsourcingbpo-ke/" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                        <a href="https://wa.me/254111562567" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-                        <a href="mailto:hello@pioneeroutsourcingbpo.com" class="social-icon" aria-label="Email"><i class="fas fa-envelope"></i></a>
+                        <a href="https://www.linkedin.com/company/pioneeroutsourcingbpo-ke/" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="LinkedIn"><i class="fab fa-linkedin-in" aria-hidden="true"></i></a>
+                        <a href="https://wa.me/254111562567" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="WhatsApp"><i class="fab fa-whatsapp" aria-hidden="true"></i></a>
+                        <a href="mailto:hello@pioneeroutsourcingbpo.com" class="social-icon" aria-label="Email"><i class="fas fa-envelope" aria-hidden="true"></i></a>
                     </div>
                     <div class="contact-email">hello@pioneeroutsourcingbpo.com</div>
                 </div>

@@ -12,7 +12,7 @@
     <meta name="geo.placename" content="Nairobi">
     
     <meta property="og:title" content="Call Center Services Kenya | 24/7 Outsourcing | Pioneer BPO">
-    <meta property="og: description" content="Professional call center services in Nairobi, Kenya. 40-60% cost savings for global clients. Inbound, outbound, technical support.">
+    <meta property="og:description" content="Professional call center services in Nairobi, Kenya. 40-60% cost savings for global clients. Inbound, outbound, technical support.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://pioneeroutsourcingbpo.com/call-center-services-kenya.html">
     <meta property="og:image" content="https://pioneeroutsourcingbpo.com/logo.png">
@@ -124,7 +124,7 @@
             color: var(--gray-600);
             font-weight: 500;
             font-size: 0.95rem;
-            transition: var(--transition-fast);
+            transition: color var(--transition-fast);
         }
 
         .nav-links a:hover {
@@ -222,7 +222,7 @@
             height: 55px;
             width: auto;
             opacity: 0.6;
-            transition: var(--transition-fast);
+            transition: opacity var(--transition-fast), transform var(--transition-fast);
             object-fit: contain;
         }
 
@@ -385,7 +385,7 @@
             text-decoration: none;
             border-radius: 48px;
             font-weight: 600;
-            transition: var(--transition-base);
+            transition: transform var(--transition-base), box-shadow var(--transition-base);
             border: none;
             cursor: pointer;
         }
@@ -421,7 +421,7 @@
             max-width: 250px;
         }
 
-        .footer-links h4 {
+        .footer-links h3 {
             font-size: 0.9rem;
             font-weight: 600;
             text-transform: uppercase;
@@ -436,7 +436,7 @@
             text-decoration: none;
             margin-bottom: 12px;
             font-size: 0.9rem;
-            transition: var(--transition-fast);
+            transition: color var(--transition-fast);
         }
 
         .footer-links a:hover {
@@ -489,14 +489,57 @@
             .trust-logos img { height: 40px; }
             .logo { height: 52px !important; }
         }
+
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+
+        .sr-only-focusable {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+            z-index: 2000;
+        }
+
+        .sr-only-focusable:focus {
+            position: fixed;
+            top: 12px;
+            left: 12px;
+            width: auto;
+            height: auto;
+            padding: 12px 20px;
+            margin: 0;
+            overflow: visible;
+            clip: auto;
+            white-space: normal;
+            background: var(--primary-dark);
+            color: white;
+            border-radius: 8px;
+            font-weight: 600;
+        }
     </style>
 </head>
 <body>
+    <a href="#main" class="sr-only-focusable">Skip to main content</a>
     <nav class="navbar">
         <div class="container">
             <div class="logo-wrapper">
                 <a href="index.html" class="logo-link">
-                    <img src="logo.png" alt="Pioneer Outsourcing BPO" class="logo">
+                    <img src="logo.png" alt="Pioneer Outsourcing BPO" class="logo" width="1774" height="887">
                 </a>
             </div>
             <button class="mobile-menu-btn" id="mobileMenuBtn">
@@ -507,12 +550,12 @@
                 <a href="services.html">Services</a>
                 <a href="about.html">About</a>
                 <a href="careers.html">Careers</a>
-                <a href="#" class="nav-cta" id="ctaNavBtn">Get a Quote &rarr;</a>
+                <a href="index.html#contact-form" class="nav-cta" id="ctaNavBtn">Get a Quote &rarr;</a>
             </div>
         </div>
     </nav>
 
-    <section class="hero">
+    <section class="hero" id="main">
         <div class="container">
             <h1>Call Center Services <span class="hero-highlight">Kenya</span></h1>
             <p>24/7 professional call center outsourcing from Nairobi. 40-60% cost savings for global clients. Inbound, outbound, and omnichannel support.</p>
@@ -523,13 +566,13 @@
         <div class="container">
             <p class="trust-label">Trusted by leading organisations worldwide</p>
             <div class="trust-logos">
-                <img src="partner2.webp" alt="Partner">
-                <img src="partner3.png" alt="Partner">
-                <img src="partner4.webp" alt="Partner">
-                <img src="partner5.webp" alt="Partner">
-                <img src="Partner.webp" alt="Partner">
-                <img src="partner6.webp" alt="Partner">
-                <img src="partner7.webp" alt="Partner">
+                <img src="partner2.webp" alt="Partner" width="347" height="145" loading="lazy">
+                <img src="partner3.png" alt="Partner" width="310" height="162" loading="lazy">
+                <img src="partner4.webp" alt="Partner" width="225" height="225" loading="lazy">
+                <img src="partner5.webp" alt="Partner" width="225" height="225" loading="lazy">
+                <img src="Partner.webp" alt="Partner" width="658" height="257" loading="lazy">
+                <img src="partner6.webp" alt="Partner" width="225" height="225" loading="lazy">
+                <img src="partner7.webp" alt="Partner" width="382" height="132" loading="lazy">
             </div>
         </div>
     </div>
@@ -547,30 +590,30 @@
                     <p>Kenya offers a unique combination of native-level English fluency, cultural affinity with Western markets, and favorable time zones (UTC+3) that perfectly align with US, UK, and European business hours. This means your customers receive real-time, high-quality support at a fraction of local costs.</p>
                     <p>Our Nairobi-based call center operates 24/7, providing seamless coverage for overnight shifts, weekends, and holidays. We handle high call volumes, complex inquiries, and customer escalations with professionalism and empathy.</p>
                     <ul class="service-details-list">
-                        <li><i class="fas fa-check-circle"></i> Native-level US/UK English fluency</li>
-                        <li><i class="fas fa-check-circle"></i> 24/7/365 operations</li>
-                        <li><i class="fas fa-check-circle"></i> 40-60% cost reduction vs. local teams</li>
-                        <li><i class="fas fa-check-circle"></i> Omnichannel: voice, email, chat, social</li>
+                        <li><i class="fas fa-check-circle" aria-hidden="true"></i> Native-level US/UK English fluency</li>
+                        <li><i class="fas fa-check-circle" aria-hidden="true"></i> 24/7/365 operations</li>
+                        <li><i class="fas fa-check-circle" aria-hidden="true"></i> 40-60% cost reduction vs. local teams</li>
+                        <li><i class="fas fa-check-circle" aria-hidden="true"></i> Omnichannel: voice, email, chat, social</li>
                     </ul>
                 </div>
                 <div class="benefits-grid">
                     <div class="benefit-card">
-                        <i class="fas fa-chart-line"></i>
+                        <i class="fas fa-chart-line" aria-hidden="true"></i>
                         <h4>Reduce Costs by 40-60%</h4>
                         <p>Significant savings without compromising quality or customer experience.</p>
                     </div>
                     <div class="benefit-card">
-                        <i class="fas fa-clock"></i>
+                        <i class="fas fa-clock" aria-hidden="true"></i>
                         <h4>24/7 Availability</h4>
                         <p>Always-on support for global customers across all time zones.</p>
                     </div>
                     <div class="benefit-card">
-                        <i class="fas fa-users"></i>
+                        <i class="fas fa-users" aria-hidden="true"></i>
                         <h4>Scalable Teams</h4>
-                        <p>Ramp up or down in days, not months â€&ldquo; flexible contracts.</p>
+                        <p>Ramp up or down in days, not months &mdash; flexible contracts.</p>
                     </div>
                     <div class="benefit-card">
-                        <i class="fas fa-shield-alt"></i>
+                        <i class="fas fa-shield-alt" aria-hidden="true"></i>
                         <h4>Enterprise Security</h4>
                         <p>ISO-compliant facilities, GDPR-ready, NDAs, and data protection.</p>
                     </div>
@@ -583,7 +626,7 @@
         <div class="container">
             <h2>Ready to Transform Your Customer Support?</h2>
             <p>Get a free consultation and custom pricing for your call center needs</p>
-            <a href="#" class="btn-primary" id="mainCta">Get a Quote &rarr;</a>
+            <a href="index.html#contact-form" class="btn-primary" id="mainCta">Get a Quote &rarr;</a>
         </div>
     </section>
 
@@ -591,29 +634,29 @@
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-logo">
-                    <img src="logo.png" alt="Pioneer Outsourcing BPO">
+                    <img src="logo.png" alt="Pioneer Outsourcing BPO" width="1774" height="887" loading="lazy">
                     <p>Elite BPO solutions from Nairobi, delivering excellence to global enterprises.</p>
                 </div>
                 <div class="footer-links">
-                    <h4>Company</h4>
+                    <h3>Company</h3>
                     <a href="about.html">About Us</a>
                     <a href="knowledge-base.html">&#128196; Company Guide</a>
                     <a href="careers.html">Careers</a>
-                    <a href="#">Contact</a>
+                    <a href="index.html#contact-form">Contact</a>
                 </div>
                 <div class="footer-links">
-                    <h4>Services</h4>
+                    <h3>Services</h3>
                     <a href="services.html">Call Center</a>
                     <a href="services.html">Virtual Assistants</a>
                     <a href="services.html">Technical Support</a>
                     <a href="services.html">Back Office</a>
                 </div>
                 <div class="footer-links">
-                    <h4>Connect</h4>
+                    <h3>Connect</h3>
                     <div class="social-links">
-                        <a href="https://www.linkedin.com/company/pioneeroutsourcingbpo-ke/" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                        <a href="https://wa.me/254111562567" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-                        <a href="mailto:hello@pioneeroutsourcingbpo.com" class="social-icon" aria-label="Email"><i class="fas fa-envelope"></i></a>
+                        <a href="https://www.linkedin.com/company/pioneeroutsourcingbpo-ke/" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="LinkedIn"><i class="fab fa-linkedin-in" aria-hidden="true"></i></a>
+                        <a href="https://wa.me/254111562567" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="WhatsApp"><i class="fab fa-whatsapp" aria-hidden="true"></i></a>
+                        <a href="mailto:hello@pioneeroutsourcingbpo.com" class="social-icon" aria-label="Email"><i class="fas fa-envelope" aria-hidden="true"></i></a>
                     </div>
                     <div class="contact-email">hello@pioneeroutsourcingbpo.com</div>
                 </div>
