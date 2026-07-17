@@ -1,11 +1,15 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Company Guide | Pioneer Outsourcing BPO</title>
     <meta name="robots" content="noindex, nofollow">
+    <meta name="theme-color" content="#071320">
     <link rel="icon" type="image/png" href="Logo%20Favicon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800;14..32,900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="global.css">
@@ -16,7 +20,20 @@
         --gold:#F59E0B; --gold2:#D97706; --gold3:#FBBF24;
         --nav-h:76px; --tab-h:56px;
     }
-    html, body { height:100%; overflow:hidden; font-family:'Inter',sans-serif; background:#000; }
+    html, body { height:100%; overflow:hidden; font-family:'Inter',sans-serif; background:#000; color-scheme:dark; }
+
+    /* Screen-reader-only utility */
+    .sr-only { position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }
+    .sr-only-focusable:not(:focus) { position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }
+    .sr-only-focusable:focus {
+        position:fixed; left:12px; top:12px; z-index:10000;
+        width:auto; height:auto; margin:0; padding:12px 20px; overflow:visible; clip:auto; white-space:normal;
+        background:var(--gold); color:#071320; border-radius:8px; font-weight:700; text-decoration:none;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        *, *::before, *::after { animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important; scroll-behavior:auto !important; }
+    }
 
     /* ══════════════════════════════════════
        PASSWORD GATE
@@ -25,6 +42,7 @@
         position:fixed; inset:0; z-index:9999;
         background:linear-gradient(135deg,#071320 0%,#0F2B3D 100%);
         display:flex; align-items:center; justify-content:center;
+        overscroll-behavior:contain;
     }
     .g-card {
         background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.12);
@@ -32,7 +50,7 @@
         padding:52px 44px; max-width:420px; width:92%; text-align:center;
     }
     .g-logo { margin-bottom:24px; }
-    .g-logo img { height:54px; }
+    .g-logo img { height:54px; width:auto; }
     .g-icon {
         width:72px; height:72px; border-radius:50%;
         background:rgba(245,158,11,0.12); border:2px solid var(--gold);
@@ -46,7 +64,7 @@
         width:100%; padding:14px 46px 14px 18px;
         border-radius:10px; border:1px solid rgba(255,255,255,0.16);
         background:rgba(255,255,255,0.07); color:#fff;
-        font-size:1rem; font-family:inherit; outline:none; transition:border 200ms;
+        font-size:1rem; font-family:inherit; outline:none; transition:border-color 200ms;
     }
     .g-wrap input::placeholder { color:rgba(255,255,255,0.28); }
     .g-wrap input:focus { border-color:var(--gold); }
@@ -58,7 +76,7 @@
     .g-btn {
         width:100%; padding:14px; border:none; border-radius:10px; cursor:pointer;
         background:linear-gradient(135deg,var(--gold),var(--gold2));
-        color:#fff; font-size:1rem; font-weight:700; font-family:inherit; transition:200ms;
+        color:#fff; font-size:1rem; font-weight:700; font-family:inherit; transition:transform 200ms, box-shadow 200ms;
     }
     .g-btn:hover { transform:translateY(-2px); box-shadow:0 8px 24px rgba(245,158,11,0.4); }
     .g-err {
@@ -76,7 +94,7 @@
         display:flex; align-items:center;
     }
     .nav-in { max-width:1400px; margin:0 auto; padding:0 32px; width:100%; display:flex; align-items:center; justify-content:space-between; }
-    .nav-logo img { height:54px; }
+    .nav-logo img { height:54px; width:auto; }
     .nav-links { display:flex; gap:36px; align-items:center; }
     .nav-links a { text-decoration:none; color:#374151; font-weight:500; font-size:0.92rem; transition:color 150ms; }
     .nav-links a:hover { color:var(--gold); }
@@ -104,7 +122,7 @@
         color:rgba(255,255,255,0.42); font-family:inherit;
         font-size:0.85rem; font-weight:600;
         display:flex; align-items:center; justify-content:center; gap:9px;
-        transition:200ms; border-bottom:3px solid transparent; margin-bottom:-2px;
+        transition:color 200ms, background-color 200ms, border-color 200ms; border-bottom:3px solid transparent; margin-bottom:-2px;
     }
     .tab-btn i { font-size:1.05rem; }
     .tab-btn:hover { color:#fff; background:rgba(255,255,255,0.04); }
@@ -133,7 +151,7 @@
         display:inline-flex; align-items:center; gap:8px;
         padding:11px 26px; border-radius:30px;
         background:rgba(245,158,11,0.1); border:1px solid rgba(245,158,11,0.3);
-        color:var(--gold3); font-family:inherit; font-size:0.84rem; font-weight:600; cursor:pointer; transition:200ms;
+        color:var(--gold3); font-family:inherit; font-size:0.84rem; font-weight:600; cursor:pointer; transition:background-color 200ms;
     }
     .retry-btn:hover { background:rgba(245,158,11,0.2); }
 
@@ -298,7 +316,7 @@
     .sla-lbl { font-size:13px; color:rgba(255,255,255,0.6); flex:0 0 200px; text-align:right; }
     .sla-bg { flex:1; height:10px; background:rgba(255,255,255,0.07); border-radius:20px; overflow:hidden; }
     .sla-bar { height:100%; background:linear-gradient(90deg,#F59E0B,#D97706); border-radius:20px; }
-    .sla-val { font-size:13px; font-weight:700; color:#F59E0B; flex:0 0 50px; text-align:right; }
+    .sla-val { font-size:13px; font-weight:700; color:#F59E0B; flex:0 0 50px; text-align:right; font-variant-numeric:tabular-nums; }
 
     /* ── Contact cards ── */
     .cont-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:14px; margin-top:20px; }
@@ -318,7 +336,7 @@
     .cb-lbl.hl { color:#fff; font-weight:700; }
     .cb-bg { flex:1; height:10px; background:rgba(255,255,255,0.07); border-radius:20px; overflow:hidden; }
     .cb-fill { height:100%; border-radius:20px; }
-    .cb-v { font-size:12.5px; font-weight:700; flex:0 0 80px; text-align:right; }
+    .cb-v { font-size:12.5px; font-weight:700; flex:0 0 80px; text-align:right; font-variant-numeric:tabular-nums; }
 
     /* ── Compliance items ── */
     .comp-list { display:flex; flex-direction:column; gap:10px; }
@@ -340,19 +358,19 @@
         width:40px; height:40px; border-radius:50%;
         border:1.5px solid rgba(255,255,255,0.18); background:rgba(255,255,255,0.06);
         color:rgba(255,255,255,0.7); font-size:14px; cursor:pointer;
-        display:flex; align-items:center; justify-content:center; transition:200ms; font-family:inherit;
+        display:flex; align-items:center; justify-content:center; transition:border-color 200ms, background-color 200ms, color 200ms; font-family:inherit;
     }
     .d-btn:hover:not(:disabled) { border-color:var(--gold); background:rgba(245,158,11,0.12); color:#fff; }
     .d-btn:disabled { opacity:0.2; cursor:default; }
     .d-dots { display:flex; gap:6px; align-items:center; }
-    .d-dot { width:8px; height:8px; border-radius:50%; background:rgba(255,255,255,0.2); border:none; cursor:pointer; padding:0; transition:200ms; }
+    .d-dot { width:8px; height:8px; border-radius:50%; background:rgba(255,255,255,0.2); border:none; cursor:pointer; padding:0; transition:background-color 200ms, width 200ms; }
     .d-dot.on { background:var(--gold); width:22px; border-radius:4px; }
     .d-ctr { font-size:13px; color:rgba(255,255,255,0.3); }
     .d-fs {
         display:flex; align-items:center; gap:8px;
         background:rgba(255,255,255,0.06); border:1.5px solid rgba(255,255,255,0.14);
         color:rgba(255,255,255,0.55); padding:8px 20px; border-radius:30px;
-        font-size:13px; font-weight:600; cursor:pointer; transition:200ms; font-family:inherit;
+        font-size:13px; font-weight:600; cursor:pointer; transition:border-color 200ms, color 200ms, background-color 200ms; font-family:inherit;
     }
     .d-fs:hover { border-color:var(--gold); color:#fff; background:rgba(245,158,11,0.1); }
 
@@ -364,98 +382,102 @@
         .nav-links { display:none; flex-direction:column; position:fixed; top:var(--nav-h); left:0; width:100%; background:#fff; padding:20px; box-shadow:0 8px 20px rgba(0,0,0,.12); gap:16px; z-index:899; }
         .nav-links.open { display:flex; }
         .mob-btn { display:block; }
-        .nav-logo img { height:44px; }
+        .nav-logo img { height:44px; width:auto; }
         .tab-sub { display:none; }
     }
     </style>
 </head>
 <body>
 
+<a href="#shell" class="sr-only-focusable">Skip to presentation</a>
+<h1 class="sr-only">Pioneer Outsourcing BPO Knowledge Base</h1>
+
 <!-- ═══════════════════ PASSWORD GATE ═══════════════════ -->
 <div id="gate">
     <div class="g-card">
-        <div class="g-logo"><img src="logo.png" alt="Pioneer Outsourcing BPO"></div>
-        <div class="g-icon"><i class="fas fa-lock"></i></div>
+        <div class="g-logo"><img src="logo.png" alt="Pioneer Outsourcing BPO" width="1774" height="887"></div>
+        <div class="g-icon"><i class="fas fa-lock" aria-hidden="true"></i></div>
         <h2>Restricted Access</h2>
         <p>This document is confidential and for authorised recipients only. Enter your access password to continue.</p>
         <div class="g-wrap">
-            <input type="password" id="pwInput" placeholder="Enter password" autocomplete="off">
-            <button class="g-eye" id="pwToggle"><i class="fas fa-eye" id="eyeIco"></i></button>
+            <label for="pwInput" class="sr-only">Access password</label>
+            <input type="password" id="pwInput" name="password" placeholder="Enter password" autocomplete="off">
+            <button class="g-eye" id="pwToggle" type="button" aria-label="Show password"><i class="fas fa-eye" aria-hidden="true" id="eyeIco"></i></button>
         </div>
         <button class="g-btn" id="pwBtn">Unlock &rarr;</button>
-        <div class="g-err" id="gErr"><i class="fas fa-exclamation-triangle"></i> Incorrect password. Try again.</div>
+        <div class="g-err" id="gErr" aria-live="polite"><i class="fas fa-exclamation-triangle" aria-hidden="true"></i> Incorrect password. Try again.</div>
     </div>
 </div>
 
 <!-- ═══════════════════ NAVBAR ═══════════════════ -->
 <nav class="navbar">
     <div class="nav-in">
-        <div class="nav-logo"><a href="index.html"><img src="logo.png" alt="Pioneer Outsourcing BPO"></a></div>
+        <div class="nav-logo"><a href="index.html"><img src="logo.png" alt="Pioneer Outsourcing BPO" width="1774" height="887"></a></div>
         <div class="nav-links" id="navLinks">
             <a href="index.html">Home</a>
             <a href="about.html">About</a>
             <a href="services.html">Services</a>
             <a href="careers.html">Careers</a>
-            <span class="nav-badge"><i class="fas fa-lock" style="font-size:0.6rem"></i> Company Guide</span>
+            <span class="nav-badge"><i class="fas fa-lock" aria-hidden="true" style="font-size:0.6rem"></i> Company Guide</span>
             <a href="index.html#contact-form" class="nav-cta">Get a Quote</a>
         </div>
-        <button class="mob-btn" id="mobBtn"><i class="fas fa-bars" id="menuIco"></i></button>
+        <button class="mob-btn" id="mobBtn" aria-label="Open menu"><i class="fas fa-bars" aria-hidden="true" id="menuIco"></i></button>
     </div>
 </nav>
 
 <!-- ═══════════════════ VIEWER SHELL ═══════════════════ -->
-<div id="shell">
+<div id="shell" tabindex="-1">
 
-    <div class="tab-bar">
-        <button class="tab-btn active" id="tb-word" onclick="switchTab('word',this)">
-            <i class="fas fa-file-word"></i>
+    <div class="tab-bar" role="tablist">
+        <button class="tab-btn active" id="tb-word" role="tab" aria-selected="true" aria-controls="pane-word" onclick="switchTab('word',this)">
+            <i class="fas fa-file-word" aria-hidden="true"></i>
             <div class="tab-lbl">Word Document<span class="tab-sub">Full Knowledge Base</span></div>
         </button>
-        <button class="tab-btn" id="tb-pdf" onclick="switchTab('pdf',this)">
-            <i class="fas fa-file-pdf"></i>
+        <button class="tab-btn" id="tb-pdf" role="tab" aria-selected="false" aria-controls="pane-pdf" onclick="switchTab('pdf',this)">
+            <i class="fas fa-file-pdf" aria-hidden="true"></i>
             <div class="tab-lbl">PDF Guide<span class="tab-sub">Company Guide</span></div>
         </button>
-        <button class="tab-btn" id="tb-pptx" onclick="switchTab('pptx',this)">
-            <i class="fas fa-desktop"></i>
+        <button class="tab-btn" id="tb-pptx" role="tab" aria-selected="false" aria-controls="pane-pptx" onclick="switchTab('pptx',this)">
+            <i class="fas fa-desktop" aria-hidden="true"></i>
             <div class="tab-lbl">Presentation<span class="tab-sub">10 Slides · Interactive</span></div>
         </button>
     </div>
 
     <!-- ── WORD PANE ── -->
-    <div class="pane active" id="pane-word">
+    <div class="pane active" id="pane-word" role="tabpanel" aria-labelledby="tb-word">
         <iframe class="doc-frame" id="frm-word"
             src="https://view.officeapps.live.com/op/embed.aspx?src=https://pioneeroutsourcingbpo.com/PioneerOutsourcing_KnowledgeBase.docx"
             allowfullscreen title="Pioneer Knowledge Base"></iframe>
         <div class="fallback" id="fb-word">
-            <i class="fas fa-file-word"></i>
+            <i class="fas fa-file-word" aria-hidden="true"></i>
             <h3>Document preview unavailable</h3>
             <p>Microsoft Office Online could not load the document. Please try again.</p>
-            <button class="retry-btn" onclick="retry('word')"><i class="fas fa-sync"></i> Retry</button>
+            <button class="retry-btn" onclick="retry('word')"><i class="fas fa-sync" aria-hidden="true"></i> Retry</button>
         </div>
         <div class="status-bar">
-            <div class="sb-l"><i class="fas fa-file-word"></i> PioneerOutsourcing_KnowledgeBase.docx</div>
-            <div class="sb-r"><span><i class="fas fa-layer-group"></i> 11 Sections</span><span><i class="fas fa-question-circle"></i> 25+ FAQs</span><span><i class="fas fa-lock"></i> Confidential</span></div>
+            <div class="sb-l"><i class="fas fa-file-word" aria-hidden="true"></i> PioneerOutsourcing_KnowledgeBase.docx</div>
+            <div class="sb-r"><span><i class="fas fa-layer-group" aria-hidden="true"></i> 11 Sections</span><span><i class="fas fa-question-circle" aria-hidden="true"></i> 25+ FAQs</span><span><i class="fas fa-lock" aria-hidden="true"></i> Confidential</span></div>
         </div>
     </div>
 
     <!-- ── PDF PANE ── -->
-    <div class="pane" id="pane-pdf">
+    <div class="pane" id="pane-pdf" role="tabpanel" aria-labelledby="tb-pdf">
         <iframe class="doc-frame" id="frm-pdf" src="" data-src=""
             allowfullscreen title="Pioneer Company Guide PDF"></iframe>
         <div class="fallback" id="fb-pdf">
-            <i class="fas fa-file-pdf"></i>
+            <i class="fas fa-file-pdf" aria-hidden="true"></i>
             <h3>PDF preview unavailable</h3>
             <p>The viewer could not load. Please try again.</p>
-            <button class="retry-btn" onclick="retry('pdf')"><i class="fas fa-sync"></i> Retry</button>
+            <button class="retry-btn" onclick="retry('pdf')"><i class="fas fa-sync" aria-hidden="true"></i> Retry</button>
         </div>
         <div class="status-bar">
-            <div class="sb-l"><i class="fas fa-file-pdf"></i> PioneerOutsourcing_KnowledgeBase.pdf</div>
-            <div class="sb-r"><span><i class="fas fa-tag"></i> Pricing &amp; SLAs</span><span><i class="fas fa-shield-alt"></i> Security</span><span><i class="fas fa-lock"></i> Confidential</span></div>
+            <div class="sb-l"><i class="fas fa-file-pdf" aria-hidden="true"></i> PioneerOutsourcing_KnowledgeBase.pdf</div>
+            <div class="sb-r"><span><i class="fas fa-tag" aria-hidden="true"></i> Pricing &amp; SLAs</span><span><i class="fas fa-shield-alt" aria-hidden="true"></i> Security</span><span><i class="fas fa-lock" aria-hidden="true"></i> Confidential</span></div>
         </div>
     </div>
 
     <!-- ── PRESENTATION PANE ── -->
-    <div class="pane" id="pane-pptx">
+    <div class="pane" id="pane-pptx" role="tabpanel" aria-labelledby="tb-pptx">
         <div id="deckOuter">
 
             <div id="slideStage">
@@ -467,7 +489,7 @@
     <div class="s-bar"></div>
     <div style="position:absolute;right:-80px;top:-80px;width:560px;height:560px;border-radius:50%;background:radial-gradient(circle,rgba(245,158,11,0.08) 0%,transparent 65%);pointer-events:none;"></div>
     <div class="s-hd">
-        <div class="s-hd-logo"><img src="logo.png" alt="Pioneer Outsourcing BPO"></div>
+        <div class="s-hd-logo"><img src="logo.png" alt="Pioneer Outsourcing BPO" width="1774" height="887" loading="lazy"></div>
         <div class="s-hd-title">Company Overview &mdash; Confidential</div>
         <div class="s-hd-num">1 / 10</div>
     </div>
@@ -492,7 +514,7 @@
 <div class="s" style="background:#071320;">
     <div class="s-bar"></div>
     <div class="s-hd">
-        <div class="s-hd-logo"><img src="logo.png" alt="Pioneer Outsourcing BPO"></div>
+        <div class="s-hd-logo"><img src="logo.png" alt="Pioneer Outsourcing BPO" width="1774" height="887" loading="lazy"></div>
         <div class="s-hd-title">Who We Are</div>
         <div class="s-hd-num">2 / 10</div>
     </div>
@@ -538,7 +560,7 @@
 <div class="s" style="background:#071320;">
     <div class="s-bar"></div>
     <div class="s-hd">
-        <div class="s-hd-logo"><img src="logo.png" alt="Pioneer Outsourcing BPO"></div>
+        <div class="s-hd-logo"><img src="logo.png" alt="Pioneer Outsourcing BPO" width="1774" height="887" loading="lazy"></div>
         <div class="s-hd-title">Our Services</div>
         <div class="s-hd-num">3 / 10</div>
     </div>
@@ -546,12 +568,12 @@
         <div class="s-tag">Full-Service BPO</div>
         <div class="s-h2">Everything Your Business Needs &mdash; Under One Roof</div>
         <div class="card-grid">
-            <div class="s-card"><div class="s-card-icon"><i class="fas fa-headset"></i></div><div class="s-card-t">Call Center &amp; Customer Support</div><div class="s-card-p">Inbound &amp; outbound calls, omni-channel support, 24/7 coverage, escalation management.</div></div>
-            <div class="s-card"><div class="s-card-icon"><i class="fas fa-user-tie"></i></div><div class="s-card-t">Virtual Assistants</div><div class="s-card-p">Executive VAs, scheduling, inbox management, research, social media &amp; admin tasks.</div></div>
-            <div class="s-card"><div class="s-card-icon"><i class="fas fa-laptop-code"></i></div><div class="s-card-t">Technical Support</div><div class="s-card-p">Tier 1–3 IT help desk, remote troubleshooting, SaaS support, software onboarding.</div></div>
-            <div class="s-card"><div class="s-card-icon"><i class="fas fa-chart-line"></i></div><div class="s-card-t">Lead Generation &amp; Sales</div><div class="s-card-p">Qualified leads, cold outreach, appointment setting, CRM management.</div></div>
-            <div class="s-card"><div class="s-card-icon"><i class="fas fa-file-alt"></i></div><div class="s-card-t">Back-Office Processing</div><div class="s-card-p">Data entry, document processing, order management, payroll support, invoicing.</div></div>
-            <div class="s-card"><div class="s-card-icon"><i class="fas fa-language"></i></div><div class="s-card-t">Translation &amp; Transcription</div><div class="s-card-p">40+ languages, legal &amp; medical docs, audio/video transcription, subtitling.</div></div>
+            <div class="s-card"><div class="s-card-icon"><i class="fas fa-headset" aria-hidden="true"></i></div><div class="s-card-t">Call Center &amp; Customer Support</div><div class="s-card-p">Inbound &amp; outbound calls, omni-channel support, 24/7 coverage, escalation management.</div></div>
+            <div class="s-card"><div class="s-card-icon"><i class="fas fa-user-tie" aria-hidden="true"></i></div><div class="s-card-t">Virtual Assistants</div><div class="s-card-p">Executive VAs, scheduling, inbox management, research, social media &amp; admin tasks.</div></div>
+            <div class="s-card"><div class="s-card-icon"><i class="fas fa-laptop-code" aria-hidden="true"></i></div><div class="s-card-t">Technical Support</div><div class="s-card-p">Tier 1–3 IT help desk, remote troubleshooting, SaaS support, software onboarding.</div></div>
+            <div class="s-card"><div class="s-card-icon"><i class="fas fa-chart-line" aria-hidden="true"></i></div><div class="s-card-t">Lead Generation &amp; Sales</div><div class="s-card-p">Qualified leads, cold outreach, appointment setting, CRM management.</div></div>
+            <div class="s-card"><div class="s-card-icon"><i class="fas fa-file-alt" aria-hidden="true"></i></div><div class="s-card-t">Back-Office Processing</div><div class="s-card-p">Data entry, document processing, order management, payroll support, invoicing.</div></div>
+            <div class="s-card"><div class="s-card-icon"><i class="fas fa-language" aria-hidden="true"></i></div><div class="s-card-t">Translation &amp; Transcription</div><div class="s-card-p">40+ languages, legal &amp; medical docs, audio/video transcription, subtitling.</div></div>
         </div>
     </div>
     <div class="s-ft"><div class="s-ft-l">PIONEER <b>OUTSOURCING BPO</b></div><div class="s-ft-c">hello@pioneeroutsourcingbpo.com &nbsp;|&nbsp; +254 111 562 567</div><div class="s-ft-r">Confidential</div></div>
@@ -563,7 +585,7 @@
 <div class="s" style="background:#071320;">
     <div class="s-bar"></div>
     <div class="s-hd">
-        <div class="s-hd-logo"><img src="logo.png" alt="Pioneer Outsourcing BPO"></div>
+        <div class="s-hd-logo"><img src="logo.png" alt="Pioneer Outsourcing BPO" width="1774" height="887" loading="lazy"></div>
         <div class="s-hd-title">Why Choose Pioneer</div>
         <div class="s-hd-num">4 / 10</div>
     </div>
@@ -606,7 +628,7 @@
 <div class="s" style="background:linear-gradient(135deg,#071320 0%,#0B1E30 100%);">
     <div class="s-bar"></div>
     <div class="s-hd">
-        <div class="s-hd-logo"><img src="logo.png" alt="Pioneer Outsourcing BPO"></div>
+        <div class="s-hd-logo"><img src="logo.png" alt="Pioneer Outsourcing BPO" width="1774" height="887" loading="lazy"></div>
         <div class="s-hd-title">Performance &amp; Scale</div>
         <div class="s-hd-num">5 / 10</div>
     </div>
@@ -637,7 +659,7 @@
 <div class="s" style="background:#071320;">
     <div class="s-bar"></div>
     <div class="s-hd">
-        <div class="s-hd-logo"><img src="logo.png" alt="Pioneer Outsourcing BPO"></div>
+        <div class="s-hd-logo"><img src="logo.png" alt="Pioneer Outsourcing BPO" width="1774" height="887" loading="lazy"></div>
         <div class="s-hd-title">Pricing</div>
         <div class="s-hd-num">6 / 10</div>
     </div>
@@ -673,7 +695,7 @@
 <div class="s" style="background:#071320;">
     <div class="s-bar"></div>
     <div class="s-hd">
-        <div class="s-hd-logo"><img src="logo.png" alt="Pioneer Outsourcing BPO"></div>
+        <div class="s-hd-logo"><img src="logo.png" alt="Pioneer Outsourcing BPO" width="1774" height="887" loading="lazy"></div>
         <div class="s-hd-title">Onboarding Process</div>
         <div class="s-hd-num">7 / 10</div>
     </div>
@@ -704,7 +726,7 @@
 <div class="s" style="background:#071320;">
     <div class="s-bar"></div>
     <div class="s-hd">
-        <div class="s-hd-logo"><img src="logo.png" alt="Pioneer Outsourcing BPO"></div>
+        <div class="s-hd-logo"><img src="logo.png" alt="Pioneer Outsourcing BPO" width="1774" height="887" loading="lazy"></div>
         <div class="s-hd-title">Security &amp; Compliance</div>
         <div class="s-hd-num">8 / 10</div>
     </div>
@@ -728,10 +750,10 @@
         <div class="col">
             <div class="s-tag">Compliance Standards</div>
             <div class="comp-list" style="margin-top:8px;">
-                <div class="comp-item"><div class="comp-ic"><i class="fas fa-shield-alt"></i></div><div><div class="comp-t">GDPR</div><div class="comp-s">EU General Data Protection Regulation</div></div></div>
-                <div class="comp-item"><div class="comp-ic"><i class="fas fa-certificate"></i></div><div><div class="comp-t">ISO 9001 Aligned</div><div class="comp-s">Quality Management Systems</div></div></div>
-                <div class="comp-item"><div class="comp-ic"><i class="fas fa-lock"></i></div><div><div class="comp-t">PCI-DSS Aware</div><div class="comp-s">Payment Card Industry Standards</div></div></div>
-                <div class="comp-item"><div class="comp-ic"><i class="fas fa-user-shield"></i></div><div><div class="comp-t">CCPA Compliant</div><div class="comp-s">California Consumer Privacy Act</div></div></div>
+                <div class="comp-item"><div class="comp-ic"><i class="fas fa-shield-alt" aria-hidden="true"></i></div><div><div class="comp-t">GDPR</div><div class="comp-s">EU General Data Protection Regulation</div></div></div>
+                <div class="comp-item"><div class="comp-ic"><i class="fas fa-certificate" aria-hidden="true"></i></div><div><div class="comp-t">ISO 9001 Aligned</div><div class="comp-s">Quality Management Systems</div></div></div>
+                <div class="comp-item"><div class="comp-ic"><i class="fas fa-lock" aria-hidden="true"></i></div><div><div class="comp-t">PCI-DSS Aware</div><div class="comp-s">Payment Card Industry Standards</div></div></div>
+                <div class="comp-item"><div class="comp-ic"><i class="fas fa-user-shield" aria-hidden="true"></i></div><div><div class="comp-t">CCPA Compliant</div><div class="comp-s">California Consumer Privacy Act</div></div></div>
             </div>
         </div>
     </div>
@@ -745,7 +767,7 @@
 <div class="s" style="background:#071320;">
     <div class="s-bar"></div>
     <div class="s-hd">
-        <div class="s-hd-logo"><img src="logo.png" alt="Pioneer Outsourcing BPO"></div>
+        <div class="s-hd-logo"><img src="logo.png" alt="Pioneer Outsourcing BPO" width="1774" height="887" loading="lazy"></div>
         <div class="s-hd-title">SLAs &amp; Performance</div>
         <div class="s-hd-num">9 / 10</div>
     </div>
@@ -790,7 +812,7 @@
     <div class="s-bar"></div>
     <div style="position:absolute;right:-60px;top:-60px;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(245,158,11,0.07) 0%,transparent 65%);pointer-events:none;"></div>
     <div class="s-hd">
-        <div class="s-hd-logo"><img src="logo.png" alt="Pioneer Outsourcing BPO"></div>
+        <div class="s-hd-logo"><img src="logo.png" alt="Pioneer Outsourcing BPO" width="1774" height="887" loading="lazy"></div>
         <div class="s-hd-title">Get in Touch</div>
         <div class="s-hd-num">10 / 10</div>
     </div>
@@ -801,10 +823,10 @@
             <div class="s-p" style="font-size:16px;max-width:520px;margin:10px auto 0;">Free consultation and custom quote within 24 hours. No commitment required.</div>
         </div>
         <div class="cont-grid">
-            <div class="cont-card"><div class="cont-icon"><i class="fas fa-envelope"></i></div><div><div class="cont-lbl">Email</div><div class="cont-val">hello@pioneeroutsourcingbpo.com</div></div></div>
-            <div class="cont-card"><div class="cont-icon"><i class="fab fa-whatsapp"></i></div><div><div class="cont-lbl">WhatsApp</div><div class="cont-val">+254 111 562 567</div></div></div>
-            <div class="cont-card"><div class="cont-icon"><i class="fas fa-phone"></i></div><div><div class="cont-lbl">Phone</div><div class="cont-val">+254 111 562 567</div></div></div>
-            <div class="cont-card"><div class="cont-icon"><i class="fas fa-map-marker-alt"></i></div><div><div class="cont-lbl">Location</div><div class="cont-val">Nairobi, Kenya &mdash; Serving Global Markets</div></div></div>
+            <div class="cont-card"><div class="cont-icon"><i class="fas fa-envelope" aria-hidden="true"></i></div><div><div class="cont-lbl">Email</div><div class="cont-val">hello@pioneeroutsourcingbpo.com</div></div></div>
+            <div class="cont-card"><div class="cont-icon"><i class="fab fa-whatsapp" aria-hidden="true"></i></div><div><div class="cont-lbl">WhatsApp</div><div class="cont-val">+254 111 562 567</div></div></div>
+            <div class="cont-card"><div class="cont-icon"><i class="fas fa-phone" aria-hidden="true"></i></div><div><div class="cont-lbl">Phone</div><div class="cont-val">+254 111 562 567</div></div></div>
+            <div class="cont-card"><div class="cont-icon"><i class="fas fa-map-marker-alt" aria-hidden="true"></i></div><div><div class="cont-lbl">Location</div><div class="cont-val">Nairobi, Kenya &mdash; Serving Global Markets</div></div></div>
         </div>
         <div style="text-align:center;margin-top:20px;">
             <span style="display:inline-block;background:linear-gradient(135deg,#F59E0B,#D97706);color:#fff;padding:12px 36px;border-radius:40px;font-size:15px;font-weight:700;letter-spacing:0.04em;box-shadow:0 6px 20px rgba(245,158,11,0.35);">pioneeroutsourcingbpo.com</span>
@@ -819,12 +841,12 @@
 
             <div id="deckNav">
                 <div class="d-nav">
-                    <button class="d-btn" id="dPrev" onclick="go(-1)" disabled><i class="fas fa-chevron-left"></i></button>
+                    <button class="d-btn" id="dPrev" onclick="go(-1)" disabled aria-label="Previous slide"><i class="fas fa-chevron-left" aria-hidden="true"></i></button>
                     <div class="d-dots" id="dDots"></div>
-                    <button class="d-btn" id="dNext" onclick="go(1)"><i class="fas fa-chevron-right"></i></button>
+                    <button class="d-btn" id="dNext" onclick="go(1)" aria-label="Next slide"><i class="fas fa-chevron-right" aria-hidden="true"></i></button>
                 </div>
                 <div class="d-ctr" id="dCtr">Slide 1 of 10</div>
-                <button class="d-fs" onclick="goFS()"><i class="fas fa-expand"></i> Fullscreen</button>
+                <button class="d-fs" onclick="goFS()"><i class="fas fa-expand" aria-hidden="true"></i> Fullscreen</button>
             </div>
 
         </div><!-- /deckOuter -->
@@ -839,9 +861,10 @@
     var KEY='pio_auth_v1', gate=document.getElementById('gate');
     if(sessionStorage.getItem(KEY)==='1'){ gate.style.display='none'; return; }
     document.getElementById('pwToggle').onclick=function(){
-        var i=document.getElementById('pwInput'), ic=document.getElementById('eyeIco');
+        var i=document.getElementById('pwInput'), ic=document.getElementById('eyeIco'), btn=document.getElementById('pwToggle');
         i.type=i.type==='password'?'text':'password';
         ic.className=i.type==='password'?'fas fa-eye':'fas fa-eye-slash';
+        btn.setAttribute('aria-label', i.type==='password'?'Show password':'Hide password');
     };
     function check(){
         var v=document.getElementById('pwInput').value, e=document.getElementById('gErr');
@@ -861,9 +884,11 @@
 
 /* ── MOBILE NAV ── */
 document.getElementById('mobBtn').onclick=function(){
-    var nl=document.getElementById('navLinks'), ic=document.getElementById('menuIco');
+    var nl=document.getElementById('navLinks'), ic=document.getElementById('menuIco'), btn=document.getElementById('mobBtn');
     nl.classList.toggle('open');
-    ic.className=nl.classList.contains('open')?'fas fa-times':'fas fa-bars';
+    var isOpen=nl.classList.contains('open');
+    ic.className=isOpen?'fas fa-times':'fas fa-bars';
+    btn.setAttribute('aria-label', isOpen?'Close menu':'Open menu');
 };
 
 /* ── TAB SWITCHING ── */
@@ -871,9 +896,10 @@ var WORD='https://view.officeapps.live.com/op/embed.aspx?src=https://pioneerouts
 var PDF='https://view.officeapps.live.com/op/embed.aspx?src=https://pioneeroutsourcingbpo.com/PioneerOutsourcing_KnowledgeBase.pdf';
 
 function switchTab(name,btn){
-    document.querySelectorAll('.tab-btn').forEach(function(b){ b.classList.remove('active'); });
+    document.querySelectorAll('.tab-btn').forEach(function(b){ b.classList.remove('active'); b.setAttribute('aria-selected','false'); });
     document.querySelectorAll('.pane').forEach(function(p){ p.classList.remove('active'); });
     btn.classList.add('active');
+    btn.setAttribute('aria-selected','true');
     document.getElementById('pane-'+name).classList.add('active');
     if(name==='pdf'){
         var f=document.getElementById('frm-pdf');
@@ -915,7 +941,9 @@ var total=slides.length;
     slides.forEach(function(_,i){
         var d=document.createElement('button');
         d.className='d-dot'+(i===0?' on':'');
+        d.type='button';
         d.title='Slide '+(i+1);
+        d.setAttribute('aria-label','Slide '+(i+1));
         d.onclick=(function(n){ return function(){ goTo(n); }; })(i);
         c.appendChild(d);
     });
