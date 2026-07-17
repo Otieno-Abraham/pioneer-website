@@ -17,7 +17,10 @@
     
     <link rel="canonical" href="https://pioneeroutsourcingbpo.com/application.html">
     <link rel="icon" type="image/png" href="logo.png">
-    
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
@@ -121,7 +124,7 @@
             color: var(--gray-600);
             font-weight: 500;
             font-size: 0.95rem;
-            transition: var(--transition-fast);
+            transition: color var(--transition-fast);
         }
 
         .nav-links a:hover {
@@ -261,15 +264,15 @@
             border-radius: 14px;
             font-family: 'Inter', sans-serif;
             font-size: 0.95rem;
-            transition: var(--transition-fast);
+            transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
         }
 
-        .form-group input:focus, 
-        .form-group textarea:focus,
-        .form-group select:focus {
+        .form-group input:focus-visible,
+        .form-group textarea:focus-visible,
+        .form-group select:focus-visible {
             outline: none;
             border-color: var(--accent);
-            box-shadow: 0 0 0 3px rgba(245,158,11,0.1);
+            box-shadow: 0 0 0 4px rgba(245, 158, 11, 0.45);
         }
 
         .form-group textarea {
@@ -290,6 +293,20 @@
             color: var(--accent);
         }
 
+        .field-error {
+            display: block;
+            min-height: 0;
+            margin-top: 6px;
+            color: #B91C1C;
+            font-size: 0.8rem;
+        }
+
+        .form-group input.invalid,
+        .form-group textarea.invalid,
+        .form-group select.invalid {
+            border-color: #B91C1C;
+        }
+
         .btn-primary {
             display: inline-flex;
             align-items: center;
@@ -301,7 +318,7 @@
             text-decoration: none;
             border-radius: 48px;
             font-weight: 600;
-            transition: var(--transition-base);
+            transition: transform var(--transition-base), box-shadow var(--transition-base);
             border: none;
             cursor: pointer;
             width: 100%;
@@ -317,6 +334,19 @@
             opacity: 0.7;
             cursor: not-allowed;
             transform: none;
+        }
+
+        .btn-spinner {
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            border: 2px solid rgba(255, 255, 255, 0.4);
+            border-top-color: white;
+            animation: btn-spin 0.7s linear infinite;
+        }
+
+        @keyframes btn-spin {
+            to { transform: rotate(360deg); }
         }
 
         .alert {
@@ -403,7 +433,7 @@
             text-decoration: none;
             margin-bottom: 12px;
             font-size: 0.9rem;
-            transition: var(--transition-fast);
+            transition: color var(--transition-fast);
         }
 
         .footer-links a:hover {
@@ -486,13 +516,54 @@
                 margin: 0 auto;
             }
         }
+
+        /* ----- Reduced motion ----- */
+        @media (prefers-reduced-motion: reduce) {
+            .nav-links a,
+            .nav-cta,
+            .form-group input,
+            .form-group textarea,
+            .form-group select,
+            .btn-primary,
+            .footer-links a {
+                transition-duration: 0.01ms !important;
+            }
+            .nav-cta:hover,
+            .btn-primary:hover {
+                transform: none;
+            }
+            .btn-spinner {
+                animation: none !important;
+            }
+        }
+
+        /* ----- Skip link ----- */
+        .sr-only-focusable {
+            position: absolute;
+            top: -40px;
+            left: 8px;
+            background: var(--primary-dark);
+            color: white;
+            padding: 10px 18px;
+            border-radius: 8px;
+            z-index: 2000;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: top var(--transition-fast);
+        }
+
+        .sr-only-focusable:focus-visible {
+            top: 8px;
+        }
     </style>
 </head>
 <body>
+    <a href="#main" class="sr-only-focusable">Skip to main content</a>
     <nav class="navbar">
         <div class="container">
             <div class="logo-wrapper">
-                <img src="logo.png" alt="Pioneer Outsourcing BPO" class="logo">
+                <img src="logo.png" alt="Pioneer Outsourcing BPO" class="logo" width="1774" height="887">
                 <span class="brand-name">Pioneer</span>
             </div>
             <button class="mobile-menu-btn" id="mobileMenuBtn">
@@ -503,15 +574,15 @@
                 <a href="services.html">Services</a>
                 <a href="about.html">About</a>
                 <a href="careers.html">Careers</a>
-                <a href="#" class="nav-cta" id="ctaNavBtn">Get a Quote →</a>
+                <a href="index.html#contact-form" class="nav-cta" id="ctaNavBtn">Get a Quote →</a>
             </div>
         </div>
     </nav>
 
-    <section class="hero">
+    <section class="hero" id="main">
         <div class="container">
             <h1>Start Your <span class="hero-highlight">Career Journey</span></h1>
-            <p>Join Kenya's premier BPO company. We're always looking for talented individuals to join our team.</p>
+            <p>Join Kenya&rsquo;s premier BPO company. We&rsquo;re always looking for talented individuals to join our team.</p>
         </div>
     </section>
 
@@ -522,34 +593,38 @@
                 <p>Fill out the form below to apply for current or future opportunities</p>
             </div>
             <div class="form-body">
-                <div id="alertBox" class="alert"></div>
+                <div id="alertBox" class="alert" role="alert" aria-live="polite"></div>
                 
-                <form id="applicationForm" action="https://formspree.io/f/xjkeyqqq" method="POST">
+                <form id="applicationForm" action="https://formspree.io/f/xjkeyqqq" method="POST" novalidate>
                     <div class="form-row">
                         <div class="form-group">
-                            <label>First Name <span class="required">*</span></label>
-                            <input type="text" name="firstName" required>
+                            <label for="firstName">First Name <span class="required">*</span></label>
+                            <input type="text" id="firstName" name="firstName" autocomplete="given-name" aria-describedby="firstNameError" required>
+                            <span class="field-error" id="firstNameError" aria-live="polite"></span>
                         </div>
                         <div class="form-group">
-                            <label>Last Name <span class="required">*</span></label>
-                            <input type="text" name="lastName" required>
+                            <label for="lastName">Last Name <span class="required">*</span></label>
+                            <input type="text" id="lastName" name="lastName" autocomplete="family-name" aria-describedby="lastNameError" required>
+                            <span class="field-error" id="lastNameError" aria-live="polite"></span>
                         </div>
                     </div>
-                    
+
                     <div class="form-row">
                         <div class="form-group">
-                            <label>Email Address <span class="required">*</span></label>
-                            <input type="email" name="email" required>
+                            <label for="email">Email Address <span class="required">*</span></label>
+                            <input type="email" id="email" name="email" autocomplete="email" spellcheck="false" aria-describedby="emailError" required>
+                            <span class="field-error" id="emailError" aria-live="polite"></span>
                         </div>
                         <div class="form-group">
-                            <label>Phone Number <span class="required">*</span></label>
-                            <input type="tel" name="phone" required>
+                            <label for="phone">Phone Number <span class="required">*</span></label>
+                            <input type="tel" id="phone" name="phone" autocomplete="tel" aria-describedby="phoneError" required>
+                            <span class="field-error" id="phoneError" aria-live="polite"></span>
                         </div>
                     </div>
-                    
+
                     <div class="form-group">
-                        <label>Position Applying For <span class="required">*</span></label>
-                        <select name="position" required>
+                        <label for="position">Position Applying For <span class="required">*</span></label>
+                        <select id="position" name="position" autocomplete="off" aria-describedby="positionError" required>
                             <option value="">Select a position</option>
                             <option value="call-center">Call Center Agent</option>
                             <option value="virtual-assistant">Virtual Assistant</option>
@@ -558,12 +633,13 @@
                             <option value="sales">Sales Representative</option>
                             <option value="management">Team Lead / Management</option>
                         </select>
+                        <span class="field-error" id="positionError" aria-live="polite"></span>
                     </div>
-                    
+
                     <div class="form-row">
                         <div class="form-group">
-                            <label>Years of Experience</label>
-                            <select name="experience">
+                            <label for="experience">Years of Experience</label>
+                            <select id="experience" name="experience" autocomplete="off">
                                 <option value="">Select experience level</option>
                                 <option value="entry">Entry Level (0-1 years)</option>
                                 <option value="junior">Junior (1-3 years)</option>
@@ -572,31 +648,34 @@
                             </select>
                         </div>
                         <div class="form-group">
-                            <label>Preferred Location</label>
-                            <select name="location">
+                            <label for="location">Preferred Location</label>
+                            <select id="location" name="location" autocomplete="off">
                                 <option value="nairobi">Nairobi, Kenya</option>
                                 <option value="remote">Remote</option>
                                 <option value="both">Both (Remote & Onsite)</option>
                             </select>
                         </div>
                     </div>
-                    
+
                     <div class="form-group">
-                        <label>Cover Letter <span class="required">*</span></label>
-                        <textarea name="message" placeholder="Tell us why you're interested in joining our team and why you'd be a good fit..." required></textarea>
+                        <label for="message">Cover Letter <span class="required">*</span></label>
+                        <textarea id="message" name="message" autocomplete="off" aria-describedby="messageError" placeholder="Tell us why you&rsquo;re interested in joining our team and why you&rsquo;d be a good fit&hellip;" required></textarea>
+                        <span class="field-error" id="messageError" aria-live="polite"></span>
                     </div>
-                    
+
                     <div class="form-group">
-                        <label>Resume/CV Link (Google Drive, Dropbox, etc.)</label>
-                        <input type="url" name="resume" placeholder="https://drive.google.com/your-cv">
+                        <label for="resume">Resume/CV Link (Google Drive, Dropbox, etc.)</label>
+                        <input type="url" id="resume" name="resume" placeholder="https://drive.google.com/your-cv">
                         <small style="color: var(--gray-400); font-size: 0.7rem;">Share a link to your resume (optional)</small>
                     </div>
                     
-                    <button type="submit" class="btn-primary">Submit Application →</button>
+                    <button type="submit" class="btn-primary" id="submitBtn">
+                        <span id="submitBtnLabel">Submit Application →</span>
+                    </button>
                 </form>
                 
                 <div class="form-footer">
-                    <p>By submitting this form, you agree to our <a href="#">Privacy Policy</a>. We'll review your application and contact you when relevant opportunities arise.</p>
+                    <p>By submitting this form, you agree to our <a href="#">Privacy Policy</a>. We&rsquo;ll review your application and contact you when relevant opportunities arise.</p>
                 </div>
             </div>
         </div>
@@ -606,7 +685,7 @@
         <div class="footer-container">
             <div class="footer-grid">
                 <div class="footer-logo">
-                    <img src="logo.png" alt="Pioneer Outsourcing BPO">
+                    <img src="logo.png" alt="Pioneer Outsourcing BPO" width="1774" height="887" loading="lazy">
                     <p>Elite BPO solutions from Nairobi, delivering excellence to global enterprises.</p>
                 </div>
                 <div class="footer-links">
@@ -642,17 +721,42 @@
             });
         }
         
+        /* "Get a Quote" CTA — href already points to a real destination
+           (index.html#contact-form); only intercept the click to smooth-scroll
+           when the target section happens to exist on the current page. */
         const ctaBtn = document.getElementById('ctaNavBtn');
         if (ctaBtn) {
             ctaBtn.addEventListener('click', function(e) {
-                e.preventDefault();
-                window.location.href = 'index.html#contact';
+                const contactEl = document.getElementById('contact-form') ||
+                                   document.getElementById('contact');
+                if (contactEl) {
+                    e.preventDefault();
+                    contactEl.scrollIntoView({ behavior: 'smooth' });
+                }
+                // otherwise let the real href navigate normally
             });
         }
-        
+
         const form = document.getElementById('applicationForm');
         const alertBox = document.getElementById('alertBox');
-        
+        const submitBtn = document.getElementById('submitBtn');
+        const submitBtnLabel = document.getElementById('submitBtnLabel');
+
+        /* Unsaved-changes warning: this is a multi-field form with a cover
+           letter, so warn on tab close/navigation if the user has started
+           filling it in but hasn't submitted yet. */
+        let isDirty = false;
+        form.addEventListener('input', function () {
+            isDirty = true;
+        }, { once: true });
+
+        window.addEventListener('beforeunload', function (e) {
+            if (isDirty) {
+                e.preventDefault();
+                e.returnValue = '';
+            }
+        });
+
         function showAlert(message, type) {
             alertBox.textContent = message;
             alertBox.className = `alert alert-${type}`;
@@ -661,32 +765,65 @@
                 alertBox.style.display = 'none';
             }, 5000);
         }
-        
+
         function isValidEmail(email) {
             return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
         }
-        
+
+        function setFieldError(field, message) {
+            const errorEl = document.getElementById(field.id + 'Error');
+            field.classList.toggle('invalid', !!message);
+            field.setAttribute('aria-invalid', message ? 'true' : 'false');
+            if (errorEl) {
+                errorEl.textContent = message || '';
+            }
+        }
+
         form.addEventListener('submit', function(e) {
-            const firstName = form.querySelector('input[name="firstName"]').value;
-            const lastName = form.querySelector('input[name="lastName"]').value;
-            const email = form.querySelector('input[name="email"]').value;
-            const phone = form.querySelector('input[name="phone"]').value;
-            const position = form.querySelector('select[name="position"]').value;
-            const message = form.querySelector('textarea[name="message"]').value;
-            
-            if (!firstName || !lastName || !email || !phone || !position || !message) {
+            const firstName = document.getElementById('firstName');
+            const lastName = document.getElementById('lastName');
+            const email = document.getElementById('email');
+            const phone = document.getElementById('phone');
+            const position = document.getElementById('position');
+            const message = document.getElementById('message');
+
+            const checks = [
+                [firstName, firstName.value.trim() ? '' : 'First name is required.'],
+                [lastName, lastName.value.trim() ? '' : 'Last name is required.'],
+                [email, !email.value.trim()
+                    ? 'Email address is required.'
+                    : (!isValidEmail(email.value) ? 'Please enter a valid email address.' : '')],
+                [phone, phone.value.trim() ? '' : 'Phone number is required.'],
+                [position, position.value ? '' : 'Please select a position.'],
+                [message, message.value.trim() ? '' : 'Cover letter is required.']
+            ];
+
+            let firstInvalid = null;
+            checks.forEach(function ([field, error]) {
+                setFieldError(field, error);
+                if (error && !firstInvalid) {
+                    firstInvalid = field;
+                }
+            });
+
+            if (firstInvalid) {
                 e.preventDefault();
-                showAlert('Please fill in all required fields.', 'error');
+                showAlert('Please correct the highlighted fields.', 'error');
+                firstInvalid.focus();
                 return;
             }
-            
-            if (!isValidEmail(email)) {
-                e.preventDefault();
-                showAlert('Please enter a valid email address.', 'error');
-                return;
-            }
-            
-            // Form will submit normally to Formspree
+
+            // Validation passed — the form will submit normally to Formspree.
+            // Clear the dirty flag so the beforeunload warning doesn't fire
+            // during the resulting navigation, and show a busy state on the
+            // button while that request is in flight.
+            isDirty = false;
+            submitBtn.disabled = true;
+            submitBtnLabel.textContent = 'Submitting…';
+            const spinner = document.createElement('span');
+            spinner.className = 'btn-spinner';
+            spinner.setAttribute('aria-hidden', 'true');
+            submitBtn.appendChild(spinner);
         });
     </script>
 </body>
