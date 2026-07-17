@@ -50,8 +50,8 @@
 /* ----- Back-to-top button ----- */
 .back-to-top {
     position: fixed;
-    bottom: 104px;
-    right: 28px;
+    bottom: calc(104px + env(safe-area-inset-bottom, 0px));
+    right: calc(28px + env(safe-area-inset-right, 0px));
     width: 48px;
     height: 48px;
     background: linear-gradient(135deg, #0A1A2F 0%, #0F2B3D 100%);
@@ -69,6 +69,7 @@
     transition: opacity 0.3s ease, transform 0.3s ease, background 0.2s ease;
     z-index: 998;
     pointer-events: none;
+    touch-action: manipulation;
 }
 .back-to-top.visible {
     opacity: 1;
@@ -83,8 +84,8 @@
 /* ----- WhatsApp floating CTA (LEFT side — keeps right side free for Tawk.to) ----- */
 .wa-float {
     position: fixed;
-    bottom: 28px;
-    left: 28px;
+    bottom: calc(28px + env(safe-area-inset-bottom, 0px));
+    left: calc(28px + env(safe-area-inset-left, 0px));
     width: 56px;
     height: 56px;
     background: #25D366;
@@ -99,6 +100,7 @@
     z-index: 999;
     transition: transform 0.25s ease, box-shadow 0.25s ease;
     animation: wa-pulse 3s ease-in-out infinite;
+    touch-action: manipulation;
 }
 .wa-float:hover {
     transform: scale(1.12);
@@ -139,6 +141,7 @@
 }
 .footer-logo img {
     height: 56px !important;
+    width: auto;
     margin-bottom: 16px;
 }
 .social-links {
@@ -267,4 +270,29 @@
 @media (max-width: 480px) {
     .hero-stats-card { grid-template-columns: 1fr 1fr; }
     .hero-stat-num { font-size: 1.4rem; }
+}
+
+/* ----- Reduced motion ----- */
+@media (prefers-reduced-motion: reduce) {
+    .scroll-progress,
+    .wa-float,
+    .back-to-top,
+    .reveal,
+    .logo,
+    .navbar,
+    .social-icon,
+    .service-card::after {
+        animation: none !important;
+        transition-duration: 0.01ms !important;
+    }
+    .reveal {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+/* ----- Intentional tap highlight ----- */
+a, button, .logo-link, .social-icon, .back-to-top, .wa-float {
+    -webkit-tap-highlight-color: rgba(245, 158, 11, 0.25);
+    touch-action: manipulation;
 }
