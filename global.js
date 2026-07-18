@@ -90,7 +90,7 @@
         var revealTargets = document.querySelectorAll(
             '.service-card, .benefit-card, .testimonial-card, ' +
             '.value-card, .mission-card, .why-item, .why-card, ' +
-            '.stat-item, .stat-card, .section-header'
+            '.stat-item, .stat-card, .section-header, .process-step'
         );
 
         if ('IntersectionObserver' in window) {
@@ -109,6 +109,57 @@
                 el.classList.add('reveal');
                 revealObserver.observe(el);
             });
+        }
+
+        /* ---- Animated stat counters ----
+           Elements marked data-count-to="200" (optionally data-prefix/data-suffix)
+           count up from 0 once scrolled into view. Skips the animation entirely
+           when the user has requested reduced motion — jumps straight to the
+           final value instead. */
+        var countTargets = document.querySelectorAll('[data-count-to]');
+        var prefersReducedMotion = window.matchMedia &&
+            window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+        function renderCount(el, value) {
+            el.textContent = (el.getAttribute('data-prefix') || '') +
+                value +
+                (el.getAttribute('data-suffix') || '');
+        }
+
+        function animateCount(el) {
+            var end = parseInt(el.getAttribute('data-count-to'), 10);
+            if (isNaN(end)) return;
+            if (prefersReducedMotion) {
+                renderCount(el, end);
+                return;
+            }
+            var duration = 2000;
+            var startTimestamp = null;
+            function step(timestamp) {
+                if (!startTimestamp) startTimestamp = timestamp;
+                var progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                renderCount(el, Math.floor(progress * end));
+                if (progress < 1) window.requestAnimationFrame(step);
+            }
+            window.requestAnimationFrame(step);
+        }
+
+        if (countTargets.length) {
+            if ('IntersectionObserver' in window) {
+                var countObserver = new IntersectionObserver(function (entries) {
+                    entries.forEach(function (entry) {
+                        if (entry.isIntersecting) {
+                            animateCount(entry.target);
+                            countObserver.unobserve(entry.target);
+                        }
+                    });
+                }, { threshold: 0.3 });
+                countTargets.forEach(function (el) { countObserver.observe(el); });
+            } else {
+                countTargets.forEach(function (el) {
+                    renderCount(el, parseInt(el.getAttribute('data-count-to'), 10));
+                });
+            }
         }
 
         /* ---- "Get a Quote" CTA nav button — smooth-scroll when the target is on this page ---- */
