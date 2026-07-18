@@ -849,7 +849,8 @@ footer {
     align-items: center;
     justify-content: center;
     color: #4B5563;
-    font-size: 0.95rem;
+    font-size: 1.3rem;
+    line-height: 1;
     text-decoration: none;
     transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease;
 }
