@@ -163,7 +163,7 @@
         }
 
         /* ---- "Get a Quote" CTA nav button — smooth-scroll when the target is on this page ---- */
-        /* href already points to a real destination (index.html#contact-form); only intercept
+        /* href already points to a real destination (/#contact-form); only intercept
            the click to smooth-scroll when the target section exists on the current page. */
         var ctaNav = document.getElementById('ctaNavBtn');
         if (ctaNav) {
