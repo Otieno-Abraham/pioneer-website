@@ -24,15 +24,85 @@ html,body{height:100%;background:#06111F;overflow:hidden;font-family:Inter,Arial
 .slide li{margin-bottom:.25em}
 .slide img{display:block}
 .slide table{border-collapse:separate;border-spacing:0;width:100%;overflow:hidden}
-.slide th{text-align:left;font-weight:600}
+.slide th{text-align:left;font-weight:600;padding:20px 32px}
 .slide td{padding:18px 32px;border-top:1px solid #E6E1D6}
-.slide th{padding:20px 32px}
-#bar{position:fixed;left:50%;bottom:16px;transform:translateX(-50%);display:flex;align-items:center;gap:8px;background:rgba(10,26,47,.85);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.12);border-radius:999px;padding:6px 10px;color:#F7F4EE;font-size:14px;opacity:.9;transition:opacity .3s}
-#bar button{background:none;border:none;color:inherit;cursor:pointer;width:36px;height:36px;border-radius:50%;font-size:18px;display:flex;align-items:center;justify-content:center}
+
+/* clickable items */
+[data-explain],[data-answer]{cursor:pointer;transition:transform .2s ease,box-shadow .2s ease,outline-color .2s}
+div[data-explain],div[data-answer]{position:relative;outline:3px solid transparent;outline-offset:6px;border-radius:20px}
+div[data-explain]:hover,div[data-answer]:hover,div[data-explain]:focus-visible,div[data-answer]:focus-visible{outline-color:#F59E0B;transform:translateY(-4px)}
+div[data-explain]::after,h2[data-explain]::after,p[data-explain]::after,tr[data-explain] td:first-child::after{content:"i";display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:50%;background:#F59E0B;color:#0A1A2F;font:700 22px/1 Georgia,serif;font-style:italic;box-shadow:0 4px 12px rgba(0,0,0,.2)}
+div[data-explain]::after{position:absolute;top:16px;right:16px}
+h2[data-explain]::after,p[data-explain]::after,tr[data-explain] td:first-child::after{margin-left:16px;vertical-align:middle;transform:translateY(-4px)}
+h2[data-explain]:hover,p[data-explain]:hover{color:#B86E00}
+tr[data-explain]:hover td{background:#FDF1DC}
+div[data-answer]{padding:12px 16px;margin:-12px -16px}
+div[data-answer]:hover{background:rgba(245,158,11,.1)}
+.cta{font:600 30px Inter,Arial,sans-serif;padding:22px 44px;border-radius:999px;background:#F59E0B;color:#0A1A2F;border:none;cursor:pointer;transition:transform .2s}
+.cta:hover,.cta:focus-visible{transform:translateY(-3px);outline:none;box-shadow:0 10px 30px rgba(245,158,11,.35)}
+.cta.ghost{background:rgba(247,244,238,.1);color:#F7F4EE;border:2px solid rgba(247,244,238,.35)}
+.slide.active [data-explain].pulse::after{animation:pulse 1.6s ease-in-out 3}
+@keyframes pulse{50%{transform:scale(1.35);box-shadow:0 0 0 12px rgba(245,158,11,.25)}}
+
+/* control bar */
+#bar{position:fixed;left:50%;bottom:16px;transform:translateX(-50%);display:flex;align-items:center;gap:6px;background:rgba(10,26,47,.88);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.12);border-radius:999px;padding:6px 10px;color:#F7F4EE;font-size:14px;transition:opacity .3s;z-index:20}
+#bar button{background:none;border:none;color:inherit;cursor:pointer;height:36px;min-width:36px;padding:0 10px;border-radius:999px;font:inherit;font-size:16px;display:flex;align-items:center;justify-content:center;gap:6px}
 #bar button:hover,#bar button:focus-visible{background:rgba(245,158,11,.2);outline:none}
-#count{min-width:64px;text-align:center;font-variant-numeric:tabular-nums}
-body.idle #bar{opacity:0}
-@media (prefers-reduced-motion:reduce){.slide{transition:none}}
+#bar .ask{background:#F59E0B;color:#0A1A2F;font-weight:600;font-size:14px;padding:0 14px}
+#bar .ask:hover{background:#FBBF24}
+#count{min-width:56px;text-align:center;font-variant-numeric:tabular-nums}
+body.idle:not(.drawer-open) #bar{opacity:.15}
+#tip{position:fixed;top:16px;left:50%;transform:translateX(-50%);background:#F7F4EE;color:#0F2B3D;border-radius:999px;padding:10px 18px;font-size:14px;box-shadow:0 10px 30px rgba(0,0,0,.35);display:flex;gap:10px;align-items:center;z-index:20;transition:opacity .4s;max-width:calc(100% - 32px)}
+#tip b{display:inline-flex;width:22px;height:22px;border-radius:50%;background:#F59E0B;color:#0A1A2F;align-items:center;justify-content:center;font:italic 700 14px Georgia,serif;flex:none}
+#tip button{background:none;border:none;font-size:18px;cursor:pointer;color:#6A7179;padding:0 4px}
+#tip.hide{opacity:0;pointer-events:none}
+
+/* drawer */
+#scrim{position:fixed;inset:0;background:rgba(6,17,31,.55);opacity:0;pointer-events:none;transition:opacity .3s;z-index:30}
+#drawer{position:fixed;top:0;right:0;height:100%;width:min(520px,100%);background:#F7F4EE;color:#0F2B3D;z-index:31;transform:translateX(100%);transition:transform .35s cubic-bezier(.2,.8,.2,1);display:flex;flex-direction:column;box-shadow:-20px 0 60px rgba(0,0,0,.35)}
+body.drawer-open #scrim{opacity:1;pointer-events:auto}
+body.drawer-open #drawer{transform:none}
+#drawer header{padding:28px 28px 20px;background:#0F2B3D;color:#F7F4EE;display:flex;gap:16px;align-items:flex-start}
+#drawer header div{flex:1}
+#d-eyebrow{font-size:12px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:#F59E0B;margin-bottom:8px}
+#d-title{font:700 28px/1.15 'Space Grotesk',Arial,sans-serif}
+#d-close{background:rgba(255,255,255,.1);border:none;color:#F7F4EE;width:40px;height:40px;border-radius:50%;font-size:22px;cursor:pointer;flex:none}
+#d-close:hover,#d-close:focus-visible{background:rgba(245,158,11,.35);outline:none}
+#d-body{padding:24px 28px 40px;overflow-y:auto;font-size:16px;line-height:1.6;color:#2D3B48}
+#d-body p{margin-bottom:14px}
+#d-body h4{font:600 13px Inter,sans-serif;letter-spacing:1.5px;text-transform:uppercase;color:#B86E00;margin:22px 0 8px}
+#d-body ul{padding-left:20px;margin-bottom:14px}
+#d-body li{margin-bottom:6px}
+#d-body .callout{background:#FFFFFF;border-left:4px solid #F59E0B;border-radius:8px;padding:14px 16px;margin:16px 0}
+#d-body .ex{background:#0F2B3D;color:#E6EEF3;border-radius:10px;padding:14px 16px;margin:16px 0;font-size:15px}
+#d-body .ex b{color:#F59E0B}
+#d-body a{color:#B86E00}
+#d-nav{display:flex;justify-content:space-between;gap:12px;margin-top:24px;padding-top:16px;border-top:1px solid #E3DDD0}
+.linkbtn{background:none;border:none;color:#B86E00;font:600 14px Inter,sans-serif;cursor:pointer;padding:6px 0;text-align:left}
+.linkbtn:hover{text-decoration:underline}
+.topics{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0 16px}
+.topics button{background:#FFFFFF;border:1px solid #E3DDD0;border-radius:999px;padding:6px 12px;font:14px Inter,sans-serif;color:#0F2B3D;cursor:pointer}
+.topics button:hover{border-color:#F59E0B;background:#FDF1DC}
+
+/* forms */
+form label{display:block;font-weight:600;font-size:14px;color:#0F2B3D;margin:16px 0 6px}
+form .hint{font-weight:400;color:#6A7179;font-size:13px}
+form input,form textarea{width:100%;font:15px Inter,sans-serif;padding:11px 13px;border:1px solid #D6CFC0;border-radius:10px;background:#FFFFFF;color:#0F2B3D}
+form textarea{min-height:84px;resize:vertical}
+form input:focus,form textarea:focus{outline:2px solid #F59E0B;outline-offset:1px;border-color:#F59E0B}
+form .row{display:flex;gap:12px}
+form .row>div{flex:1}
+form .submit{margin-top:22px;width:100%;background:#F59E0B;color:#0A1A2F;border:none;border-radius:999px;padding:14px;font:600 16px Inter,sans-serif;cursor:pointer}
+form .submit:hover{background:#FBBF24}
+form .submit:disabled{opacity:.6;cursor:wait}
+.status{margin-top:14px;font-size:14px}
+.status.ok{color:#1F7A4D}
+.status.err{color:#B42318}
+.done{text-align:center;padding:24px 0}
+.done .tick{width:64px;height:64px;border-radius:50%;background:#1F7A4D;color:#fff;display:flex;align-items:center;justify-content:center;font-size:32px;margin:8px auto 16px}
+.hp{position:absolute;left:-9999px}
+@media (max-width:560px){#bar .ask span{display:none}form .row{flex-direction:column;gap:0}}
+@media (prefers-reduced-motion:reduce){.slide,#drawer,#scrim{transition:none}.slide.active [data-explain].pulse::after{animation:none}}
 </style>
 </head>
 <body>
@@ -50,10 +120,9 @@ body.idle #bar{opacity:0}
 <p style="font-size:36px;line-height:1.4;color:#C9D6DF;width:1300px">Motivated-seller lead generation for US real estate investors: five dedicated agents, recorded calls, DNC handled.</p>
 </div>
 <div style="display:flex;justify-content:space-between;align-items:end">
-<p style="font-size:28px;color:#C9D6DF">Prepared for Miguel, Provider Manager · November 2026</p>
+<p style="font-size:28px;color:#C9D6DF">Prepared for the RevScalers team · November 2026</p>
 <p style="font-size:28px;color:#F59E0B;font-weight:600">pioneeroutsourcingbpo.com</p>
 </div>
-
 </section>
 <section class="slide" id="about" data-transition="fade" style="background:#F7F4EE;color:#0F2B3D;font-family:Inter, Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:56px">
 <div style="display:flex;flex-direction:column;gap:20px">
@@ -61,24 +130,23 @@ body.idle #bar{opacity:0}
 <h2 style="font-family:'Space Grotesk', Arial, sans-serif;font-size:72px;font-weight:700;line-height:1.1;width:1500px">A Nairobi BPO built for US, UK and European clients</h2>
 </div>
 <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:32px">
-<div style="background:#FFFFFF;border-radius:20px;padding:48px;display:flex;flex-direction:column;gap:20px;border-top:6px solid #F59E0B;box-shadow:0px 8px 32px rgba(15,43,61,0.08)">
+<div data-explain="standards" style="background:#FFFFFF;border-radius:20px;padding:48px;display:flex;flex-direction:column;gap:20px;border-top:6px solid #F59E0B;box-shadow:0px 8px 32px rgba(15,43,61,0.08)">
 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="color:#0F2B3D;width:56px;height:56px;flex:none"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
 <h3 style="font-family:'Space Grotesk', Arial, sans-serif;font-size:40px;font-weight:600">Western standards</h3>
 <p style="font-size:28px;line-height:1.45;color:#4A5568">Outsourcing work that holds up for clients across the USA, UK and Europe.</p>
 </div>
-<div style="background:#FFFFFF;border-radius:20px;padding:48px;display:flex;flex-direction:column;gap:20px;border-top:6px solid #F59E0B;box-shadow:0px 8px 32px rgba(15,43,61,0.08)">
+<div data-explain="english" style="background:#FFFFFF;border-radius:20px;padding:48px;display:flex;flex-direction:column;gap:20px;border-top:6px solid #F59E0B;box-shadow:0px 8px 32px rgba(15,43,61,0.08)">
 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="color:#0F2B3D;width:56px;height:56px;flex:none"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
 <h3 style="font-family:'Space Grotesk', Arial, sans-serif;font-size:40px;font-weight:600">English-fluent agents</h3>
 <p style="font-size:28px;line-height:1.45;color:#4A5568">An educated workforce that sounds natural on the phone with US homeowners.</p>
 </div>
-<div style="background:#FFFFFF;border-radius:20px;padding:48px;display:flex;flex-direction:column;gap:20px;border-top:6px solid #F59E0B;box-shadow:0px 8px 32px rgba(15,43,61,0.08)">
+<div data-explain="timezone" style="background:#FFFFFF;border-radius:20px;padding:48px;display:flex;flex-direction:column;gap:20px;border-top:6px solid #F59E0B;box-shadow:0px 8px 32px rgba(15,43,61,0.08)">
 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="color:#0F2B3D;width:56px;height:56px;flex:none"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
 <h3 style="font-family:'Space Grotesk', Arial, sans-serif;font-size:40px;font-weight:600">Time-zone fit</h3>
 <p style="font-size:28px;line-height:1.45;color:#4A5568">Shifts are scheduled to cover US calling hours.</p>
 </div>
 </div>
 <p style="position:absolute;left:128px;bottom:64px;font-size:24px;color:#6A7179">Pioneer Outsourcing BPO · Nairobi, Kenya</p>
-
 </section>
 <section class="slide" id="numbers" data-transition="fade" style="background:#0F2B3D;color:#F7F4EE;font-family:Inter, Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:72px">
 <div style="display:flex;flex-direction:column;gap:20px">
@@ -86,25 +154,24 @@ body.idle #bar{opacity:0}
 <h2 style="font-family:'Space Grotesk', Arial, sans-serif;font-size:72px;font-weight:700;line-height:1.1">The team behind your leads</h2>
 </div>
 <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:32px">
-<div style="display:flex;flex-direction:column;gap:16px;border-left:4px solid #F59E0B;padding:8px 0px 8px 32px">
+<div data-explain="agents30" style="display:flex;flex-direction:column;gap:16px;border-left:4px solid #F59E0B;padding:8px 0px 8px 32px">
 <p style="font-family:'Space Grotesk', Arial, sans-serif;font-size:140px;font-weight:700;line-height:1;color:#F59E0B">30</p>
 <p style="font-size:30px;line-height:1.4;color:#C9D6DF">trained agents on our floor today</p>
 </div>
-<div style="display:flex;flex-direction:column;gap:16px;border-left:4px solid #F59E0B;padding:8px 0px 8px 32px">
+<div data-explain="agents5" style="display:flex;flex-direction:column;gap:16px;border-left:4px solid #F59E0B;padding:8px 0px 8px 32px">
 <p style="font-family:'Space Grotesk', Arial, sans-serif;font-size:140px;font-weight:700;line-height:1;color:#F59E0B">5</p>
 <p style="font-size:30px;line-height:1.4;color:#C9D6DF">agents dedicated to RevScalers from day one</p>
 </div>
-<div style="display:flex;flex-direction:column;gap:16px;border-left:4px solid #F59E0B;padding:8px 0px 8px 32px">
+<div data-explain="recording" style="display:flex;flex-direction:column;gap:16px;border-left:4px solid #F59E0B;padding:8px 0px 8px 32px">
 <p style="font-family:'Space Grotesk', Arial, sans-serif;font-size:140px;font-weight:700;line-height:1;color:#F59E0B">100%</p>
 <p style="font-size:30px;line-height:1.4;color:#C9D6DF">of calls recorded, on every platform</p>
 </div>
-<div style="display:flex;flex-direction:column;gap:16px;border-left:4px solid #F59E0B;padding:8px 0px 8px 32px">
+<div data-explain="usexp" style="display:flex;flex-direction:column;gap:16px;border-left:4px solid #F59E0B;padding:8px 0px 8px 32px">
 <p style="font-family:'Space Grotesk', Arial, sans-serif;font-size:140px;font-weight:700;line-height:1;color:#F59E0B">US</p>
 <p style="font-size:30px;line-height:1.4;color:#C9D6DF">cold-calling track record in janitorial and healthcare</p>
 </div>
 </div>
 <p style="position:absolute;left:128px;bottom:64px;font-size:24px;color:#8FA6B5">Real estate is a new vertical for us; the US outbound skills carry straight over.</p>
-
 </section>
 <section class="slide" id="stack" data-transition="fade" style="background:#F7F4EE;color:#0F2B3D;font-family:Inter, Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:56px">
 <div style="display:flex;flex-direction:column;gap:20px">
@@ -112,48 +179,46 @@ body.idle #bar{opacity:0}
 <h2 style="font-family:'Space Grotesk', Arial, sans-serif;font-size:72px;font-weight:700;line-height:1.1">Our own dialers, every call on record</h2>
 </div>
 <div style="display:grid;grid-template-columns:1fr 1fr;gap:32px">
-<div style="background:#0F2B3D;color:#F7F4EE;border-radius:20px;padding:56px;display:flex;flex-direction:column;gap:24px">
+<div data-explain="vicidial" style="background:#0F2B3D;color:#F7F4EE;border-radius:20px;padding:56px;display:flex;flex-direction:column;gap:24px">
 <p style="font-size:24px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:#F59E0B">Global campaigns · used for RevScalers</p>
 <h3 style="font-family:'Space Grotesk', Arial, sans-serif;font-size:56px;font-weight:700">VICIdial</h3>
 <p style="font-size:30px;line-height:1.45;color:#C9D6DF">Runs our international outbound, including US calling. Automatic DNC blocking and call recording built in.</p>
 </div>
-<div style="background:#FFFFFF;border-radius:20px;padding:56px;display:flex;flex-direction:column;gap:24px;box-shadow:0px 8px 32px rgba(15,43,61,0.08)">
+<div data-explain="dialafrica" style="background:#FFFFFF;border-radius:20px;padding:56px;display:flex;flex-direction:column;gap:24px;box-shadow:0px 8px 32px rgba(15,43,61,0.08)">
 <p style="font-size:24px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:#B86E00">Local campaigns</p>
 <h3 style="font-family:'Space Grotesk', Arial, sans-serif;font-size:56px;font-weight:700">Dial Africa</h3>
 <p style="font-size:30px;line-height:1.45;color:#4A5568">Handles local calling. Same recording and opt-out rules as VICIdial.</p>
 </div>
 </div>
-<div style="display:flex;gap:20px;align-items:center;background:#FDF1DC;border-radius:16px;padding:28px 40px">
+<div data-explain="recording" style="display:flex;gap:20px;align-items:center;background:#FDF1DC;border-radius:16px;padding:28px 40px">
 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="color:#B86E00;width:48px;height:48px;flex:none"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
 <p style="font-size:30px;line-height:1.4;color:#0F2B3D"><b>Recordings are kept for QA, training and compliance</b>, so every lead you receive has audio behind it.</p>
 </div>
-
 </section>
 <section class="slide" id="dnc" data-transition="fade" style="background:#F7F4EE;color:#0F2B3D;font-family:Inter, Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:56px">
 <div style="display:flex;flex-direction:column;gap:20px">
 <p style="font-size:26px;font-weight:600;letter-spacing:4px;text-transform:uppercase;color:#B86E00">Compliance</p>
-<h2 style="font-family:'Space Grotesk', Arial, sans-serif;font-size:72px;font-weight:700;line-height:1.1">DNC is handled before, during and after every dial</h2>
+<h2 data-explain="dnc" style="font-family:'Space Grotesk', Arial, sans-serif;font-size:72px;font-weight:700;line-height:1.1">DNC is handled before, during and after every dial</h2>
 </div>
 <div style="display:flex;gap:24px;align-items:stretch">
-<div style="flex:1;background:#FFFFFF;border-radius:20px;padding:48px;display:flex;flex-direction:column;gap:20px;box-shadow:0px 8px 32px rgba(15,43,61,0.08)">
+<div data-explain="dnc-import" style="flex:1;background:#FFFFFF;border-radius:20px;padding:48px;display:flex;flex-direction:column;gap:20px;box-shadow:0px 8px 32px rgba(15,43,61,0.08)">
 <p style="font-family:'Space Grotesk', Arial, sans-serif;font-size:72px;font-weight:700;line-height:1;color:#F59E0B">01</p>
 <h3 style="font-family:'Space Grotesk', Arial, sans-serif;font-size:38px;font-weight:600">Before import</h3>
 <p style="font-size:28px;line-height:1.45;color:#4A5568">Every list is checked against our master internal opt-out and DNC database.</p>
 </div>
 <svg viewBox="0 0 56 36" aria-hidden="true" style="width:56px;height:36px;align-self:center;flex:none"><path d="M0 11h34V0l22 18-22 18V25H0z" fill="#F59E0B"/></svg>
-<div style="flex:1;background:#FFFFFF;border-radius:20px;padding:48px;display:flex;flex-direction:column;gap:20px;box-shadow:0px 8px 32px rgba(15,43,61,0.08)">
+<div data-explain="dnc-dialer" style="flex:1;background:#FFFFFF;border-radius:20px;padding:48px;display:flex;flex-direction:column;gap:20px;box-shadow:0px 8px 32px rgba(15,43,61,0.08)">
 <p style="font-family:'Space Grotesk', Arial, sans-serif;font-size:72px;font-weight:700;line-height:1;color:#F59E0B">02</p>
 <h3 style="font-family:'Space Grotesk', Arial, sans-serif;font-size:38px;font-weight:600">In the dialer</h3>
 <p style="font-size:28px;line-height:1.45;color:#4A5568">VICIdial and Dial Africa automatically block any number flagged DNC or previously opted out.</p>
 </div>
 <svg viewBox="0 0 56 36" aria-hidden="true" style="width:56px;height:36px;align-self:center;flex:none"><path d="M0 11h34V0l22 18-22 18V25H0z" fill="#F59E0B"/></svg>
-<div style="flex:1;background:#0F2B3D;color:#F7F4EE;border-radius:20px;padding:48px;display:flex;flex-direction:column;gap:20px">
+<div data-explain="dnc-live" style="flex:1;background:#0F2B3D;color:#F7F4EE;border-radius:20px;padding:48px;display:flex;flex-direction:column;gap:20px">
 <p style="font-family:'Space Grotesk', Arial, sans-serif;font-size:72px;font-weight:700;line-height:1;color:#F59E0B">03</p>
 <h3 style="font-family:'Space Grotesk', Arial, sans-serif;font-size:38px;font-weight:600">On the live call</h3>
 <p style="font-size:28px;line-height:1.45;color:#C9D6DF">A homeowner asks to be removed? The agent tags the call DNC and the number is suppressed from all future dials.</p>
 </div>
 </div>
-
 </section>
 <section class="slide" id="criteria" data-transition="fade" style="background:#F7F4EE;color:#0F2B3D;font-family:Inter, Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:48px">
 <div style="display:flex;flex-direction:column;gap:20px">
@@ -162,14 +227,13 @@ body.idle #bar{opacity:0}
 </div>
 <table style="font-family:Inter, Arial, sans-serif;font-size:28px;color:#0F2B3D;background:#FFFFFF;border-radius:16px">
 <tr style="background:#0F2B3D"><th style="width:34%;color:#F7F4EE;padding:20px 32px">Criterion</th><th style="width:66%;color:#F7F4EE">How our agents capture it</th></tr>
-<tr><td>Owner confirmed</td><td style="color:#4A5568">Agent verifies they’re speaking with the property owner before qualifying</td></tr>
-<tr style="background:#FBF8F2"><td>Asking price + value estimate</td><td style="color:#4A5568">Both figures asked and logged as separate fields</td></tr>
-<tr><td>Motivation in their words</td><td style="color:#4A5568">Typed close to verbatim, not paraphrased into a dropdown</td></tr>
-<tr style="background:#FBF8F2"><td>Not listed</td><td style="color:#4A5568">Confirmed on the call that the home isn’t with an agent or on the market</td></tr>
-<tr><td>Timeline under 3 months</td><td style="color:#4A5568">Leads with a longer timeline don’t get submitted</td></tr>
-<tr style="background:#FBF8F2"><td>Recorded</td><td style="color:#4A5568">Call recording attached to every lead submitted</td></tr>
+<tr data-explain="owner"><td>Owner confirmed</td><td style="color:#4A5568">Agent verifies they’re speaking with the property owner before qualifying</td></tr>
+<tr data-explain="price" style="background:#FBF8F2"><td>Asking price + value estimate</td><td style="color:#4A5568">Both figures asked and logged as separate fields</td></tr>
+<tr data-explain="motivation"><td>Motivation in their words</td><td style="color:#4A5568">Typed close to verbatim, not paraphrased into a dropdown</td></tr>
+<tr data-explain="notlisted" style="background:#FBF8F2"><td>Not listed</td><td style="color:#4A5568">Confirmed on the call that the home isn’t with an agent or on the market</td></tr>
+<tr data-explain="timeline"><td>Timeline under 3 months</td><td style="color:#4A5568">Leads with a longer timeline don’t get submitted</td></tr>
+<tr data-explain="recording" style="background:#FBF8F2"><td>Recorded</td><td style="color:#4A5568">Call recording attached to every lead submitted</td></tr>
 </table>
-
 </section>
 <section class="slide" id="workflow" data-transition="fade" style="background:#0F2B3D;color:#F7F4EE;font-family:Inter, Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:64px">
 <div style="display:flex;flex-direction:column;gap:20px">
@@ -177,34 +241,33 @@ body.idle #bar{opacity:0}
 <h2 style="font-family:'Space Grotesk', Arial, sans-serif;font-size:72px;font-weight:700;line-height:1.1">From your target counties to a recorded lead</h2>
 </div>
 <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr 1fr;gap:24px">
-<div style="display:flex;flex-direction:column;gap:16px;border-top:4px solid #F59E0B;padding:28px 8px 0px 0px">
+<div data-explain="wf-targets" style="display:flex;flex-direction:column;gap:16px;border-top:4px solid #F59E0B;padding:28px 8px 0px 0px">
 <p style="font-size:24px;font-weight:600;color:#F59E0B">MONDAY</p>
 <h3 style="font-family:'Space Grotesk', Arial, sans-serif;font-size:34px;font-weight:600">Targets set</h3>
 <p style="font-size:26px;line-height:1.45;color:#C9D6DF">RevScalers sends states, counties, zips and property type</p>
 </div>
-<div style="display:flex;flex-direction:column;gap:16px;border-top:4px solid #F59E0B;padding:28px 8px 0px 0px">
+<div data-explain="wf-data" style="display:flex;flex-direction:column;gap:16px;border-top:4px solid #F59E0B;padding:28px 8px 0px 0px">
 <p style="font-size:24px;font-weight:600;color:#F59E0B">STEP 2</p>
 <h3 style="font-family:'Space Grotesk', Arial, sans-serif;font-size:34px;font-weight:600">Data loaded</h3>
 <p style="font-size:26px;line-height:1.45;color:#C9D6DF">Your lists, or ones we mine, are scrubbed and loaded into VICIdial</p>
 </div>
-<div style="display:flex;flex-direction:column;gap:16px;border-top:4px solid #F59E0B;padding:28px 8px 0px 0px">
+<div data-explain="wf-dial" style="display:flex;flex-direction:column;gap:16px;border-top:4px solid #F59E0B;padding:28px 8px 0px 0px">
 <p style="font-size:24px;font-weight:600;color:#F59E0B">STEP 3</p>
 <h3 style="font-family:'Space Grotesk', Arial, sans-serif;font-size:34px;font-weight:600">Dial</h3>
 <p style="font-size:26px;line-height:1.45;color:#C9D6DF">Five agents call during US hours</p>
 </div>
-<div style="display:flex;flex-direction:column;gap:16px;border-top:4px solid #F59E0B;padding:28px 8px 0px 0px">
+<div data-explain="wf-qualify" style="display:flex;flex-direction:column;gap:16px;border-top:4px solid #F59E0B;padding:28px 8px 0px 0px">
 <p style="font-size:24px;font-weight:600;color:#F59E0B">STEP 4</p>
 <h3 style="font-family:'Space Grotesk', Arial, sans-serif;font-size:34px;font-weight:600">Qualify</h3>
 <p style="font-size:26px;line-height:1.45;color:#C9D6DF">All six criteria checked; a team lead reviews the call</p>
 </div>
-<div style="display:flex;flex-direction:column;gap:16px;border-top:4px solid #F59E0B;padding:28px 8px 0px 0px">
+<div data-explain="wf-deliver" style="display:flex;flex-direction:column;gap:16px;border-top:4px solid #F59E0B;padding:28px 8px 0px 0px">
 <p style="font-size:24px;font-weight:600;color:#F59E0B">STEP 5</p>
 <h3 style="font-family:'Space Grotesk', Arial, sans-serif;font-size:34px;font-weight:600">Deliver</h3>
 <p style="font-size:26px;line-height:1.45;color:#C9D6DF">Lead and recording submitted in your format</p>
 </div>
 </div>
 <p style="position:absolute;left:128px;bottom:64px;font-size:24px;color:#8FA6B5">We can also suggest regions where we expect leads to qualify more often.</p>
-
 </section>
 <section class="slide" id="team" data-transition="fade" style="background:#F7F4EE;color:#0F2B3D;font-family:Inter, Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:56px">
 <div style="display:flex;flex-direction:column;gap:20px">
@@ -212,23 +275,22 @@ body.idle #bar{opacity:0}
 <h2 style="font-family:'Space Grotesk', Arial, sans-serif;font-size:72px;font-weight:700;line-height:1.1">Start with five agents, then scale on results</h2>
 </div>
 <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:32px">
-<div style="background:#0F2B3D;color:#F7F4EE;border-radius:20px;padding:48px;display:flex;flex-direction:column;gap:20px">
+<div data-explain="ph1" style="background:#0F2B3D;color:#F7F4EE;border-radius:20px;padding:48px;display:flex;flex-direction:column;gap:20px">
 <p style="font-size:24px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:#F59E0B">Phase 1 · This week</p>
 <h3 style="font-family:'Space Grotesk', Arial, sans-serif;font-size:40px;font-weight:600">Onboard</h3>
 <p style="font-size:28px;line-height:1.45;color:#C9D6DF">Walkthrough with Miguel, script and criteria training, first markets loaded.</p>
 </div>
-<div style="background:#FFFFFF;border-radius:20px;padding:48px;display:flex;flex-direction:column;gap:20px;box-shadow:0px 8px 32px rgba(15,43,61,0.08)">
+<div data-explain="ph2" style="background:#FFFFFF;border-radius:20px;padding:48px;display:flex;flex-direction:column;gap:20px;box-shadow:0px 8px 32px rgba(15,43,61,0.08)">
 <p style="font-size:24px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:#B86E00">Phase 2 · Pilot</p>
 <h3 style="font-family:'Space Grotesk', Arial, sans-serif;font-size:40px;font-weight:600">Five dedicated agents</h3>
 <p style="font-size:28px;line-height:1.45;color:#4A5568">Full shifts on RevScalers markets, with a weekly review of lead quality and acceptance.</p>
 </div>
-<div style="background:#FFFFFF;border-radius:20px;padding:48px;display:flex;flex-direction:column;gap:20px;box-shadow:0px 8px 32px rgba(15,43,61,0.08)">
+<div data-explain="ph3" style="background:#FFFFFF;border-radius:20px;padding:48px;display:flex;flex-direction:column;gap:20px;box-shadow:0px 8px 32px rgba(15,43,61,0.08)">
 <p style="font-size:24px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:#B86E00">Phase 3 · Scale</p>
 <h3 style="font-family:'Space Grotesk', Arial, sans-serif;font-size:40px;font-weight:600">Add from our bench</h3>
 <p style="font-size:28px;line-height:1.45;color:#4A5568">More seats from our 30-agent team as demand and results grow.</p>
 </div>
 </div>
-
 </section>
 <section class="slide" id="commercial" data-transition="fade" style="background:#F7F4EE;color:#0F2B3D;font-family:Inter, Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:48px">
 <div style="display:flex;flex-direction:column;gap:20px">
@@ -236,7 +298,7 @@ body.idle #bar{opacity:0}
 <h2 style="font-family:'Space Grotesk', Arial, sans-serif;font-size:72px;font-weight:700;line-height:1.1">Two ways to work together</h2>
 </div>
 <div style="display:grid;grid-template-columns:1fr 1fr;gap:32px">
-<div style="background:#0F2B3D;color:#F7F4EE;border-radius:20px;padding:56px;display:flex;flex-direction:column;gap:24px">
+<div data-explain="hourly" style="background:#0F2B3D;color:#F7F4EE;border-radius:20px;padding:56px;display:flex;flex-direction:column;gap:24px">
 <p style="font-size:24px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:#F59E0B">Our proposal · fastest start</p>
 <h3 style="font-family:'Space Grotesk', Arial, sans-serif;font-size:56px;font-weight:700">Hourly, $5 or less</h3>
 <ul style="font-size:28px;line-height:1.5;color:#C9D6DF">
@@ -245,7 +307,7 @@ body.idle #bar{opacity:0}
 <li>Predictable cost per seat for RevScalers</li>
 </ul>
 </div>
-<div style="background:#FFFFFF;border-radius:20px;padding:56px;display:flex;flex-direction:column;gap:24px;box-shadow:0px 8px 32px rgba(15,43,61,0.08)">
+<div data-explain="revshare" style="background:#FFFFFF;border-radius:20px;padding:56px;display:flex;flex-direction:column;gap:24px;box-shadow:0px 8px 32px rgba(15,43,61,0.08)">
 <p style="font-size:24px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:#B86E00">Your standard model</p>
 <h3 style="font-family:'Space Grotesk', Arial, sans-serif;font-size:56px;font-weight:700">50% revenue share</h3>
 <ul style="font-size:28px;line-height:1.5;color:#4A5568">
@@ -255,23 +317,22 @@ body.idle #bar{opacity:0}
 </ul>
 </div>
 </div>
-<p style="font-size:28px;line-height:1.4;color:#4A5568">Open to a blend, for example a lower hourly rate plus a share per sold lead.</p>
-
+<p data-explain="blend" style="font-size:28px;line-height:1.4;color:#4A5568">Open to a blend, for example a lower hourly rate plus a share per sold lead.</p>
 </section>
 <section class="slide" id="questions" data-transition="fade" style="background:#0F2B3D;color:#F7F4EE;font-family:Inter, Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:56px">
 <div style="display:flex;flex-direction:column;gap:20px">
-<p style="font-size:26px;font-weight:600;letter-spacing:4px;text-transform:uppercase;color:#F59E0B">To align on today</p>
-<h2 style="font-family:'Space Grotesk', Arial, sans-serif;font-size:72px;font-weight:700;line-height:1.1">Questions for Miguel</h2>
+<p style="font-size:26px;font-weight:600;letter-spacing:4px;text-transform:uppercase;color:#F59E0B">Over to you</p>
+<h2 style="font-family:'Space Grotesk', Arial, sans-serif;font-size:72px;font-weight:700;line-height:1.1">Our questions for your team</h2>
 </div>
 <div style="display:grid;grid-template-columns:1fr 1fr;gap:28px 64px">
-<div style="display:flex;gap:24px;align-items:start"><p style="font-family:'Space Grotesk', Arial, sans-serif;font-size:36px;font-weight:700;color:#F59E0B">1</p><p style="font-size:30px;line-height:1.4">Which markets and price per lead for the first week?</p></div>
-<div style="display:flex;gap:24px;align-items:start"><p style="font-family:'Space Grotesk', Arial, sans-serif;font-size:36px;font-weight:700;color:#F59E0B">2</p><p style="font-size:30px;line-height:1.4">Lists: what format, how often, and are they DNC-scrubbed?</p></div>
-<div style="display:flex;gap:24px;align-items:start"><p style="font-family:'Space Grotesk', Arial, sans-serif;font-size:36px;font-weight:700;color:#F59E0B">3</p><p style="font-size:30px;line-height:1.4">How should leads and recordings be delivered?</p></div>
-<div style="display:flex;gap:24px;align-items:start"><p style="font-family:'Space Grotesk', Arial, sans-serif;font-size:36px;font-weight:700;color:#F59E0B">4</p><p style="font-size:30px;line-height:1.4">Do you provide a script, or do we build one with you?</p></div>
-<div style="display:flex;gap:24px;align-items:start"><p style="font-family:'Space Grotesk', Arial, sans-serif;font-size:36px;font-weight:700;color:#F59E0B">5</p><p style="font-size:30px;line-height:1.4">What gets a lead rejected, and how are disputes handled?</p></div>
-<div style="display:flex;gap:24px;align-items:start"><p style="font-family:'Space Grotesk', Arial, sans-serif;font-size:36px;font-weight:700;color:#F59E0B">6</p><p style="font-size:30px;line-height:1.4">Which commercial model works for you, and when can we start?</p></div>
+<div data-answer="1" style="display:flex;gap:24px;align-items:start"><p style="font-family:'Space Grotesk', Arial, sans-serif;font-size:36px;font-weight:700;color:#F59E0B">1</p><p style="font-size:30px;line-height:1.4">Which markets and price per lead for the first week?</p></div>
+<div data-answer="2" style="display:flex;gap:24px;align-items:start"><p style="font-family:'Space Grotesk', Arial, sans-serif;font-size:36px;font-weight:700;color:#F59E0B">2</p><p style="font-size:30px;line-height:1.4">Lists: what format, how often, and are they DNC-scrubbed?</p></div>
+<div data-answer="3" style="display:flex;gap:24px;align-items:start"><p style="font-family:'Space Grotesk', Arial, sans-serif;font-size:36px;font-weight:700;color:#F59E0B">3</p><p style="font-size:30px;line-height:1.4">How should leads and recordings be delivered?</p></div>
+<div data-answer="4" style="display:flex;gap:24px;align-items:start"><p style="font-family:'Space Grotesk', Arial, sans-serif;font-size:36px;font-weight:700;color:#F59E0B">4</p><p style="font-size:30px;line-height:1.4">Do you provide a script, or do we build one with you?</p></div>
+<div data-answer="5" style="display:flex;gap:24px;align-items:start"><p style="font-family:'Space Grotesk', Arial, sans-serif;font-size:36px;font-weight:700;color:#F59E0B">5</p><p style="font-size:30px;line-height:1.4">What gets a lead rejected, and how are disputes handled?</p></div>
+<div data-answer="6" style="display:flex;gap:24px;align-items:start"><p style="font-family:'Space Grotesk', Arial, sans-serif;font-size:36px;font-weight:700;color:#F59E0B">6</p><p style="font-size:30px;line-height:1.4">Which commercial model works for you, and when can we start?</p></div>
 </div>
-
+<div style="display:flex;gap:24px"><button class="cta" data-action="answer">Answer our questions &#8594;</button><button class="cta ghost" data-action="ask">Ask us a question</button></div>
 </section>
 <section class="slide" id="close" data-transition="fade" style="background:linear-gradient(135deg, #0A1A2F 0%, #0F2B3D 60%, #16405A 100%);color:#F7F4EE;font-family:Inter, Arial, sans-serif;padding:128px;display:flex;flex-direction:column;justify-content:space-between">
 <div style="position:absolute;left:1180px;top:0px;width:740px;height:1080px;background:radial-gradient(circle at 70% 60%, rgba(245,158,11,0.22) 0%, rgba(245,158,11,0) 60%)"></div>
@@ -283,6 +344,7 @@ body.idle #bar{opacity:0}
 <p style="font-size:30px;background:rgba(247,244,238,0.12);color:#F7F4EE;padding:16px 32px;border-radius:999px">Receive first markets and lists</p>
 <p style="font-size:30px;background:rgba(247,244,238,0.12);color:#F7F4EE;padding:16px 32px;border-radius:999px">Train and go live</p>
 </div>
+<div style="display:flex;gap:24px"><button class="cta" data-action="answer">Answer our questions &#8594;</button><button class="cta ghost" data-action="ask">Ask us a question</button></div>
 </div>
 <div style="display:flex;justify-content:space-between;align-items:end">
 <div style="display:flex;flex-direction:column;gap:8px">
@@ -293,45 +355,192 @@ body.idle #bar{opacity:0}
 <img src="logo.png" alt="Pioneer Outsourcing BPO logo" style="width:300px;height:152px;object-fit:contain">
 </div>
 </div>
-
 </section>
 </div></div>
+
+<div id="tip" role="status"><b>i</b><span>Click any card with an <strong>i</strong> badge to see more detail. Use the arrows or swipe to change slides.</span><button aria-label="Dismiss tip">&times;</button></div>
+
 <nav id="bar" aria-label="Slide controls">
 <button id="prev" aria-label="Previous slide">&#8592;</button>
 <span id="count" aria-live="polite"></span>
 <button id="next" aria-label="Next slide">&#8594;</button>
+<button id="help" aria-label="All topics and help">?</button>
 <button id="fs" aria-label="Toggle full screen">&#x26F6;</button>
+<button class="ask" data-action="ask" aria-label="Ask us a question">&#9993; <span>Ask us</span></button>
 </nav>
+
+<div id="scrim"></div>
+<aside id="drawer" role="dialog" aria-modal="true" aria-labelledby="d-title" aria-hidden="true">
+<header><div><p id="d-eyebrow"></p><h2 id="d-title"></h2></div><button id="d-close" aria-label="Close panel">&times;</button></header>
+<div id="d-body"></div>
+</aside>
+
 <script>
 (function(){
-  var slides=[].slice.call(document.querySelectorAll('.slide'));
-  var stage=document.getElementById('stage'),count=document.getElementById('count');
-  var i=0;
-  function fit(){var s=Math.min(window.innerWidth/1920,window.innerHeight/1080);stage.style.transform='scale('+s+')';}
-  function show(n){
-    i=Math.max(0,Math.min(slides.length-1,n));
-    slides.forEach(function(el,k){el.classList.toggle('active',k===i);el.setAttribute('aria-hidden',k===i?'false':'true');});
-    count.textContent=(i+1)+' / '+slides.length;
-    history.replaceState(null,'','#'+(i+1));
+var FORM_ENDPOINT='https://formspree.io/f/xqadpvbq';
+var CONTACT='hello@pioneeroutsourcingbpo.com';
+
+var T={
+standards:{e:'Who we are',t:'Built to Western standards',b:'<p>Pioneer Outsourcing BPO is based in Nairobi, Kenya, and serves clients in the USA, UK and Europe. Our processes, QA and reporting are set up to match what those clients expect from an in-house team.</p><h4>What that means for RevScalers</h4><ul><li>One point of contact who answers quickly</li><li>Call recordings and lead data in the format you choose</li><li>Honest reporting, including what didn’t work</li></ul>'},
+english:{e:'Who we are',t:'English-fluent agents',b:'<p>Kenya has a large, well-educated workforce, and English is an official language used in school, business and government.</p><p>Our agents are trained for US calls: clear pacing, US terms (“ranch home”, “HOA”, “closing”) and a neutral, friendly tone that homeowners respond to.</p>'},
+timezone:{e:'Who we are',t:'Covering US calling hours',b:'<p>Nairobi is 8 hours ahead of US Eastern time (EAT, UTC+3). We schedule shifts so agents are on the phones during homeowners’ local daytime and early evening, which are the hours they’re most likely to pick up.</p><div class="callout">US rules limit telemarketing calls to <b>8am–9pm in the homeowner’s local time</b>. Our dialer schedules are set per time zone so we stay inside that window.</div>'},
+agents30:{e:'At a glance',t:'30 trained agents',b:'<p>Our floor has 30 agents today, working across several client campaigns. They’re trained in outbound calling, objection handling and accurate data capture.</p><p>This matters because we have a <b>bench</b>: if RevScalers needs more seats, we can add trained people rather than hiring from scratch.</p>'},
+agents5:{e:'At a glance',t:'5 dedicated agents from day one',b:'<p>Five agents will work <b>only</b> on RevScalers markets. They won’t switch between campaigns, so they get good at your script, your criteria and your buyers’ markets quickly.</p><p>The other 25 keep running our existing campaigns until results justify scaling.</p>'},
+usexp:{e:'At a glance',t:'Our US calling experience',b:'<p>We’ve run US outbound campaigns in <b>janitorial services</b> and <b>healthcare</b>: cold calls to businesses and contacts who didn’t expect us, where the job is to open well, handle objections and qualify quickly.</p><p>Real estate is a new vertical for us, and we’re upfront about that. The core skills are the same; what’s new is the subject matter (property, motivation, timelines), and we’ll train on that before the first dial.</p>'},
+recording:{e:'Quality & proof',t:'Every call recorded',b:'<p>100% of calls on our dialers are recorded automatically. You don’t have to ask for it.</p><h4>Why this matters to you</h4><ul><li><b>Proof:</b> every lead comes with audio, so you and your investor client can hear the homeowner say it.</li><li><b>Disputes:</b> if a lead is questioned, the recording settles it.</li><li><b>Quality:</b> we use recordings to coach agents every week.</li></ul><div class="callout">Some US states (for example California, Florida and Pennsylvania) require everyone on the call to agree to recording. We’ll put a short recording notice at the start of the script; tell us if you have preferred wording.</div>'},
+vicidial:{e:'Dialing infrastructure',t:'VICIdial',b:'<p>VICIdial is a widely used contact-center dialer. It’s the platform we’d run the RevScalers campaign on.</p><h4>What it does for this campaign</h4><ul><li><b>Dials efficiently:</b> it dials ahead so agents spend their time talking, not waiting for rings</li><li><b>Loads your lists</b> by state, county or zip</li><li><b>Blocks DNC numbers</b> automatically</li><li><b>Records</b> every call</li><li><b>Reports</b> on dials, contacts and leads per agent</li></ul><p>It’s our own infrastructure, so there’s nothing for RevScalers to buy or set up.</p>'},
+dialafrica:{e:'Dialing infrastructure',t:'Dial Africa',b:'<p>Dial Africa is the platform we use for <b>local (Kenyan) calling campaigns</b>. It isn’t used for US calls. We mention it to show that every platform we run follows the same rules: calls recorded, opt-outs honored.</p>'},
+dnc:{e:'Compliance',t:'What is DNC?',b:'<p><b>DNC means “Do Not Call.”</b> In the US, the <b>National Do Not Call Registry</b>, run by the Federal Trade Commission (FTC), lists phone numbers whose owners don’t want sales or solicitation calls.</p><h4>Which rules apply</h4><ul><li><b>TCPA</b> (Telephone Consumer Protection Act) and the <b>Telemarketing Sales Rule</b> are the federal laws.</li><li>Many <b>states</b> keep their own DNC lists and add extra rules on calling hours.</li><li><b>Internal DNC:</b> if someone tells us “don’t call me again,” we must never call them again, even if their number isn’t on any registry.</li></ul><div class="callout"><b>Why it matters:</b> a homeowner can sue for <b>$500 per illegal call</b>, and up to <b>$1,500</b> if it’s willful. One careless list can hurt RevScalers and your investor clients, not just the calling team.</div><div class="ex"><b>Example:</b> Mary in Ohio registered her number years ago. Her number appears on a county list we receive. Step 1 removes it before it reaches the dialer, so she is never called.</div><p>Our protection works in three layers. Click each step on the slide to see how.</p>'},
+'dnc-import':{e:'DNC · Step 1',t:'Before import: list scrubbing',b:'<p>Before any list goes into the dialer, we compare it against our <b>master opt-out and DNC database</b>. That database holds every number that has ever asked us not to call, plus the DNC numbers we already know about.</p><p>Any match is removed, so the number never reaches an agent.</p><div class="ex"><b>Example:</b> A list of 2,000 Texas homeowners arrives. 140 numbers match our DNC records and are removed. Only 1,860 are loaded.</div><div class="callout">If RevScalers supplies the lists: are they already checked against the National DNC Registry? If not, we’ll agree who does that check.</div>'},
+'dnc-dialer':{e:'DNC · Step 2',t:'In the dialer: automatic blocking',b:'<p>VICIdial keeps its own DNC list. Even if a number slipped through Step 1, the dialer <b>refuses to call any number flagged DNC</b> or previously opted out.</p><p>This is a safety net that doesn’t depend on anyone remembering anything.</p>'},
+'dnc-live':{e:'DNC · Step 3',t:'On the live call: instant opt-out',b:'<p>If a homeowner says “take me off your list” or “don’t call again,” the agent:</p><ul><li>Apologizes politely and ends the call</li><li>Marks the call with the <b>“DNC” outcome code</b> in the dialer</li></ul><p>That one click adds the number to our DNC list, so it’s blocked from <b>every</b> future campaign, not just this one.</p><div class="ex"><b>Example:</b> John in Florida says “I’m not interested, stop calling me.” He is tagged DNC on that call and is never dialed again by any Pioneer agent.</div>'},
+owner:{e:'Lead standard 1 of 6',t:'Owner confirmed',b:'<p>The person on the phone must be the <b>owner</b> of the property (or one of the owners), not a tenant, relative or neighbor.</p><p>Agents confirm it directly before qualifying: <i>“Just to confirm, you’re the owner of the home at 123 Oak Street?”</i></p><p>Only an owner can agree to sell, so a lead without this is worthless to an investor.</p>'},
+price:{e:'Lead standard 2 of 6',t:'Asking price + value estimate',b:'<p>These are two different numbers, and we capture both:</p><ul><li><b>Asking price:</b> what the owner would accept. <i>“If we could close quickly, what price would work for you?”</i></li><li><b>Value estimate:</b> what the owner thinks the home is worth. <i>“What do you think it would sell for on the open market?”</i></li></ul><div class="ex"><b>Example:</b> Owner thinks the house is worth <b>$220,000</b> but would take <b>$170,000</b> for a fast cash sale. That $50k gap shows strong motivation, which investors look for.</div>'},
+motivation:{e:'Lead standard 3 of 6',t:'Motivation, in their words',b:'<p>Why does the owner want to sell? Investors want the owner’s <b>own words</b>, not a checkbox.</p><p>Common reasons include an inherited property, relocation for work, divorce, a tired landlord with problem tenants, or repairs they can’t afford.</p><div class="ex"><b>Example note:</b> “My mom passed in March, the house has been empty since. My brother and I both live out of state and just want it handled.”</div><p>Agents type it as close to word-for-word as they can.</p>'},
+notlisted:{e:'Lead standard 4 of 6',t:'Not listed',b:'<p>The home must <b>not</b> be on the market with a real estate agent (not on the MLS, not under a listing agreement).</p><p>Investors buy <b>off-market</b>. A listed home has an agent and a contract in the way, so it doesn’t count.</p><p>Agents ask: <i>“Is the home currently listed with a realtor?”</i></p>'},
+timeline:{e:'Lead standard 5 of 6',t:'Timeline under 3 months',b:'<p>The owner must want to sell within <b>90 days</b>. Someone selling “maybe next year” isn’t a lead for an investor yet.</p><p>Agents ask: <i>“If the price was right, how soon would you want to close?”</i> Anything beyond three months is noted but <b>not submitted</b> as a lead.</p>'},
+'wf-targets':{e:'How a week runs',t:'Targets set',b:'<p>RevScalers tells us where your investor clients are buying this week: <b>states, counties, zip codes</b> and property type (for example single-family homes), plus the price per lead.</p><p>We can also suggest areas where our results show leads qualify more often.</p>'},
+'wf-data':{e:'How a week runs',t:'Data loaded',b:'<p>The call list is prepared one of two ways:</p><ul><li><b>Your lists:</b> RevScalers supplies the data and we load it.</li><li><b>Lead mining:</b> we build lists ourselves from property records and find phone numbers for the owners (“skip tracing”).</li></ul><p>Either way, every list goes through DNC Step 1 before it’s loaded into VICIdial.</p>'},
+'wf-dial':{e:'How a week runs',t:'Dial',b:'<p>Five dedicated agents call during US daytime hours, inside the 8am–9pm local window. Every call is recorded.</p>'},
+'wf-qualify':{e:'How a week runs',t:'Qualify',b:'<p>A conversation becomes a lead only if it meets <b>all six</b> standards: owner confirmed, asking price and value estimate, motivation in their words, not listed, timeline under 3 months, recorded.</p><p>Before submitting, a team lead listens to the call to check it.</p>'},
+'wf-deliver':{e:'How a week runs',t:'Deliver',b:'<p>Each lead is submitted with its details and the call recording in the way that works for you: your CRM, a form, or a shared sheet. That’s one of our questions for your team.</p>'},
+ph1:{e:'Launch plan',t:'Phase 1 · Onboard',b:'<ul><li>Walkthrough with Miguel and the RevScalers team</li><li>Agents trained on your script and the six lead standards</li><li>First markets and lists loaded</li></ul><p>Target: ready to dial within the same week.</p>'},
+ph2:{e:'Launch plan',t:'Phase 2 · Pilot',b:'<p>Five agents work full shifts on RevScalers markets. Each week we review together:</p><ul><li>Leads submitted vs. accepted</li><li>Reasons for any rejections</li><li>Feedback from your investor clients</li></ul><p>We’ll agree with you how long the pilot runs and which numbers decide whether to scale.</p>'},
+ph3:{e:'Launch plan',t:'Phase 3 · Scale',b:'<p>When the pilot works, we add seats from our existing team of 30, with people already trained in outbound calling, so scaling is fast.</p>'},
+hourly:{e:'Commercials',t:'Hourly: $5 or less',b:'<p>RevScalers pays a flat rate per agent hour, <b>$5 or less</b>. That covers:</p><ul><li>Lead mining (building call lists)</li><li>Dialing on our own VICIdial setup</li><li>Agents, supervision, recording and QA</li></ul><div class="ex"><b>Example:</b> 5 agents × 8 hours × 5 days = 200 hours a week. At $5/hour that’s at most <b>$1,000 a week</b>, whatever the lead volume.</div><p><b>Why we prefer it:</b> when we source the data and run the dialer, a commission-only model puts all the cost on us before a single lead sells.</p>'},
+revshare:{e:'Commercials',t:'50% revenue share',b:'<p>RevScalers’ standard model: for every lead that <b>sells</b> to an investor client, the calling team gets <b>50% of the price</b>, paid every Monday.</p><div class="ex"><b>Example:</b> A client pays <b>$100</b> for a lead. Pioneer receives <b>$50</b>. If the lead isn’t sold, nothing is paid.</div><p>This works best when RevScalers supplies the data lists, since that removes our biggest cost.</p>'},
+blend:{e:'Commercials',t:'A blended option',b:'<p>A middle ground: a <b>lower hourly rate</b> to cover our base costs, plus a <b>smaller share</b> of each sold lead.</p><p>You get lower fixed cost; we stay rewarded for quality. We’re happy to work out the numbers together.</p>'}
+};
+
+var QS=[
+['Markets & pricing','Which markets and price per lead for the first week?'],
+['Data lists','Lists: what format, how often, and are they DNC-scrubbed?'],
+['Lead delivery','How should leads and recordings be delivered?'],
+['Script','Do you provide a script, or do we build one with you?'],
+['Rejections','What gets a lead rejected, and how are disputes handled?'],
+['Model & start','Which commercial model works for you, and when can we start?']
+];
+
+var slides=[].slice.call(document.querySelectorAll('.slide'));
+var stage=document.getElementById('stage'),count=document.getElementById('count');
+var body=document.body,drawer=document.getElementById('drawer'),dBody=document.getElementById('d-body');
+var i=0,lastFocus=null;
+
+function store(k,v){try{if(v===undefined)return localStorage.getItem(k);localStorage.setItem(k,v);}catch(e){return null;}}
+function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+
+function fit(){var s=Math.min(window.innerWidth/1920,window.innerHeight/1080);stage.style.transform='scale('+s+')';}
+function show(n){
+  i=Math.max(0,Math.min(slides.length-1,n));
+  slides.forEach(function(el,k){el.classList.toggle('active',k===i);el.setAttribute('aria-hidden',k===i?'false':'true');});
+  count.textContent=(i+1)+' / '+slides.length;
+  history.replaceState(null,'','#'+(i+1));
+  var first=slides[i].querySelector('[data-explain]');
+  if(first&&!store('pio-pulsed-'+i)){first.classList.add('pulse');store('pio-pulsed-'+i,'1');}
+}
+
+function open(eyebrow,title,html){
+  lastFocus=document.activeElement;
+  document.getElementById('d-eyebrow').textContent=eyebrow;
+  document.getElementById('d-title').textContent=title;
+  dBody.innerHTML=html;dBody.scrollTop=0;
+  body.classList.add('drawer-open');drawer.setAttribute('aria-hidden','false');
+  document.getElementById('d-close').focus();
+}
+function close(){body.classList.remove('drawer-open');drawer.setAttribute('aria-hidden','true');if(lastFocus&&lastFocus.focus)lastFocus.focus();}
+
+function keysOnSlide(){var seen={};return [].slice.call(slides[i].querySelectorAll('[data-explain]')).map(function(e){return e.getAttribute('data-explain');}).filter(function(k){if(seen[k])return false;seen[k]=1;return true;});}
+function explain(key){
+  var t=T[key];if(!t)return;
+  var ks=keysOnSlide(),p=ks.indexOf(key),nav='';
+  if(p>-1&&ks.length>1){
+    nav='<div id="d-nav">'+(p>0?'<button class="linkbtn" data-explain-link="'+ks[p-1]+'">&#8592; '+esc(T[ks[p-1]].t)+'</button>':'<span></span>')+(p<ks.length-1?'<button class="linkbtn" data-explain-link="'+ks[p+1]+'">'+esc(T[ks[p+1]].t)+' &#8594;</button>':'')+'</div>';
   }
-  document.getElementById('prev').onclick=function(){show(i-1)};
-  document.getElementById('next').onclick=function(){show(i+1)};
-  document.getElementById('fs').onclick=function(){
-    if(document.fullscreenElement){document.exitFullscreen();}else if(document.documentElement.requestFullscreen){document.documentElement.requestFullscreen();}
-  };
-  document.addEventListener('keydown',function(e){
-    if(['ArrowRight','PageDown',' ','Enter'].indexOf(e.key)>-1){e.preventDefault();show(i+1);}
-    else if(['ArrowLeft','PageUp','Backspace'].indexOf(e.key)>-1){e.preventDefault();show(i-1);}
-    else if(e.key==='Home'){show(0);}else if(e.key==='End'){show(slides.length-1);}
-    else if(e.key==='f'){document.getElementById('fs').click();}
+  open(t.e,t.t,t.b+nav+'<p style="margin-top:20px"><button class="linkbtn" data-action="ask">Still have a question about this? Ask us &#8594;</button></p>');
+}
+
+function field(label,name,type,val,ph,req){return '<label for="f-'+name+'">'+label+(req?'':' <span class="hint">(optional)</span>')+'</label><input id="f-'+name+'" name="'+name+'" type="'+type+'" value="'+esc(val||'')+'" placeholder="'+esc(ph||'')+'"'+(req?' required':'')+'>';}
+function who(){return '<div class="row"><div>'+field('Your name','name','text',store('pio-name'),'',true)+'</div><div>'+field('Email','email','email',store('pio-email'),'you@revscalers.com',true)+'</div></div>'+field('Role','role','text',store('pio-role'),'e.g. Provider Manager',false);}
+
+function answerForm(focusIdx){
+  var h='<p>Answer as many as you like; you can skip any. Your answers go straight to our team at '+CONTACT+'.</p><form data-kind="answers" novalidate>'+who();
+  QS.forEach(function(q,k){h+='<label for="f-q'+(k+1)+'">'+(k+1)+'. '+esc(q[1])+'</label><textarea id="f-q'+(k+1)+'" name="Q'+(k+1)+' – '+esc(q[0])+'"></textarea>';});
+  h+='<input class="hp" type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true"><button class="submit" type="submit">Send answers</button><p class="status" role="status"></p></form>';
+  open('Over to you','Our questions for your team',h);
+  if(focusIdx){var ta=document.getElementById('f-q'+focusIdx);if(ta){setTimeout(function(){ta.focus();ta.scrollIntoView({block:'center'});},380);}}
+}
+function askForm(){
+  var h='<p>Anything you want to know about Pioneer, our process, compliance or pricing. Ask it here and we’ll reply by email, usually the same day.</p><form data-kind="question" novalidate>'+who()+'<label for="f-question">Your question</label><textarea id="f-question" name="question" required style="min-height:130px"></textarea><input class="hp" type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true"><button class="submit" type="submit">Send question</button><p class="status" role="status"></p></form>';
+  var sent=store('pio-sent');
+  if(sent){try{sent=JSON.parse(sent);if(sent.length){h+='<h4>You’ve sent</h4><ul>'+sent.slice(-5).reverse().map(function(s){return '<li>'+esc(s)+'</li>';}).join('')+'</ul>';}}catch(e){}}
+  open('Questions','Ask the Pioneer team',h);
+}
+function helpPanel(){
+  var h='<p>This presentation is from Pioneer Outsourcing BPO for the RevScalers team.</p><ul><li>Click any card with an <b>i</b> badge for a fuller explanation</li><li>Move between slides with the arrows, the keyboard (&#8592; &#8594;) or by swiping</li><li>Use <b>Ask us</b> any time to send a question</li></ul><h4>Every topic</h4><div class="topics">'+Object.keys(T).map(function(k){return '<button data-explain-link="'+k+'">'+esc(T[k].t)+'</button>';}).join('')+'</div><h4>Over to you</h4><p><button class="linkbtn" data-action="answer">Answer our 6 questions &#8594;</button><br><button class="linkbtn" data-action="ask">Ask us a question &#8594;</button></p><p style="font-size:14px;color:#6A7179">Prefer email? <a href="mailto:'+CONTACT+'">'+CONTACT+'</a></p>';
+  open('Help','How to use this presentation',h);
+}
+
+function submit(form){
+  var st=form.querySelector('.status'),btn=form.querySelector('.submit');
+  var name=form.elements.name.value.trim(),email=form.elements.email.value.trim();
+  if(!name||!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){st.className='status err';st.textContent='Please add your name and a valid email so we can reply.';return;}
+  var kind=form.getAttribute('data-kind');
+  if(kind==='question'&&!form.elements.question.value.trim()){st.className='status err';st.textContent='Please type your question.';return;}
+  if(kind==='answers'&&![].slice.call(form.querySelectorAll('textarea')).some(function(t){return t.value.trim();})){st.className='status err';st.textContent='Please answer at least one question.';return;}
+  store('pio-name',name);store('pio-email',email);store('pio-role',form.elements.role.value.trim());
+  var fd=new FormData(form);
+  fd.append('company','RevScalers');
+  fd.append('_subject',kind==='question'?'RevScalers question from '+name:'RevScalers answers from '+name);
+  fd.append('source','RevScalers partner presentation');
+  btn.disabled=true;btn.textContent='Sending…';st.className='status';st.textContent='';
+  fetch(FORM_ENDPOINT,{method:'POST',body:fd,headers:{Accept:'application/json'}}).then(function(r){
+    if(!r.ok)throw new Error('bad status');
+    if(kind==='question'){var s=[];try{s=JSON.parse(store('pio-sent')||'[]');}catch(e){}s.push(form.elements.question.value.trim());store('pio-sent',JSON.stringify(s));}
+    form.outerHTML='<div class="done"><div class="tick">&#10003;</div><h3 style="font:700 22px Space Grotesk,sans-serif;color:#0F2B3D">Thank you, '+esc(name.split(' ')[0])+'!</h3><p style="margin-top:8px">'+(kind==='question'?'Your question is with our team. We’ll reply to '+esc(email)+'.':'Your answers are with our team. We’ll follow up at '+esc(email)+'.')+'</p><p><button class="linkbtn" data-action="'+(kind==='question'?'ask':'answer')+'">'+(kind==='question'?'Ask another question':'Send more answers')+' &#8594;</button></p></div>';
+  }).catch(function(){
+    btn.disabled=false;btn.textContent='Try again';st.className='status err';
+    st.innerHTML='Sorry, that didn’t send. Please try again, or email us at <a href="mailto:'+CONTACT+'">'+CONTACT+'</a>.';
   });
-  var x0=null;
-  document.addEventListener('touchstart',function(e){x0=e.touches[0].clientX},{passive:true});
-  document.addEventListener('touchend',function(e){if(x0===null)return;var dx=e.changedTouches[0].clientX-x0;if(Math.abs(dx)>40)show(i+(dx<0?1:-1));x0=null;});
-  var t;function wake(){document.body.classList.remove('idle');clearTimeout(t);t=setTimeout(function(){document.body.classList.add('idle')},2500);}
-  document.addEventListener('mousemove',wake);wake();
-  window.addEventListener('resize',fit);fit();
-  var h=parseInt(location.hash.slice(1),10);show(isNaN(h)?0:h-1);
+}
+
+document.addEventListener('click',function(e){
+  var t=e.target.closest('[data-explain-link],[data-explain],[data-answer],[data-action]');
+  if(!t)return;
+  if(t.hasAttribute('data-explain-link'))return explain(t.getAttribute('data-explain-link'));
+  if(t.hasAttribute('data-explain'))return explain(t.getAttribute('data-explain'));
+  if(t.hasAttribute('data-answer'))return answerForm(+t.getAttribute('data-answer'));
+  var a=t.getAttribute('data-action');if(a==='ask')askForm();else if(a==='answer')answerForm();
+});
+document.addEventListener('submit',function(e){e.preventDefault();submit(e.target);});
+[].forEach.call(document.querySelectorAll('[data-explain],[data-answer]'),function(el){el.setAttribute('tabindex','0');el.setAttribute('role','button');});
+document.getElementById('scrim').onclick=close;
+document.getElementById('d-close').onclick=close;
+document.getElementById('prev').onclick=function(){show(i-1)};
+document.getElementById('next').onclick=function(){show(i+1)};
+document.getElementById('help').onclick=helpPanel;
+document.getElementById('fs').onclick=function(){if(document.fullscreenElement){document.exitFullscreen();}else if(document.documentElement.requestFullscreen){document.documentElement.requestFullscreen();}};
+var tip=document.getElementById('tip');
+function hideTip(){tip.classList.add('hide');store('pio-tip','1');}
+tip.querySelector('button').onclick=hideTip;
+if(store('pio-tip'))tip.classList.add('hide');else setTimeout(hideTip,9000);
+
+document.addEventListener('keydown',function(e){
+  if(body.classList.contains('drawer-open')){if(e.key==='Escape')close();return;}
+  var tag=(e.target.tagName||'').toLowerCase();
+  if((e.key==='Enter'||e.key===' ')&&e.target.closest&&e.target.closest('[data-explain],[data-answer]')){e.preventDefault();e.target.click();return;}
+  if(tag==='input'||tag==='textarea'||tag==='button')return;
+  if(['ArrowRight','PageDown',' '].indexOf(e.key)>-1){e.preventDefault();show(i+1);}
+  else if(['ArrowLeft','PageUp'].indexOf(e.key)>-1){e.preventDefault();show(i-1);}
+  else if(e.key==='Home'){show(0);}else if(e.key==='End'){show(slides.length-1);}
+  else if(e.key==='f'){document.getElementById('fs').click();}
+});
+var x0=null,y0=null;
+stage.addEventListener('touchstart',function(e){x0=e.touches[0].clientX;y0=e.touches[0].clientY;},{passive:true});
+stage.addEventListener('touchend',function(e){if(x0===null)return;var dx=e.changedTouches[0].clientX-x0,dy=e.changedTouches[0].clientY-y0;if(Math.abs(dx)>40&&Math.abs(dx)>Math.abs(dy))show(i+(dx<0?1:-1));x0=null;});
+var idleT;function wake(){body.classList.remove('idle');clearTimeout(idleT);idleT=setTimeout(function(){body.classList.add('idle');},3000);}
+document.addEventListener('mousemove',wake);wake();
+window.addEventListener('resize',fit);fit();
+var h=parseInt(location.hash.slice(1),10);show(isNaN(h)?0:h-1);
 })();
 </script>
 </body>
