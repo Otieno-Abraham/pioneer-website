@@ -52,10 +52,11 @@ div[data-answer]:hover{background:rgba(245,158,11,.1)}
 #bar .ask:hover{background:#FBBF24}
 #count{min-width:56px;text-align:center;font-variant-numeric:tabular-nums}
 body.idle:not(.drawer-open) #bar{opacity:.15}
-#tip{position:fixed;top:16px;left:50%;transform:translateX(-50%);background:#F7F4EE;color:#0F2B3D;border-radius:999px;padding:10px 18px;font-size:14px;box-shadow:0 10px 30px rgba(0,0,0,.35);display:flex;gap:10px;align-items:center;z-index:20;transition:opacity .4s;max-width:calc(100% - 32px)}
+#tip{position:fixed;top:16px;left:50%;transform:translateX(-50%);width:max-content;line-height:1.4;background:#F7F4EE;color:#0F2B3D;border-radius:999px;padding:10px 18px;font-size:14px;box-shadow:0 10px 30px rgba(0,0,0,.35);display:flex;gap:10px;align-items:center;z-index:20;transition:opacity .4s;max-width:calc(100% - 32px)}
 #tip b{display:inline-flex;width:22px;height:22px;border-radius:50%;background:#F59E0B;color:#0A1A2F;align-items:center;justify-content:center;font:italic 700 14px Georgia,serif;flex:none}
 #tip button{background:none;border:none;font-size:18px;cursor:pointer;color:#6A7179;padding:0 4px}
 #tip.hide{opacity:0;pointer-events:none}
+@media (max-width:559px){#tip{border-radius:14px;align-items:flex-start;font-size:13px}}
 
 /* drawer */
 #scrim{position:fixed;inset:0;background:rgba(6,17,31,.55);opacity:0;pointer-events:none;transition:opacity .3s;z-index:30}
@@ -470,6 +471,36 @@ form .submit:disabled{opacity:.6;cursor:wait}
 </div>
 </div>
 </section>
+<section class="slide" id="partnership" data-transition="fade" style="background:#F7F4EE;color:#0F2B3D;font-family:Inter, Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:44px">
+<div style="display:flex;flex-direction:column;gap:20px">
+<p style="font-size:26px;font-weight:600;letter-spacing:4px;text-transform:uppercase;color:#B86E00">How the partnership works</p>
+<h2 style="font-family:'Space Grotesk', Arial, sans-serif;font-size:72px;font-weight:700;line-height:1.1">Who brings what</h2>
+</div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:32px">
+<div data-explain="rev-brings" style="background:#FFFFFF;border-radius:20px;padding:48px;display:flex;flex-direction:column;gap:20px;border-top:6px solid #0F2B3D;box-shadow:0px 8px 32px rgba(15,43,61,0.08)">
+<h3 style="font-family:'Space Grotesk', Arial, sans-serif;font-size:44px;font-weight:700">RevScalers</h3>
+<ul style="font-size:28px;line-height:1.5;color:#4A5568">
+<li>Target states, counties and zips each week</li>
+<li>Lead criteria and price per lead</li>
+<li>Data lists for the target markets</li>
+<li>Investor buyers and weekly payment</li>
+</ul>
+</div>
+<div data-explain="pio-brings" style="background:#0F2B3D;color:#F7F4EE;border-radius:20px;padding:48px;display:flex;flex-direction:column;gap:20px;border-top:6px solid #F59E0B">
+<h3 style="font-family:'Space Grotesk', Arial, sans-serif;font-size:44px;font-weight:700">Pioneer</h3>
+<ul style="font-size:28px;line-height:1.5;color:#C9D6DF">
+<li>5 dedicated, trained agents</li>
+<li>Our VICIdial dialer, phone lines and recording</li>
+<li>DNC checks, QA and daily reporting</li>
+<li>List building when you don’t supply data</li>
+</ul>
+</div>
+</div>
+<div data-explain="seats" style="display:flex;gap:20px;align-items:center;background:#FDF1DC;border-radius:16px;padding:28px 40px">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="color:#B86E00;width:48px;height:48px;flex:none"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+<p style="font-size:30px;line-height:1.4;color:#0F2B3D"><b>No dialer or seat costs for RevScalers.</b> Agents work on our own system, so you don’t buy licenses or logins.</p>
+</div>
+</section>
 <section class="slide" id="commercial" data-transition="fade" style="background:#F7F4EE;color:#0F2B3D;font-family:Inter, Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:48px">
 <div style="display:flex;flex-direction:column;gap:20px">
 <p style="font-size:26px;font-weight:600;letter-spacing:4px;text-transform:uppercase;color:#B86E00">Commercial structure</p>
@@ -599,7 +630,10 @@ am:{e:'Quality & reporting',t:'A dedicated account manager',b:'<p>Every client g
 qa:{e:'Quality & reporting',t:'QA scoring',b:'<p>Because <b>100% of calls are recorded</b>, our QA team reviews a sample of every agent’s calls each week and scores them on:</p><ul><li>Following the script and compliance steps (recording notice, DNC handling)</li><li>Capturing all six lead criteria accurately</li><li>Tone and professionalism with homeowners</li></ul><p>Low scores mean coaching before the next shift.</p>'},
 reports:{e:'Quality & reporting',t:'Daily reports',b:'<p>Each day you get the numbers that matter:</p><ul><li>Dials and live conversations</li><li>Leads submitted, by market</li><li>DNC requests handled</li><li>Hours worked per agent</li></ul><p>Weekly and monthly summaries show trends. We can send them in the format you prefer: email, a shared sheet or your CRM.</p>'},
 nda:{e:'Quality & reporting',t:'NDA on every engagement',b:'<p>We sign a <b>non-disclosure agreement</b> with every client before work starts. Your target markets, buyer details, pricing and lead data stay confidential and are used only for your campaign.</p>'},
-data:{e:'Quality & reporting',t:'Secure data handling',b:'<p>Your lists and lead data are handled carefully:</p><ul><li><b>Access control:</b> only the agents and managers on your campaign can see your data</li><li><b>GDPR-ready processes</b> for handling personal data</li><li>Data is used only for your campaign and never resold</li></ul>'}
+data:{e:'Quality & reporting',t:'Secure data handling',b:'<p>Your lists and lead data are handled carefully:</p><ul><li><b>Access control:</b> only the agents and managers on your campaign can see your data</li><li><b>GDPR-ready processes</b> for handling personal data</li><li>Data is used only for your campaign and never resold</li></ul>'},
+'rev-brings':{e:'Who brings what',t:'What RevScalers brings',b:'<ul><li><b>Where to call:</b> target states, counties and zip codes each week, based on where your investor clients are buying</li><li><b>What counts as a lead:</b> your six standards and property types</li><li><b>Price per lead</b> for each market</li><li><b>Data lists</b> for those markets, if you supply them. Ideally with owner phone numbers and checked against the National DNC Registry</li><li><b>The buyers:</b> you sell the leads to investors and pay out weekly</li></ul>'},
+'pio-brings':{e:'Who brings what',t:'What Pioneer brings',b:'<ul><li><b>People:</b> 5 dedicated agents, trained on your script and criteria, plus a team lead and QA</li><li><b>Dialer:</b> our own VICIdial system, US calling lines and caller IDs</li><li><b>Proof:</b> every call recorded, and the recording sent with each lead</li><li><b>Compliance:</b> our three-step DNC process and US calling-hour rules</li><li><b>Reporting:</b> daily numbers and a weekly review with you</li><li><b>List building</b> (finding owners and phone numbers) for any market where you don’t supply data</li></ul>'},
+seats:{e:'Who brings what',t:'No dialer or seat costs for you',b:'<p>A <b>“seat”</b> is one agent login on a dialer. Some partners ask the lead company to buy dialer licenses or pay per seat. <b>We don’t.</b></p><ul><li>Our agents work on <b>our own VICIdial system</b>, with our own phone lines and call recording</li><li>RevScalers <b>doesn’t buy, install or log into anything</b></li><li>Adding agents later doesn’t mean new licenses or logins for you; we handle that</li></ul><p>You receive the finished leads, each with its recording, in the format you choose.</p>'}
 };
 
 var QS=[
