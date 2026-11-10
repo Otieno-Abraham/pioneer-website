@@ -101,6 +101,41 @@ form .submit:disabled{opacity:.6;cursor:wait}
 .done{text-align:center;padding:24px 0}
 .done .tick{width:64px;height:64px;border-radius:50%;background:#1F7A4D;color:#fff;display:flex;align-items:center;justify-content:center;font-size:32px;margin:8px auto 16px}
 .hp{position:absolute;left:-9999px}
+
+/* Q&A board */
+.qa-count{display:inline-block;margin-left:14px;font-size:22px;font-weight:600;background:#F59E0B;color:#0A1A2F;border-radius:999px;padding:2px 14px;vertical-align:middle}
+.qa-q{font:600 19px/1.4 'Space Grotesk',Arial,sans-serif;color:#0F2B3D;background:#FFFFFF;border-left:4px solid #F59E0B;border-radius:8px;padding:14px 16px}
+.qa-empty{color:#6A7179;font-style:italic;padding:12px 0}
+#qa-list{margin:18px 0 8px}
+.post{background:#FFFFFF;border:1px solid #E6E1D6;border-radius:12px;padding:12px 14px;margin-bottom:10px}
+.post.ours{border-color:#F59E0B;background:#FFFBF2}
+.post.reply{margin:10px 0 0;background:#FBF8F2}
+.post.reply.ours{background:#FFF4DE}
+.replies{border-left:2px solid #E6E1D6;padding-left:12px;margin-top:6px}
+.post .meta{font-size:13px;color:#6A7179;margin-bottom:4px}
+.post .meta b{color:#0F2B3D}
+.post .tag{background:#0F2B3D;color:#F59E0B;border-radius:999px;padding:1px 8px;font-size:11px;font-weight:600;letter-spacing:.5px}
+.post .body{font-size:15px;line-height:1.55;color:#2D3B48;word-wrap:break-word}
+.post .acts{display:flex;gap:16px}
+.post .acts .linkbtn{font-size:13px;padding:4px 0}
+.post .acts .del{color:#B42318}
+.qa-form{margin-top:14px;display:flex;flex-direction:column;gap:8px}
+.qa-form input,.qa-form textarea{width:100%;font:15px Inter,sans-serif;padding:10px 12px;border:1px solid #D6CFC0;border-radius:10px;background:#FFFFFF;color:#0F2B3D}
+.qa-form textarea{min-height:90px;resize:vertical}
+.reply-slot .qa-form textarea{min-height:64px}
+.qa-form input:focus,.qa-form textarea:focus{outline:2px solid #F59E0B;outline-offset:1px;border-color:#F59E0B}
+.qa-row{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.qa-form .submit{background:#F59E0B;color:#0A1A2F;border:none;border-radius:999px;padding:10px 26px;font:600 15px Inter,sans-serif;cursor:pointer}
+.qa-form .submit:hover{background:#FBBF24}
+.qa-form .submit:disabled{opacity:.6;cursor:wait}
+.as-pioneer{font-size:12px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:#B86E00}
+.status{font-size:13px}.status.ok{color:#1F7A4D}.status.err{color:#B42318}
+.qa-overview{display:flex;flex-direction:column;gap:8px;margin:16px 0}
+.qa-overview button{display:grid;grid-template-columns:28px 1fr;gap:2px 10px;text-align:left;background:#FFFFFF;border:1px solid #E6E1D6;border-radius:12px;padding:12px 14px;cursor:pointer;font:15px/1.45 Inter,sans-serif;color:#0F2B3D}
+.qa-overview button:hover{border-color:#F59E0B;background:#FFFBF2}
+.qa-overview .n{grid-row:span 2;font:700 20px 'Space Grotesk',sans-serif;color:#F59E0B}
+.qa-overview .c{font-size:12px;color:#6A7179}
+#admin-btn{font-size:12px!important;color:#F59E0B!important}
 @media (max-width:560px){#bar .ask span{display:none}form .row{flex-direction:column;gap:0}}
 @media (prefers-reduced-motion:reduce){.slide,#drawer,#scrim{transition:none}.slide.active [data-explain].pulse::after{animation:none}}
 </style>
@@ -366,7 +401,7 @@ form .submit:disabled{opacity:.6;cursor:wait}
 <button id="next" aria-label="Next slide">&#8594;</button>
 <button id="help" aria-label="All topics and help">?</button>
 <button id="fs" aria-label="Toggle full screen">&#x26F6;</button>
-<button class="ask" data-action="ask" aria-label="Ask us a question">&#9993; <span>Ask us</span></button>
+<button class="ask" data-action="ask" aria-label="Questions and answers">&#128172; <span>Q&amp;A</span></button>
 </nav>
 
 <div id="scrim"></div>
@@ -377,7 +412,6 @@ form .submit:disabled{opacity:.6;cursor:wait}
 
 <script>
 (function(){
-var FORM_ENDPOINT='https://formspree.io/f/xqadpvbq';
 var CONTACT='hello@pioneeroutsourcingbpo.com';
 
 var T={
@@ -447,7 +481,7 @@ function open(eyebrow,title,html){
   body.classList.add('drawer-open');drawer.setAttribute('aria-hidden','false');
   document.getElementById('d-close').focus();
 }
-function close(){body.classList.remove('drawer-open');drawer.setAttribute('aria-hidden','true');if(lastFocus&&lastFocus.focus)lastFocus.focus();}
+function close(){current=null;clearInterval(pollT);body.classList.remove('drawer-open');drawer.setAttribute('aria-hidden','true');if(lastFocus&&lastFocus.focus)lastFocus.focus();}
 
 function keysOnSlide(){var seen={};return [].slice.call(slides[i].querySelectorAll('[data-explain]')).map(function(e){return e.getAttribute('data-explain');}).filter(function(k){if(seen[k])return false;seen[k]=1;return true;});}
 function explain(key){
@@ -456,51 +490,136 @@ function explain(key){
   if(p>-1&&ks.length>1){
     nav='<div id="d-nav">'+(p>0?'<button class="linkbtn" data-explain-link="'+ks[p-1]+'">&#8592; '+esc(T[ks[p-1]].t)+'</button>':'<span></span>')+(p<ks.length-1?'<button class="linkbtn" data-explain-link="'+ks[p+1]+'">'+esc(T[ks[p+1]].t)+' &#8594;</button>':'')+'</div>';
   }
-  open(t.e,t.t,t.b+nav+'<p style="margin-top:20px"><button class="linkbtn" data-action="ask">Still have a question about this? Ask us &#8594;</button></p>');
+  open(t.e,t.t,t.b+nav+'<p style="margin-top:20px"><button class="linkbtn" data-action="ask">Question about this? Ask it on the Q&amp;A board &#8594;</button></p>');
 }
 
-function field(label,name,type,val,ph,req){return '<label for="f-'+name+'">'+label+(req?'':' <span class="hint">(optional)</span>')+'</label><input id="f-'+name+'" name="'+name+'" type="'+type+'" value="'+esc(val||'')+'" placeholder="'+esc(ph||'')+'"'+(req?' required':'')+'>';}
-function who(){return '<div class="row"><div>'+field('Your name','name','text',store('pio-name'),'',true)+'</div><div>'+field('Email','email','email',store('pio-email'),'you@revscalers.com',true)+'</div></div>'+field('Role','role','text',store('pio-role'),'e.g. Provider Manager',false);}
-
-function answerForm(focusIdx){
-  var h='<p>Answer as many as you like; you can skip any. Your answers go straight to our team at '+CONTACT+'.</p><form data-kind="answers" novalidate>'+who();
-  QS.forEach(function(q,k){h+='<label for="f-q'+(k+1)+'">'+(k+1)+'. '+esc(q[1])+'</label><textarea id="f-q'+(k+1)+'" name="Q'+(k+1)+' – '+esc(q[0])+'"></textarea>';});
-  h+='<input class="hp" type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true"><button class="submit" type="submit">Send answers</button><p class="status" role="status"></p></form>';
-  open('Over to you','Our questions for your team',h);
-  if(focusIdx){var ta=document.getElementById('f-q'+focusIdx);if(ta){setTimeout(function(){ta.focus();ta.scrollIntoView({block:'center'});},380);}}
-}
-function askForm(){
-  var h='<p>Anything you want to know about Pioneer, our process, compliance or pricing. Ask it here and we’ll reply by email, usually the same day.</p><form data-kind="question" novalidate>'+who()+'<label for="f-question">Your question</label><textarea id="f-question" name="question" required style="min-height:130px"></textarea><input class="hp" type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true"><button class="submit" type="submit">Send question</button><p class="status" role="status"></p></form>';
-  var sent=store('pio-sent');
-  if(sent){try{sent=JSON.parse(sent);if(sent.length){h+='<h4>You’ve sent</h4><ul>'+sent.slice(-5).reverse().map(function(s){return '<li>'+esc(s)+'</li>';}).join('')+'</ul>';}}catch(e){}}
-  open('Questions','Ask the Pioneer team',h);
-}
-function helpPanel(){
-  var h='<p>This presentation is from Pioneer Outsourcing BPO for the RevScalers team.</p><ul><li>Click any card with an <b>i</b> badge for a fuller explanation</li><li>Move between slides with the arrows, the keyboard (&#8592; &#8594;) or by swiping</li><li>Use <b>Ask us</b> any time to send a question</li></ul><h4>Every topic</h4><div class="topics">'+Object.keys(T).map(function(k){return '<button data-explain-link="'+k+'">'+esc(T[k].t)+'</button>';}).join('')+'</div><h4>Over to you</h4><p><button class="linkbtn" data-action="answer">Answer our 6 questions &#8594;</button><br><button class="linkbtn" data-action="ask">Ask us a question &#8594;</button></p><p style="font-size:14px;color:#6A7179">Prefer email? <a href="mailto:'+CONTACT+'">'+CONTACT+'</a></p>';
-  open('Help','How to use this presentation',h);
-}
-
-function submit(form){
-  var st=form.querySelector('.status'),btn=form.querySelector('.submit');
-  var name=form.elements.name.value.trim(),email=form.elements.email.value.trim();
-  if(!name||!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){st.className='status err';st.textContent='Please add your name and a valid email so we can reply.';return;}
-  var kind=form.getAttribute('data-kind');
-  if(kind==='question'&&!form.elements.question.value.trim()){st.className='status err';st.textContent='Please type your question.';return;}
-  if(kind==='answers'&&![].slice.call(form.querySelectorAll('textarea')).some(function(t){return t.value.trim();})){st.className='status err';st.textContent='Please answer at least one question.';return;}
-  store('pio-name',name);store('pio-email',email);store('pio-role',form.elements.role.value.trim());
-  var fd=new FormData(form);
-  fd.append('company','RevScalers');
-  fd.append('_subject',kind==='question'?'RevScalers question from '+name:'RevScalers answers from '+name);
-  fd.append('source','RevScalers partner presentation');
-  btn.disabled=true;btn.textContent='Sending…';st.className='status';st.textContent='';
-  fetch(FORM_ENDPOINT,{method:'POST',body:fd,headers:{Accept:'application/json'}}).then(function(r){
-    if(!r.ok)throw new Error('bad status');
-    if(kind==='question'){var s=[];try{s=JSON.parse(store('pio-sent')||'[]');}catch(e){}s.push(form.elements.question.value.trim());store('pio-sent',JSON.stringify(s));}
-    form.outerHTML='<div class="done"><div class="tick">&#10003;</div><h3 style="font:700 22px Space Grotesk,sans-serif;color:#0F2B3D">Thank you, '+esc(name.split(' ')[0])+'!</h3><p style="margin-top:8px">'+(kind==='question'?'Your question is with our team. We’ll reply to '+esc(email)+'.':'Your answers are with our team. We’ll follow up at '+esc(email)+'.')+'</p><p><button class="linkbtn" data-action="'+(kind==='question'?'ask':'answer')+'">'+(kind==='question'?'Ask another question':'Send more answers')+' &#8594;</button></p></div>';
-  }).catch(function(){
-    btn.disabled=false;btn.textContent='Try again';st.className='status err';
-    st.innerHTML='Sorry, that didn’t send. Please try again, or email us at <a href="mailto:'+CONTACT+'">'+CONTACT+'</a>.';
+var SB_URL='https://wxziqcmqqvvbpycjkohg.supabase.co',SB_KEY='sb_publishable_vDFvDhRBUy17XH6SaCKYMg_tp9xs2ZX';
+var READY=/^https:\/\//.test(SB_URL)&&SB_KEY.indexOf('__')!==0;
+var rows=[],current=null,pollT=null;
+function sess(k,v){try{if(v===undefined)return sessionStorage.getItem(k);if(v===null)sessionStorage.removeItem(k);else sessionStorage.setItem(k,v);}catch(e){return null;}}
+function isAdmin(){return !!sess('pio-admin');}
+function api(path,opt){
+  opt=opt||{};
+  var h={apikey:SB_KEY,'Content-Type':'application/json'};
+  if(SB_KEY.indexOf('eyJ')===0)h.Authorization='Bearer '+SB_KEY;
+  for(var k in (opt.headers||{}))h[k]=opt.headers[k];
+  opt.headers=h;
+  return fetch(SB_URL+'/rest/v1/'+path,opt).then(function(r){
+    if(!r.ok)return r.text().then(function(t){throw new Error(t||String(r.status));});
+    return r.text().then(function(t){return t?JSON.parse(t):null;});
   });
+}
+function load(){
+  if(!READY)return Promise.resolve();
+  return api('qa?select=*&order=created_at.asc').then(function(d){rows=d||[];badges();if(current)renderList();}).catch(function(){
+    var l=document.getElementById('qa-list');if(l&&!rows.length)l.innerHTML='<p class="qa-empty">Couldn’t load the board. Check your connection and try again.</p>';
+  });
+}
+function topicName(t){if(t==='general')return 'Questions for Pioneer';var n=+t.slice(1);return n+'. '+QS[n-1][1];}
+function countFor(t){return rows.filter(function(r){return r.topic===t&&!r.parent_id;}).length;}
+function badges(){
+  for(var k=1;k<=6;k++){
+    var el=document.querySelector('[data-answer="'+k+'"]');if(!el)continue;
+    var ps=el.querySelectorAll('p'),p=ps[ps.length-1],b=p.querySelector('.qa-count'),n=countFor('q'+k);
+    if(!n){if(b)b.remove();continue;}
+    if(!b){b=document.createElement('span');b.className='qa-count';p.appendChild(b);}
+    b.textContent=n+(n===1?' answer':' answers');
+  }
+  var g=countFor('general'),ab=document.querySelector('#bar .ask span');
+  if(ab)ab.textContent=g?'Q&A ('+g+')':'Q&A';
+}
+function when(s){try{return new Date(s).toLocaleString([], {month:'short',day:'numeric',hour:'numeric',minute:'2-digit'});}catch(e){return '';}}
+function txt(s){return esc(s).replace(/\n/g,'<br>');}
+function post(r,isReply){
+  var reps=isReply?'':rows.filter(function(x){return x.parent_id===r.id;}).map(function(x){return post(x,true);}).join('');
+  return '<div class="post'+(r.from_pioneer?' ours':'')+(isReply?' reply':'')+'" data-id="'+r.id+'"><div class="meta"><b>'+esc(r.name)+'</b>'+(r.from_pioneer?' <span class="tag">Pioneer</span>':'')+' · '+when(r.created_at)+'</div><div class="body">'+txt(r.body)+'</div>'+
+    '<div class="acts">'+(isReply?'':'<button class="linkbtn" data-reply="'+r.id+'">Reply</button>')+(isAdmin()?'<button class="linkbtn del" data-del="'+r.id+'">Delete</button>':'')+'</div>'+
+    (reps?'<div class="replies">'+reps+'</div>':'')+'<div class="reply-slot"></div></div>';
+}
+function renderList(){
+  var l=document.getElementById('qa-list');if(!l)return;
+  var busy=[].some.call(l.querySelectorAll('textarea'),function(t){return t.value.trim()||t===document.activeElement;});
+  if(busy)return;
+  var top=rows.filter(function(r){return r.topic===current&&!r.parent_id;});
+  l.innerHTML=top.length?top.map(function(r){return post(r,false);}).join(''):'<p class="qa-empty">'+(current==='general'?'No questions yet. Ask the first one below.':'No answers yet. Be the first to answer below.')+'</p>';
+}
+function composer(parent){
+  var nm=isAdmin()?(store('pio-admin-name')||'Pioneer team'):(store('pio-name')||'');
+  return '<form class="qa-form" data-parent="'+(parent||'')+'" novalidate>'+
+    (isAdmin()?'<p class="as-pioneer">Posting as Pioneer</p>':'')+
+    '<input name="name" type="text" maxlength="80" placeholder="Your name" value="'+esc(nm)+'" aria-label="Your name" required>'+
+    '<textarea name="body" maxlength="4000" placeholder="'+(parent?'Write a reply…':(current==='general'?'Type your question…':'Type your answer…'))+'" aria-label="Message" required></textarea>'+
+    '<div class="qa-row"><span class="status" role="status"></span><button class="submit" type="submit">'+(parent?'Reply':'Post')+'</button></div></form>';
+}
+function thread(topic){
+  current=topic;
+  var intro=topic==='general'
+    ?'<p>Ask the Pioneer team anything. Questions and our replies stay here, visible to everyone who has this link.</p>'
+    :'<p class="qa-q">'+esc(QS[+topic.slice(1)-1][1])+'</p><p>Answers posted here stay on this page for both teams to see.</p>';
+  var nav=topic==='general'?'':'<div id="d-nav">'+(+topic.slice(1)>1?'<button class="linkbtn" data-thread="q'+(+topic.slice(1)-1)+'">&#8592; Previous question</button>':'<span></span>')+(+topic.slice(1)<6?'<button class="linkbtn" data-thread="q'+(+topic.slice(1)+1)+'">Next question &#8594;</button>':'<button class="linkbtn" data-thread="general">Ask us something &#8594;</button>')+'</div>';
+  if(!READY){open(topic==='general'?'Q&A':'Over to you',topic==='general'?'Questions for Pioneer':'Question '+topic.slice(1),intro+'<p class="qa-empty">The Q&amp;A board is being set up and will be live shortly.</p>'+nav);return;}
+  open(topic==='general'?'Q&A':'Over to you · '+topic.slice(1)+' of 6',topic==='general'?'Questions for Pioneer':'Our question to you',intro+'<div id="qa-list"><p class="qa-empty">Loading…</p></div>'+composer(null)+nav);
+  renderList();load();
+  clearInterval(pollT);pollT=setInterval(load,15000);
+}
+function overview(){
+  current=null;
+  var h='<p>Click a question to see what’s been said and add your answer. Everything posted stays here for both teams.</p><div class="qa-overview">'+
+    QS.map(function(q,k){var n=countFor('q'+(k+1));return '<button data-thread="q'+(k+1)+'"><span class="n">'+(k+1)+'</span><span class="t">'+esc(q[1])+'</span><span class="c">'+(READY?(n?n+(n===1?' answer':' answers'):'No answers yet'):'')+'</span></button>';}).join('')+
+    '</div><p><button class="linkbtn" data-thread="general">Have a question for us? Ask it here &#8594;</button></p>';
+  open('Over to you','Our questions for your team',h);
+  load().then(function(){if(!current&&document.querySelector('.qa-overview'))overview2();});
+}
+function overview2(){[].forEach.call(document.querySelectorAll('.qa-overview button'),function(b){var n=countFor(b.getAttribute('data-thread'));b.querySelector('.c').textContent=n?n+(n===1?' answer':' answers'):'No answers yet';});}
+function answerForm(n){if(n)thread('q'+n);else overview();}
+function askForm(){thread('general');}
+
+document.addEventListener('click',function(e){
+  var t=e.target.closest('[data-thread],[data-reply],[data-del],#admin-btn');if(!t)return;
+  if(t.hasAttribute('data-thread'))return thread(t.getAttribute('data-thread'));
+  if(t.hasAttribute('data-reply')){
+    var slot=t.closest('.post').querySelector(':scope > .reply-slot');
+    if(slot.innerHTML){slot.innerHTML='';return;}
+    slot.innerHTML=composer(t.getAttribute('data-reply'));slot.querySelector('textarea').focus();return;
+  }
+  if(t.hasAttribute('data-del')){
+    if(!confirm('Delete this post and its replies for everyone? This can’t be undone.'))return;
+    api('rpc/qa_delete',{method:'POST',body:JSON.stringify({p_id:+t.getAttribute('data-del'),p_pass:sess('pio-admin')})}).then(load).catch(function(){alert('Could not delete. Your Pioneer sign-in may have expired.');});
+    return;
+  }
+  if(t.id==='admin-btn'){
+    if(isAdmin()){if(confirm('Sign out of Pioneer mode?')){sess('pio-admin',null);t.textContent='Pioneer sign-in';if(current)thread(current);}return;}
+    var p=prompt('Pioneer passcode');if(!p)return;
+    api('rpc/qa_is_admin',{method:'POST',body:JSON.stringify({p_pass:p})}).then(function(ok){
+      if(ok===true){sess('pio-admin',p);t.textContent='Pioneer: signed in';if(current)thread(current);}else alert('That passcode isn’t right.');
+    }).catch(function(){alert('Could not check the passcode right now.');});
+  }
+});
+document.addEventListener('submit',function(e){
+  var f=e.target;if(!f.classList.contains('qa-form'))return;e.preventDefault();
+  var st=f.querySelector('.status'),btn=f.querySelector('.submit');
+  var name=f.elements.name.value.trim(),body=f.elements.body.value.trim(),parent=f.getAttribute('data-parent');
+  if(!name||!body){st.className='status err';st.textContent=!name?'Add your name.':'Type a message first.';return;}
+  if(isAdmin())store('pio-admin-name',name);else store('pio-name',name);
+  btn.disabled=true;st.className='status';st.textContent='Posting…';
+  var req=isAdmin()
+    ?api('rpc/qa_pioneer_post',{method:'POST',body:JSON.stringify({p_topic:current,p_parent:parent?+parent:null,p_name:name,p_body:body,p_pass:sess('pio-admin')})})
+    :api('qa',{method:'POST',headers:{Prefer:'return=minimal'},body:JSON.stringify({topic:current,parent_id:parent?+parent:null,name:name,body:body})});
+  req.then(function(){
+    f.elements.body.value='';btn.disabled=false;st.className='status ok';st.textContent='Posted';
+    if(parent)f.parentNode.innerHTML='';
+    return load();
+  }).catch(function(){btn.disabled=false;st.className='status err';st.textContent='Didn’t post. Please try again.';});
+});
+if(/[?&]admin\b/.test(location.search)){
+  var ab=document.createElement('button');ab.id='admin-btn';ab.textContent=isAdmin()?'Pioneer: signed in':'Pioneer sign-in';
+  document.getElementById('bar').appendChild(ab);
+}
+load();
+
+function helpPanel(){
+  var h='<p>This presentation is from Pioneer Outsourcing BPO for the RevScalers team.</p><ul><li>Click any card with an <b>i</b> badge for a fuller explanation</li><li>Move between slides with the arrows, the keyboard (&#8592; &#8594;) or by swiping</li><li>Use <b>Q&amp;A</b> to ask us anything; questions and replies stay on this page</li></ul><h4>Every topic</h4><div class="topics">'+Object.keys(T).map(function(k){return '<button data-explain-link="'+k+'">'+esc(T[k].t)+'</button>';}).join('')+'</div><h4>Over to you</h4><p><button class="linkbtn" data-action="answer">Answer our 6 questions &#8594;</button><br><button class="linkbtn" data-action="ask">Open the Q&amp;A board &#8594;</button></p><p style="font-size:14px;color:#6A7179">Prefer email? <a href="mailto:'+CONTACT+'">'+CONTACT+'</a></p>';
+  open('Help','How to use this presentation',h);
 }
 
 document.addEventListener('click',function(e){
@@ -511,7 +630,6 @@ document.addEventListener('click',function(e){
   if(t.hasAttribute('data-answer'))return answerForm(+t.getAttribute('data-answer'));
   var a=t.getAttribute('data-action');if(a==='ask')askForm();else if(a==='answer')answerForm();
 });
-document.addEventListener('submit',function(e){e.preventDefault();submit(e.target);});
 [].forEach.call(document.querySelectorAll('[data-explain],[data-answer]'),function(el){el.setAttribute('tabindex','0');el.setAttribute('role','button');});
 document.getElementById('scrim').onclick=close;
 document.getElementById('d-close').onclick=close;
